@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67C5B839-15A1-431F-BD40-4EDC198905C7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Archilab_Mandrill</RootNamespace>
+    <AssemblyName>Archi-lab_Mandrill</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Archi-lab_Mandrill.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CoreNodeModels">
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\nodes\CoreNodeModels.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CoreNodeModelsWpf">
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\nodes\CoreNodeModelsWpf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DSCoreNodes">
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DSCoreNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoCore">
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoCoreWpf">
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoCoreWpf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoServices">
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoUtilities">
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoUtilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ProtoCore">
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\ProtoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Select.HtmlToPdf, Version=2.3.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.2.3.0.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Nodes\Bootstrap\Image.cs" />
+    <Compile Include="Nodes\Bootstrap\Text.cs" />
+    <Compile Include="Nodes\D3js\AreaCharts.cs" />
+    <Compile Include="Nodes\D3js\BarCharts.cs" />
+    <Compile Include="Nodes\D3js\DonutChart.cs" />
+    <Compile Include="Nodes\D3js\GroupedBarChart.cs" />
+    <Compile Include="Nodes\D3js\LineCharts.cs" />
+    <Compile Include="Nodes\D3js\MiscNodes.cs" />
+    <Compile Include="Nodes\D3js\ScatterPlots.cs" />
+    <Compile Include="Nodes\D3js\StackedBarChart.cs" />
+    <Compile Include="Nodes\Reports\Image.cs" />
+    <Compile Include="Nodes\Reports\Pdf.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mandrill_d3\Mandrill_d3.csproj">
+      <Project>{63ed27cd-0302-4240-b322-990e76dbac42}</Project>
+      <Name>Mandrill_d3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mandrill_Types\Mandrill_Types.csproj">
+      <Project>{cddd1df6-1a31-4960-be81-62fd692f2a82}</Project>
+      <Name>Mandrill_Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mandrill_UI\Mandrill_UI.csproj">
+      <Project>{c665e3fe-575e-4e8a-9284-359def02a553}</Project>
+      <Name>Mandrill_UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets" Condition="Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets'))" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Q/Y "$(TargetPath)" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)$(TargetName).XML" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_d3.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_Types.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_Types.xml" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_UI.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_UI.xml" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)RazorEngine.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Select.HtmlToPdf.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Select.Html.dep" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

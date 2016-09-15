@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill_Dynamo", "Mandrill\Mandrill_Dynamo.csproj", "{67C5B839-15A1-431F-BD40-4EDC198905C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill_UI", "Mandrill_UI\Mandrill_UI.csproj", "{C665E3FE-575E-4E8A-9284-359DEF02A553}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill_Types", "Mandrill_Types\Mandrill_Types.csproj", "{CDDD1DF6-1A31-4960-BE81-62FD692F2A82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill_d3", "Mandrill_d3\Mandrill_d3.csproj", "{63ED27CD-0302-4240-B322-990E76DBAC42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67C5B839-15A1-431F-BD40-4EDC198905C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C5B839-15A1-431F-BD40-4EDC198905C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C5B839-15A1-431F-BD40-4EDC198905C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C5B839-15A1-431F-BD40-4EDC198905C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C665E3FE-575E-4E8A-9284-359DEF02A553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C665E3FE-575E-4E8A-9284-359DEF02A553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C665E3FE-575E-4E8A-9284-359DEF02A553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C665E3FE-575E-4E8A-9284-359DEF02A553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDDD1DF6-1A31-4960-BE81-62FD692F2A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDDD1DF6-1A31-4960-BE81-62FD692F2A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDDD1DF6-1A31-4960-BE81-62FD692F2A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDDD1DF6-1A31-4960-BE81-62FD692F2A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63ED27CD-0302-4240-B322-990E76DBAC42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63ED27CD-0302-4240-B322-990E76DBAC42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63ED27CD-0302-4240-B322-990E76DBAC42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63ED27CD-0302-4240-B322-990E76DBAC42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,143 @@
+﻿<div class="col-md-@(Model.ColMdValue)" id="@(Model.DivId)" align="center">
+    <script type="text/javascript">
+        function renderDonutChart() {
+
+            var data = @Raw(Model.Data);
+
+            var margin = {top: 40, right: 40, bottom: 40, left: 40};
+
+            var w = @(Model.Width) - margin.left - margin.right,
+                h = @(Model.Height) - margin.top - margin.bottom,
+                r = Math.min(w, h) / 2,
+                labelr = r + 10, // radius for label anchor
+                donut = d3.layout.pie(),
+                inner = r * 0.6,
+                arc = d3.svg.arc().innerRadius(inner).outerRadius(r),
+                arcOver = d3.svg.arc().innerRadius(inner + 5).outerRadius(r + 5);
+
+            @if(Model.Colors)
+            {
+                @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+            }
+            else
+            {
+                @:var color = d3.scale.category20c();
+            }
+
+            var total = d3.sum(data, function(d) { return d3.sum(d3.values(d));});
+
+            var vis = d3.select("#@(Model.DivId)")
+                .append("svg")
+                .data([data])
+                .attr("width", w + margin.left + margin.right)
+                .attr("height", h + margin.top + margin.bottom);
+
+            var textTop = vis.append("text")
+                .attr("dy", ".35em")
+                .style("text-anchor", "middle")
+                .attr("font-family", "Segoe UI")
+                .attr("font-size", r/7 + "px")
+                .attr("fill", "#bbb")
+                .attr("x", (w + margin.left + margin.right) / 2)
+                .attr("y", ((h + margin.top + margin.bottom) / 2) - (r/7)/2)
+                .text("TOTAL");
+
+            var textBottom = vis.append("text")
+                .attr("dy", ".35em")
+                .attr("font-family", "Segoe UI")
+                .style("text-anchor", "middle")
+                .attr("font-weight", "bold")
+                .attr("font-size", r/6 + "px")
+                .text(total.toFixed(2))
+                .attr("x", (w + margin.left + margin.right) / 2)
+                .attr("y", ((h + margin.top + margin.bottom) / 2) + (r/6)/2);
+
+            var arcs = vis.selectAll("arc")
+                .data(donut.value(function (d) { return d.value; }))
+                .enter().append("g")
+                .attr("class", "arc")
+                .attr("transform", "translate(" + (w + margin.left + margin.right) / 2 + "," + (h + margin.top + margin.bottom) / 2 + ")");
+
+            arcs.append("path")
+                .attr("fill", function (d) { return color(d.data.name); })
+                .attr("d", arc)
+                .style("stroke", "white")
+                .style("stroke-width", 2);
+
+            @if(Model.Labels)
+            {<text>
+                arcs.append("text")
+                .attr("transform", function (d) {
+                    var c = arc.centroid(d),
+                        x = c[0],
+                        y = c[1],
+                        // pythagorean theorem for hypotenuse
+                        h = Math.sqrt(x * x + y * y);
+                    return "translate(" + (x / h * labelr) + ',' +
+                       (y / h * labelr) + ")";
+                })
+                .attr("dy", ".35em")
+                .attr("text-anchor", function (d) {
+                    // are we past the center?
+                    return (d.endAngle + d.startAngle) / 2 > Math.PI ?
+                        "end" : "start";
+                })
+                .text(function (d) { return d.data.name; }); 
+            </text>
+            }
+            else
+            {
+            
+            }
+
+            arcs.selectAll("path")
+                .on("mouseover", function (d) {
+                    d3.select(this).transition()
+                        .duration(200)
+                        .attr("d", arcOver);
+
+                    textTop.text(d.data.name);
+                    textBottom.text(d.data.value);
+
+                    d3.select(this).style("fill", "@(Model.HoverColor)");
+                })
+                .on("mouseout", function () {
+                    d3.select(this).transition()
+                        .duration(100)
+                        .attr("d", arc);
+
+                    textTop.text("TOTAL");
+                    textBottom.text(total);
+
+                    d3.select(this).style("fill", function (d) { return color(d.data.name); });
+                });
+            @if(Model.Legend)
+            {<text>
+            var legend = d3.select("#@(Model.DivId)").append("svg")
+                .attr("width", r * 2)
+                .attr("height", r * 2)
+                .selectAll("g")
+                .data(color.domain().slice())
+                .enter().append("g")
+                .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+            legend.append("rect")
+                .attr("width", 18)
+                .attr("height", 18)
+                .style("fill", color);
+
+            legend.append("text")
+                .attr("x", 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .text(function(d) { return d;});
+            </text>
+            }
+            else
+            {
+            
+            }
+            }
+        renderDonutChart();
+    </script>
+</div>

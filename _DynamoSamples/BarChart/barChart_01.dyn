@@ -1,0 +1,49 @@
+<Workspace Version="1.1.0.2094" X="90.0125253809246" Y="35.2892884402726" zoom="0.784369328044827" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="DSCore.Color" resolvedName="DSCore.Color" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="decaa97d-ba04-42ed-abda-55b9861426c4" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Chart" x="691.488814526637" y="399.730785038087" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Chart@var,var" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ab515183-8b5f-402c-b100-0c3f5dae4383" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.DataFromCSV" x="348.532939934709" y="305.368240261166" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.DataFromCSV@string,var">
+      <PortInfo index="1" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ded3fed4-c3b8-4bad-900a-36fb793f75de" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Style" x="378.994715506008" y="521.379220239402" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Style@DSCore.Color,DSCore.Color,int,int,string,int" />
+    <CoreNodeModels.Input.Filename guid="017a6677-2fb4-463f-a1b0-c0ec703f7657" type="CoreNodeModels.Input.Filename" nickname="File Path" x="-19.8119878376572" y="251.396178206087" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>E:\Google Drive\Work\Mandrill-dynamo\DynamoSamples\BarChart\barChartData.txt</System.String>
+      <HintPath>E:\Google Drive\Work\Mandrill-dynamo\DynamoSamples\BarChart\barChartData.txt</HintPath>
+    </CoreNodeModels.Input.Filename>
+    <CoreNodeModels.Watch guid="4fdf46c7-98a1-49af-a0c3-8686644d711b" type="CoreNodeModels.Watch" nickname="Watch" x="875.649568832623" y="789.986091141534" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="6eeed4c1-3380-4928-bfd3-ce296974e93e" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="4.93209769378461" y="540.89417657244" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="DSCore.Color.ByARGB(1,100,100,100);&#xA;DSCore.Color.ByARGB(1,255,0,0);&#xA;1500;&#xA;600;&#xA;&quot;Test&quot;;&#xA;24;" ShouldFocus="false" />
+    <CoreNodeModels.MandrillReportNode guid="8b5bc571-fc2a-4d8c-be64-5d140a11bb5f" type="CoreNodeModels.MandrillReportNode" nickname="Create Report" x="1004.76605487298" y="399.741462141883" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1" />
+    <CoreNodeModels.MandrillRowContainerNode guid="445249e6-9c47-4b84-93d5-f7c9230f74b1" type="CoreNodeModels.MandrillRowContainerNode" nickname="Create Row Container" x="827.906710128837" y="399.741462141883" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1" />
+    <Mandrill.Window.MandrillWindowNodeModel guid="2c12a73d-d359-4abd-acaa-52c780a35728" type="Mandrill.Window.MandrillWindowNodeModel" nickname="Report Window" x="1296.58397370081" y="398.857165418162" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="a90c080a-19b5-462d-925d-335256d3231d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Domain" x="154.4689024103" y="357.642986722836" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Domain@double,double">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="0c57e534-5ca1-44c8-a557-e4dbda4c78f7" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-3" y="403" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0.2;" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="decaa97d-ba04-42ed-abda-55b9861426c4" start_index="0" end="4fdf46c7-98a1-49af-a0c3-8686644d711b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="decaa97d-ba04-42ed-abda-55b9861426c4" start_index="0" end="445249e6-9c47-4b84-93d5-f7c9230f74b1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ab515183-8b5f-402c-b100-0c3f5dae4383" start_index="0" end="decaa97d-ba04-42ed-abda-55b9861426c4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ded3fed4-c3b8-4bad-900a-36fb793f75de" start_index="0" end="decaa97d-ba04-42ed-abda-55b9861426c4" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="017a6677-2fb4-463f-a1b0-c0ec703f7657" start_index="0" end="ab515183-8b5f-402c-b100-0c3f5dae4383" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6eeed4c1-3380-4928-bfd3-ce296974e93e" start_index="0" end="ded3fed4-c3b8-4bad-900a-36fb793f75de" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6eeed4c1-3380-4928-bfd3-ce296974e93e" start_index="1" end="ded3fed4-c3b8-4bad-900a-36fb793f75de" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6eeed4c1-3380-4928-bfd3-ce296974e93e" start_index="2" end="ded3fed4-c3b8-4bad-900a-36fb793f75de" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6eeed4c1-3380-4928-bfd3-ce296974e93e" start_index="3" end="ded3fed4-c3b8-4bad-900a-36fb793f75de" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6eeed4c1-3380-4928-bfd3-ce296974e93e" start_index="4" end="ded3fed4-c3b8-4bad-900a-36fb793f75de" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6eeed4c1-3380-4928-bfd3-ce296974e93e" start_index="5" end="ded3fed4-c3b8-4bad-900a-36fb793f75de" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8b5bc571-fc2a-4d8c-be64-5d140a11bb5f" start_index="0" end="2c12a73d-d359-4abd-acaa-52c780a35728" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="445249e6-9c47-4b84-93d5-f7c9230f74b1" start_index="0" end="8b5bc571-fc2a-4d8c-be64-5d140a11bb5f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a90c080a-19b5-462d-925d-335256d3231d" start_index="0" end="ab515183-8b5f-402c-b100-0c3f5dae4383" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0c57e534-5ca1-44c8-a557-e4dbda4c78f7" start_index="0" end="a90c080a-19b5-462d-925d-335256d3231d" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

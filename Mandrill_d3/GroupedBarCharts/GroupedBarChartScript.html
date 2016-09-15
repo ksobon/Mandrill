@@ -1,0 +1,140 @@
+﻿<div class="col-md-@(Model.ColMdValue)" id="@(Model.DivId)" align="center">
+    <script type="text/javascript">
+        function renderGroupedBarChart() {
+
+            var data = @Raw(Model.Data);
+
+            var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+                width = @(Model.Width) - margin.left - margin.right,
+                height = @(Model.Height) - margin.top - margin.bottom;
+
+            var x0 = d3.scale.ordinal()
+                .rangeRoundBands([0, width], .1);
+
+            var x1 = d3.scale.ordinal();
+
+            var y = d3.scale.linear()
+                .range([height, 0]);
+
+            @if(Model.Colors)
+            {
+            @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+            }
+            else
+            {
+            @:var color = d3.scale.category20c();
+            }
+
+            var xAxis = d3.svg.axis()
+                .scale(x0)
+                .orient("bottom");
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left")
+                .tickFormat(d3.format(".2s"));
+
+            var svg = d3.select("#@(Model.DivId)").append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var ageNames = d3.keys(data[0]).filter(function (key) { return key !== "Name"; });
+
+            data.forEach(function (d) {
+                d.ages = ageNames.map(function (name) { return { name: name, value: +d[name] }; });
+            });
+
+            x0.domain(data.map(function (d) { return d.Name; }));
+            x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
+
+            @if(Model.Domain)
+            {
+                @:y.domain([@(Model.DomainA), @(Model.DomainB)]);
+            }
+            else
+            {
+                @:y.domain([0, d3.max(data, function (d) { return d3.max(d.ages, function (d) { return d.value; }); })]);
+            }
+
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text("@(Model.YAxisLabel)");
+
+            var state = svg.selectAll(".groups")
+                .data(data)
+                .enter().append("g")
+                .attr("class", "groups")
+                .attr("transform", function (d) { return "translate(" + x0(d.Name) + ",0)"; });
+
+            state.selectAll("rect")
+                .data(function (d) { return d.ages; })
+                .enter().append("rect")
+                .attr("width", x1.rangeBand())
+                .attr("x", function (d) { return x1(d.name); })
+                .attr("y", function (d) { return y(d.value); })
+                .attr("height", function (d) { return height - y(d.value); })
+                .style("fill", function (d) { return color(d.name); });
+
+            state.selectAll("rect")
+              .on("mouseover", function(d){
+
+                 var group = d3.select(d3.select(this).node().parentNode);
+                 var xPos = d3.transform(group.attr("transform")).translate[0] + x1(d.name);
+                 var yPos = parseFloat(d3.select(this).attr("y"));
+                 var height = parseFloat(d3.select(this).attr("height"))
+                 var width = parseFloat(d3.select(this).attr("width"))
+            
+                 d3.select(this).style("fill", "@(Model.BarHover)");
+            
+                 svg.append("text")
+                     .attr("x",xPos)
+                     .attr("y",yPos - 3)
+                     .attr("font-family", "sans-serif")
+                     .attr("font-size", "10px")
+                     .attr("font-weight", "bold")
+                     .attr("fill", "black")
+                     .attr("text-anchor", "middle")
+                     .attr("id", "tooltip")
+                     .attr("transform", "translate(" + width/2 + ")")
+                     .text(d.name +": "+ d.value);
+              })
+              .on("mouseout", function(){
+                  svg.select("#tooltip").remove();
+                  d3.select(this).style("fill", function (d) { return color(d.name); });
+               });
+
+            var legend = svg.selectAll(".legend")
+                .data(ageNames.slice())
+                .enter().append("g")
+                .attr("class", "legend")
+                .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+
+            legend.append("rect")
+                .attr("x", width - 18)
+                .attr("width", 18)
+                .attr("height", 18)
+                .style("fill", color);
+
+            legend.append("text")
+                .attr("x", width - 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .style("text-anchor", "end")
+                .text(function (d) { return d; });
+        }
+        renderGroupedBarChart();
+    </script>
+</div>

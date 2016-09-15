@@ -1,0 +1,114 @@
+﻿<div class="col-md-@(Model.ColMdValue)" id="@(Model.DivId)" align="center">
+    <script>
+        function RenderScatterPlot() {
+
+            var data = @Raw(Model.Data);
+
+		    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    		        width = @(Model.Width) - margin.left - margin.right,
+    		        height = @(Model.Height) - margin.top - margin.bottom;
+
+		    var svg = d3.select("#@(Model.DivId)").append("svg")
+    	        .attr("width", width + margin.left + margin.right)
+    	        .attr("height", height + margin.top + margin.bottom)
+  		        .append("g")
+    	        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		    var tooltip = d3.select("#@(Model.DivId)").append("div")
+    	        //.attr("class", "tooltip")
+                .style("position", "absolute")
+                .style("width", "200px")
+                .style("height", "28px")
+                .style("pointer-events", "none")
+    	        .style("opacity", 0);
+
+            var xValue = function(d) { return d.valueX;};
+            var yValue = function(d) { return d.valueY;};
+
+            var x = d3.scale.linear()
+                .range([0, width - margin.left - margin.right]);
+
+            @if(Model.DomainX)
+            {
+                @:x.domain([@(Model.DomainXA), @(Model.DomainXB)]);
+            }
+            else
+            {
+                @:x.domain([d3.min(data, xValue), d3.max(data, xValue)]);
+            }
+
+            var y = d3.scale.linear()
+                .range([height - margin.top - margin.bottom, 0]);
+
+            @if(Model.DomainY)
+            {
+                @:y.domain([@(Model.DomainYA), @(Model.DomainYB)]);
+            }
+            else
+            {
+                 @:y.domain([d3.min(data, yValue), d3.max(data, yValue)]);
+            }
+
+            var rScale = d3.scale.linear()
+				.domain([0, d3.max(data, function(d) { return d.size; })])
+				.range([2, 10]);
+
+            var xAxis = d3.svg.axis()
+    		    .scale(x)
+                .orient("bottom")
+
+            var yAxis = d3.svg.axis()
+    		    .scale(y)
+                .orient("left")
+
+            var color = d3.scale.category10();
+
+            svg.append("g")
+    		    .attr("class", "x axis")
+                .attr("transform", "translate(0," + y.range()[0] + ")")
+                .call(xAxis)
+                .append("text")
+                .attr("x", width - margin.right - margin.left)
+                .attr("y", -6)
+                .style("text-anchor", "end")
+                .text("@(Model.XAxisLabel)");
+
+            svg.append("g")
+    		    .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text("@(Model.YAxisLabel)");
+
+            var node = svg.selectAll("g.node")
+    		    .data(data, function (d) {return d.name;});
+
+            var nodeGroup = node.enter()
+    		    .append("g")
+    	        .attr('transform', function (d) {return "translate(" + x(d.valueX) + "," + y(d.valueY) + ")";});
+
+            nodeGroup.append("circle")
+                .attr("r", function(d) {return rScale(d.size);})
+                .attr("opacity", 0.7)
+                .style("fill", function(d){return color(d.color)})
+                //.style("fill", "@(Model.DotColor)")
+                .on("mouseover", function(d) {
+                  tooltip.transition()
+                       .duration(200)
+                       .style("opacity", .9);
+                  tooltip.html(d.name + "<br /> (" + xValue(d)
+	                + ", " + yValue(d) + ")")
+                       .style("left", (d3.event.pageX + 5) + "px")
+                       .style("top", (d3.event.pageY - 28) + "px");})
+                .on("mouseout", function(d) {
+                  tooltip.transition()
+                       .duration(500)
+                       .style("opacity", 0);});
+            }
+
+        RenderScatterPlot();
+    </script>
+</div>
