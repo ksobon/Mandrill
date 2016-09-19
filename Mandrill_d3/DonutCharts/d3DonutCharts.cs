@@ -18,7 +18,7 @@ namespace D3jsLib.DonutChart
     public class DonutChartDataPoint
     {
         public string name { get; set; }
-        public double value { get; set; }
+        public double val { get; set; }
     }
 
     public class DonutChartData

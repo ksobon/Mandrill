@@ -27,7 +27,7 @@ namespace Charts
         /// <param name="Height"></param>
         /// <param name="YAxisLabel"></param>
         /// <param name="Colors"></param>
-        /// <returns name="Style"></returns>
+        /// <returns name="Style">Stacked Bar Chart Style</returns>
         /// <search>stacked, bar, chart, style</search>
         public static StackedBarChartStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color BarHoverColor,
@@ -68,7 +68,7 @@ namespace Charts
         /// <param name="Values">Nested List of values where first item in a sub-list is Group Name. Following items 
         /// must match number of value names defined in Headers input. </param>
         /// <param name="Domain">Y Domain for the Chart.</param>
-        /// <returns name="Data"></returns>
+        /// <returns name="Data">Stacked Bar Chart Data</returns>
         /// <search>data, stacked, bar, chart</search>
         public static StackedBarChartData Data(
             List<string> Headers,

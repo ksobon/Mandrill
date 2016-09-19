@@ -28,7 +28,7 @@ namespace Charts
         /// <returns name="Style">Area Chart Style.</returns>
         /// <search>area, chart, style</search>
         public static AreaChartStyle Style(
-            [DefaultArgument("DSCore.Color.ByARGB(1,100,100,100)")] DSCore.Color AreaColor,
+            [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color AreaColor,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",

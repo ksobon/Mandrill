@@ -81,17 +81,12 @@ namespace D3jsLib
             Uri uri1 = new Uri(d3jsFileName);
             string absoluted3FilePath = Uri.UnescapeDataString(uri1.AbsoluteUri).ToString();
 
-            string d3layoutjsFileName = Path.Combine(mandrillPath, @"extra\d3\d3.layout.min.js");
-            Uri uri2 = new Uri(d3layoutjsFileName);
-            string absoluted3layoutFilePath = Uri.UnescapeDataString(uri2.AbsoluteUri).ToString();
-
             StringBuilder b = new StringBuilder();
             b.AppendLine("<!DOCTYPE html>");
             b.AppendLine("<head>");
             b.AppendLine("<meta content=\"utf-8\">");
             b.AppendLine("<link rel=\"stylesheet\" href=\"" + absolutCssFilePath + "\">");
             b.AppendLine("<script type=\"text/javascript\" src=\"" + absoluted3FilePath + "\"></script>");
-            b.AppendLine("<script type=\"text/javascript\" src=\"" + absoluted3layoutFilePath + "\"></script>");
             b.AppendLine("<style>");
 
 

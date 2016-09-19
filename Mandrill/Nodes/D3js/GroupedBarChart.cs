@@ -27,7 +27,7 @@ namespace Charts
         /// <param name="Height"></param>
         /// <param name="YAxisLabel"></param>
         /// <param name="Colors"></param>
-        /// <returns name="Style"></returns>
+        /// <returns name="Style">Bar Chart Style object.</returns>
         /// <search>grouped, bar, chart, style</search>
         public static GroupedBarChartStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color BarHoverColor,
@@ -62,14 +62,12 @@ namespace Charts
         }
 
         /// <summary>
-        ///     Grouped Bar Chart Data object.
+        ///     Grouped Bar Chart Data.
         /// </summary>
-        /// <param name="Headers">Names of all values that will be grouped. First value is always "Name".</param>
-        /// <param name="Values">Nested List of values where first item in a sub-list is Group Name. Following items 
-        /// must match number of value names defined in Headers input. </param>
-        /// <param name="Domain">Y Domain for the Chart.</param>
-        /// <returns name="Data"></returns>
-        /// <search>data, grouped, bar, chart</search>
+        /// <param name="Headers"></param>
+        /// <param name="Values"></param>
+        /// <param name="Domain"></param>
+        /// <returns name="Data">Grouped Bar Chart Data object</returns>
         public static GroupedBarChartData Data(
             List<string> Headers,
             List<List<object>> Values,

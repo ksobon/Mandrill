@@ -66,15 +66,15 @@ namespace Charts
         /// <summary>
         ///     Donut Chart Data object.
         /// </summary>
-        /// <param name="Names"></param>
-        /// <param name="Values"></param>
-        /// <returns name="Data"></returns>
-        /// <search></search>
+        /// <param name="Names">Names of each data points.</param>
+        /// <param name="Values">Values of each data point.</param>
+        /// <returns name="Data">Donut Chart Data</returns>
+        /// <search>data, donut, chart, donut chart data</search>
         public static DonutChartData Data(
             List<string> Names,
             List<double> Values)
         {
-            List<DonutChartDataPoint> dataPoints = Names.Zip(Values, (x, y) => new DonutChartDataPoint { name = x, value = y }).ToList();
+            List<DonutChartDataPoint> dataPoints = Names.Zip(Values, (x, y) => new DonutChartDataPoint { name = x, val = y }).ToList();
             DonutChartData data = new DonutChartData();
             data.Data = dataPoints;
 
@@ -84,9 +84,9 @@ namespace Charts
         /// <summary>
         ///     Donut Chart Data from CSV.
         /// </summary>
-        /// <param name="FilePath"></param>
-        /// <returns name="Data"></returns>
-        /// <search></search>
+        /// <param name="FilePath">File Path to CSV file.</param>
+        /// <returns name="Data">Donut Chart Data</returns>
+        /// <search>csv, donut, chart, data</search>
         public static DonutChartData DataFromCSV(object FilePath)
         {
             // get full path to file as string
@@ -111,7 +111,7 @@ namespace Charts
                 {
                     string lineName = line.Split(',')[0];
                     double lineValue = Convert.ToDouble(line.Split(',')[1]);
-                    dataPoints.Add(new DonutChartDataPoint { name = lineName, value = lineValue });
+                    dataPoints.Add(new DonutChartDataPoint { name = lineName, val = lineValue });
                 }
             }
             DonutChartData data = new DonutChartData();
@@ -123,10 +123,10 @@ namespace Charts
         /// <summary>
         ///     Donut Chart object.
         /// </summary>
-        /// <param name="Data"></param>
-        /// <param name="Style"></param>
-        /// <returns name="Chart"></returns>
-        /// <search></search>
+        /// <param name="Data">Donut Chart Data object.</param>
+        /// <param name="Style">Donut Chart Style object.</param>
+        /// <returns name="Chart">Donut Chart</returns>
+        /// <search>donut chart, chart, donut</search>
         public static D3jsLib.DonutChart.DonutChart Chart(DonutChartData Data, DonutChartStyle Style)
         {
             D3jsLib.DonutChart.DonutChart chart = new D3jsLib.DonutChart.DonutChart(Data, Style);

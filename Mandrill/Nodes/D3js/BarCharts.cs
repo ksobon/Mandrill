@@ -30,7 +30,7 @@ namespace Charts
         /// <returns name="Style">Bar Chart Style.</returns>
         /// <search>bar, chart, style</search>
         public static BarStyle Style(
-            [DefaultArgument("DSCore.Color.ByARGB(1,100,100,100)")] DSCore.Color BarColor,
+            [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color BarColor,
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color BarHoverColor,
             int Width = 1000,
             int Height = 500,

@@ -29,7 +29,7 @@ namespace Charts
         /// <returns name="Style">Line Chart Style.</returns>
         /// <search>line, style</search>
         public static LineChartStyle Style(
-            [DefaultArgument("DSCore.Color.ByARGB(1,100,100,100)")] DSCore.Color LineColor,
+            [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color LineColor,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",

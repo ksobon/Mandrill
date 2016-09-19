@@ -1,4 +1,3 @@
-C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.csprojResolveAssemblyReference.cache
 C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.g.resources
 C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\bin\Debug\Mandrill_d3.dll
 C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\bin\Debug\Mandrill_d3.pdb
@@ -20,7 +19,8 @@ E:\Google Drive\Work\Mandrill\Mandrill_d3\bin\Debug\System.Web.Razor.dll
 E:\Google Drive\Work\Mandrill\Mandrill_d3\bin\Debug\RazorEngine.xml
 E:\Google Drive\Work\Mandrill\Mandrill_d3\bin\Debug\Select.HtmlToPdf.xml
 E:\Google Drive\Work\Mandrill\Mandrill_d3\bin\Debug\System.Web.Razor.xml
-E:\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.csprojResolveAssemblyReference.cache
 E:\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.g.resources
 E:\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.dll
 E:\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.pdb
+E:\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.csprojResolveAssemblyReference.cache
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.csprojResolveAssemblyReference.cache
