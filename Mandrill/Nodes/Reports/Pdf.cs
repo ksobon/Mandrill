@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using D3jsLib;
+﻿using D3jsLib;
+using System;
+using System.Text.RegularExpressions;
 
 namespace Report
 {
@@ -51,8 +52,6 @@ namespace Report
             return style;
         }
 
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -61,6 +60,10 @@ namespace Report
         /// <param name="filePath"></param>
         public static void SaveAsPDF(D3jsLib.Report report, D3jsLib.PdfStyle pdfStyle, string filePath)
         {
+            // attempt to move *dep file
+            D3jsLib.Utilities.ChartsUtilities.MoveDepFile();
+
+            // create converter
             SelectPdf.HtmlToPdf converter = new SelectPdf.HtmlToPdf();
             
             // set converter options
@@ -78,10 +81,23 @@ namespace Report
             options.MarginRight = pdfStyle.MarginRight;
             options.MarginBottom = pdfStyle.MarginBottom;
             options.MarginLeft = pdfStyle.MarginLeft;
-            
-            // convert html to document object
+
+            // created unescaped file path removes %20 from path etc.
+            string finalFilePath = filePath;
+
+            Uri uri = new Uri(filePath);
+            string absoluteFilePath = Uri.UnescapeDataString(uri.AbsoluteUri);
+
+
+            if (Uri.IsWellFormedUriString(absoluteFilePath, UriKind.RelativeOrAbsolute))
+            {
+                Uri newUri = new Uri(absoluteFilePath);
+                finalFilePath = newUri.LocalPath;
+            }
+
+            // convert html to document object and save
             SelectPdf.PdfDocument doc = converter.ConvertHtmlString(report.HtmlString);
-            doc.Save(filePath);
+            doc.Save(finalFilePath);
             doc.Close();
         }
     }

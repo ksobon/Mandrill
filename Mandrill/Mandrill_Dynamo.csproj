@@ -79,37 +79,61 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CoreNodeModels">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\nodes\CoreNodeModels.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\nodes\CoreNodeModels.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModelsWpf">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\nodes\CoreNodeModelsWpf.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\nodes\CoreNodeModelsWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DSCoreNodes.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoCore.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoCoreWpf.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoServices.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUtilities">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoUtilities.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="HtmlRenderer, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.6\lib\net45\HtmlRenderer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlRenderer.PdfSharp, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.0.6\lib\net45\HtmlRenderer.PdfSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlRenderer.WinForms, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Mono.1.5.0.6\lib\net45\HtmlRenderer.WinForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlRenderer.WPF, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.WPF.1.5.0.6\lib\net45\HtmlRenderer.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoCore">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\ProtoCore.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Select.HtmlToPdf, Version=2.3.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
@@ -119,12 +143,16 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Nodes\Bootstrap\Image.cs" />
@@ -177,7 +205,7 @@ xcopy /Q/Y "$(TargetDir)Mandrill_UI.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo
 xcopy /Q/Y "$(TargetDir)Mandrill_UI.xml" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
 xcopy /Q/Y "$(TargetDir)RazorEngine.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
 xcopy /Q/Y "$(TargetDir)Select.HtmlToPdf.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Select.Html.dep" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\bin"</PostBuildEvent>
+xcopy /Q/Y "$(TargetDir)Select.Html.dep" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.1\packages\Archi-lab_Mandrill\extra"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

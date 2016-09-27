@@ -3,11 +3,28 @@ using System.Collections.Generic;
 using System.Reflection;
 using RazorEngine.Templating;
 using RazorEngine;
+using System.IO;
 
 namespace D3jsLib.Utilities
 {
     public static class ChartsUtilities
     {
+        /// <summary>
+        ///     Since *dep file cannot be stored in bin folder it needs to be copied into it.
+        /// </summary>
+        public static void MoveDepFile()
+        {
+            string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
+            string localAssemblyFolder = new Uri(assemblyFolder).LocalPath;
+            string mandrillPath = localAssemblyFolder.Remove(localAssemblyFolder.Length - 3);
+            string sourcePath = Path.Combine(mandrillPath, @"extra\Select.Html.dep");
+            string targetPath = Path.Combine(mandrillPath, @"bin\Select.Html.dep");
+            if (File.Exists(sourcePath) && !File.Exists(targetPath))
+            {
+                File.Move(sourcePath, targetPath);
+            }
+        }
+
         /// <summary>
         ///     Zips four lists together.
         /// </summary>

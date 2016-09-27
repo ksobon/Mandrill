@@ -77,7 +77,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoServices.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

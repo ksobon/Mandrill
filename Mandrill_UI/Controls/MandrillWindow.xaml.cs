@@ -1,9 +1,11 @@
-﻿using System;
-
+﻿
 namespace Mandrill.Window
 {
     public partial class MandrillWindow : System.Windows.Window
     {
+        /// <summary>
+        /// Mandrill Window
+        /// </summary>
         public MandrillWindow()
         {
             InitializeComponent();

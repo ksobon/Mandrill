@@ -78,34 +78,52 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CoreNodeModels">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\nodes\CoreNodeModels.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\nodes\CoreNodeModels.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModelsWpf">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\nodes\CoreNodeModelsWpf.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\nodes\CoreNodeModelsWpf.dll</HintPath>
     </Reference>
     <Reference Include="DynamoCore">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoCore.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoCoreWpf.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoServices.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUtilities">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\DynamoUtilities.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="EO.Base, Version=16.2.9.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.9.0\lib\EO.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EO.WebBrowser, Version=16.2.9.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.9.0\lib\EO.WebBrowser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EO.WebBrowser.Wpf">
+      <HintPath>..\packages\EO.WebBrowser.16.2.9.0\lib\EO.WebBrowser.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebEngine, Version=16.2.9.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.9.0\lib\EO.WebEngine.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoCore">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.1\ProtoCore.dll</HintPath>
+      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Select.HtmlToPdf, Version=2.3.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
@@ -125,6 +143,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\MandrillChromeWindow.xaml.cs">
+      <DependentUpon>MandrillChromeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MandrillWindow.xaml.cs">
       <DependentUpon>MandrillWindow.xaml</DependentUpon>
     </Compile>
@@ -133,6 +154,7 @@
     </Compile>
     <Compile Include="NodeModels\MandrillDropdowns.cs" />
     <Compile Include="NodeModels\MandrillVariableInputNode.cs" />
+    <Compile Include="NodeModels\MandrillChromeWindowNodeModel.cs" />
     <Compile Include="NodeModels\MandrillWindowNodeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -140,6 +162,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\WebBrowserHelperChrome.cs" />
     <Compile Include="Utilities\WebBrowserHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +186,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\MandrillChromeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MandrillWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -179,14 +206,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2704.1432\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2704.1432\build\cef.redist.x64.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.3.2704.1432\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.2704.1432\build\cef.redist.x86.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.51.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.51.0.0\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.51.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.51.0.0\build\CefSharp.Common.targets'))" />
   </Target>
-  <Import Project="..\packages\cef.redist.x64.3.2704.1432\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2704.1432\build\cef.redist.x64.targets')" />
-  <Import Project="..\packages\cef.redist.x86.3.2704.1432\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2704.1432\build\cef.redist.x86.targets')" />
-  <Import Project="..\packages\CefSharp.Common.51.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.51.0.0\build\CefSharp.Common.targets')" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
