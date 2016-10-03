@@ -120,23 +120,6 @@ namespace Mandrill_UI
         bold = 2
     }
 
-    [NodeName("Font Align")]
-    [NodeCategory("Archi-lab_Mandrill.Text.Text")]
-    [NodeDescription("Select Font Align types for a Text Note.")]
-    [IsDesignScriptCompatible]
-    public class tn_FontAlign : CustomGenericEnumerationDropDown
-    {
-        public tn_FontAlign() : base("fontAlign", typeof(FontAlign)) { }
-    }
-
-    enum FontAlign
-    {
-        center = 1,
-        justify = 2,
-        left = 3,
-        right = 4
-    }
-
     [NodeName("Font Style")]
     [NodeCategory("Archi-lab_Mandrill.Text.Text")]
     [NodeDescription("Select Font Style for a Text Note.")]

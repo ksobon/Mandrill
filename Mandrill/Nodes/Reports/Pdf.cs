@@ -1,6 +1,5 @@
 ﻿using D3jsLib;
 using System;
-using System.Text.RegularExpressions;
 
 namespace Report
 {
@@ -25,18 +24,18 @@ namespace Report
         /// <param name="marginRight">Margin value in points where 1 point is 1/72 inches.</param>
         /// <param name="marginBottom">Margin value in points where 1 point is 1/72 inches.</param>
         /// <param name="marginLeft">Margin value in points where 1 point is 1/72 inches.</param>
-        /// <returns name="pdfStyle">PDF Style settings.</returns>
+        /// <returns name="Style">PDF Style settings.</returns>
         /// <search>pdf, style, settings, pdf style</search>
-        public static D3jsLib.PdfStyle PDFStyle(
-            string pdfSize, 
-            string pdfOrientation, 
-            string pdfHorizontalFit,
-            string pdfVerticalFit,
-            int compression=10, 
-            int marginTop=0, 
-            int marginRight=0, 
-            int marginBottom=0, 
-            int marginLeft=0)
+        public static D3jsLib.PdfStyle Style(
+            string pdfSize = "Letter11x17", 
+            string pdfOrientation = "Landscape", 
+            string pdfHorizontalFit = "AutoFit",
+            string pdfVerticalFit = "AutoFit",
+            int compression = 1, 
+            int marginTop = 0, 
+            int marginRight = 0, 
+            int marginBottom = 0, 
+            int marginLeft = 0)
         {
             PdfStyle style = new PdfStyle();
             style.Size = (SelectPdf.PdfPageSize)System.Enum.Parse(typeof(SelectPdf.PdfPageSize), pdfSize);
@@ -53,12 +52,13 @@ namespace Report
         }
 
         /// <summary>
-        /// 
+        ///     Save as PDF
         /// </summary>
         /// <param name="report"></param>
-        /// <param name="pdfStyle"></param>
-        /// <param name="filePath"></param>
-        public static void SaveAsPDF(D3jsLib.Report report, D3jsLib.PdfStyle pdfStyle, string filePath)
+        /// <param name="style">Style</param>
+        /// <param name="filePath">File path that PDF will be saved at.</param>
+        /// <returns name="Void">Void Return</returns>
+        public static void SaveAs(D3jsLib.Report report, D3jsLib.PdfStyle style, string filePath)
         {
             // attempt to move *dep file
             D3jsLib.Utilities.ChartsUtilities.MoveDepFile();
@@ -68,19 +68,19 @@ namespace Report
             
             // set converter options
             SelectPdf.HtmlToPdfOptions options = converter.Options;
-            options.PdfPageOrientation = pdfStyle.Orientation;
-            options.PdfPageSize = pdfStyle.Size;
-            options.JpegCompressionLevel = pdfStyle.Compression;
+            options.PdfPageOrientation = style.Orientation;
+            options.PdfPageSize = style.Size;
+            options.JpegCompressionLevel = style.Compression;
             options.JavaScriptEnabled = true;
             options.EmbedFonts = true;
             options.KeepImagesTogether = true;
             options.KeepTextsTogether = true;
-            options.AutoFitHeight = pdfStyle.VerticalFit;
-            options.AutoFitWidth = pdfStyle.HorizontalFit;
-            options.MarginTop = pdfStyle.MarginTop;
-            options.MarginRight = pdfStyle.MarginRight;
-            options.MarginBottom = pdfStyle.MarginBottom;
-            options.MarginLeft = pdfStyle.MarginLeft;
+            options.AutoFitHeight = style.VerticalFit;
+            options.AutoFitWidth = style.HorizontalFit;
+            options.MarginTop = style.MarginTop;
+            options.MarginRight = style.MarginRight;
+            options.MarginBottom = style.MarginBottom;
+            options.MarginLeft = style.MarginLeft;
 
             // created unescaped file path removes %20 from path etc.
             string finalFilePath = filePath;

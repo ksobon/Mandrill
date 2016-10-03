@@ -23,6 +23,7 @@ namespace Charts
         /// </summary>
         /// <param name="BarColor">Fill color for bars.</param>
         /// <param name="BarHoverColor">Fill color when hovered over.</param>
+        /// <param name="Address">Grid Coordinates.</param>
         /// <param name="Width">Width of the entire chart in pixels.</param>
         /// <param name="Height">Height of the entire chart in pixels.</param>
         /// <param name="YAxisLabel">Text displayed in top-left corner of chart.</param>
@@ -32,6 +33,7 @@ namespace Charts
         public static BarStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color BarColor,
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color BarHoverColor,
+            [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
@@ -44,6 +46,17 @@ namespace Charts
             style.Height = Height;
             style.YAxisLabel = YAxisLabel;
             style.TickMarksX = TickMarksX;
+
+            if (Address != null)
+            {
+                style.GridRow = Address.X;
+                style.GridColumn = Address.Y;
+            }
+            else
+            {
+                style.GridRow = 1;
+                style.GridColumn = 1;
+            }
 
             return style;
         }

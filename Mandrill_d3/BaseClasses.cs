@@ -1,7 +1,38 @@
-﻿using System.Collections.Generic;
-
-namespace D3jsLib
+﻿namespace D3jsLib
 {
+    /// <summary>
+    ///     Shared class GridAddress
+    /// </summary>
+    public class GridAddress
+    {
+        private int _x;
+        private int _y;
+
+        public int X
+        {
+            get { return this._x; }
+            set { this._x = value; }
+        }
+
+        public int Y
+        {
+            get { return this._y; }
+            set { this._y = value; }
+        }
+
+        public GridAddress()
+        {
+            this._x = 1;
+            this._y = 1;
+        }
+
+        public GridAddress(int x, int y)
+        {
+            this._x = x;
+            this._y = y;
+        }
+    }
+
     /// <summary>
     ///     Shared class defining Domain for all Charts.
     /// </summary>
@@ -42,11 +73,14 @@ namespace D3jsLib
         public virtual int RowNumber { get; set; }
         public virtual ChartModel ChartModel { get; set; }
 
-        public abstract void CreateChartModel();
+        public abstract void CreateChartModel(int counter);
         public abstract string EvaluateModelTemplate(int counter);
-        public abstract Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist);
+        public abstract string EvaluateDivTemplate(int counter);
     }
 
+    /// <summary>
+    ///     Base class for all chart models.
+    /// </summary>
     public abstract class ChartModel
     {
         public virtual string ColMdValue { get; set; }
@@ -54,5 +88,22 @@ namespace D3jsLib
         public virtual string Height { get; set; }
         public virtual string DivName { get; set; }
         public virtual string DivId { get; set; }
-    } 
+        public virtual string GridRow { get; set; }
+        public virtual string GridColumn { get; set; }
+        public virtual string SizeX { get; set; }
+        public virtual string SizeY { get; set; }
+    }
+
+    /// <summary>
+    ///     Base class for all chart styles.
+    /// </summary>
+    public abstract class ChartStyle
+    {
+        public virtual int GridRow { get; set; }
+        public virtual int GridColumn { get; set; }
+        public virtual int SizeX { get; set; }
+        public virtual int SizeY { get; set; }
+        public virtual int Width { get; set; }
+        public virtual int Height { get; set; }
+    }
 }

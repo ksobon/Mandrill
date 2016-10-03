@@ -5,10 +5,8 @@ using System.Windows.Media;
 
 namespace D3jsLib.StackedBarChart
 {
-    public class StackedBarChartStyle
+    public class StackedBarChartStyle : ChartStyle
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
         public List<string> Colors { get; set; }
         public string YAxisLabel { get; set; }
         public Color BarHoverColor { get; set; }
@@ -67,31 +65,35 @@ namespace D3jsLib.StackedBarChart
 
     public class StackedBarChart : Chart
     {
-        public StackedBarChartData StackedBarChartData;
-        public StackedBarChartStyle StackedBarChartStyle;
-        public string UniqueName { get; set; }
-        public string ScriptString { get; set; }
-        public List<string> ImportsList { get; set; }
+        public StackedBarChartData Data;
+        public StackedBarChartStyle Style;
 
         public StackedBarChart(StackedBarChartData data, StackedBarChartStyle style)
         {
-            this.StackedBarChartData = data;
-            this.StackedBarChartStyle = style;
+            this.Data = data;
+            this.Style = style;
         }
 
-        public override void CreateChartModel()
+        public override void CreateChartModel(int counter)
         {
             StackedBarChartModel model = new StackedBarChartModel();
-            model.DivId = "stackedBar" + this.UniqueName;
-            model.ColMdValue = this.ColMdValue;
-            model.Width = this.StackedBarChartStyle.Width.ToString();
-            model.Height = this.StackedBarChartStyle.Height.ToString();
-            model.YAxisLabel = this.StackedBarChartStyle.YAxisLabel;
-            model.BarHover = ChartsUtilities.ColorToHexString(this.StackedBarChartStyle.BarHoverColor);
+            model.Width = this.Style.Width.ToString();
+            model.Height = this.Style.Height.ToString();
+            model.YAxisLabel = this.Style.YAxisLabel;
+            model.BarHover = ChartsUtilities.ColorToHexString(this.Style.BarHoverColor);
+            model.DivId = "div" + counter.ToString();
 
-            if (this.StackedBarChartStyle.Colors != null)
+            // set grid address
+            model.GridRow = this.Style.GridRow.ToString();
+            model.GridColumn = this.Style.GridColumn.ToString();
+
+            // always round up for the grid size so chart is smaller then container
+            model.SizeX = System.Math.Ceiling(this.Style.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.Style.Height / 100d).ToString();
+
+            if (this.Style.Colors != null)
             {
-                string domainColors = new JavaScriptSerializer().Serialize(this.StackedBarChartStyle.Colors);
+                string domainColors = new JavaScriptSerializer().Serialize(this.Style.Colors);
                 model.DomainColors = domainColors;
                 model.Colors = true;
             }
@@ -101,18 +103,18 @@ namespace D3jsLib.StackedBarChart
             }
 
 
-            if (this.StackedBarChartData.Domain == null)
+            if (this.Data.Domain == null)
             {
                 model.Domain = false;
             }
             else
             {
                 model.Domain = true;
-                model.DomainA = this.StackedBarChartData.Domain.A.ToString();
-                model.DomainB = this.StackedBarChartData.Domain.B.ToString();
+                model.DomainA = this.Data.Domain.A.ToString();
+                model.DomainB = this.Data.Domain.B.ToString();
             }
 
-            model.Data = this.StackedBarChartData.ToJsonString();
+            model.Data = this.Data.ToJsonString();
 
             this.ChartModel = model;
         }
@@ -125,25 +127,12 @@ namespace D3jsLib.StackedBarChart
             return colString;
         }
 
-        public override Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist)
+        public override string EvaluateDivTemplate(int counter)
         {
-            string uniqueName;
-
-            // tag it with UniqueName
-            if (nameChecklist.ContainsKey("stackedBarChart"))
-            {
-                int lastUsedId = nameChecklist["stackedBarChart"];
-                uniqueName = "stackedBarChart" + (lastUsedId + 1).ToString();
-                nameChecklist["stackedBarChart"] = lastUsedId + 1;
-            }
-            else
-            {
-                uniqueName = "stackedBarChart";
-                nameChecklist["stackedBarChart"] = 1;
-            }
-            this.UniqueName = uniqueName;
-
-            return nameChecklist;
+            string templateName = "divTempStackedBar" + counter.ToString();
+            StackedBarChartModel model = this.ChartModel as StackedBarChartModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return colString;
         }
     }
 }

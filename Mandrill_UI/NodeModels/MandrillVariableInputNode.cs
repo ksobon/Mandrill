@@ -4,127 +4,18 @@ using ProtoCore.AST.AssociativeAST;
 using Dynamo.Wpf;
 using System;
 
-namespace CoreNodeModels
+namespace Mandrill.ChromeWindow
 {
     /// <summary>
-    ///     Row Container
+    ///     Report
     /// </summary>
-    [NodeName("Create Row Container")]
-    [NodeDescription("Some Description")]
+    [NodeName("Create Report")]
+    [NodeDescription("Creates Mandrill Report object that can be viewed in a Window or Printed to PDF.")]
     [NodeCategory("Archi-lab_Mandrill.Report.Window")]
     [IsDesignScriptCompatible]
     [InPortTypes("Chart")]
     [InPortNames("Chart0")]
     [InPortDescriptions("Chart0")]
-    [OutPortTypes("RowContainer")]
-    [OutPortNames("Container")]
-    [OutPortDescriptions("RowContainer0")]
-    public class MandrillRowContainerNode : VariableInputNode
-    {
-        /// <summary>
-        ///     Row Container Node
-        /// </summary>
-        public MandrillRowContainerNode()
-        {
-            RegisterAllPorts();
-            ArgumentLacing = LacingStrategy.Disabled;
-        }
-
-        /// <summary>
-        ///     Get Input name method.
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        protected override string GetInputName(int index)
-        {
-            return "Chart" + index;
-        }
-
-        /// <summary>
-        ///     Get Input tooltip method.
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        protected override string GetInputTooltip(int index)
-        {
-            return "Chart" + index;
-        }
-
-        /// <summary>
-        ///     Remove Input.
-        /// </summary>
-        protected override void RemoveInput()
-        {
-            if (InPortData.Count > 1)
-                base.RemoveInput();
-        }
-
-        /// <summary>
-        ///     Base methods.
-        /// </summary>
-        public override bool IsConvertible
-        {
-            get { return true; }
-        }
-
-        /// <summary>
-        ///     AST Implementation
-        /// </summary>
-        /// <param name="inputAstNodes"></param>
-        /// <returns></returns>
-        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
-        {
-            if (IsPartiallyApplied)
-            {
-                return new[] 
-                {
-                    AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode())
-                };
-            }
-
-            AssociativeNode listNode = AstFactory.BuildExprList(inputAstNodes);
-
-            AssociativeNode functionCall =
-                AstFactory.BuildFunctionCall(
-                    new Func<List<object>, D3jsLib.RowContainer>(MandrillTypes.Utilities.CreateRowContainer),
-                    new List<AssociativeNode>() { listNode });
-
-            return new[]
-            {
-                AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall),
-            };
-        }
-    }
-
-    /// <summary>
-    ///     View Customization
-    /// </summary>
-    public class MandrillRowContainerViewCustomization : VariableInputNodeViewCustomization, INodeViewCustomization<MandrillRowContainerNode>
-    {
-        /// <summary>
-        ///     Customize View
-        /// </summary>
-        /// <param name="model"></param>
-        /// <param name="nodeView"></param>
-        public void CustomizeView(MandrillRowContainerNode model, Dynamo.Controls.NodeView nodeView)
-        {
-            base.CustomizeView(model, nodeView);
-        }
-    }
-
-    /// <summary>
-    ///     Report
-    /// </summary>
-    [NodeName("Create Report")]
-    [NodeDescription("Some Description")]
-    [NodeCategory("Archi-lab_Mandrill.Report.Window")]
-    [IsDesignScriptCompatible]
-    [InPortTypes("RowContainer")]
-    [InPortNames("RowContainer0")]
-    [InPortDescriptions("RowContainer0")]
-    [OutPortTypes("Report")]
-    [OutPortNames("Report")]
-    [OutPortDescriptions("Report0")]
     public class MandrillReportNode : VariableInputNode
     {
         /// <summary>
@@ -132,6 +23,7 @@ namespace CoreNodeModels
         /// </summary>
         public MandrillReportNode()
         {
+            OutPortData.Add(new PortData("Report", "OutToolTip0"));
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
         }
@@ -143,7 +35,7 @@ namespace CoreNodeModels
         /// <returns></returns>
         protected override string GetInputName(int index)
         {
-            return "Container" + index;
+            return "Chart" + index;
         }
 
         /// <summary>
@@ -153,7 +45,7 @@ namespace CoreNodeModels
         /// <returns></returns>
         protected override string GetInputTooltip(int index)
         {
-            return "InToolTip" + index;
+            return "Chart" + index;
         }
 
         /// <summary>
@@ -192,7 +84,7 @@ namespace CoreNodeModels
 
             AssociativeNode functionCall =
                 AstFactory.BuildFunctionCall(
-                    new Func<List<object>, D3jsLib.Report>(MandrillTypes.Utilities.CreateReport),
+                    new Func<List<object>, D3jsLib.Report>(MandrillTypes.Utilities.CreateGridsterReport),
                     new List<AssociativeNode>() { listNode });
 
             return new[]

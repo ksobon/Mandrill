@@ -23,6 +23,7 @@ namespace Charts
         ///     Stacked Bar Chart Style.
         /// </summary>
         /// <param name="BarHoverColor"></param>
+        /// <param name="Address">Grid Coordinates.</param>
         /// <param name="Width"></param>
         /// <param name="Height"></param>
         /// <param name="YAxisLabel"></param>
@@ -32,6 +33,7 @@ namespace Charts
         public static StackedBarChartStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color BarHoverColor,
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] List<DSCore.Color> Colors,
+            [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label"
@@ -56,6 +58,17 @@ namespace Charts
             else
             {
                 style.Colors = null;
+            }
+
+            if (Address != null)
+            {
+                style.GridRow = Address.X;
+                style.GridColumn = Address.Y;
+            }
+            else
+            {
+                style.GridRow = 1;
+                style.GridColumn = 1;
             }
 
             return style;

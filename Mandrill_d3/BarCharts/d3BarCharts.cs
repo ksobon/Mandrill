@@ -5,6 +5,18 @@ using System.Web.Script.Serialization;
 
 namespace D3jsLib.d3BarCharts
 {
+    public class DivGridster
+    {
+        public object SourceObject { get; set; }
+        public int RowNumber { get; set; }
+
+        public DivGridster(Chart chart)
+        {
+            this.SourceObject = chart;
+            this.RowNumber = chart.RowNumber;
+        }
+    }
+
     public class DivContent
     {
         public object SourceObject { get; set; }
@@ -41,19 +53,16 @@ namespace D3jsLib.d3BarCharts
         public Domain Domain { get; set; }
     }
 
-    public class BarStyle
+    public class BarStyle : ChartStyle
     {
         public Color BarColor { get; set; }
         public Color BarHoverColor { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
         public string YAxisLabel { get; set; }
         public int TickMarksX { get; set; }
     }
 
     public class d3BarChart : Chart
     {
-        public string UniqueName { get; set; }
         public string CssStyleString { get; set; }
         public string ScriptString { get; set; }
         public List<string> ImportsList { get; set; }
@@ -67,18 +76,24 @@ namespace D3jsLib.d3BarCharts
             this.BarChartStyle = style;
         }
 
-        public override void CreateChartModel()
+        public override void CreateChartModel(int counter)
         {
             BarChartModel model = new BarChartModel();
-            model.DivId = "bar" + this.UniqueName;
-            model.ColMdValue = this.ColMdValue;
             model.Width = this.BarChartStyle.Width.ToString();
             model.Height = this.BarChartStyle.Height.ToString();
             model.YAxisLabel = this.BarChartStyle.YAxisLabel;
-            model.DivName = this.UniqueName;
             model.TickMarksX = this.BarChartStyle.TickMarksX.ToString();
             model.BarFill = ChartsUtilities.ColorToHexString(this.BarChartStyle.BarColor);
             model.BarHover = ChartsUtilities.ColorToHexString(this.BarChartStyle.BarHoverColor);
+            model.DivId = "div" + counter.ToString();
+
+            // set grid address
+            model.GridRow = this.BarChartStyle.GridRow.ToString();
+            model.GridColumn = this.BarChartStyle.GridColumn.ToString();
+
+            // always round up for the grid size so chart is smaller then container
+            model.SizeX = System.Math.Ceiling(this.BarChartStyle.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.BarChartStyle.Height / 100d).ToString();
 
             if (this.BarChartData.Domain == null)
             {
@@ -107,24 +122,12 @@ namespace D3jsLib.d3BarCharts
             return colString;
         }
 
-        public override Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist)
+        public override string EvaluateDivTemplate(int counter)
         {
-            string uniqueName;
-            // tag it with UniqueName
-            if (nameChecklist.ContainsKey("barchart"))
-            {
-                int lastUsedId = nameChecklist["barchart"];
-                uniqueName = "barchart" + (lastUsedId + 1).ToString();
-                nameChecklist["barchart"] = lastUsedId + 1;
-            }
-            else
-            {
-                uniqueName = "barchart1";
-                nameChecklist["barchart"] = 1;
-            }
-            this.UniqueName = uniqueName;
-
-            return nameChecklist;
+            string templateName = "divTempBar" + counter.ToString();
+            BarChartModel model = this.ChartModel as BarChartModel;
+            string divString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return divString;
         }
     }
 }

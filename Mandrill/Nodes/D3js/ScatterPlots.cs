@@ -21,6 +21,7 @@ namespace Charts
         /// <summary>
         ///     Scatter Plot Style.
         /// </summary>
+        /// <param name="Address">Grid Coordinates.</param>
         /// <param name="Width">Width in pixels.</param>
         /// <param name="Height">Height in pixels.</param>
         /// <param name="YAxisLabel">Label displayed for Y Axis.</param>
@@ -30,6 +31,7 @@ namespace Charts
         /// <search>style, scatter plot</search>
         public static ScatterPlotStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,100,100,100)")] DSCore.Color DotColor,
+            [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
@@ -41,6 +43,17 @@ namespace Charts
             style.YAxisLabel = YAxisLabel;
             style.XAxisLabel = XAxisLabel;
             style.DotColor = sColor.FromArgb(DotColor.Alpha, DotColor.Red, DotColor.Green, DotColor.Blue);
+
+            if (Address != null)
+            {
+                style.GridRow = Address.X;
+                style.GridColumn = Address.Y;
+            }
+            else
+            {
+                style.GridRow = 1;
+                style.GridColumn = 1;
+            }
 
             return style;
         }

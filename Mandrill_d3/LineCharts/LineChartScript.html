@@ -1,83 +1,81 @@
-﻿<div class="col-md-@(Model.ColMdValue)" id="@(Model.DivId)" align="center">
-    <script type="text/javascript">
-        function renderLineChart() {
+﻿<script type="text/javascript">
+    function renderLineChart() {
 
-            var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data);
 
-            var tickValues = data.map(function (d){return d.name;});
-            var step = Math.floor(tickValues.length / @(Model.TickMarksX));
-            var indexes = d3.range(0,tickValues.length, step);
-            if (indexes.indexOf(tickValues.length - 1) == -1){
-                indexes.push(tickValues.length - 1);
-            }
-            var tickArray = d3.permute(tickValues, indexes);
+        var tickValues = data.map(function (d){return d.name;});
+        var step = Math.floor(tickValues.length / @(Model.TickMarksX));
+        var indexes = d3.range(0,tickValues.length, step);
+        if (indexes.indexOf(tickValues.length - 1) == -1){
+            indexes.push(tickValues.length - 1);
+        }
+        var tickArray = d3.permute(tickValues, indexes);
 
-            var margin = { top: 20, right: 20, bottom: 30, left: 50 },
-                width = @(Model.Width) - margin.left - margin.right,
-                height = @(Model.Height) - margin.top - margin.bottom;
+        var margin = { top: 20, right: 20, bottom: 30, left: 50 },
+            width = @(Model.Width) - margin.left - margin.right,
+            height = @(Model.Height) - margin.top - margin.bottom;
 
-            var x = d3.scale.ordinal()
-                .domain(data.map(function (d) { return d.name; }))
-                .rangePoints([0, width], 2);
+        var x = d3.scale.ordinal()
+            .domain(data.map(function (d) { return d.name; }))
+            .rangePoints([0, width], 2);
 
-            var y = d3.scale.linear()
-                .range([height, 0]);
+        var y = d3.scale.linear()
+            .range([height, 0]);
 
-            var xAxis = d3.svg.axis()
-                .scale(x)
-                .orient("bottom")
-                .tickValues(tickArray);
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .tickValues(tickArray);
 
-            var yAxis = d3.svg.axis()
-                .scale(y)
-                .orient("left");
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left");
 
-            var line = d3.svg.line()
-                .x(function (d) { return x(d.name); })
-                .y(function (d) { return y(d.value); });
+        var line = d3.svg.line()
+            .x(function (d) { return x(d.name); })
+            .y(function (d) { return y(d.value); });
 
-            var svg = d3.select("#@(Model.DivId)").append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var svg = d3.select("#@(Model.DivId)").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-            data.forEach(function (d) {
-                d.name = d.name;
-                d.value = +d.value;});
+        data.forEach(function (d) {
+            d.name = d.name;
+            d.value = +d.value;});
 
-            @if(Model.Domain)
-            {
-                @:y.domain([@(Model.DomainA), @(Model.DomainB)]);
-            }
-            else
-            {
-                @:y.domain(d3.extent(data, function (d) { return d.value; }));
-            }
-
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
-
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis)
-              .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 6)
-                .attr("dy", ".71em")
-                .style("text-anchor", "end")
-                .text("@(Model.YAxisLabel)");
-
-            svg.append("path")
-                .datum(data)
-                .attr("d", line)
-                .attr("stroke", "@(Model.LineColor)")
-                .attr("stroke-width", 2)
-                .attr("fill", "none");
+        @if(Model.Domain)
+        {
+            @:y.domain([@(Model.DomainA), @(Model.DomainB)]);
+        }
+        else
+        {
+            @:y.domain(d3.extent(data, function (d) { return d.value; }));
         }
 
-        renderLineChart();
-    </script>
-</div>
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("@(Model.YAxisLabel)");
+
+        svg.append("path")
+            .datum(data)
+            .attr("d", line)
+            .attr("stroke", "@(Model.LineColor)")
+            .attr("stroke-width", 2)
+            .attr("fill", "none");
+    }
+
+    renderLineChart();
+</script>

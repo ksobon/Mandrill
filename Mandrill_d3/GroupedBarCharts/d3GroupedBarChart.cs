@@ -5,10 +5,8 @@ using System.Windows.Media;
 
 namespace D3jsLib.GroupedBarChart
 {
-    public class GroupedBarChartStyle
+    public class GroupedBarChartStyle : ChartStyle
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
         public List<string> Colors { get; set; }
         public string YAxisLabel { get; set; }
         public Color BarHoverColor { get; set; }
@@ -67,29 +65,35 @@ namespace D3jsLib.GroupedBarChart
 
     public class GroupedBarChart : Chart
     {
-        public GroupedBarChartData GroupedBarChartData;
-        public GroupedBarChartStyle GroupedBarChartStyle;
+        public GroupedBarChartData Data;
+        public GroupedBarChartStyle Style;
         public string UniqueName { get; set; }
 
         public GroupedBarChart(GroupedBarChartData data, GroupedBarChartStyle style)
         {
-            this.GroupedBarChartData = data;
-            this.GroupedBarChartStyle = style;
+            this.Data = data;
+            this.Style = style;
         }
 
-        public override void CreateChartModel()
+        public override void CreateChartModel(int counter)
         {
             GroupedBarChartModel model = new GroupedBarChartModel();
-            model.DivId = "groupedBar" + this.UniqueName;
-            model.ColMdValue = this.ColMdValue;
-            model.Width = this.GroupedBarChartStyle.Width.ToString();
-            model.Height = this.GroupedBarChartStyle.Height.ToString();
-            model.YAxisLabel = this.GroupedBarChartStyle.YAxisLabel;
-            model.BarHover = ChartsUtilities.ColorToHexString(this.GroupedBarChartStyle.BarHoverColor);
+            model.Width = this.Style.Width.ToString();
+            model.Height = this.Style.Height.ToString();
+            model.YAxisLabel = this.Style.YAxisLabel;
+            model.BarHover = ChartsUtilities.ColorToHexString(this.Style.BarHoverColor);
+            model.DivId = "div" + counter.ToString();
 
-            if (this.GroupedBarChartStyle.Colors != null)
+            // set grid address
+            model.GridRow = this.Style.GridRow.ToString();
+            model.GridColumn = this.Style.GridColumn.ToString();
+
+            // always round up for the grid size so chart is smaller then container
+            model.SizeX = System.Math.Ceiling(this.Style.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.Style.Height / 100d).ToString();
+            if (this.Style.Colors != null)
             {
-                string domainColors = new JavaScriptSerializer().Serialize(this.GroupedBarChartStyle.Colors);
+                string domainColors = new JavaScriptSerializer().Serialize(this.Style.Colors);
                 model.DomainColors = domainColors;
                 model.Colors = true;
             }
@@ -99,18 +103,18 @@ namespace D3jsLib.GroupedBarChart
             }
 
 
-            if (this.GroupedBarChartData.Domain == null)
+            if (this.Data.Domain == null)
             {
                 model.Domain = false;
             }
             else
             {
                 model.Domain = true;
-                model.DomainA = this.GroupedBarChartData.Domain.A.ToString();
-                model.DomainB = this.GroupedBarChartData.Domain.B.ToString();
+                model.DomainA = this.Data.Domain.A.ToString();
+                model.DomainB = this.Data.Domain.B.ToString();
             }
 
-            model.Data = this.GroupedBarChartData.ToJsonString();
+            model.Data = this.Data.ToJsonString();
 
             this.ChartModel = model;
         }
@@ -123,25 +127,12 @@ namespace D3jsLib.GroupedBarChart
             return colString;
         }
 
-        public override Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist)
+        public override string EvaluateDivTemplate(int counter)
         {
-            string uniqueName;
-
-            // tag it with UniqueName
-            if (nameChecklist.ContainsKey("groupedBarChart"))
-            {
-                int lastUsedId = nameChecklist["groupedBarChart"];
-                uniqueName = "groupedBarChart" + (lastUsedId + 1).ToString();
-                nameChecklist["groupedBarChart"] = lastUsedId + 1;
-            }
-            else
-            {
-                uniqueName = "groupedBarChart";
-                nameChecklist["groupedBarChart"] = 1;
-            }
-            this.UniqueName = uniqueName;
-
-            return nameChecklist;
+            string templateName = "divTempGroupedBar" + counter.ToString();
+            GroupedBarChartModel model = this.ChartModel as GroupedBarChartModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return colString;
         }
     }
 }

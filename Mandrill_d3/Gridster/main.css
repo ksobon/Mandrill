@@ -1,0 +1,26 @@
+﻿body {
+    font: 10px Arial;
+}
+
+.axis path {
+    fill: none;
+    stroke: grey;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: Arial;
+    font-size: 10px;
+}
+
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+svg {
+    display: block;
+    margin: auto;
+}

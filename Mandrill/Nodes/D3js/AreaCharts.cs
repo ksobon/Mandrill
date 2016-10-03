@@ -20,6 +20,7 @@ namespace Charts
         /// <summary>
         ///     Area Chart Style object.
         /// </summary>
+        /// <param name="Address">Grid Coordinates.</param>
         /// <param name="Width">Width of the entire chart in pixels.</param>
         /// <param name="Height">Height of the entire chart in pixels.</param>
         /// <param name="YAxisLabel">Text used to label Y Axis.</param>
@@ -29,6 +30,7 @@ namespace Charts
         /// <search>area, chart, style</search>
         public static AreaChartStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color AreaColor,
+            [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
@@ -40,6 +42,17 @@ namespace Charts
             style.YAxisLabel = YAxisLabel;
             style.AreaColor = sColor.FromArgb(AreaColor.Alpha, AreaColor.Red, AreaColor.Green, AreaColor.Blue);
             style.TickMarksX = TickMarksX;
+
+            if (Address != null)
+            {
+                style.GridRow = Address.X;
+                style.GridColumn = Address.Y;
+            }
+            else
+            {
+                style.GridRow = 1;
+                style.GridColumn = 1;
+            }
 
             return style;
         }

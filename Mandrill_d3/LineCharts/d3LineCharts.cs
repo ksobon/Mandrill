@@ -5,10 +5,8 @@ using System.Windows.Media;
 
 namespace D3jsLib.d3LineCharts
 {
-    public class LineChartStyle
+    public class LineChartStyle : ChartStyle
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
         public string YAxisLabel { get; set; }
         public Color LineColor { get; set; }
         public int TickMarksX { get; set; }
@@ -40,43 +38,47 @@ namespace D3jsLib.d3LineCharts
 
     public class d3LineChart : Chart
     {
-        public LineChartData LineChartData;
-        public LineChartStyle LineChartStyle;
-        public string UniqueName { get; set; }
-        public string ScriptString { get; set; }
-        public List<string> ImportsList { get; set; }
+        public LineChartData Data;
+        public LineChartStyle Style;
 
         public d3LineChart(LineChartData data, LineChartStyle style)
         {
-            this.LineChartData = data;
-            this.LineChartStyle = style;
+            this.Data = data;
+            this.Style = style;
         }
 
-        public override void CreateChartModel()
+        public override void CreateChartModel(int counter)
         {
             LineChartModel model = new LineChartModel();
-            model.DivId = "line" + this.UniqueName;
-            model.ColMdValue = this.ColMdValue;
-            model.Width = this.LineChartStyle.Width.ToString();
-            model.Height = this.LineChartStyle.Height.ToString();
-            model.YAxisLabel = this.LineChartStyle.YAxisLabel;
-            model.LineColor = ChartsUtilities.ColorToHexString(this.LineChartStyle.LineColor);
-            model.TickMarksX = this.LineChartStyle.TickMarksX.ToString();
+            model.Width = this.Style.Width.ToString();
+            model.Height = this.Style.Height.ToString();
+            model.YAxisLabel = this.Style.YAxisLabel;
+            model.LineColor = ChartsUtilities.ColorToHexString(this.Style.LineColor);
+            model.TickMarksX = this.Style.TickMarksX.ToString();
+            model.DivId = "div" + counter.ToString();
 
-            if (this.LineChartData.Domain == null)
+            // set grid address
+            model.GridRow = this.Style.GridRow.ToString();
+            model.GridColumn = this.Style.GridColumn.ToString();
+
+            // always round up for the grid size so chart is smaller then container
+            model.SizeX = System.Math.Ceiling(this.Style.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.Style.Height / 100d).ToString();
+
+            if (this.Data.Domain == null)
             {
                 model.Domain = false;
             }
             else
             {
                 model.Domain = true;
-                model.DomainA = this.LineChartData.Domain.A.ToString();
-                model.DomainB = this.LineChartData.Domain.B.ToString();
+                model.DomainA = this.Data.Domain.A.ToString();
+                model.DomainB = this.Data.Domain.B.ToString();
             }
 
             // serialize C# Array into JS Array
             var serializer = new JavaScriptSerializer();
-            string jsData = serializer.Serialize(this.LineChartData.Data);
+            string jsData = serializer.Serialize(this.Data.Data);
             model.Data = jsData;
 
             this.ChartModel = model;
@@ -90,25 +92,12 @@ namespace D3jsLib.d3LineCharts
             return colString;
         }
 
-        public override Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist)
+        public override string EvaluateDivTemplate(int counter)
         {
-            string uniqueName;
-
-            // tag it with UniqueName
-            if (nameChecklist.ContainsKey("linechart"))
-            {
-                int lastUsedId = nameChecklist["linechart"];
-                uniqueName = "linechart" + (lastUsedId + 1).ToString();
-                nameChecklist["linechart"] = lastUsedId + 1;
-            }
-            else
-            {
-                uniqueName = "linechart1";
-                nameChecklist["linechart"] = 1;
-            }
-            this.UniqueName = uniqueName;
-
-            return nameChecklist;
+            string templateName = "divTempLine" + counter.ToString();
+            LineChartModel model = this.ChartModel as LineChartModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return colString;
         }
     }
 }

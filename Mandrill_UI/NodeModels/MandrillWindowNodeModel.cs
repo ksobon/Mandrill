@@ -13,21 +13,40 @@ using Dynamo.Scheduler;
 using Dynamo.Engine;
 using System.Linq;
 
-namespace Mandrill.Window
+namespace Mandrill.ChromeWindow
 {
     /// <summary>
-    ///     Custom Mandrill Window node implementation
+    ///     Custom Mandrill Chrome Window node implementation
     /// </summary>
     [NodeName("Report Window")]
     [NodeCategory("Archi-lab_Mandrill.Report.Window")]
     [NodeDescription("Use this node to launch a new window that charts will be displayed in.")]
     [IsDesignScriptCompatible]
+    [InPortNames("Report")]
+    [InPortTypes("string")]
+    [InPortDescriptions("Html report to render.")]
     public class MandrillWindowNodeModel : NodeModel, INotifyPropertyChanged
     {
+        /// <summary>
+        ///     Window closed variable
+        /// </summary>
         public bool isWindowClosed = true;
+
+        /// <summary>
+        ///     Dynamo view variable
+        /// </summary>
         public static DynamoView dv;
+
+        /// <summary>
+        ///     Window event
+        /// </summary>
         public Action RequestNewWindow;
 
+        /// <summary>
+        ///     Window closing event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void OnWindowClosing(object sender, CancelEventArgs e)
         {
             MandrillWindow win = (MandrillWindow)sender;
@@ -35,7 +54,14 @@ namespace Mandrill.Window
             model.isWindowClosed = true;
         }
 
+        /// <summary>
+        ///     Html string change event
+        /// </summary>
         public event Action RequestChangeHtmlString;
+
+        /// <summary>
+        ///     On request event handler
+        /// </summary>
         protected virtual void OnRequestChangeHtmlString()
         {
             if (RequestChangeHtmlString != null)
@@ -43,6 +69,10 @@ namespace Mandrill.Window
         }
 
         private string _myHtml;
+
+        /// <summary>
+        ///     Html string - databinding
+        /// </summary>
         public string MyHtml
         {
             get { return _myHtml; }
@@ -57,6 +87,10 @@ namespace Mandrill.Window
         }
 
         private string message;
+
+        /// <summary>
+        ///     Button message - databinding
+        /// </summary>
         public string Message
         {
             get { return message; }
@@ -67,6 +101,9 @@ namespace Mandrill.Window
             }
         }
 
+        /// <summary>
+        ///     Delegate command for setting button message.
+        /// </summary>
         [IsVisibleInDynamoLibrary(false)]
         public DelegateCommand MessageCommand { get; set; }
 
@@ -75,7 +112,6 @@ namespace Mandrill.Window
         /// </summary>
         public MandrillWindowNodeModel()
         {
-            InPortData.Add(new PortData("Report", "Html String to render."));
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
 
@@ -162,7 +198,7 @@ namespace Mandrill.Window
                     </html>";
 
         /// <summary>
-        /// 
+        ///     View customization.
         /// </summary>
         /// <param name="model"></param>
         /// <param name="nodeView"></param>
@@ -173,7 +209,7 @@ namespace Mandrill.Window
             mandrillNode = model;
 
             // load button control into node, set data context
-            var helloDynamoControl = new LaunchWindowButtonControl();
+            var helloDynamoControl = new Mandrill.Window.LaunchWindowButtonControl();
             nodeView.inputGrid.Width = 100;
             nodeView.inputGrid.Children.Add(helloDynamoControl);
             helloDynamoControl.DataContext = model;

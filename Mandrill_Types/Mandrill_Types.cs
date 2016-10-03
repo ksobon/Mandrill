@@ -9,28 +9,14 @@ namespace MandrillTypes
     public static class Utilities
     {
         /// <summary>
-        ///     Handle creation of a RowContainer from multiple Chart inputs.
+        ///     Static method for report generation.
         /// </summary>
         /// <param name="chartObjects"></param>
         /// <returns></returns>
         [IsVisibleInDynamoLibrary(false)]
-        public static D3jsLib.RowContainer CreateRowContainer(List<object> chartObjects)
+        public static D3jsLib.Report CreateGridsterReport(List<object> chartObjects)
         {
-            D3jsLib.RowContainer rc = new D3jsLib.RowContainer(chartObjects);
-            rc.AssignColMdValue();
-            return rc;
-        }
-
-        /// <summary>
-        ///     Handles creation of a Report from multiple Container inputs.
-        /// </summary>
-        /// <param name="containers"></param>
-        /// <returns></returns>
-        [IsVisibleInDynamoLibrary(false)]
-        public static D3jsLib.Report CreateReport(List<object> containers)
-        {
-            List<object> processedCharts = D3jsLib.Charts.ProcessCharts(containers);
-            string finalHtmlString = D3jsLib.Charts.CompileHtmlString(processedCharts);
+            string finalHtmlString = D3jsLib.Charts.CompileHtmlString(chartObjects);
             return new D3jsLib.Report(finalHtmlString);
         }
     }

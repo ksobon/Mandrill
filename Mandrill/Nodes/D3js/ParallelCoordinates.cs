@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System;
 using Autodesk.DesignScript.Runtime;
+using D3jsLib;
 
 namespace Charts
 {
@@ -21,12 +22,14 @@ namespace Charts
         ///     Parallel Coordinates Style object.
         /// </summary>
         /// <param name="LineColor">Color of the selected Lines/Values.</param>
+        /// <param name="Address">Grid Coordinates.</param>
         /// <param name="Width">Width of the Chart in pixels.</param>
         /// <param name="Height">Height of the Chart in pixels.</param>
         /// <returns name="Style">Parallel Coordinates Style.</returns>
         /// <search>parallel, coordinates, style</search>
         public static ParallelCoordinatesStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color LineColor,
+            [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             int Width = 1000,
             int Height = 500)
         {
@@ -34,6 +37,17 @@ namespace Charts
             style.Width = Width;
             style.Height = Height;
             style.LineColor = sColor.FromArgb(LineColor.Alpha, LineColor.Red, LineColor.Green, LineColor.Blue);
+
+            if (Address != null)
+            {
+                style.GridRow = Address.X;
+                style.GridColumn = Address.Y;
+            }
+            else
+            {
+                style.GridRow = 1;
+                style.GridColumn = 1;
+            }
 
             return style;
         }

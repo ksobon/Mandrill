@@ -1,61 +1,141 @@
-<Workspace Version="1.1.0.2094" X="-1062.90133289528" Y="-407.375163058476" zoom="1.02135608140119" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+<Workspace Version="1.2.0.2654" X="269.062788860765" Y="280.233309307931" zoom="0.456748608633251" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
   <NamespaceResolutionMap>
     <ClassMap partialName="Color" resolvedName="DSCore.Color" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>
   <Elements>
     <CoreNodeModels.Input.Filename guid="24377b87-145a-44bd-a310-2884f53cca6a" type="CoreNodeModels.Input.Filename" nickname="File Path" x="392.757576709202" y="324.758291758959" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <System.String>.\parallelCoordinatesData.csv</System.String>
-      <HintPath>C:\Users\ksobon\Google Drive\Work\Mandrill\_DynamoSamples\ParallelCoordinatesChart\parallelCoordinatesData.csv</HintPath>
+      <HintPath>E:\Google Drive\Work\Mandrill\_DynamoSamples\ParallelCoordinatesChart\parallelCoordinatesData.csv</HintPath>
     </CoreNodeModels.Input.Filename>
-    <CoreNodeModels.Input.FileObject guid="529e7f7e-c1e1-457e-adfd-dc4fecfb806a" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="600.633222758463" y="324.758291758959" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
-    <CoreNodeModels.MandrillReportNode guid="5494adfd-8b35-4660-97f0-4e3aed0c4328" type="CoreNodeModels.MandrillReportNode" nickname="Create Report" x="1402.41630359085" y="385.816386033479" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1" />
-    <CoreNodeModels.MandrillRowContainerNode guid="130c2771-7f62-4a01-9ec7-00b0290d732d" type="CoreNodeModels.MandrillRowContainerNode" nickname="Create Row Container" x="1223.1667610165" y="386.285241241788" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1" />
-    <Mandrill.Window.MandrillWindowNodeModel guid="8557812a-7914-4257-bf25-b0299d19b102" type="Mandrill.Window.MandrillWindowNodeModel" nickname="Report Window" x="1587.76608932503" y="384.890349051612" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="2f66a5de-d03b-444d-b039-f23e39984961" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="ParallelCoordinates.Chart" x="1050.39341610624" y="385.940539420467" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.ParallelCoordinates.Chart@var,var" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e3b65c87-eb35-4ec2-a9e3-a4095e88da0b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="ParallelCoordinates.DataFromCSV" x="730.469472261332" y="325.302828715196" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.ParallelCoordinates.DataFromCSV@var" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="663754b8-b0e0-4f77-9351-569abd527ccc" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="ParallelCoordinates.Style" x="783.568729101032" y="448.870890129243" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.ParallelCoordinates.Style@DSCore.Color,int,int">
+    <CoreNodeModels.Input.FileObject guid="529e7f7e-c1e1-457e-adfd-dc4fecfb806a" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="600.633222758463" y="324.758291758959" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Input.FileObject>
+    <CoreNodeModels.MandrillReportNode guid="5494adfd-8b35-4660-97f0-4e3aed0c4328" type="CoreNodeModels.MandrillReportNode" nickname="Create Report" x="1437.30425003802" y="332.516700412616" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+    </CoreNodeModels.MandrillReportNode>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="2f66a5de-d03b-444d-b039-f23e39984961" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="ParallelCoordinates.Chart" x="1043.3863443681" y="385.940539420467" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.ParallelCoordinates.Chart@var,var">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e3b65c87-eb35-4ec2-a9e3-a4095e88da0b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="ParallelCoordinates.DataFromCSV" x="730.469472261332" y="325.302828715196" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.ParallelCoordinates.DataFromCSV@var">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="663754b8-b0e0-4f77-9351-569abd527ccc" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="ParallelCoordinates.Style" x="738.022762803148" y="449.74677409651" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.ParallelCoordinates.Style@DSCore.Color,var,int,int">
       <PortInfo index="0" default="True" />
       <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="213c58de-5a37-47bc-8781-6c8663795fd1" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="665.181521231081" y="501.715520620479" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1500;&#xA;600;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="e7352e69-d890-4f0d-b955-f66590ab8ffc" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="409.084461017637" y="453.330698730112" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Color.ByARGB(1,255,0,0);" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ac270fbc-5a54-4307-a109-55a713dff27e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="ParallelCoordinates.Data" x="242.981076375976" y="873.765957866647" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.ParallelCoordinates.Data@string[],var[][]" />
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="02eaf142-0f75-4cc9-984f-3d3f8401b8be" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-32.9113384780657" y="878.900451195586" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{&quot;name&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;};&#xA;{{&quot;test1&quot;, 1, 3, 10},&#xA;{&quot;test2&quot;, 10, 3, 15},&#xA;{&quot;test4&quot;, 13, 2, 15},&#xA;{&quot;test5&quot;, 2, 14, 2}};" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="b77897e3-034c-41dd-9db4-680073307514" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Pdf.SaveAsPDF" x="1601.17980646813" y="596.059310981462" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Report.Pdf.SaveAsPDF@var,var,string" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="18ff15b4-3605-4ceb-b68f-1e32f4e32274" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Pdf.PDFStyle" x="1209.63656056922" y="873.359169482809" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Report.Pdf.PDFStyle@string,string,string,string,int,int,int,int,int">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="213c58de-5a37-47bc-8781-6c8663795fd1" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="635.27173481839" y="513.015524511207" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1500;&#xA;600;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="b77897e3-034c-41dd-9db4-680073307514" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Pdf.SaveAsPDF" x="1961.91227620924" y="700.843504572927" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Report.Pdf.SaveAsPDF@var,var,string">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="18ff15b4-3605-4ceb-b68f-1e32f4e32274" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Pdf.PDFStyle" x="1589.72745517449" y="870.462124767407" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Report.Pdf.PDFStyle@string,string,string,string,int,int,int,int,int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
       <PortInfo index="4" default="True" />
       <PortInfo index="5" default="True" />
       <PortInfo index="6" default="True" />
       <PortInfo index="7" default="True" />
       <PortInfo index="8" default="True" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Mandrill_UI.pdf_SizeUI guid="b8036fc8-94de-4fda-9b17-b626858b6925" type="Mandrill_UI.pdf_SizeUI" nickname="PDF Size" x="937.975277545149" y="801.719475601872" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="0:A0" />
-    <Mandrill_UI.pdf_OrientationUI guid="7a7b9b40-d1e0-4bea-94fd-51490c33df52" type="Mandrill_UI.pdf_OrientationUI" nickname="PDF Orientation" x="893.504668757895" y="883.324457518485" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="0:Landscape" />
-    <Mandrill_UI.pdf_FitModeUI guid="4b66d6ca-3af0-47f0-b58e-4410a6f9b15b" type="Mandrill_UI.pdf_FitModeUI" nickname="PDF Fit Mode" x="910.940770348213" y="965.986930516856" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="0:AutoFit" />
-    <CoreNodeModels.Input.Filename guid="01b1eaa6-52e1-44f3-a4f6-f70deafdb83a" type="CoreNodeModels.Input.Filename" nickname="File Path" x="1241.07745009361" y="649.358271144536" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+    <Mandrill_UI.pdf_SizeUI guid="b8036fc8-94de-4fda-9b17-b626858b6925" type="Mandrill_UI.pdf_SizeUI" nickname="PDF Size" x="1318.06617215042" y="798.82243088647" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="0:A0" />
+    <Mandrill_UI.pdf_OrientationUI guid="7a7b9b40-d1e0-4bea-94fd-51490c33df52" type="Mandrill_UI.pdf_OrientationUI" nickname="PDF Orientation" x="1273.59556336316" y="880.427412803083" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="0:Landscape" />
+    <Mandrill_UI.pdf_FitModeUI guid="4b66d6ca-3af0-47f0-b58e-4410a6f9b15b" type="Mandrill_UI.pdf_FitModeUI" nickname="PDF Fit Mode" x="1291.03166495348" y="963.089885801454" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="0:AutoFit" />
+    <CoreNodeModels.Input.Filename guid="01b1eaa6-52e1-44f3-a4f6-f70deafdb83a" type="CoreNodeModels.Input.Filename" nickname="File Path" x="1716.49778788128" y="755.50779649846" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <System.String>..\..\..\..\..\Desktop\test.pdf</System.String>
-      <HintPath>C:\Users\ksobon\Desktop\test.pdf</HintPath>
+      <HintPath>E:\Desktop\test.pdf</HintPath>
     </CoreNodeModels.Input.Filename>
-    <CoreNodeModels.Watch guid="d8c1cac4-1d34-41d9-8c22-5169ed79f26f" type="CoreNodeModels.Watch" nickname="Watch" x="1865.00133143352" y="596.527324904382" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="df2480c9-d0ef-44fa-9560-3011b0cf5570" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Image.SaveAsPNG" x="1784.95506301045" y="919.377286861978" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo%20Revit\1.1\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Report.Image.SaveAsPNG@var,string" />
-    <CoreNodeModels.Input.Filename guid="accd819e-a83f-4dff-a903-ea10d8fc1ab3" type="CoreNodeModels.Input.Filename" nickname="File Path" x="1519.9971820243" y="966.032566353191" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <System.String>..\..\..\..\..\Desktop\test.png</System.String>
-      <HintPath>C:\Users\ksobon\Desktop\test.png</HintPath>
+    <CoreNodeModels.Watch guid="d8c1cac4-1d34-41d9-8c22-5169ed79f26f" type="CoreNodeModels.Watch" nickname="Watch" x="2225.73380117463" y="701.311518495847" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="d3b66f6f-50d4-4a7f-a019-6c16722af0e7" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Text.Style" x="787.138177567657" y="-34.6149875018361" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Text.Text.Style@DSCore.Color,var,int,int,double,string,string,string">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="True" />
+      <PortInfo index="3" default="True" />
+      <PortInfo index="4" default="True" />
+      <PortInfo index="5" default="True" />
+      <PortInfo index="6" default="True" />
+      <PortInfo index="7" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Mandrill_UI.tn_FontWeight guid="5d02e988-5262-4457-bf49-10c1fc154c4e" type="Mandrill_UI.tn_FontWeight" nickname="Font Weight" x="507.966356006159" y="130.023097130004" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="0:bold" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="f4b57e74-ec81-41f0-be6d-26733237ba48" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="669.412436596732" y="21.9113157540095" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1000;&#xA;50;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="8c6d3a53-e111-42d2-8804-14d0d7c4d09e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Address" x="317.059878973805" y="-9.31743398836255" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Address@int,int">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.IntegerSlider guid="8f4f1850-c1ad-42c5-85ec-6f131f74d540" type="CoreNodeModels.Input.IntegerSlider" nickname="Integer Slider" x="-53.4860434029981" y="37.952795515096" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Int32>1</System.Int32>
+      <Range min="1" max="20" step="1" />
+    </CoreNodeModels.Input.IntegerSlider>
+    <CoreNodeModels.Input.IntegerSlider guid="f216c727-c2fe-4b6c-93c5-097ab7625836" type="CoreNodeModels.Input.IntegerSlider" nickname="Integer Slider" x="-52.9791843720461" y="-26.6756353418921" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Int32>4</System.Int32>
+      <Range min="1" max="20" step="1" />
+    </CoreNodeModels.Input.IntegerSlider>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="97a7df8e-1e84-4fd9-bec7-05c735c28e96" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Text.Create" x="1076.16736812473" y="-123.682998626031" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Text.Text.Create@string,var">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="80c32691-8b46-4192-801c-77edb86ab617" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="617.557978712205" y="-133.982296707877" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;Mandrill Parallel Coordinates Chart Sample&quot;;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="a90c4a39-fd07-49bb-85b7-d4ab81559cd0" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Image.Style" x="615.342786496239" y="-367.927259344499" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Image.Image.Style@var,int,int,string">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="True" />
+      <PortInfo index="3" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="fec9b7b9-d7d3-4d6f-9732-11907ed5cefa" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="504.605978705092" y="-331.827231429692" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="100;&#xA;100;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f2f04d74-921d-4f83-b7b8-0b83ec8a0f4b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Address" x="250.483856706311" y="-366.551480479944" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Address@int,int">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.IntegerSlider guid="b78a04fe-4561-46e3-8135-c7a23ea51c35" type="CoreNodeModels.Input.IntegerSlider" nickname="Integer Slider" x="-120.062065670493" y="-319.281250976485" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Int32>1</System.Int32>
+      <Range min="1" max="20" step="1" />
+    </CoreNodeModels.Input.IntegerSlider>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="13e5ea17-f6cb-4d91-a605-eadf9bc23adb" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Image.Create" x="1071.53411078138" y="-396.65761192739" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Image.Image.Create@string,var">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.IntegerSlider guid="7b3df4aa-212e-4535-aaff-0138d14416fe" type="CoreNodeModels.Input.IntegerSlider" nickname="Integer Slider" x="-119.555206639541" y="-383.909681833473" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Int32>3</System.Int32>
+      <Range min="1" max="20" step="1" />
+    </CoreNodeModels.Input.IntegerSlider>
+    <CoreNodeModels.Input.Filename guid="565148fa-8a0d-460b-9a9a-4beddde6f201" type="CoreNodeModels.Input.Filename" nickname="File Path" x="832.603946676567" y="-447.806613961825" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>..\..\_Logo\mandrillLogo-01.png</System.String>
+      <HintPath>E:\Google Drive\Work\Mandrill\_Logo\mandrillLogo-01.png</HintPath>
     </CoreNodeModels.Input.Filename>
+    <Mandrill.ChromeWindow.MandrillChromeWindowNodeModel guid="38f30b96-4ed9-4c29-a69e-90c096a1f423" type="Mandrill.ChromeWindow.MandrillChromeWindowNodeModel" nickname="Report Chrome Window" x="1689.7756076238" y="331.191628911377" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </Mandrill.ChromeWindow.MandrillChromeWindowNodeModel>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="44ecbf1e-a4a8-4087-81d9-ef72cbf2cd6b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Address" x="371.703516942213" y="476.361189127147" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Address@int,int">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.DoubleSlider guid="f1d03bfe-b23a-4572-9748-d5e47292f348" type="CoreNodeModels.Input.DoubleSlider" nickname="Number Slider" x="7.90542556052327" y="468.002184771503" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Double>2</System.Double>
+      <Range min="1" max="20" step="1" />
+    </CoreNodeModels.Input.DoubleSlider>
+    <CoreNodeModels.Input.DoubleSlider guid="03c11945-29c6-4cd3-88e5-06d479f447a4" type="CoreNodeModels.Input.DoubleSlider" nickname="Number Slider" x="7.23612906100203" y="531.518239996718" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Double>2</System.Double>
+      <Range min="1" max="20" step="1" />
+    </CoreNodeModels.Input.DoubleSlider>
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="24377b87-145a-44bd-a310-2884f53cca6a" start_index="0" end="529e7f7e-c1e1-457e-adfd-dc4fecfb806a" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="529e7f7e-c1e1-457e-adfd-dc4fecfb806a" start_index="0" end="e3b65c87-eb35-4ec2-a9e3-a4095e88da0b" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="5494adfd-8b35-4660-97f0-4e3aed0c4328" start_index="0" end="8557812a-7914-4257-bf25-b0299d19b102" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="5494adfd-8b35-4660-97f0-4e3aed0c4328" start_index="0" end="df2480c9-d0ef-44fa-9560-3011b0cf5570" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="130c2771-7f62-4a01-9ec7-00b0290d732d" start_index="0" end="5494adfd-8b35-4660-97f0-4e3aed0c4328" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="2f66a5de-d03b-444d-b039-f23e39984961" start_index="0" end="130c2771-7f62-4a01-9ec7-00b0290d732d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5494adfd-8b35-4660-97f0-4e3aed0c4328" start_index="0" end="38f30b96-4ed9-4c29-a69e-90c096a1f423" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2f66a5de-d03b-444d-b039-f23e39984961" start_index="0" end="5494adfd-8b35-4660-97f0-4e3aed0c4328" end_index="2" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="e3b65c87-eb35-4ec2-a9e3-a4095e88da0b" start_index="0" end="2f66a5de-d03b-444d-b039-f23e39984961" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="663754b8-b0e0-4f77-9351-569abd527ccc" start_index="0" end="2f66a5de-d03b-444d-b039-f23e39984961" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="213c58de-5a37-47bc-8781-6c8663795fd1" start_index="0" end="663754b8-b0e0-4f77-9351-569abd527ccc" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="213c58de-5a37-47bc-8781-6c8663795fd1" start_index="1" end="663754b8-b0e0-4f77-9351-569abd527ccc" end_index="2" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="02eaf142-0f75-4cc9-984f-3d3f8401b8be" start_index="0" end="ac270fbc-5a54-4307-a109-55a713dff27e" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="02eaf142-0f75-4cc9-984f-3d3f8401b8be" start_index="1" end="ac270fbc-5a54-4307-a109-55a713dff27e" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="213c58de-5a37-47bc-8781-6c8663795fd1" start_index="0" end="663754b8-b0e0-4f77-9351-569abd527ccc" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="213c58de-5a37-47bc-8781-6c8663795fd1" start_index="1" end="663754b8-b0e0-4f77-9351-569abd527ccc" end_index="3" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="b77897e3-034c-41dd-9db4-680073307514" start_index="0" end="d8c1cac4-1d34-41d9-8c22-5169ed79f26f" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="18ff15b4-3605-4ceb-b68f-1e32f4e32274" start_index="0" end="b77897e3-034c-41dd-9db4-680073307514" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="b8036fc8-94de-4fda-9b17-b626858b6925" start_index="0" end="18ff15b4-3605-4ceb-b68f-1e32f4e32274" end_index="0" portType="0" />
@@ -63,10 +143,58 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="4b66d6ca-3af0-47f0-b58e-4410a6f9b15b" start_index="0" end="18ff15b4-3605-4ceb-b68f-1e32f4e32274" end_index="3" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="4b66d6ca-3af0-47f0-b58e-4410a6f9b15b" start_index="0" end="18ff15b4-3605-4ceb-b68f-1e32f4e32274" end_index="2" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="01b1eaa6-52e1-44f3-a4f6-f70deafdb83a" start_index="0" end="b77897e3-034c-41dd-9db4-680073307514" end_index="2" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="accd819e-a83f-4dff-a903-ea10d8fc1ab3" start_index="0" end="df2480c9-d0ef-44fa-9560-3011b0cf5570" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d3b66f6f-50d4-4a7f-a019-6c16722af0e7" start_index="0" end="97a7df8e-1e84-4fd9-bec7-05c735c28e96" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5d02e988-5262-4457-bf49-10c1fc154c4e" start_index="0" end="d3b66f6f-50d4-4a7f-a019-6c16722af0e7" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f4b57e74-ec81-41f0-be6d-26733237ba48" start_index="0" end="d3b66f6f-50d4-4a7f-a019-6c16722af0e7" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f4b57e74-ec81-41f0-be6d-26733237ba48" start_index="1" end="d3b66f6f-50d4-4a7f-a019-6c16722af0e7" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8c6d3a53-e111-42d2-8804-14d0d7c4d09e" start_index="0" end="d3b66f6f-50d4-4a7f-a019-6c16722af0e7" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8f4f1850-c1ad-42c5-85ec-6f131f74d540" start_index="0" end="8c6d3a53-e111-42d2-8804-14d0d7c4d09e" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f216c727-c2fe-4b6c-93c5-097ab7625836" start_index="0" end="8c6d3a53-e111-42d2-8804-14d0d7c4d09e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="97a7df8e-1e84-4fd9-bec7-05c735c28e96" start_index="0" end="5494adfd-8b35-4660-97f0-4e3aed0c4328" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="80c32691-8b46-4192-801c-77edb86ab617" start_index="0" end="97a7df8e-1e84-4fd9-bec7-05c735c28e96" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a90c4a39-fd07-49bb-85b7-d4ab81559cd0" start_index="0" end="13e5ea17-f6cb-4d91-a605-eadf9bc23adb" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fec9b7b9-d7d3-4d6f-9732-11907ed5cefa" start_index="0" end="a90c4a39-fd07-49bb-85b7-d4ab81559cd0" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fec9b7b9-d7d3-4d6f-9732-11907ed5cefa" start_index="1" end="a90c4a39-fd07-49bb-85b7-d4ab81559cd0" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f2f04d74-921d-4f83-b7b8-0b83ec8a0f4b" start_index="0" end="a90c4a39-fd07-49bb-85b7-d4ab81559cd0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b78a04fe-4561-46e3-8135-c7a23ea51c35" start_index="0" end="f2f04d74-921d-4f83-b7b8-0b83ec8a0f4b" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="13e5ea17-f6cb-4d91-a605-eadf9bc23adb" start_index="0" end="5494adfd-8b35-4660-97f0-4e3aed0c4328" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7b3df4aa-212e-4535-aaff-0138d14416fe" start_index="0" end="f2f04d74-921d-4f83-b7b8-0b83ec8a0f4b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="565148fa-8a0d-460b-9a9a-4beddde6f201" start_index="0" end="13e5ea17-f6cb-4d91-a605-eadf9bc23adb" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="44ecbf1e-a4a8-4087-81d9-ef72cbf2cd6b" start_index="0" end="663754b8-b0e0-4f77-9351-569abd527ccc" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f1d03bfe-b23a-4572-9748-d5e47292f348" start_index="0" end="44ecbf1e-a4a8-4087-81d9-ef72cbf2cd6b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="03c11945-29c6-4cd3-88e5-06d479f447a4" start_index="0" end="44ecbf1e-a4a8-4087-81d9-ef72cbf2cd6b" end_index="1" portType="0" />
   </Connectors>
   <Notes />
-  <Annotations />
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="c8e5fa7e-b1c3-4b3f-8d9a-c16b9b5b5a59" annotationText="Text" left="-63.4860434029981" top="-163.982296707877" width="1349.65341152773" height="404.367309206041" fontSize="14" InitialTop="-133.982296707877" InitialHeight="409.840071352018" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="97a7df8e-1e84-4fd9-bec7-05c735c28e96" />
+      <Models ModelGuid="d3b66f6f-50d4-4a7f-a019-6c16722af0e7" />
+      <Models ModelGuid="8c6d3a53-e111-42d2-8804-14d0d7c4d09e" />
+      <Models ModelGuid="8f4f1850-c1ad-42c5-85ec-6f131f74d540" />
+      <Models ModelGuid="f216c727-c2fe-4b6c-93c5-097ab7625836" />
+      <Models ModelGuid="80c32691-8b46-4192-801c-77edb86ab617" />
+      <Models ModelGuid="f4b57e74-ec81-41f0-be6d-26733237ba48" />
+      <Models ModelGuid="5d02e988-5262-4457-bf49-10c1fc154c4e" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="81c4b634-43b7-449a-992f-fb333b532707" annotationText="Mandrill Logo" left="-130.062065670493" top="-477.806613961825" width="1411.59617645187" height="280.879354617326" fontSize="14" InitialTop="-447.806613961825" InitialHeight="280.879354617326" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="13e5ea17-f6cb-4d91-a605-eadf9bc23adb" />
+      <Models ModelGuid="a90c4a39-fd07-49bb-85b7-d4ab81559cd0" />
+      <Models ModelGuid="565148fa-8a0d-460b-9a9a-4beddde6f201" />
+      <Models ModelGuid="fec9b7b9-d7d3-4d6f-9732-11907ed5cefa" />
+      <Models ModelGuid="f2f04d74-921d-4f83-b7b8-0b83ec8a0f4b" />
+      <Models ModelGuid="b78a04fe-4561-46e3-8135-c7a23ea51c35" />
+      <Models ModelGuid="7b3df4aa-212e-4535-aaff-0138d14416fe" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="c6150d94-f145-49b0-ba59-5d13ab25b8c7" annotationText="PDF Print" left="1263.59556336316" top="670.843504572927" width="1067.13823781147" height="500.61862019448" fontSize="14" InitialTop="700.843504572927" InitialHeight="500.61862019448" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="b77897e3-034c-41dd-9db4-680073307514" />
+      <Models ModelGuid="18ff15b4-3605-4ceb-b68f-1e32f4e32274" />
+      <Models ModelGuid="b8036fc8-94de-4fda-9b17-b626858b6925" />
+      <Models ModelGuid="7a7b9b40-d1e0-4bea-94fd-51490c33df52" />
+      <Models ModelGuid="4b66d6ca-3af0-47f0-b58e-4410a6f9b15b" />
+      <Models ModelGuid="01b1eaa6-52e1-44f3-a4f6-f70deafdb83a" />
+      <Models ModelGuid="d8c1cac4-1d34-41d9-8c22-5169ed79f26f" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
   <Presets />
   <Cameras>
     <Camera Name="Background Preview" eyeX="-10.0974044799805" eyeY="133.54736328125" eyeZ="63.2335510253906" lookX="18.8822326660156" lookY="-20.4557514190674" lookZ="-91.2641220092773" upX="0" upY="1" upZ="0" />

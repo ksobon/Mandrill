@@ -22,16 +22,18 @@ namespace Charts
         /// <summary>
         ///     Grouped Bar Chart Style.
         /// </summary>
-        /// <param name="BarHoverColor"></param>
-        /// <param name="Width"></param>
-        /// <param name="Height"></param>
-        /// <param name="YAxisLabel"></param>
-        /// <param name="Colors"></param>
+        /// <param name="BarHoverColor">Hover over color.</param>
+        /// <param name="Address">Grid Coordinates</param>
+        /// <param name="Width">Width in pixels.</param>
+        /// <param name="Height">Height in pixels.</param>
+        /// <param name="YAxisLabel">Label for Y-Axis.</param>
+        /// <param name="Colors">Optional list of colors for each group.</param>
         /// <returns name="Style">Bar Chart Style object.</returns>
         /// <search>grouped, bar, chart, style</search>
         public static GroupedBarChartStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color BarHoverColor,
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] List<DSCore.Color> Colors,
+            [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label"
@@ -56,6 +58,17 @@ namespace Charts
             else
             {
                 style.Colors = null;
+            }
+
+            if (Address != null)
+            {
+                style.GridRow = Address.X;
+                style.GridColumn = Address.Y;
+            }
+            else
+            {
+                style.GridRow = 1;
+                style.GridColumn = 1;
             }
 
             return style;

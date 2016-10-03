@@ -12,7 +12,7 @@ namespace Charts
         { }
 
         /// <summary>
-        ///     Custom Area Chart domain.
+        ///     Chart domain.
         /// </summary>
         /// <param name="A">Domain start.</param>
         /// <param name="B">Domain end.</param>
@@ -25,9 +25,21 @@ namespace Charts
         }
 
         /// <summary>
+        ///     Grid Address node.
+        /// </summary>
+        /// <param name="column">Column integer.</param>
+        /// <param name="row">Row integer.</param>
+        /// <returns name="Address">Grid Address for chart placement.</returns>
+        /// <search>address, mandrill, grid, gridster</search>
+        public static GridAddress Address(int column = 1, int row = 1)
+        {
+            GridAddress address = new GridAddress(row, column);
+            return address;
+        }
+
+        /// <summary>
         ///     Returns null value.
         /// </summary>
-        /// <returns></returns>
         [IsVisibleInDynamoLibrary(false)]
         public static object GetNull()
         {

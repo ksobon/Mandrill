@@ -1,7 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using EO.WebBrowser.Wpf;
+using System.Windows;
 
-namespace Mandrill.Window
+namespace Mandrill.ChromeWindow
 {
     /// <summary>
     ///     Attached property class that allows for property binding on WebBrowser control.
@@ -23,7 +23,7 @@ namespace Mandrill.Window
 
         private static void OnBodyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var webBrowser = (WebBrowser)d;
+            var webBrowser = (WebControl)d;
             string value;
             if ((string)e.NewValue == string.Empty || (string)e.NewValue == null)
             {
@@ -33,7 +33,7 @@ namespace Mandrill.Window
             {
                 value = (string)e.NewValue;
             }
-            webBrowser.NavigateToString(value);
+            webBrowser.WebView.LoadHtml(value);
         }
     }
 }

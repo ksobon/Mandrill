@@ -21,6 +21,7 @@ namespace Charts
         /// <summary>
         ///     Line Chart Style object.
         /// </summary>
+        /// <param name="Address">Grid Coordinates.</param>
         /// <param name="Width">Width of the entire chart in pixels.</param>
         /// <param name="Height">Height of the entire chart in pixels.</param>
         /// <param name="YAxisLabel">Text used to label Y Axis.</param>
@@ -30,6 +31,7 @@ namespace Charts
         /// <search>line, style</search>
         public static LineChartStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color LineColor,
+            [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
@@ -41,6 +43,17 @@ namespace Charts
             style.YAxisLabel = YAxisLabel;
             style.LineColor = sColor.FromArgb(LineColor.Alpha, LineColor.Red, LineColor.Green, LineColor.Blue);
             style.TickMarksX = TickMarksX;
+
+            if (Address != null)
+            {
+                style.GridRow = Address.X;
+                style.GridColumn = Address.Y;
+            }
+            else
+            {
+                style.GridRow = 1;
+                style.GridColumn = 1;
+            }
 
             return style;
         }

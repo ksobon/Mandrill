@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using System.Windows.Media;
-using System;
 
 namespace D3jsLib.d3AreaCharts
 {
-    public class AreaChartStyle
+    public class AreaChartStyle : ChartStyle
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
         public string YAxisLabel { get; set; }
         public Color AreaColor { get; set; }
         public int TickMarksX { get; set; }
@@ -52,16 +49,23 @@ namespace D3jsLib.d3AreaCharts
             this.AreaChartStyle = style;
         }
 
-        public override void CreateChartModel()
+        public override void CreateChartModel(int counter)
         {
             AreaChartModel model = new AreaChartModel();
-            model.DivId = "area" + this.UniqueName;
-            model.ColMdValue = this.ColMdValue;
             model.Width = this.AreaChartStyle.Width.ToString();
             model.Height = this.AreaChartStyle.Height.ToString();
             model.YAxisLabel = this.AreaChartStyle.YAxisLabel;
             model.AreaColor = ChartsUtilities.ColorToHexString(this.AreaChartStyle.AreaColor);
             model.TickMarksX = this.AreaChartStyle.TickMarksX.ToString();
+            model.DivId = "div" + counter.ToString();
+
+            // set grid address
+            model.GridRow = this.AreaChartStyle.GridRow.ToString();
+            model.GridColumn = this.AreaChartStyle.GridColumn.ToString();
+
+            // always round up for the grid size so chart is smaller then container
+            model.SizeX = System.Math.Ceiling(this.AreaChartStyle.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.AreaChartStyle.Height / 100d).ToString();
 
             if (this.AreaChartData.Domain == null)
             {
@@ -90,25 +94,12 @@ namespace D3jsLib.d3AreaCharts
             return colString;
         }
 
-        public override Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist)
+        public override string EvaluateDivTemplate(int counter)
         {
-            string uniqueName;
-
-            // tag chart with unique name
-            if (nameChecklist.ContainsKey("areaChart"))
-            {
-                int lastUsedId = nameChecklist["areaChart"];
-                uniqueName = "areaChart" + (lastUsedId + 1).ToString();
-                nameChecklist["areaChart"] = lastUsedId + 1;
-            }
-            else
-            {
-                uniqueName = "areaChart1";
-                nameChecklist["areaChart"] = 1;
-            }
-            this.UniqueName = uniqueName;
-
-            return nameChecklist;
+            string templateName = "divTempArea" + counter.ToString();
+            AreaChartModel model = this.ChartModel as AreaChartModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return colString;
         }
     }
 }

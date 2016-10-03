@@ -1,3 +1,12 @@
-﻿<div class="col-md-@(Model.ColMdValue)">
-    <img style="display: block; margin-left: auto; margin-right: auto" src="@Raw(@Model.ImagePath)" title="@(Model.Tooltip)" width="@(Model.Width)" height="@(Model.Height)">
-</div>
+﻿<script type="text/javascript">
+    function LoadImage() {
+        var elem = document.createElement("img");
+        elem.src = "@Raw(@Model.ImagePath)";
+        elem.setAttribute("width", "@(Model.Width)");
+        elem.setAttribute("height", "@(Model.Height)");
+        elem.setAttribute("style", "block");
+        elem.setAttribute("title", "@(Model.Tooltip)")
+        document.getElementById("@(Model.DivId)").appendChild(elem);
+    }
+    LoadImage();
+</script>

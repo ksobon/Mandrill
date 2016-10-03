@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="./jquery-compat-git.js"></script>
+    <link rel="stylesheet" type="text/css" href="./result-light.css">
+    <script type="text/javascript" src="./jquery.gridster.min.js"></script>
+    <link rel="stylesheet" href="file:///C:/Users/ksobon/AppData/Roaming/Dynamo/Dynamo Revit/1.2/packages/Archi-lab_Mandrill/extra/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="file:///C:/Users/ksobon/AppData/Roaming/Dynamo/Dynamo Revit/1.2/packages/Archi-lab_Mandrill/extra/d3/d3.v3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./jquery.gridster.min.css">
+    <style type="text/css">
+        .gridster * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        .gridster ul {
+            background-color: #EFEFEF;
+        }
+
+        .gridster li {
+            font-size: 1em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 100%;
+        }
+
+
+        .gridster {
+            margin: 0 auto;
+            opacity: .8;
+            -webkit-transition: opacity .6s;
+            -moz-transition: opacity .6s;
+            -o-transition: opacity .6s;
+            -ms-transition: opacity .6s;
+            transition: opacity .6s;
+        }
+
+            .gridster .gs-w {
+                background: #FFF;
+                cursor: pointer;
+            }
+
+            .gridster .player {
+                background: #BBB;
+            }
+
+
+            .gridster .preview-holder {
+                border: none !important;
+                background: red !important;
+            }
+
+        body {
+            font: 10px Arial;
+        }
+
+        .axis path {
+            fill: none;
+            stroke: grey;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-family: Arial;
+            font-size: 10px;
+        }
+
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+
+        svg {
+            display: block;
+            margin: auto;
+        }
+
+        .svg-container {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%; /* aspect ratio */
+            vertical-align: top;
+            overflow: hidden;
+        }
+
+        .svg-content-responsive {
+            display: inline-block;
+            position: relative;
+            width: inherit;
+            height: inherit;
+            /*top: 0px;
+            left: 0px;*/
+        }
+    </style>
+    <title></title>
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            var gridster = $(".gridster ul").gridster({
+                widget_base_dimensions: [100, 100],
+                widget_margins: [5, 5],
+                helper: 'clone',
+                resize: {
+                    enabled: true,
+                    stop: function (e, ui, $widget) {
+                        var newDimensions = this.serialize($widget)[0];
+                    }
+                }
+            }).data('gridster');
+        });
+
+    </script>
+    <body>
+        <div class="gridster ready">
+            <ul style="height: 550px; width: 550px; position: relative;">
+                <li data-row="1" data-col="1" data-sizex="2" data-sizey="2" class="gs-w">
+                    <div id="donutdonutChart"></div><span class="gs-resize-handle gs-resize-handle-both"></span>
+                </li>
+                <li data-row="1" data-col="3" data-sizex="1" data-sizey="2" class="gs-w">
+                    <div id="barbarchart1"></div><span class="gs-resize-handle gs-resize-handle-both"></span>
+                </li>
+                <li data-row="1" data-col="4" data-sizex="1" data-sizey="1" class="gs-w">2<span class="gs-resize-handle gs-resize-handle-both"></span></li>
+                <li data-row="3" data-col="2" data-sizex="3" data-sizey="1" class="gs-w">3<span class="gs-resize-handle gs-resize-handle-both"></span></li>
+                <li data-row="4" data-col="1" data-sizex="1" data-sizey="1" class="gs-w">4<span class="gs-resize-handle gs-resize-handle-both"></span></li>
+                <li data-row="3" data-col="1" data-sizex="1" data-sizey="1" class="gs-w">5<span class="gs-resize-handle gs-resize-handle-both"></span></li>
+                <li data-row="4" data-col="2" data-sizex="1" data-sizey="1" class="gs-w">6<span class="gs-resize-handle gs-resize-handle-both"></span></li>
+                <li data-row="5" data-col="2" data-sizex="1" data-sizey="1" class="gs-w">7<span class="gs-resize-handle gs-resize-handle-both"></span></li>
+                <li data-row="4" data-col="4" data-sizex="1" data-sizey="1" class="gs-w">8<span class="gs-resize-handle gs-resize-handle-both"></span></li>
+                <li data-row="1" data-col="5" data-sizex="1" data-sizey="3" class="gs-w">9<span class="gs-resize-handle gs-resize-handle-both"></span></li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+            function renderDonutChart() {
+
+                var data = [{ "name": "Sample Data 1", "val": 1000 }, { "name": "Sample Data 2", "val": 100 }, { "name": "Sample Data 3", "val": 200 }, { "name": "Sample Data 4", "val": 100 }, { "name": "Sample Data 5", "val": 100 }];
+
+                var margin = { top: 40, right: 0, bottom: 40, left: 0 };
+
+                var w = 444 - margin.left - margin.right,
+                    h = 311 - margin.top - margin.bottom,
+                    r = Math.min(w, h) / 2,
+                    labelr = r + 10, // radius for label anchor
+                    donut = d3.layout.pie().sort(null),
+                    inner = r * 0.6,
+                    arc = d3.svg.arc().innerRadius(inner).outerRadius(r),
+                    arcOver = d3.svg.arc().innerRadius(inner + 5).outerRadius(r + 5);
+
+                var color = d3.scale.category20c();
+
+                var total = d3.sum(data, function (d) { return d3.sum(d3.values(d)); });
+
+                var vis = d3.select("#donutdonutChart")
+                    .append("div")
+                    .classed("svg-container", true)
+                    .append("svg")
+                    .attr("preserveAspectRatio", "xMinYMin meet")
+                    .attr("viewBox", "0 0 600 400")
+                    .classed("svg-content-responsive", true)
+                    .data([data]);
+                //.attr("width", w + margin.left + margin.right)
+                //.attr("height", h + margin.top + margin.bottom);
+
+                var textTop = vis.append("text")
+                    .attr("dy", ".35em")
+                    .style("text-anchor", "middle")
+                    .attr("font-family", "Segoe UI")
+                    .attr("font-size", r / 7 + "px")
+                    .attr("fill", "#bbb")
+                    .attr("x", (w + margin.left + margin.right) / 2)
+                    .attr("y", ((h + margin.top + margin.bottom) / 2) - (r / 7) / 2)
+                    .text("TOTAL");
+
+                var textBottom = vis.append("text")
+                    .attr("dy", ".35em")
+                    .attr("font-family", "Segoe UI")
+                    .style("text-anchor", "middle")
+                    .attr("font-weight", "bold")
+                    .attr("font-size", r / 6 + "px")
+                    .text(total)
+                    .attr("x", (w + margin.left + margin.right) / 2)
+                    .attr("y", ((h + margin.top + margin.bottom) / 2) + (r / 6) / 2);
+
+                var arcs = vis.selectAll("arc")
+                    .data(donut.value(function (d) { return d.val; }))
+                    .enter().append("g")
+                    .attr("class", "arc")
+                    .attr("transform", "translate(" + (w + margin.left + margin.right) / 2 + "," + (h + margin.top + margin.bottom) / 2 + ")");
+
+                arcs.append("path")
+                    .attr("fill", function (d) { return color(d.data.name); })
+                    .attr("d", arc)
+                    .style("stroke", "white")
+                    .style("stroke-width", 2);
+
+
+                arcs.append("text")
+                .attr("transform", function (d) {
+                    var c = arc.centroid(d),
+                        x = c[0],
+                        y = c[1],
+                        // pythagorean theorem for hypotenuse
+                        h = Math.sqrt(x * x + y * y);
+                    return "translate(" + (x / h * labelr) + ',' +
+                       (y / h * labelr) + ")";
+                })
+                .attr("dy", ".35em")
+                .attr("text-anchor", function (d) {
+                    // are we past the center?
+                    return (d.endAngle + d.startAngle) / 2 > Math.PI ?
+                        "end" : "start";
+                })
+                .text(function (d) { return d.data.name; });
+
+
+                arcs.selectAll("path")
+                    .on("mouseover", function (d) {
+                        d3.select(this).transition()
+                            .duration(200)
+                            .attr("d", arcOver);
+
+                        textTop.text(d.data.name);
+                        textBottom.text(d.data.val);
+
+                        d3.select(this).style("fill", "#FAB414");
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this).transition()
+                            .duration(100)
+                            .attr("d", arc);
+
+                        textTop.text("TOTAL");
+                        textBottom.text(total);
+
+                        d3.select(this).style("fill", function (d) { return color(d.data.name); });
+                    });
+
+            }
+            renderDonutChart();
+        </script>
+        <script>
+        function renderBarChart() {
+
+            var data =  [{"name":"A170","value":1},{"name":"A220","value":2},{"name":"A240","value":6},{"name":"A250","value":1},{"name":"A260","value":1},{"name":"A270","value":3},{"name":"B431","value":10},{"name":"E200","value":12},{"name":"B430","value":5},{"name":"F230","value":12},{"name":"B441","value":15},{"name":"A230","value":1},{"name":"D220","value":1}];
+
+            var tickValues = data.map(function (d){return d.name;});
+            var step = Math.floor(tickValues.length / 13);
+            var indexes = d3.range(0,tickValues.length, step);
+            if (indexes.indexOf(tickValues.length - 1) == -1){
+                indexes.push(tickValues.length - 1);
+            }
+            var tickArray = d3.permute(tickValues, indexes);
+
+            var margin = { top: 40, right: 20, bottom: 30, left: 40 },
+                width = 1500 - margin.left - margin.right,
+                height = 600 - margin.top - margin.bottom;
+
+            var x = d3.scale.ordinal()
+                .domain(data.map(function (d) { return d.name; }))
+                .rangeRoundBands([0, width], 0.1);
+
+            var y = d3.scale.linear()
+                .range([height, 0]);
+
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom")
+                .tickValues(tickArray);
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left");
+
+            var barChart = d3.select("#barbarchart1")
+                .append("div")
+                .classed("svg-container", true)
+                .append("svg")
+                .attr("preserveAspectRatio", "xMinYMin meet")
+                .attr("viewBox", "0 0 600 400")
+                .classed("svg-content-responsive", true);
+                //.append("svg")
+                //.attr("width", width + margin.left + margin.right)
+                //.attr("height", height + margin.top + margin.bottom)
+                //.append("g")
+                //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                y.domain([0, 16]);
+
+            barChart.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+            barChart.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text("Wall Count");
+
+            barChart.selectAll("#bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("id", "bar")
+                .attr("x", function (d) { return x(d.name); })
+                .attr("width", x.rangeBand())
+                .attr("y", function (d) { return y(d.value); })
+                .attr("fill", "#DCB414")
+                .attr("height", function (d) { return height - y(d.value); })
+                .on("click", function() {sortBars();})
+                .on("mouseover", function(d){
+
+                    var xPos = parseFloat(d3.select(this).attr("x"));
+                    var yPos = parseFloat(d3.select(this).attr("y"));
+                    var height = parseFloat(d3.select(this).attr("height"));
+                    var width = parseFloat(d3.select(this).attr("width"));
+
+                    d3.select(this).attr("fill", "#646464");
+
+                    barChart.append("text")
+                        .attr("x",xPos)
+                        .attr("y", yPos - 3)
+                        .attr("font-family", "sans-serif")
+                        .attr("font-size", "10px")
+                        .attr("font-weight", "bold")
+                        .attr("fill", "black")
+                        .attr("text-anchor", "middle")
+                        .attr("id", "tooltip")
+                        .attr("transform", "translate(" + width/2 + ")")
+                        .text(d.name +": "+ d.value);
+                })
+                .on("mouseout", function(){
+                    barChart.selectAll("#tooltip").remove();
+                    d3.select(this).attr("fill", "#DCB414");
+                });
+
+            var sortOrder = true;
+
+            var sortBars = function() {
+
+                //Flip value of sortOrder
+                sortOrder = !sortOrder;
+
+                var x0 = x.domain(data.sort(sortOrder
+                  ? function(a, b) { return b.value - a.value; }
+                  : function(a, b) { return d3.ascending(a.name, b.name); })
+                  .map(function(d) { return d.name; }))
+                  .copy();
+
+                barChart.selectAll("#bar")
+                  .sort(function(a, b) { return x0(a.name) - x0(b.name); });
+
+                var transition = barChart.transition().duration(750),
+                    delay = function(d, i) { return i * 50; };
+
+                transition.selectAll("#bar")
+                    .delay(delay)
+                    .attr("x", function(d) { return x0(d.name); });
+
+                transition.select(".x.axis")
+                    .call(xAxis)
+                    .selectAll("g")
+                    .delay(delay);};
+
+            function type(d) {
+                d.value = +d.value;
+                return d;
+            }
+        }
+        renderBarChart();
+    </script>
+</body>
+</head>
+</html>
+
+
+            

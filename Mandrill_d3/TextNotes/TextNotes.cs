@@ -1,17 +1,14 @@
 ﻿using D3jsLib.Utilities;
 using System.Windows.Media;
-using System;
-using System.Collections.Generic;
 
 namespace D3jsLib
 {
-    public class TextStyle
+    public class TextStyle : ChartStyle
     {
         public double FontSize { get; set; }
         public Color FontColor { get; set; }
         public string FontWeight { get; set; }
         public string FontStyle { get; set; }
-        public string FontAlign { get; set; }
         public string FontTransform { get; set; }
     }
 
@@ -22,7 +19,6 @@ namespace D3jsLib
         public string FontColor { get; set; }
         public string FontWeight { get; set; }
         public string FontStyle { get; set; }
-        public string FontAlign { get; set; }
         public string FontTransform { get; set; }
     }
 
@@ -37,17 +33,24 @@ namespace D3jsLib
             this.TextStyle = textStyle;
         }
 
-        public override void CreateChartModel()
+        public override void CreateChartModel(int counter)
         {
             TextNoteModel model = new TextNoteModel();
             model.Text = this.Text;
-            model.ColMdValue = this.ColMdValue;
             model.FontSize = this.TextStyle.FontSize.ToString();
             model.FontColor = ChartsUtilities.ColorToHexString(this.TextStyle.FontColor);
             model.FontWeight = this.TextStyle.FontWeight;
             model.FontStyle = this.TextStyle.FontStyle;
-            model.FontAlign = this.TextStyle.FontAlign;
             model.FontTransform = this.TextStyle.FontTransform;
+            model.DivId = "div" + counter.ToString();
+
+            // set grid address
+            model.GridRow = this.TextStyle.GridRow.ToString();
+            model.GridColumn = this.TextStyle.GridColumn.ToString();
+
+            // always round up for the grid size so chart is smaller then container
+            model.SizeX = System.Math.Ceiling(this.TextStyle.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.TextStyle.Height / 100d).ToString();
 
             this.ChartModel = model;
         }
@@ -60,10 +63,12 @@ namespace D3jsLib
             return colString;
         }
 
-        public override Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist)
+        public override string EvaluateDivTemplate(int counter)
         {
-            // text note doesn't need a unique name so this should never be called
-            throw new NotImplementedException();
+            string templateName = "divTempText" + counter.ToString();
+            TextNoteModel model = this.ChartModel as TextNoteModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return colString;
         }
     }
 }

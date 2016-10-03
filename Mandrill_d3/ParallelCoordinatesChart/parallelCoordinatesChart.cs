@@ -5,10 +5,8 @@ using System.Windows.Media;
 
 namespace D3jsLib.ParallelCoordinates
 {
-    public class ParallelCoordinatesStyle
+    public class ParallelCoordinatesStyle : ChartStyle
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
         public Color LineColor { get; set; }
     }
 
@@ -58,25 +56,32 @@ namespace D3jsLib.ParallelCoordinates
 
     public class ParallelCoordinatesChart : Chart
     {
-        public ParallelCoordinatesData ParallelCoordinatestData;
-        public ParallelCoordinatesStyle ParallelCoordinatesStyle;
+        public ParallelCoordinatesData Data;
+        public ParallelCoordinatesStyle Style;
         public string UniqueName { get; set; }
 
         public ParallelCoordinatesChart(ParallelCoordinatesData data, ParallelCoordinatesStyle style)
         {
-            this.ParallelCoordinatestData = data;
-            this.ParallelCoordinatesStyle = style;
+            this.Data = data;
+            this.Style = style;
         }
 
-        public override void CreateChartModel()
+        public override void CreateChartModel(int counter)
         {
             ParallelCoordinatesModel model = new ParallelCoordinatesModel();
-            model.DivId = "parallelCoordinates" + this.UniqueName;
-            model.ColMdValue = this.ColMdValue;
-            model.Width = this.ParallelCoordinatesStyle.Width.ToString();
-            model.Height = this.ParallelCoordinatesStyle.Height.ToString();
-            model.LineColor = ChartsUtilities.ColorToHexString(this.ParallelCoordinatesStyle.LineColor);
-            model.Data = this.ParallelCoordinatestData.ToJsonString();
+            model.Width = this.Style.Width.ToString();
+            model.Height = this.Style.Height.ToString();
+            model.LineColor = ChartsUtilities.ColorToHexString(this.Style.LineColor);
+            model.Data = this.Data.ToJsonString();
+            model.DivId = "div" + counter.ToString();
+
+            // set grid address
+            model.GridRow = this.Style.GridRow.ToString();
+            model.GridColumn = this.Style.GridColumn.ToString();
+
+            // always round up for the grid size so chart is smaller then container
+            model.SizeX = System.Math.Ceiling(this.Style.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.Style.Height / 100d).ToString();
 
             this.ChartModel = model;
         }
@@ -89,25 +94,12 @@ namespace D3jsLib.ParallelCoordinates
             return colString;
         }
 
-        public override Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist)
+        public override string EvaluateDivTemplate(int counter)
         {
-            string uniqueName;
-
-            // tag it with UniqueName
-            if (nameChecklist.ContainsKey("parallelCoordinatesChart"))
-            {
-                int lastUsedId = nameChecklist["parallelCoordinatesChart"];
-                uniqueName = "parallelCoordinatesChart" + (lastUsedId + 1).ToString();
-                nameChecklist["parallelCoordinatesChart"] = lastUsedId + 1;
-            }
-            else
-            {
-                uniqueName = "parallelCoordinatesChart";
-                nameChecklist["parallelCoordinatesChart"] = 1;
-            }
-            this.UniqueName = uniqueName;
-
-            return nameChecklist;
+            string templateName = "divTempParallelCoordinates" + counter.ToString();
+            ParallelCoordinatesModel model = this.ChartModel as ParallelCoordinatesModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return colString;
         }
     }
 }

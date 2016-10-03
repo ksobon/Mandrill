@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="utf-8">
+    <link rel="stylesheet" href="file:///C:/Users/ksobon/AppData/Roaming/Dynamo/Dynamo Revit/1.2/packages/Archi-lab_Mandrill/extra/gridster/demo.css">
+    <link rel="stylesheet" href="file:///C:/Users/ksobon/AppData/Roaming/Dynamo/Dynamo Revit/1.2/packages/Archi-lab_Mandrill/extra/gridster/jquery.gridster.min.css">
+    <script type="text/javascript" src="file:///C:/Users/ksobon/AppData/Roaming/Dynamo/Dynamo Revit/1.2/packages/Archi-lab_Mandrill/extra/d3/d3.v3.min.js"></script>
+    <script type="text/javascript" src="file:///C:/Users/ksobon/AppData/Roaming/Dynamo/Dynamo Revit/1.2/packages/Archi-lab_Mandrill/extra/gridster/jquery.min.js"></script>
+    <script type="text/javascript" src="file:///C:/Users/ksobon/AppData/Roaming/Dynamo/Dynamo Revit/1.2/packages/Archi-lab_Mandrill/extra/gridster/jquery.gridster.min.js" charset="utf-8"></script>
+    <style id="gridster-stylesheet" type="text/css">
+        [data-col="1"] {
+            left: 5px;
+        }
+
+        [data-col="2"] {
+            left: 110px;
+        }
+
+        [data-col="3"] {
+            left: 215px;
+        }
+
+        [data-col="4"] {
+            left: 320px;
+        }
+
+        [data-col="5"] {
+            left: 425px;
+        }
+
+        [data-col="6"] {
+            left: 530px;
+        }
+
+        [data-col="7"] {
+            left: 635px;
+        }
+
+        [data-col="8"] {
+            left: 740px;
+        }
+
+        [data-col="9"] {
+            left: 845px;
+        }
+
+        [data-col="10"] {
+            left: 950px;
+        }
+
+        [data-col="11"] {
+            left: 1055px;
+        }
+
+        [data-col="12"] {
+            left: 1160px;
+        }
+
+        [data-col="13"] {
+            left: 1265px;
+        }
+
+        [data-col="14"] {
+            left: 1370px;
+        }
+
+        [data-col="15"] {
+            left: 1475px;
+        }
+
+        [data-col="16"] {
+            left: 1580px;
+        }
+
+        [data-col="17"] {
+            left: 1685px;
+        }
+
+        [data-col="18"] {
+            left: 1790px;
+        }
+
+        [data-col="19"] {
+            left: 1895px;
+        }
+
+        [data-row="1"] {
+            top: 5px;
+        }
+
+        [data-row="2"] {
+            top: 110px;
+        }
+
+        [data-row="3"] {
+            top: 215px;
+        }
+
+        [data-row="4"] {
+            top: 320px;
+        }
+
+        [data-row="5"] {
+            top: 425px;
+        }
+
+        [data-row="6"] {
+            top: 530px;
+        }
+
+        [data-row="7"] {
+            top: 635px;
+        }
+
+        [data-row="8"] {
+            top: 740px;
+        }
+
+        [data-row="9"] {
+            top: 845px;
+        }
+
+        [data-row="10"] {
+            top: 950px;
+        }
+
+        [data-row="11"] {
+            top: 1055px;
+        }
+
+        [data-row="12"] {
+            top: 1160px;
+        }
+
+        [data-row="13"] {
+            top: 1265px;
+        }
+
+        [data-row="14"] {
+            top: 1370px;
+        }
+
+        [data-row="15"] {
+            top: 1475px;
+        }
+
+        [data-row="16"] {
+            top: 1580px;
+        }
+
+        [data-sizey="1"] {
+            height: 100px;
+        }
+
+        [data-sizey="2"] {
+            height: 205px;
+        }
+
+        [data-sizey="3"] {
+            height: 310px;
+        }
+
+        [data-sizey="4"] {
+            height: 415px;
+        }
+
+        [data-sizey="5"] {
+            height: 520px;
+        }
+
+        [data-sizey="6"] {
+            height: 625px;
+        }
+
+        [data-sizey="7"] {
+            height: 730px;
+        }
+
+        [data-sizey="8"] {
+            height: 835px;
+        }
+
+        [data-sizey="9"] {
+            height: 940px;
+        }
+
+        [data-sizey="10"] {
+            height: 1045px;
+        }
+
+        [data-sizey="11"] {
+            height: 1150px;
+        }
+
+        [data-sizey="12"] {
+            height: 1255px;
+        }
+
+        [data-sizey="13"] {
+            height: 1360px;
+        }
+
+        [data-sizey="14"] {
+            height: 1465px;
+        }
+
+        [data-sizey="15"] {
+            height: 1570px;
+        }
+
+        [data-sizex="1"] {
+            width: 100px;
+        }
+
+        [data-sizex="2"] {
+            width: 205px;
+        }
+
+        [data-sizex="3"] {
+            width: 310px;
+        }
+
+        [data-sizex="4"] {
+            width: 415px;
+        }
+
+        [data-sizex="5"] {
+            width: 520px;
+        }
+
+        [data-sizex="6"] {
+            width: 625px;
+        }
+
+        [data-sizex="7"] {
+            width: 730px;
+        }
+
+        [data-sizex="8"] {
+            width: 835px;
+        }
+
+        [data-sizex="9"] {
+            width: 940px;
+        }
+
+        [data-sizex="10"] {
+            width: 1045px;
+        }
+
+        [data-sizex="11"] {
+            width: 1150px;
+        }
+
+        [data-sizex="12"] {
+            width: 1255px;
+        }
+
+        [data-sizex="13"] {
+            width: 1360px;
+        }
+
+        [data-sizex="14"] {
+            width: 1465px;
+        }
+
+        [data-sizex="15"] {
+            width: 1570px;
+        }
+
+        [data-sizex="16"] {
+            width: 1675px;
+        }
+
+        [data-sizex="17"] {
+            width: 1780px;
+        }
+
+        [data-sizex="18"] {
+            width: 1885px;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            var gridster = $(".gridster ul").gridster({
+                widget_base_dimensions: [100, 100],
+                autogenerate_stylesheet: true,
+                widget_margins: [5, 5],
+                autogrow_cols: true,
+                helper: 'clone',
+                shift_widgets_up: false,
+                shift_larger_widgets_down: false,
+                collision: {
+                    wait_for_mouseup: true
+                },
+                resize: {
+                    enabled: false,
+                    stop: function (e, ui, $widget) {
+                        var newDimensions = this.serialize($widget)[0];
+                    }
+                }
+            }).data('gridster');
+            $('.gridster  ul').css({ 'padding': '0' });
+        });
+    </script>
+    <div class="gridster ready">
+        <ul style="height: 110px; width: 110px; position: absolute; padding: 0px;">
+            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" class="gs-w"><div class="gridster-box" id="div0" align="center"></div></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+    function LoadText()
+    {
+        var paragraph = document.createElement("p");
+        //paragraph.setAttribute("display", "block");
+        //paragraph.setAttribute("font-size", "16px");
+        //paragraph.setAttribute("text-transform", "capitalize");
+        paragraph.style.color = "#000000";
+
+        //paragraph.setAttribute("font-weight", "bold");
+        //paragraph.setAttribute("font-style", "italic");
+        //paragraph.setAttribute("align", "center");
+
+        var node = document.createTextNode("Mandrill");
+        paragraph.appendChild(node);
+
+        document.getElementById("div0").appendChild(paragraph);
+    }
+    LoadText();
+    </script>
+
+</body>
+</html>

@@ -1,13 +1,9 @@
 ﻿using D3jsLib.Utilities;
-using System;
-using System.Collections.Generic;
 
 namespace D3jsLib
 {
-    public class ImageStyle
+    public class ImageStyle : ChartStyle
     {
-        public double Width { get; set; }
-        public double Height { get; set; }
         public string Tooltip { get; set; }
     }
 
@@ -19,7 +15,18 @@ namespace D3jsLib
 
     public class Image : Chart
     {
-        public string ImagePath { get; set; }
+        private string _imagePath;
+        public string ImagePath
+        {
+            get
+            {
+                return this._imagePath;
+            }
+            set
+            {
+                this._imagePath = ChartsUtilities.CreateResourcePath(value);
+            }
+        }
         public ImageStyle ImageStyle { get; set; }
 
         public Image(string imagePath, ImageStyle imageStyle)
@@ -28,14 +35,22 @@ namespace D3jsLib
             this.ImageStyle = imageStyle;
         }
 
-        public override void CreateChartModel()
+        public override void CreateChartModel(int counter)
         {
             ImageModel model = new ImageModel();
             model.Width = this.ImageStyle.Width.ToString();
             model.Height = this.ImageStyle.Height.ToString();
             model.ImagePath = this.ImagePath;
             model.Tooltip = this.ImageStyle.Tooltip;
-            model.ColMdValue = this.ColMdValue;
+            model.DivId = "div" + counter.ToString();
+
+            // set grid address
+            model.GridRow = this.ImageStyle.GridRow.ToString();
+            model.GridColumn = this.ImageStyle.GridColumn.ToString();
+
+            // always round up for the grid size so chart is smaller then container
+            model.SizeX = System.Math.Ceiling(this.ImageStyle.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.ImageStyle.Height / 100d).ToString();
 
             this.ChartModel = model;
         }
@@ -48,10 +63,12 @@ namespace D3jsLib
             return colString;
         }
 
-        public override Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist)
+        public override string EvaluateDivTemplate(int counter)
         {
-            // image note doesn't need a unique name so this should never be called
-            throw new NotImplementedException();
+            string templateName = "divTempImage" + counter.ToString();
+            ImageModel model = this.ChartModel as ImageModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return colString;
         }
     }
 }

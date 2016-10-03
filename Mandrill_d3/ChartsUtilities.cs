@@ -10,6 +10,18 @@ namespace D3jsLib.Utilities
     public static class ChartsUtilities
     {
         /// <summary>
+        ///     Method for converting local path to HTML compatible file:/// path.
+        /// </summary>
+        /// <param name="filePath"></param>
+        public static string CreateResourcePath(string filePath)
+        {
+            Uri uri = new Uri(filePath);
+            string resourcePath = Uri.UnescapeDataString(uri.AbsoluteUri); // must remove %20 space encoding
+
+            return resourcePath;
+        }
+
+        /// <summary>
         ///     Since *dep file cannot be stored in bin folder it needs to be copied into it.
         /// </summary>
         public static void MoveDepFile()

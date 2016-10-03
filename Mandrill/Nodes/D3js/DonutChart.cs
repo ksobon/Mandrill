@@ -24,6 +24,7 @@ namespace Charts
         /// </summary>
         /// <param name="HoverColor">Hover over color.</param>
         /// <param name="Colors">List of optional colors for chart values.</param>
+        /// <param name="Address">Grid Coordinates.</param>
         /// <param name="Width">Width of chart in pixels.</param>
         /// <param name="Height">Height of chart in pixels.</param>
         /// <param name="Labels">Boolean value that controls if Labels are displayed.</param>
@@ -33,6 +34,7 @@ namespace Charts
         public static DonutChartStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color HoverColor,
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] List<DSCore.Color> Colors,
+            [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             int Width = 1000,
             int Height = 500,
             bool Labels = true,
@@ -58,6 +60,17 @@ namespace Charts
             else
             {
                 style.Colors = null;
+            }
+
+            if (Address != null)
+            {
+                style.GridRow = Address.X;
+                style.GridColumn = Address.Y;
+            }
+            else
+            {
+                style.GridRow = 1;
+                style.GridColumn = 1;
             }
 
             return style;

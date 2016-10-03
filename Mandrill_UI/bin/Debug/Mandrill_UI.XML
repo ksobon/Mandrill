@@ -4,82 +4,135 @@
         <name>Mandrill_UI</name>
     </assembly>
     <members>
-        <member name="T:Mandrill.ChromeWindow.MandrillChromeWindow">
+        <member name="T:Mandrill.ChromeWindow.MandrillWindow">
             <summary>
-            Interaction logic for MandrillChromeWindow.xaml
+                Interaction logic for MandrillWindow.xaml
             </summary>
             <summary>
-            MandrillChromeWindow
-            </summary>
-        </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillChromeWindow.#ctor">
-            <summary>
-            
+            MandrillWindow
             </summary>
         </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillChromeWindow.InitializeComponent">
+        <member name="M:Mandrill.ChromeWindow.MandrillWindow.#ctor">
+            <summary>
+                Mandrill Window class.
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindow.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel">
+        <member name="T:Mandrill.ChromeWindow.MandrillReportNode">
+            <summary>
+                Report
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.#ctor">
+            <summary>
+                Report Node
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.GetInputName(System.Int32)">
+            <summary>
+                Get input name
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.GetInputTooltip(System.Int32)">
+            <summary>
+                Get input tooltip
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.RemoveInput">
+            <summary>
+                Remove input
+            </summary>
+        </member>
+        <member name="P:Mandrill.ChromeWindow.MandrillReportNode.IsConvertible">
+            <summary>
+                Base implementation
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+                AST Implementation
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mandrill.ChromeWindow.MandrillReportViewCustomization">
+            <summary>
+                View Customization
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportViewCustomization.CustomizeView(Mandrill.ChromeWindow.MandrillReportNode,Dynamo.Controls.NodeView)">
+            <summary>
+                Customize view
+            </summary>
+            <param name="model"></param>
+            <param name="nodeView"></param>
+        </member>
+        <member name="T:Mandrill.ChromeWindow.MandrillWindowNodeModel">
             <summary>
                 Custom Mandrill Chrome Window node implementation
             </summary>
         </member>
-        <member name="F:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.isWindowClosed">
+        <member name="F:Mandrill.ChromeWindow.MandrillWindowNodeModel.isWindowClosed">
             <summary>
                 Window closed variable
             </summary>
         </member>
-        <member name="F:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.dv">
+        <member name="F:Mandrill.ChromeWindow.MandrillWindowNodeModel.dv">
             <summary>
                 Dynamo view variable
             </summary>
         </member>
-        <member name="F:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.RequestNewWindow">
+        <member name="F:Mandrill.ChromeWindow.MandrillWindowNodeModel.RequestNewWindow">
             <summary>
                 Window event
             </summary>
         </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.OnWindowClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.OnWindowClosing(System.Object,System.ComponentModel.CancelEventArgs)">
             <summary>
                 Window closing event
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="E:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.RequestChangeHtmlString">
+        <member name="E:Mandrill.ChromeWindow.MandrillWindowNodeModel.RequestChangeHtmlString">
             <summary>
                 Html string change event
             </summary>
         </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.OnRequestChangeHtmlString">
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.OnRequestChangeHtmlString">
             <summary>
                 On request event handler
             </summary>
         </member>
-        <member name="P:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.MyHtml">
+        <member name="P:Mandrill.ChromeWindow.MandrillWindowNodeModel.MyHtml">
             <summary>
                 Html string - databinding
             </summary>
         </member>
-        <member name="P:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.Message">
+        <member name="P:Mandrill.ChromeWindow.MandrillWindowNodeModel.Message">
             <summary>
                 Button message - databinding
             </summary>
         </member>
-        <member name="P:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.MessageCommand">
+        <member name="P:Mandrill.ChromeWindow.MandrillWindowNodeModel.MessageCommand">
             <summary>
                 Delegate command for setting button message.
             </summary>
         </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.#ctor">
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.#ctor">
             <summary>
                 Defines Mandrill Node model
             </summary>
         </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillChromeWindowNodeModel.GetInputString(Dynamo.Engine.EngineController)">
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.GetInputString(Dynamo.Engine.EngineController)">
             <summary>
                 Retrieves input string from connected input node.
             </summary>
@@ -91,7 +144,7 @@
                 Mandrill node customization implementation.
             </summary>
         </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeViewCustomization.CustomizeView(Mandrill.ChromeWindow.MandrillChromeWindowNodeModel,Dynamo.Controls.NodeView)">
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeViewCustomization.CustomizeView(Mandrill.ChromeWindow.MandrillWindowNodeModel,Dynamo.Controls.NodeView)">
             <summary>
                 View customization.
             </summary>
@@ -108,21 +161,6 @@
                 Attached property class that allows for property binding on WebBrowser control.
             </summary>
         </member>
-        <member name="T:Mandrill.Window.MandrillWindow">
-            <summary>
-            MandrillWindow
-            </summary>
-        </member>
-        <member name="M:Mandrill.Window.MandrillWindow.#ctor">
-            <summary>
-            Mandrill Window
-            </summary>
-        </member>
-        <member name="M:Mandrill.Window.MandrillWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:Mandrill.Window.LaunchWindowButtonControl">
             <summary>
             LaunchWindowButtonControl
@@ -131,45 +169,6 @@
         <member name="M:Mandrill.Window.LaunchWindowButtonControl.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Mandrill.Window.MandrillWindowNodeModel">
-            <summary>
-                Custom Mandrill Window node implementation
-            </summary>
-        </member>
-        <member name="M:Mandrill.Window.MandrillWindowNodeModel.#ctor">
-            <summary>
-                Defines Mandrill Node model
-            </summary>
-        </member>
-        <member name="M:Mandrill.Window.MandrillWindowNodeModel.GetInputString(Dynamo.Engine.EngineController)">
-            <summary>
-                Retrieves input string from connected input node.
-            </summary>
-            <param name="engine"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Mandrill.Window.MandrillWindowNodeViewCustomization">
-            <summary>
-                Mandrill node customization implementation.
-            </summary>
-        </member>
-        <member name="M:Mandrill.Window.MandrillWindowNodeViewCustomization.CustomizeView(Mandrill.Window.MandrillWindowNodeModel,Dynamo.Controls.NodeView)">
-            <summary>
-            
-            </summary>
-            <param name="model"></param>
-            <param name="nodeView"></param>
-        </member>
-        <member name="M:Mandrill.Window.MandrillWindowNodeViewCustomization.Dispose">
-            <summary>
-                Dispose of model.
-            </summary>
-        </member>
-        <member name="T:Mandrill.Window.WebBrowserHelper">
-            <summary>
-                Attached property class that allows for property binding on WebBrowser control.
             </summary>
         </member>
         <member name="T:Mandrill_UI.CustomGenericEnumerationDropDown">
@@ -218,112 +217,6 @@
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
-        </member>
-        <member name="T:CoreNodeModels.MandrillRowContainerNode">
-            <summary>
-                Row Container
-            </summary>
-        </member>
-        <member name="M:CoreNodeModels.MandrillRowContainerNode.#ctor">
-            <summary>
-                Row Container Node
-            </summary>
-        </member>
-        <member name="M:CoreNodeModels.MandrillRowContainerNode.GetInputName(System.Int32)">
-            <summary>
-                Get Input name method.
-            </summary>
-            <param name="index"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CoreNodeModels.MandrillRowContainerNode.GetInputTooltip(System.Int32)">
-            <summary>
-                Get Input tooltip method.
-            </summary>
-            <param name="index"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CoreNodeModels.MandrillRowContainerNode.RemoveInput">
-            <summary>
-                Remove Input.
-            </summary>
-        </member>
-        <member name="P:CoreNodeModels.MandrillRowContainerNode.IsConvertible">
-            <summary>
-                Base methods.
-            </summary>
-        </member>
-        <member name="M:CoreNodeModels.MandrillRowContainerNode.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
-            <summary>
-                AST Implementation
-            </summary>
-            <param name="inputAstNodes"></param>
-            <returns></returns>
-        </member>
-        <member name="T:CoreNodeModels.MandrillRowContainerViewCustomization">
-            <summary>
-                View Customization
-            </summary>
-        </member>
-        <member name="M:CoreNodeModels.MandrillRowContainerViewCustomization.CustomizeView(CoreNodeModels.MandrillRowContainerNode,Dynamo.Controls.NodeView)">
-            <summary>
-                Customize View
-            </summary>
-            <param name="model"></param>
-            <param name="nodeView"></param>
-        </member>
-        <member name="T:CoreNodeModels.MandrillReportNode">
-            <summary>
-                Report
-            </summary>
-        </member>
-        <member name="M:CoreNodeModels.MandrillReportNode.#ctor">
-            <summary>
-                Report Node
-            </summary>
-        </member>
-        <member name="M:CoreNodeModels.MandrillReportNode.GetInputName(System.Int32)">
-            <summary>
-                Get input name
-            </summary>
-            <param name="index"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CoreNodeModels.MandrillReportNode.GetInputTooltip(System.Int32)">
-            <summary>
-                Get input tooltip
-            </summary>
-            <param name="index"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CoreNodeModels.MandrillReportNode.RemoveInput">
-            <summary>
-                Remove input
-            </summary>
-        </member>
-        <member name="P:CoreNodeModels.MandrillReportNode.IsConvertible">
-            <summary>
-                Base implementation
-            </summary>
-        </member>
-        <member name="M:CoreNodeModels.MandrillReportNode.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
-            <summary>
-                AST Implementation
-            </summary>
-            <param name="inputAstNodes"></param>
-            <returns></returns>
-        </member>
-        <member name="T:CoreNodeModels.MandrillReportViewCustomization">
-            <summary>
-                View Customization
-            </summary>
-        </member>
-        <member name="M:CoreNodeModels.MandrillReportViewCustomization.CustomizeView(CoreNodeModels.MandrillReportNode,Dynamo.Controls.NodeView)">
-            <summary>
-                Customize view
-            </summary>
-            <param name="model"></param>
-            <param name="nodeView"></param>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>

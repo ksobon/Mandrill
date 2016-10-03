@@ -5,10 +5,8 @@ using System.Windows.Media;
 
 namespace D3jsLib.DonutChart
 {
-    public class DonutChartStyle
+    public class DonutChartStyle : ChartStyle
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
         public Color HoverColor { get; set; }
         public List<string> Colors { get; set; }
         public bool Labels { get; set; }
@@ -48,16 +46,23 @@ namespace D3jsLib.DonutChart
             this.DonutChartStyle = style;
         }
 
-        public override void CreateChartModel()
+        public override void CreateChartModel(int counter)
         {
             DonutChartModel model = new DonutChartModel();
-            model.DivId = "donut" + this.UniqueName;
-            model.ColMdValue = this.ColMdValue;
             model.Width = this.DonutChartStyle.Width.ToString();
             model.Height = this.DonutChartStyle.Height.ToString();
             model.HoverColor = ChartsUtilities.ColorToHexString(this.DonutChartStyle.HoverColor);
             model.Labels = this.DonutChartStyle.Labels;
             model.Legend = this.DonutChartStyle.Legend;
+            model.DivId = "div" + counter.ToString();
+
+            // set grid address
+            model.GridRow = this.DonutChartStyle.GridRow.ToString();
+            model.GridColumn = this.DonutChartStyle.GridColumn.ToString();
+
+            // always round up for the grid size so chart is smaller then container
+            model.SizeX = System.Math.Ceiling(this.DonutChartStyle.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.DonutChartStyle.Height / 100d).ToString();
 
             if (this.DonutChartStyle.Colors != null)
             {
@@ -86,25 +91,12 @@ namespace D3jsLib.DonutChart
             return colString;
         }
 
-        public override Dictionary<string, int> AssignUniqueName(Dictionary<string, int> nameChecklist)
+        public override string EvaluateDivTemplate(int counter)
         {
-            string uniqueName;
-
-            // tag chart with unique name
-            if (nameChecklist.ContainsKey("donutChart"))
-            {
-                int lastUsedId = nameChecklist["donutChart"];
-                uniqueName = "donutChart" + (lastUsedId + 1).ToString();
-                nameChecklist["donutChart"] = lastUsedId + 1;
-            }
-            else
-            {
-                uniqueName = "donutChart";
-                nameChecklist["donutChart"] = 1;
-            }
-            this.UniqueName = uniqueName;
-
-            return nameChecklist;
+            string templateName = "divTempDonut" + counter.ToString();
+            DonutChartModel model = this.ChartModel as DonutChartModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return colString;
         }
     }
 }
