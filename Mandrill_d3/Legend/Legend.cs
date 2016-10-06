@@ -1,48 +1,36 @@
 ﻿using D3jsLib.Utilities;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
-using System.Windows.Media;
 
-namespace D3jsLib.DonutChart
+namespace D3jsLib.Legend
 {
-    public class DonutChartStyle : ChartStyle
+    public class LegendStyle : ChartStyle
     {
-        public Color HoverColor { get; set; }
+        public string Title { get; set; }
         public List<string> Colors { get; set; }
-        public bool Labels { get; set; }
-        public string TotalLabel { get; set; }
-        public int Margin { get; set; }
+        public int RectangleSize { get; set; }
     }
 
-    public class DonutChartDataPoint
+    public class LegendData
     {
-        public string name { get; set; }
-        public double val { get; set; }
+        public List<string> Data { get; set; }
     }
 
-    public class DonutChartData
+    public class LegendModel : ChartModel
     {
-        public List<DonutChartDataPoint> Data { get; set; }
-    }
-
-    public class DonutChartModel : ChartModel
-    {
-        public string HoverColor { get; set; }
         public string Data { get; set; }
+        public string Title { get; set; }
         public bool Colors { get; set; }
         public string DomainColors { get; set; }
-        public bool Labels { get; set; }
-        public string TotalLabel { get; set; }
-        public int Margin { get; set; }
+        public int RectangleSize { get; set; }
     }
 
-    public class DonutChart : Chart
+    public class Legend : Chart
     {
-        public DonutChartData Data;
-        public DonutChartStyle Style;
-        public string UniqueName { get; set; }
+        public LegendData Data;
+        public LegendStyle Style;
 
-        public DonutChart(DonutChartData data, DonutChartStyle style)
+        public Legend(LegendData data, LegendStyle style)
         {
             this.Data = data;
             this.Style = style;
@@ -50,14 +38,12 @@ namespace D3jsLib.DonutChart
 
         public override void CreateChartModel(int counter)
         {
-            DonutChartModel model = new DonutChartModel();
+            LegendModel model = new LegendModel();
             model.Width = this.Style.Width.ToString();
             model.Height = this.Style.Height.ToString();
-            model.HoverColor = ChartsUtilities.ColorToHexString(this.Style.HoverColor);
-            model.Labels = this.Style.Labels;
             model.DivId = "div" + counter.ToString();
-            model.TotalLabel = this.Style.TotalLabel;
-            model.Margin = this.Style.Margin;
+            model.Title = this.Style.Title;
+            model.RectangleSize = this.Style.RectangleSize;
 
             // set grid address
             model.GridRow = this.Style.GridRow.ToString();
@@ -65,7 +51,7 @@ namespace D3jsLib.DonutChart
 
             // always round up for the grid size so chart is smaller then container
             model.SizeX = System.Math.Ceiling(this.Style.Width / 100d).ToString();
-            model.SizeY = System.Math.Ceiling(this.Style.Width / 100d).ToString();
+            model.SizeY = System.Math.Ceiling(this.Style.Height / 100d).ToString();
 
             if (this.Style.Colors != null)
             {
@@ -88,9 +74,9 @@ namespace D3jsLib.DonutChart
 
         public override string EvaluateModelTemplate(int counter)
         {
-            string templateName = "colDivTempDonut" + counter.ToString();
-            DonutChartModel model = this.ChartModel as DonutChartModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.DonutCharts.DonutChartScript.html", templateName);
+            string templateName = "colDivTempLegend" + counter.ToString();
+            LegendModel model = this.ChartModel as LegendModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Legend.Legend.html", templateName);
             return colString;
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace D3jsLib
+﻿using D3jsLib.Utilities;
+
+namespace D3jsLib
 {
     /// <summary>
     ///     Shared class GridAddress
@@ -34,7 +36,7 @@
     }
 
     /// <summary>
-    ///     Shared class defining Domain for all Charts.
+    ///     Shared class Domain
     /// </summary>
     public class Domain
     {
@@ -69,13 +71,18 @@
     /// </summary>
     public abstract class Chart
     {
-        public virtual string ColMdValue { get; set; }
-        public virtual int RowNumber { get; set; }
         public virtual ChartModel ChartModel { get; set; }
 
         public abstract void CreateChartModel(int counter);
         public abstract string EvaluateModelTemplate(int counter);
-        public abstract string EvaluateDivTemplate(int counter);
+
+        public string EvaluateDivTemplate(int counter)
+        {
+            string templateName = "chart" + counter.ToString();
+            var model = this.ChartModel;
+            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            return colString;
+        }
     }
 
     /// <summary>
@@ -83,10 +90,8 @@
     /// </summary>
     public abstract class ChartModel
     {
-        public virtual string ColMdValue { get; set; }
         public virtual string Width { get; set; }
         public virtual string Height { get; set; }
-        public virtual string DivName { get; set; }
         public virtual string DivId { get; set; }
         public virtual string GridRow { get; set; }
         public virtual string GridColumn { get; set; }

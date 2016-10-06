@@ -155,18 +155,19 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Nodes\D3js\ScatterPlotMatrix.cs" />
+    <Compile Include="Nodes\Legend\Legend.cs" />
+    <Compile Include="Nodes\Charts\ScatterPlotMatrix.cs" />
     <Compile Include="Nodes\Html\Image.cs" />
     <Compile Include="Nodes\Html\Text.cs" />
-    <Compile Include="Nodes\D3js\AreaCharts.cs" />
-    <Compile Include="Nodes\D3js\BarCharts.cs" />
-    <Compile Include="Nodes\D3js\DonutChart.cs" />
-    <Compile Include="Nodes\D3js\GroupedBarChart.cs" />
-    <Compile Include="Nodes\D3js\LineCharts.cs" />
-    <Compile Include="Nodes\D3js\MiscNodes.cs" />
-    <Compile Include="Nodes\D3js\ParallelCoordinates.cs" />
-    <Compile Include="Nodes\D3js\ScatterPlots.cs" />
-    <Compile Include="Nodes\D3js\StackedBarChart.cs" />
+    <Compile Include="Nodes\Charts\AreaCharts.cs" />
+    <Compile Include="Nodes\Charts\BarCharts.cs" />
+    <Compile Include="Nodes\Charts\DonutChart.cs" />
+    <Compile Include="Nodes\Charts\GroupedBarChart.cs" />
+    <Compile Include="Nodes\Charts\LineCharts.cs" />
+    <Compile Include="Nodes\Charts\MiscNodes.cs" />
+    <Compile Include="Nodes\Charts\ParallelCoordinates.cs" />
+    <Compile Include="Nodes\Charts\ScatterPlots.cs" />
+    <Compile Include="Nodes\Charts\StackedBarChart.cs" />
     <Compile Include="Nodes\Reports\Image.cs" />
     <Compile Include="Nodes\Reports\Pdf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

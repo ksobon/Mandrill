@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
-using D3jsLib.d3BarCharts;
+using D3jsLib.BarChart;
 using sColor = System.Windows.Media.Color;
 using D3jsLib;
 using System;
@@ -28,6 +28,7 @@ namespace Charts
         /// <param name="Height">Height of the entire chart in pixels.</param>
         /// <param name="YAxisLabel">Text displayed in top-left corner of chart.</param>
         /// <param name="TickMarksX">Approximate number of tick mark values for X Axis.</param>
+        /// <param name="xTextRotation">Indicates if labels along x-axis are rotated.</param>
         /// <returns name="Style">Bar Chart Style.</returns>
         /// <search>bar, chart, style</search>
         public static BarStyle Style(
@@ -37,7 +38,8 @@ namespace Charts
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
-            int TickMarksX = 10)
+            int TickMarksX = 10,
+            bool xTextRotation = false)
         {
             BarStyle style = new BarStyle();
             style.BarColor = sColor.FromArgb(BarColor.Alpha, BarColor.Red, BarColor.Green, BarColor.Blue);
@@ -46,6 +48,7 @@ namespace Charts
             style.Height = Height;
             style.YAxisLabel = YAxisLabel;
             style.TickMarksX = TickMarksX;
+            style.xTextRotation = xTextRotation;
 
             if (Address != null)
             {

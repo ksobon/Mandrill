@@ -26,9 +26,9 @@ namespace Charts
         /// <param name="Colors">List of optional colors for chart values.</param>
         /// <param name="Address">Grid Coordinates.</param>
         /// <param name="Width">Width of chart in pixels.</param>
-        /// <param name="Height">Height of chart in pixels.</param>
+        /// <param name="Margin">Margin around the chart(space for labels).</param>
         /// <param name="Labels">Boolean value that controls if Labels are displayed.</param>
-        /// <param name="Legend">Boolean value that controls if Legend is displayed.</param>
+        /// <param name="TotalLabel">Text appearing at center of the Donut chart.</param>
         /// <returns name="Style">Donut Chart Object.</returns>
         /// <search>donut, chart, style</search>
         public static DonutChartStyle Style(
@@ -36,16 +36,16 @@ namespace Charts
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] List<DSCore.Color> Colors,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             int Width = 1000,
-            int Height = 500,
+            int Margin = 40,
             bool Labels = true,
-            bool Legend = false)
+            string TotalLabel = "TOTAL")
         {
             DonutChartStyle style = new DonutChartStyle();
             style.Width = Width;
-            style.Height = Height;
             style.HoverColor = sColor.FromArgb(HoverColor.Alpha, HoverColor.Red, HoverColor.Green, HoverColor.Blue);
             style.Labels = Labels;
-            style.Legend = Legend;
+            style.TotalLabel = TotalLabel;
+            style.Margin = Margin;
 
             if (Colors != null)
             {

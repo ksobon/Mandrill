@@ -1,0 +1,54 @@
+﻿<script type="text/javascript">
+    function CreateLegend() {
+        var data = @Raw(Model.Data);
+
+        var width = @(Model.Width),
+            height = @(Model.Height),
+            recSize = @(Model.RectangleSize);
+
+        @if(Model.Colors)
+        {
+            @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+        }
+        else
+        {
+            @:var color = d3.scale.category20c();
+        }
+
+        var svg = d3.select("#@(Model.DivId)").append("svg")
+          .attr("width", width)
+          .attr("height", height)
+
+        var rectangles = svg.selectAll("rect")
+          .data(data)
+          .enter().append("rect")
+          .attr("width", recSize)
+          .attr("height", recSize)
+          .attr("y", function(d,i){return recSize * i;})
+          .style("fill", function(d, i){return color(i);})
+          .style("stroke", "#FFF")
+          .style("shape-rendering", "crispEdges")
+
+        var text = svg.selectAll("text")
+          .data(data)
+          .enter().append("text")
+          .attr("x", recSize + 5)
+          .attr("y", function(d,i){return (recSize * i) + (recSize / 2);})
+          .attr("font-size", recSize/2 + "px")
+          .attr("font-family", "Arial")
+          .attr("font-weight", "normal")
+          .attr("dy", ".35em")
+          .text(function(d){return d;});
+
+        var title = svg.append("text")
+          .attr("dy", ".35em")
+          .style("text-anchor", "middle")
+          .attr("font-family", "Segoe UI")
+          .attr("font-size", (recSize/2) + 5 + "px")
+          .attr("font-weight", "Bold")
+          .attr("x", width /2)
+          .attr("y", data.length * (recSize + 1) + 25)
+          .text("@(Model.Title)");
+    }
+    CreateLegend();
+</script>

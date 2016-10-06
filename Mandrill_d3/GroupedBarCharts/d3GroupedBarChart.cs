@@ -126,13 +126,5 @@ namespace D3jsLib.GroupedBarChart
             string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.GroupedBarCharts.GroupedBarChartScript.html", templateName);
             return colString;
         }
-
-        public override string EvaluateDivTemplate(int counter)
-        {
-            string templateName = "divTempGroupedBar" + counter.ToString();
-            GroupedBarChartModel model = this.ChartModel as GroupedBarChartModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
-            return colString;
-        }
     }
 }

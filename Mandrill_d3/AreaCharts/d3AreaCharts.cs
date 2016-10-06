@@ -93,14 +93,6 @@ namespace D3jsLib.d3AreaCharts
             string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.AreaCharts.AreaChartScript.html", templateName);
             return colString;
         }
-
-        public override string EvaluateDivTemplate(int counter)
-        {
-            string templateName = "divTempArea" + counter.ToString();
-            AreaChartModel model = this.ChartModel as AreaChartModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
-            return colString;
-        }
     }
 }
 

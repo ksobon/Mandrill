@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using System.Windows.Media;
 
-namespace D3jsLib.d3LineCharts
+namespace D3jsLib.LineChart
 {
     public class LineChartStyle : ChartStyle
     {
@@ -89,14 +89,6 @@ namespace D3jsLib.d3LineCharts
             string templateName = "colDivTempLine" + counter.ToString();
             LineChartModel model = this.ChartModel as LineChartModel;
             string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.LineCharts.LineChartScript.html", templateName);
-            return colString;
-        }
-
-        public override string EvaluateDivTemplate(int counter)
-        {
-            string templateName = "divTempLine" + counter.ToString();
-            LineChartModel model = this.ChartModel as LineChartModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
             return colString;
         }
     }

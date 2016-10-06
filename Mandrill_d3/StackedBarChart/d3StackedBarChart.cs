@@ -126,13 +126,5 @@ namespace D3jsLib.StackedBarChart
             string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.StackedBarChart.d3StackedBarChart.html", templateName);
             return colString;
         }
-
-        public override string EvaluateDivTemplate(int counter)
-        {
-            string templateName = "divTempStackedBar" + counter.ToString();
-            StackedBarChartModel model = this.ChartModel as StackedBarChartModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
-            return colString;
-        }
     }
 }

@@ -18,7 +18,7 @@
 
             var x = d3.scale.ordinal()
                 .domain(data.map(function (d) { return d.name; }))
-                .rangeRoundBands([0, width], 0.1);
+                .rangeBands([0, width], 0.1, 0.35);
 
             var y = d3.scale.linear()
                 .range([height, 0]);
@@ -47,10 +47,29 @@
                 @:y.domain([0, d3.max(data, function (d) { return d.value; })]);
             }
 
-            barChart.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
+            @if(Model.xTextRotation)
+            {<text>
+                barChart.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                      .style("text-anchor", "end")
+                      .attr("dx", "-0.8em")
+                      .attr("dy", "0.15em")
+                      .attr("transform", function(d){
+                          return "rotate(-65)"
+                      });
+             </text>
+            }
+            else
+            {<text>
+                barChart.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
+            </text>
+            }
 
             barChart.append("g")
                 .attr("class", "y axis")

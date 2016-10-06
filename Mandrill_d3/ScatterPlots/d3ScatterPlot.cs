@@ -108,13 +108,5 @@ namespace D3jsLib.d3ScatterPlots
             string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.ScatterPlots.ScatterPlotScript.html", templateName);
             return colString;
         }
-
-        public override string EvaluateDivTemplate(int counter)
-        {
-            string templateName = "divTempScatter" + counter.ToString();
-            ScatterPlotModel model = this.ChartModel as ScatterPlotModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
-            return colString;
-        }
     }
 }

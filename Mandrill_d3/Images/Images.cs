@@ -62,14 +62,6 @@ namespace D3jsLib
             string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Images.DivImage.html", templateName);
             return colString;
         }
-
-        public override string EvaluateDivTemplate(int counter)
-        {
-            string templateName = "divTempImage" + counter.ToString();
-            ImageModel model = this.ChartModel as ImageModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
-            return colString;
-        }
     }
 }
 

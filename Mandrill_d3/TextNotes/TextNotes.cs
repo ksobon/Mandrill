@@ -62,13 +62,5 @@ namespace D3jsLib
             string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.TextNotes.DivTextNote.html", templateName);
             return colString;
         }
-
-        public override string EvaluateDivTemplate(int counter)
-        {
-            string templateName = "divTempText" + counter.ToString();
-            TextNoteModel model = this.ChartModel as TextNoteModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
-            return colString;
-        }
     }
 }

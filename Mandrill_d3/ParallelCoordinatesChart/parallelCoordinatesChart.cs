@@ -93,13 +93,5 @@ namespace D3jsLib.ParallelCoordinates
             string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.ParallelCoordinatesChart.parallelCoordinatesChart.html", templateName);
             return colString;
         }
-
-        public override string EvaluateDivTemplate(int counter)
-        {
-            string templateName = "divTempParallelCoordinates" + counter.ToString();
-            ParallelCoordinatesModel model = this.ChartModel as ParallelCoordinatesModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
-            return colString;
-        }
     }
 }
