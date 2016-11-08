@@ -4,43 +4,74 @@
         <name>Archi-lab_Mandrill</name>
     </assembly>
     <members>
-        <member name="T:Charts.ScatterPlotMatrix">
+        <member name="T:Legends.Legend">
             <summary>
                 Grouped Bar Chart nodes.
             </summary>
         </member>
-        <member name="M:Charts.ScatterPlotMatrix.Style(System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32,System.Int32)">
+        <member name="M:Legends.Legend.Style(System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32,System.Int32,System.String,System.Int32)">
             <summary>
-            
+                Legend Style
             </summary>
-            <param name="Colors"></param>
-            <param name="Address"></param>
-            <param name="Width"></param>
-            <param name="Height"></param>
-            <returns></returns>
+            <param name="Colors">List of colors for each rectangle.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Width">Width in pixels.</param>
+            <param name="Height">Height in pixels.</param>
+            <param name="Title">Title below legend.</param>
+            <param name="RectangleSize">Rectangle size in pixels.</param>
+            <returns name="Style">Style</returns>
+        </member>
+        <member name="M:Legends.Legend.Data(System.Collections.Generic.List{System.String})">
+            <summary>
+                Data
+            </summary>
+            <param name="Names">List of strings.</param>
+            <returns name="Data">Data</returns>
+        </member>
+        <member name="M:Legends.Legend.Create(D3jsLib.Legend.LegendData,D3jsLib.Legend.LegendStyle)">
+            <summary>
+                Legend
+            </summary>
+            <param name="Data">Legend Data</param>
+            <param name="Style">Legend Style</param>
+            <returns name="legend">Legend object.</returns>
+        </member>
+        <member name="T:Charts.ScatterPlotMatrix">
+            <summary>
+                Scatter Plot Matrix Nodes.
+            </summary>
+        </member>
+        <member name="M:Charts.ScatterPlotMatrix.Style(System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32)">
+            <summary>
+                Style
+            </summary>
+            <param name="Colors">List of Colors.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Width">Width in pixels.</param>
+            <returns name="Style">Style</returns>
         </member>
         <member name="M:Charts.ScatterPlotMatrix.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}})">
             <summary>
-            
+                Data.
             </summary>
-            <param name="Headers"></param>
-            <param name="Values"></param>
-            <returns></returns>
+            <param name="Headers">Header values.</param>
+            <param name="Values">Data values.</param>
+            <returns name="Data">Data</returns>
         </member>
         <member name="M:Charts.ScatterPlotMatrix.DataFromCSV(System.Object)">
             <summary>
-            
+                Data from CSV
             </summary>
-            <param name="FilePath"></param>
-            <returns></returns>
+            <param name="FilePath">File path to CSV file.</param>
+            <returns name="Data">Data</returns>
         </member>
         <member name="M:Charts.ScatterPlotMatrix.Chart(D3jsLib.ScatterPlotMatrix.ScatterPlotMatrixData,D3jsLib.ScatterPlotMatrix.ScatterPlotMatrixStyle)">
             <summary>
-            
+                Scatter Plot Matrix Chart
             </summary>
-            <param name="Data"></param>
-            <param name="Style"></param>
-            <returns></returns>
+            <param name="Data">Data</param>
+            <param name="Style">Style</param>
+            <returns name="Chart">Chart.</returns>
         </member>
         <member name="T:Charts.AreaChart">
             <summary>
@@ -93,7 +124,7 @@
                 Bar Charts Class.
             </summary>
         </member>
-        <member name="M:Charts.BarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,System.Int32,System.Int32,System.String,System.Int32)">
+        <member name="M:Charts.BarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,System.Int32,System.Int32,System.String,System.Int32,System.Boolean)">
             <summary>
                 Bar Chart Style object.
             </summary>
@@ -104,6 +135,7 @@
             <param name="Height">Height of the entire chart in pixels.</param>
             <param name="YAxisLabel">Text displayed in top-left corner of chart.</param>
             <param name="TickMarksX">Approximate number of tick mark values for X Axis.</param>
+            <param name="xTextRotation">Indicates if labels along x-axis are rotated.</param>
             <returns name="Style">Bar Chart Style.</returns>
             <search>bar, chart, style</search>
         </member>
@@ -126,7 +158,7 @@
             <returns name="Data">Bar Chart Data</returns>
             <search>bar, chart, data</search>
         </member>
-        <member name="M:Charts.BarChart.Chart(D3jsLib.d3BarCharts.BarData,D3jsLib.d3BarCharts.BarStyle)">
+        <member name="M:Charts.BarChart.Chart(D3jsLib.BarChart.BarData,D3jsLib.BarChart.BarStyle)">
             <summary>
                 New Bar Chart object.
             </summary>
@@ -140,7 +172,7 @@
                 Donut Chart
             </summary>
         </member>
-        <member name="M:Charts.DonutChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Charts.DonutChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32,System.Int32,System.Boolean,System.String)">
             <summary>
                 Donut Chart Style object.
             </summary>
@@ -148,9 +180,9 @@
             <param name="Colors">List of optional colors for chart values.</param>
             <param name="Address">Grid Coordinates.</param>
             <param name="Width">Width of chart in pixels.</param>
-            <param name="Height">Height of chart in pixels.</param>
+            <param name="Margin">Margin around the chart(space for labels).</param>
             <param name="Labels">Boolean value that controls if Labels are displayed.</param>
-            <param name="Legend">Boolean value that controls if Legend is displayed.</param>
+            <param name="TotalLabel">Text appearing at center of the Donut chart.</param>
             <returns name="Style">Donut Chart Object.</returns>
             <search>donut, chart, style</search>
         </member>
@@ -262,7 +294,7 @@
             <returns name="Data">Line Chart Data</returns>
             <search>line, chart, data</search>
         </member>
-        <member name="M:Charts.LineChart.Chart(D3jsLib.d3LineCharts.LineChartData,D3jsLib.d3LineCharts.LineChartStyle)">
+        <member name="M:Charts.LineChart.Chart(D3jsLib.LineChart.LineChartData,D3jsLib.LineChart.LineChartStyle)">
             <summary>
                 New Line Chart object.
             </summary>

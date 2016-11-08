@@ -2,7 +2,7 @@
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib.d3AreaCharts;
-using sColor = System.Windows.Media.Color;
+using sColor = System.Drawing.Color;
 using System;
 using D3jsLib;
 
@@ -21,6 +21,7 @@ namespace Charts
         ///     Area Chart Style object.
         /// </summary>
         /// <param name="Address">Grid Coordinates.</param>
+        /// <param name="Margins">Marings in pixels.</param>
         /// <param name="Width">Width of the entire chart in pixels.</param>
         /// <param name="Height">Height of the entire chart in pixels.</param>
         /// <param name="YAxisLabel">Text used to label Y Axis.</param>
@@ -31,6 +32,7 @@ namespace Charts
         public static AreaChartStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color AreaColor,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
+            [DefaultArgument("Charts.MiscNodes.Margins(20,40,20,40)")] Margins Margins,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
@@ -42,6 +44,7 @@ namespace Charts
             style.YAxisLabel = YAxisLabel;
             style.AreaColor = sColor.FromArgb(AreaColor.Alpha, AreaColor.Red, AreaColor.Green, AreaColor.Blue);
             style.TickMarksX = TickMarksX;
+            style.Margins = Margins;
 
             if (Address != null)
             {
@@ -70,7 +73,7 @@ namespace Charts
             List<double> Values, 
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] Domain Domain)
         {
-            List<AreaChartDataPoint> dataPoints = Names.Zip(Values, (x, y) => new AreaChartDataPoint { name = x, value = y }).ToList();
+            List<DataPoint1> dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             AreaChartData areaData = new AreaChartData();
             areaData.Data = dataPoints;
             areaData.Domain = Domain;
@@ -88,7 +91,7 @@ namespace Charts
             string FilePath, 
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] Domain Domain)
         { 
-            List<AreaChartDataPoint> dataPoints = new List<AreaChartDataPoint>();
+            List<DataPoint1> dataPoints = new List<DataPoint1>();
             var csv = new List<string[]>();
             var lines = System.IO.File.ReadAllLines(FilePath);
             for (int i = 0; i < lines.Count(); i++)
@@ -98,7 +101,7 @@ namespace Charts
                 {
                     string lineName = line.Split(',')[0];
                     double lineValue = Convert.ToDouble(line.Split(',')[1]);
-                    dataPoints.Add(new AreaChartDataPoint { name = lineName, value = lineValue });
+                    dataPoints.Add(new DataPoint1 { name = lineName, value = lineValue });
                 }
             }
             AreaChartData areaData = new AreaChartData();

@@ -1,5 +1,5 @@
 ﻿using D3jsLib.Utilities;
-using System.Windows.Media;
+using System.Drawing;
 
 namespace D3jsLib
 {
@@ -45,12 +45,12 @@ namespace D3jsLib
             model.DivId = "div" + counter.ToString();
 
             // set grid address
-            model.GridRow = this.TextStyle.GridRow.ToString();
-            model.GridColumn = this.TextStyle.GridColumn.ToString();
+            model.GridRow = this.TextStyle.GridRow;
+            model.GridColumn = this.TextStyle.GridColumn;
 
             // always round up for the grid size so chart is smaller then container
-            model.SizeX = System.Math.Ceiling(this.TextStyle.Width / 100d).ToString();
-            model.SizeY = System.Math.Ceiling(this.TextStyle.Height / 100d).ToString();
+            model.SizeX = (int)System.Math.Ceiling(this.TextStyle.Width / 100d);
+            model.SizeY = (int)System.Math.Ceiling(this.TextStyle.Height / 100d);
 
             this.ChartModel = model;
         }

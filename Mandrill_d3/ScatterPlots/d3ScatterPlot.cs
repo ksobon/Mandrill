@@ -1,7 +1,7 @@
 ﻿using D3jsLib.Utilities;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Web.Script.Serialization;
-using System.Windows.Media;
 
 namespace D3jsLib.d3ScatterPlots
 {
@@ -56,20 +56,21 @@ namespace D3jsLib.d3ScatterPlots
         public override void CreateChartModel(int counter)
         {
             ScatterPlotModel model = new ScatterPlotModel();
-            model.Width = this.Style.Width.ToString();
-            model.Height = this.Style.Height.ToString();
+            model.Width = this.Style.Width;
+            model.Height = this.Style.Height;
             model.YAxisLabel = this.Style.YAxisLabel;
             model.XAxisLabel = this.Style.XAxisLabel;
             model.DotColor = ChartsUtilities.ColorToHexString(this.Style.DotColor);
             model.DivId = "div" + counter.ToString();
+            model.Margins = this.Style.Margins;
 
             // set grid address
-            model.GridRow = this.Style.GridRow.ToString();
-            model.GridColumn = this.Style.GridColumn.ToString();
+            model.GridRow = this.Style.GridRow;
+            model.GridColumn = this.Style.GridColumn;
 
             // always round up for the grid size so chart is smaller then container
-            model.SizeX = System.Math.Ceiling(this.Style.Width / 100d).ToString();
-            model.SizeY = System.Math.Ceiling(this.Style.Height / 100d).ToString();
+            model.SizeX = (int)System.Math.Ceiling(this.Style.Width / 100d);
+            model.SizeY = (int)System.Math.Ceiling(this.Style.Height / 100d);
 
             if (this.Data.DomainX == null)
             {

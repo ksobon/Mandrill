@@ -16,7 +16,7 @@ namespace MandrillTypes
         [IsVisibleInDynamoLibrary(false)]
         public static D3jsLib.Report CreateGridsterReport(List<object> chartObjects)
         {
-            string finalHtmlString = D3jsLib.Charts.CompileHtmlString(chartObjects);
+            string finalHtmlString = D3jsLib.Charts.CompileHtmlString(chartObjects, true);
             return new D3jsLib.Report(finalHtmlString);
         }
     }

@@ -1,7 +1,7 @@
 ﻿using D3jsLib.Utilities;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Web.Script.Serialization;
-using System.Windows.Media;
 
 namespace D3jsLib.ParallelCoordinates
 {
@@ -10,32 +10,14 @@ namespace D3jsLib.ParallelCoordinates
         public Color LineColor { get; set; }
     }
 
-    public class ParallelCoordinatesDataPoint
-    {
-        public string Name { get; set; }
-        public Dictionary<string, double> Values { get; set; }
-
-        public Dictionary<string, object> ToDictionary()
-        {
-            Dictionary<string, object> output = new Dictionary<string, object>();
-            output.Add("Name", this.Name);
-            foreach (var value in this.Values)
-            {
-                output.Add(value.Key, value.Value);
-            }
-
-            return output;
-        }
-    }
-
     public class ParallelCoordinatesData
     {
-        public List<ParallelCoordinatesDataPoint> Data { get; set; }
+        public List<DataPoint2> Data { get; set; }
 
         public string ToJsonString()
         {
             List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-            foreach (ParallelCoordinatesDataPoint dp in this.Data)
+            foreach (DataPoint2 dp in this.Data)
             {
                 list.Add(dp.ToDictionary());
             }
@@ -58,7 +40,6 @@ namespace D3jsLib.ParallelCoordinates
     {
         public ParallelCoordinatesData Data;
         public ParallelCoordinatesStyle Style;
-        public string UniqueName { get; set; }
 
         public ParallelCoordinatesChart(ParallelCoordinatesData data, ParallelCoordinatesStyle style)
         {
@@ -69,19 +50,20 @@ namespace D3jsLib.ParallelCoordinates
         public override void CreateChartModel(int counter)
         {
             ParallelCoordinatesModel model = new ParallelCoordinatesModel();
-            model.Width = this.Style.Width.ToString();
-            model.Height = this.Style.Height.ToString();
+            model.Width = this.Style.Width;
+            model.Height = this.Style.Height;
             model.LineColor = ChartsUtilities.ColorToHexString(this.Style.LineColor);
             model.Data = this.Data.ToJsonString();
             model.DivId = "div" + counter.ToString();
+            model.Margins = this.Style.Margins;
 
             // set grid address
-            model.GridRow = this.Style.GridRow.ToString();
-            model.GridColumn = this.Style.GridColumn.ToString();
+            model.GridRow = this.Style.GridRow;
+            model.GridColumn = this.Style.GridColumn;
 
             // always round up for the grid size so chart is smaller then container
-            model.SizeX = System.Math.Ceiling(this.Style.Width / 100d).ToString();
-            model.SizeY = System.Math.Ceiling(this.Style.Height / 100d).ToString();
+            model.SizeX = (int)System.Math.Ceiling(this.Style.Width / 100d);
+            model.SizeY = (int)System.Math.Ceiling(this.Style.Height / 100d);
 
             this.ChartModel = model;
         }

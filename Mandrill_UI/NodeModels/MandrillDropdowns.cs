@@ -111,13 +111,7 @@ namespace Mandrill_UI
     [IsDesignScriptCompatible]
     public class tn_FontWeight : CustomGenericEnumerationDropDown
     {
-        public tn_FontWeight() : base("fontWeight", typeof(FontWeights)) { }
-    }
-
-    enum FontWeights
-    {
-        normal = 1,
-        bold = 2
+        public tn_FontWeight() : base("fontWeight", typeof(D3jsLib.Text.FontWeights)) { }
     }
 
     [NodeName("Font Style")]
@@ -126,14 +120,7 @@ namespace Mandrill_UI
     [IsDesignScriptCompatible]
     public class tn_FontStyle : CustomGenericEnumerationDropDown
     {
-        public tn_FontStyle() : base("fontStyle", typeof(FontStyle)) { }
-    }
-
-    enum FontStyle
-    {
-        normal = 1,
-        oblique = 2,
-        italic = 3,
+        public tn_FontStyle() : base("fontStyle", typeof(D3jsLib.Text.FontStyle)) { }
     }
 
     [NodeName("Font Transform")]
@@ -142,14 +129,6 @@ namespace Mandrill_UI
     [IsDesignScriptCompatible]
     public class tn_FontTransform : CustomGenericEnumerationDropDown
     {
-        public tn_FontTransform() : base("fontTransform", typeof(FontTransform)) { }
-    }
-
-    enum FontTransform
-    {
-        none = 1,
-        capitalize = 2,
-        lowercase = 3,
-        uppercase = 4
+        public tn_FontTransform() : base("fontTransform", typeof(D3jsLib.Text.FontTransform)) { }
     }
 }

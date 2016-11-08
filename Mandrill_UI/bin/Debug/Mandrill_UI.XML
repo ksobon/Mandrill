@@ -4,6 +4,21 @@
         <name>Mandrill_UI</name>
     </assembly>
     <members>
+        <member name="T:Mandrill.Dropdown.PaperSizeDropdownControl">
+            <summary>
+            PaperSizeDropdownControl
+            </summary>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Mandrill.ChromeWindow.MandrillWindow">
             <summary>
                 Interaction logic for MandrillWindow.xaml
@@ -15,6 +30,11 @@
         <member name="M:Mandrill.ChromeWindow.MandrillWindow.#ctor">
             <summary>
                 Mandrill Window class.
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindow.Print(System.String,D3jsLib.PdfStyle)">
+            <summary>
+                Print method.
             </summary>
         </member>
         <member name="M:Mandrill.ChromeWindow.MandrillWindow.InitializeComponent">
@@ -159,6 +179,72 @@
         <member name="T:Mandrill.ChromeWindow.WebBrowserHelper">
             <summary>
                 Attached property class that allows for property binding on WebBrowser control.
+            </summary>
+        </member>
+        <member name="T:Mandrill.Print.MandrillPrintControl">
+            <summary>
+            MandrillPrintControl
+            </summary>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintControl.#ctor">
+            <summary>
+                Print Button Control.
+            </summary>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Mandrill.Print.MandrillPrintNodeModel">
+            <summary>
+                Hydra Share node implementation.
+            </summary>
+        </member>
+        <member name="F:Mandrill.Print.MandrillPrintNodeModel.RequestPrint">
+            <summary>
+                Request save action.
+            </summary>
+        </member>
+        <member name="P:Mandrill.Print.MandrillPrintNodeModel.Message">
+            <summary>
+                A message that will appear on the button
+            </summary>
+        </member>
+        <member name="P:Mandrill.Print.MandrillPrintNodeModel.MessageCommand">
+            <summary>
+                Delegate Command.
+            </summary>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintNodeModel.#ctor">
+            <summary>
+                The constructor for a NodeModel is used to create
+                the input and output ports and specify the argument
+                lacing.
+            </summary>
+        </member>
+        <member name="T:Mandrill.Print.MandrillPrintNodeModel.CustomNodeModelNodeViewCustomization">
+            <summary>
+                View customizer for CustomNodeModel Node Model.
+            </summary>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintNodeModel.CustomNodeModelNodeViewCustomization.CustomizeView(Mandrill.Print.MandrillPrintNodeModel,Dynamo.Controls.NodeView)">
+            <summary>
+                Customization for Node View
+            </summary>
+            <param name="model">The NodeModel representing the node's core logic.</param>
+            <param name="nodeView">The NodeView representing the node in the graph.</param>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintNodeModel.CustomNodeModelNodeViewCustomization.PrintMandrillWindow(Dynamo.Graph.Nodes.NodeModel,Dynamo.Controls.NodeView)">
+            <summary>
+                Method that finds Mandrill Window and calls its Print() method.
+            </summary>
+            <param name="model"></param>
+            <param name="nodeView"></param>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintNodeModel.CustomNodeModelNodeViewCustomization.Dispose">
+            <summary>
+                Dispose of model.
             </summary>
         </member>
         <member name="T:Mandrill.Window.LaunchWindowButtonControl">

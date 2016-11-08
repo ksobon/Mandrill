@@ -1,6 +1,6 @@
 ﻿using D3jsLib.StackedBarChart;
 using System.Collections.Generic;
-using sColor = System.Windows.Media.Color;
+using sColor = System.Drawing.Color;
 using D3jsLib.Utilities;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib;
@@ -24,6 +24,7 @@ namespace Charts
         /// </summary>
         /// <param name="BarHoverColor"></param>
         /// <param name="Address">Grid Coordinates.</param>
+        /// <param name="Margins">Margins in pixels.</param>
         /// <param name="Width"></param>
         /// <param name="Height"></param>
         /// <param name="YAxisLabel"></param>
@@ -34,6 +35,7 @@ namespace Charts
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color BarHoverColor,
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] List<DSCore.Color> Colors,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
+            [DefaultArgument("Charts.MiscNodes.Margins(20,40,20,40)")] Margins Margins,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label"
@@ -44,15 +46,11 @@ namespace Charts
             style.Height = Height;
             style.YAxisLabel = YAxisLabel;
             style.BarHoverColor = sColor.FromArgb(BarHoverColor.Alpha, BarHoverColor.Red, BarHoverColor.Green, BarHoverColor.Blue);
+            style.Margins = Margins;
 
             if (Colors != null)
             {
-                List<string> hexColors = new List<string>();
-                foreach (DSCore.Color color in Colors)
-                {
-                    string col = ChartsUtilities.ColorToHexString(sColor.FromArgb(color.Alpha, color.Red, color.Green, color.Blue));
-                    hexColors.Add(col);
-                }
+                List<string> hexColors = Colors.Select(x => ChartsUtilities.ColorToHexString(sColor.FromArgb(x.Alpha, x.Red, x.Green, x.Blue))).ToList();
                 style.Colors = hexColors;
             }
             else
@@ -88,10 +86,10 @@ namespace Charts
             List<List<object>> Values,
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] Domain Domain)
         {
-            List<StackedBarChartDataPoint> dataPoints = new List<StackedBarChartDataPoint>();
+            List<DataPoint2> dataPoints = new List<DataPoint2>();
             foreach (List<object> subList in Values)
             {
-                StackedBarChartDataPoint dataPoint = new StackedBarChartDataPoint();
+                DataPoint2 dataPoint = new DataPoint2();
                 dataPoint.Name = subList[0].ToString();
                 Dictionary<string, double> values = new Dictionary<string, double>();
                 for (int i = 1; i < subList.Count(); i++)
@@ -131,29 +129,8 @@ namespace Charts
                 _filePath = ((FileInfo)FilePath).FullName;
             }
 
-            List<StackedBarChartDataPoint> dataPoints = new List<StackedBarChartDataPoint>();
-            var csv = new List<string[]>();
-            var lines = File.ReadAllLines(_filePath);
-
-            string[] headersArray = lines[0].Split(',');
-            for (int i = 1; i < lines.Count(); i++)
-            {
-                StackedBarChartDataPoint dataPoint = new StackedBarChartDataPoint();
-                dataPoint.Name = lines[i].Split(',')[0];
-
-                string[] lineArray = lines[i].Split(',');
-                Dictionary<string, double> values = new Dictionary<string, double>();
-                for (int j = 1; j < lineArray.Count(); j++)
-                {
-                    values.Add(headersArray[j], Convert.ToDouble(lineArray[j]));
-                }
-
-                dataPoint.Values = values;
-                dataPoints.Add(dataPoint);
-            }
-
             StackedBarChartData data = new StackedBarChartData();
-            data.Data = dataPoints;
+            data.Data = ChartsUtilities.Data2FromCSV(_filePath);
             data.Domain = Domain;
 
             return data;

@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using sColor = System.Drawing.Color;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib.BarChart;
-using sColor = System.Windows.Media.Color;
 using D3jsLib;
-using System;
-using System.IO;
 
 namespace Charts
 {
@@ -24,6 +23,7 @@ namespace Charts
         /// <param name="BarColor">Fill color for bars.</param>
         /// <param name="BarHoverColor">Fill color when hovered over.</param>
         /// <param name="Address">Grid Coordinates.</param>
+        /// <param name="Margins">Margins in pixels.</param>
         /// <param name="Width">Width of the entire chart in pixels.</param>
         /// <param name="Height">Height of the entire chart in pixels.</param>
         /// <param name="YAxisLabel">Text displayed in top-left corner of chart.</param>
@@ -35,6 +35,7 @@ namespace Charts
             [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color BarColor,
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color BarHoverColor,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
+            [DefaultArgument("Charts.MiscNodes.Margins(20,40,20,40)")] Margins Margins,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
@@ -49,6 +50,7 @@ namespace Charts
             style.YAxisLabel = YAxisLabel;
             style.TickMarksX = TickMarksX;
             style.xTextRotation = xTextRotation;
+            style.Margins = Margins;
 
             if (Address != null)
             {
@@ -77,7 +79,7 @@ namespace Charts
             List<double> Values, 
             [DefaultArgument("Charts.MiscNodes.GetNull()")]Domain Domain)
         {
-            List<BarDataPoint> dataPoints = Names.Zip(Values, (x, y) => new BarDataPoint { name = x, value = y }).ToList();
+            List<DataPoint1> dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             BarData barData = new BarData();
             barData.Data = dataPoints;
             barData.Domain = Domain;
@@ -107,21 +109,8 @@ namespace Charts
                 _filePath = ((FileInfo)FilePath).FullName;
             }
 
-            List<BarDataPoint> dataPoints = new List<BarDataPoint>();
-            var csv = new List<string[]>();
-            var lines = File.ReadAllLines(_filePath);
-            for (int i = 0; i < lines.Count(); i++)
-            {
-                string line = lines[i];
-                if (i > 0)
-                {
-                    string dataName = line.Split(',')[0];
-                    double dataValue = Convert.ToDouble(line.Split(',')[1]);
-                    dataPoints.Add(new BarDataPoint { name = dataName, value = dataValue });
-                }
-            }
             BarData barData = new BarData();
-            barData.Data = dataPoints;
+            barData.Data = D3jsLib.Utilities.ChartsUtilities.Data1FromCSV(_filePath);
             barData.Domain = Domain;
             return barData;
         }

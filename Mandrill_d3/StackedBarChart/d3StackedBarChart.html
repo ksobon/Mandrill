@@ -3,12 +3,12 @@
 
         var data = @Raw(Model.Data);
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        var margin = { top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left) },
             width = @(Model.Width) - margin.left - margin.right,
             height = @(Model.Height) - margin.top - margin.bottom;
 
         var x = d3.scale.ordinal()
-            .rangeRoundBands([0, width], .23);
+            .rangeBands([0, width], 0.1, 0.35);
 
         var y = d3.scale.linear()
             .rangeRound([height, 0]);

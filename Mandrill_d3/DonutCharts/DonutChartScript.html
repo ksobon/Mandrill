@@ -3,7 +3,7 @@
     
         var data = @Raw(Model.Data);
     
-        var margin = {top: @(Model.Margin), right: @(Model.Margin), bottom: @(Model.Margin), left: @(Model.Margin)};
+        var margin = {top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left)};
     
         var w = @(Model.Width) - margin.left - margin.right,
             h = @(Model.Width) - margin.top - margin.bottom,
@@ -52,7 +52,7 @@
             .attr("y", ((h + margin.top + margin.bottom) / 2) + (r/6)/2);
     
         var arcs = vis.selectAll("arc")
-            .data(donut.value(function (d) { return d.val; }))
+            .data(donut.value(function (d) { return d.value; }))
             .enter().append("g")
             .attr("class", "arc")
             .attr("transform", "translate(" + (w + margin.left + margin.right) / 2 + "," + (h + margin.top + margin.bottom) / 2 + ")");
@@ -96,7 +96,7 @@
                     .attr("d", arcOver);
     
                 textTop.text(d.data.name);
-                textBottom.text(d.data.val);
+                textBottom.text(d.data.value);
     
                 d3.select(this).style("fill", "@(Model.HoverColor)");
             })

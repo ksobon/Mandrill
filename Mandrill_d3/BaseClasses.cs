@@ -1,7 +1,53 @@
 ﻿using D3jsLib.Utilities;
+using System.Collections.Generic;
 
 namespace D3jsLib
 {
+    public class Margins
+    {
+        private int _top;
+        private int _bottom;
+        private int _left;
+        private int _right;
+
+        public int Top
+        {
+            get { return this._top; }
+            set { this._top = value; }
+        }
+        public int Bottom
+        {
+            get { return this._bottom; }
+            set { this._bottom = value; }
+        }
+        public int Left
+        {
+            get { return this._left; }
+            set { this._left = value; }
+        }
+        public int Right
+        {
+            get { return this._right; }
+            set { this._right = value; }
+        }
+
+        public Margins()
+        {
+            this._top = 20;
+            this._bottom = 40;
+            this._left = 40;
+            this._right = 20;
+        }
+
+        public Margins(int top, int bottom, int left, int right)
+        {
+            this._top = top;
+            this._bottom = bottom;
+            this._left = left;
+            this._right = right;
+        }
+    }
+
     /// <summary>
     ///     Shared class GridAddress
     /// </summary>
@@ -15,7 +61,6 @@ namespace D3jsLib
             get { return this._x; }
             set { this._x = value; }
         }
-
         public int Y
         {
             get { return this._y; }
@@ -42,6 +87,7 @@ namespace D3jsLib
     {
         private double _a;
         private double _b;
+
         public double A
         {
             get { return this._a; }
@@ -90,13 +136,14 @@ namespace D3jsLib
     /// </summary>
     public abstract class ChartModel
     {
-        public virtual string Width { get; set; }
-        public virtual string Height { get; set; }
+        public virtual int Width { get; set; }
+        public virtual int Height { get; set; }
         public virtual string DivId { get; set; }
-        public virtual string GridRow { get; set; }
-        public virtual string GridColumn { get; set; }
-        public virtual string SizeX { get; set; }
-        public virtual string SizeY { get; set; }
+        public virtual int GridRow { get; set; }
+        public virtual int GridColumn { get; set; }
+        public virtual int SizeX { get; set; }
+        public virtual int SizeY { get; set; }
+        public virtual Margins Margins { get; set; }
     }
 
     /// <summary>
@@ -110,5 +157,30 @@ namespace D3jsLib
         public virtual int SizeY { get; set; }
         public virtual int Width { get; set; }
         public virtual int Height { get; set; }
+        public virtual Margins Margins { get; set; }
+    }
+
+    public class DataPoint1
+    {
+        public string name { get; set; }
+        public double value { get; set; }
+    }
+
+    public class DataPoint2
+    {
+        public string Name { get; set; }
+        public Dictionary<string, double> Values { get; set; }
+
+        public Dictionary<string, object> ToDictionary()
+        {
+            Dictionary<string, object> output = new Dictionary<string, object>();
+            output.Add("Name", this.Name);
+            foreach (var value in this.Values)
+            {
+                output.Add(value.Key, value.Value);
+            }
+
+            return output;
+        }
     }
 }

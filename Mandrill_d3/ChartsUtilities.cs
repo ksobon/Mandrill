@@ -4,11 +4,66 @@ using System.Reflection;
 using RazorEngine.Templating;
 using RazorEngine;
 using System.IO;
+using System.Drawing;
+using LumenWorks.Framework.IO.Csv;
 
 namespace D3jsLib.Utilities
 {
     public static class ChartsUtilities
     {
+        public static List<DataPoint2> Data2FromCSV(string _filePath)
+        {
+            List<DataPoint2> dataPoints = new List<DataPoint2>();
+            using (CsvReader csv = new CsvReader(new StreamReader(_filePath), true))
+            {
+                int fieldCount = csv.FieldCount;
+                string[] headers = csv.GetFieldHeaders();
+
+                while (csv.ReadNextRecord())
+                {
+                    DataPoint2 dataPoint = new DataPoint2();
+                    dataPoint.Name = csv[0];
+
+                    Dictionary<string, double> dict = new Dictionary<string, double>();
+                    for (int i = 1; i < fieldCount; i++)
+                    {
+                        try
+                        {
+                            dict.Add(headers[i], Convert.ToDouble(csv[i]));
+                        }
+                        catch
+                        {
+                            dict.Add(headers[i], 0);
+                        }
+                    }
+                    dataPoint.Values = dict;
+                    dataPoints.Add(dataPoint);
+                }
+            }
+            return dataPoints;
+        }
+
+        /// <summary>
+        ///     Create list of DataPoint1 objects.
+        /// </summary>
+        /// <param name="_filePath"></param>
+        /// <returns></returns>
+        public static List<DataPoint1> Data1FromCSV(string _filePath)
+        {
+            List<DataPoint1> dataPoints = new List<DataPoint1>();
+            using (CsvReader csv = new CsvReader(new StreamReader(_filePath), true))
+            {
+                int fieldCount = csv.FieldCount;
+                string[] headers = csv.GetFieldHeaders();
+
+                while (csv.ReadNextRecord())
+                {
+                    dataPoints.Add(new DataPoint1() { name = csv[0], value = Convert.ToDouble(csv[1]) });
+                }
+            }
+            return dataPoints;
+        }
+
         /// <summary>
         ///     Method for converting local path to HTML compatible file:/// path.
         /// </summary>
@@ -96,7 +151,7 @@ namespace D3jsLib.Utilities
         /// </summary>
         /// <param name="col"></param>
         /// <returns></returns>
-        public static string ColorToHexString(System.Windows.Media.Color col)
+        public static string ColorToHexString(Color col)
         {
             return "#" + col.R.ToString("X2") + col.G.ToString("X2") + col.B.ToString("X2");
         }

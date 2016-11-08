@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug32</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C34DD40B-8C14-4E44-ADCA-848DECF1F542}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mandrill_Grasshopper</RootNamespace>
+    <AssemblyName>Mandrill_Grasshopper</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug32|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EO.Base, Version=16.2.23.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.23.0\lib\EO.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EO.WebBrowser, Version=16.2.23.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.23.0\lib\EO.WebBrowser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EO.WebBrowser.Wpf, Version=16.2.23.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EO.WebBrowser.16.2.23.0\lib\EO.WebBrowser.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebEngine, Version=16.2.23.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.23.0\lib\EO.WebEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mandrill_License">
+      <HintPath>..\..\Mandrill_License\Mandrill_License\bin\Debug\Mandrill_License.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Select.HtmlToPdf, Version=2.3.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.2.3.0.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="RhinoCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Rhinoceros 5 (64-bit)\System\RhinoCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Grasshopper">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Common Files\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper (b45a29b1-4343-4035-989e-044e8580d9cf)\0.9.76.0\Grasshopper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GH_IO">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Common Files\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper (b45a29b1-4343-4035-989e-044e8580d9cf)\0.9.76.0\GH_IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\AreaChart\Mandrill_AreaChart.cs" />
+    <Compile Include="Components\AreaChart\Mandrill_AreaChartData.cs" />
+    <Compile Include="Components\AreaChart\Mandrill_AreaChartDataFromCSV.cs" />
+    <Compile Include="Components\AreaChart\Mandrill_AreaChartStyle.cs" />
+    <Compile Include="Components\BarChart\Mandrill_BarChart.cs" />
+    <Compile Include="Components\BarChart\Mandrill_BarChartData.cs" />
+    <Compile Include="Components\BarChart\Mandrill_BarChartDataFromCSV.cs" />
+    <Compile Include="Components\BarChart\Mandrill_BarChartStyle.cs" />
+    <Compile Include="Components\DonutChart\Mandrill_DonutChart.cs" />
+    <Compile Include="Components\DonutChart\Mandrill_DonutChartData.cs" />
+    <Compile Include="Components\DonutChart\Mandrill_DonutChartDataFromCSV.cs" />
+    <Compile Include="Components\DonutChart\Mandrill_DonutChartStyle.cs" />
+    <Compile Include="Components\GroupedBarChart\Mandrill_GroupedBarChart.cs" />
+    <Compile Include="Components\GroupedBarChart\Mandrill_GroupedBarChartData.cs" />
+    <Compile Include="Components\GroupedBarChart\Mandrill_GroupedBarChartDataFromCSV.cs" />
+    <Compile Include="Components\GroupedBarChart\Mandrill_GroupedBarChartStyle.cs" />
+    <Compile Include="Components\HorizontalBarChart\Mandrill_HorizontalBarChart.cs" />
+    <Compile Include="Components\HorizontalBarChart\Mandrill_HorizontalBarChartData.cs" />
+    <Compile Include="Components\HorizontalBarChart\Mandrill_HorizontalBarChartDataFromCSV.cs" />
+    <Compile Include="Components\HorizontalBarChart\Mandrill_HorizontalBarChartStyle.cs" />
+    <Compile Include="Components\Image\Mandrill_Image.cs" />
+    <Compile Include="Components\Image\Mandrill_ImageStyle.cs" />
+    <Compile Include="Components\LineChart\Mandrill_LineChart.cs" />
+    <Compile Include="Components\LineChart\Mandrill_LineChartData.cs" />
+    <Compile Include="Components\LineChart\Mandrill_LineChartDataFromCSV.cs" />
+    <Compile Include="Components\LineChart\Mandrill_LineChartStyle.cs" />
+    <Compile Include="Components\Misc\Mandrill_Domain.cs" />
+    <Compile Include="Components\Misc\Mandrill_GridAddress.cs" />
+    <Compile Include="Components\Misc\Mandrill_Margins.cs" />
+    <Compile Include="Components\NormalizedStackedBarChart\Mandrill_NormalizedStackedBarChartStyle.cs" />
+    <Compile Include="Components\NormalizedStackedBarChart\Mandrill_NormalizedStackedBarChart.cs" />
+    <Compile Include="Components\NormalizedStackedBarChart\Mandrill_NormalizedStackedBarChartData.cs" />
+    <Compile Include="Components\NormalizedStackedBarChart\Mandrill_NormalizedStackedBarChartDataFromCSV.cs" />
+    <Compile Include="Components\ParallelCoordinates\Mandrill_ParallelCoordinates.cs" />
+    <Compile Include="Components\ParallelCoordinates\Mandrill_ParallelCoordinatesData.cs" />
+    <Compile Include="Components\ParallelCoordinates\Mandrill_ParallelCoordinatesDataFromCSV.cs" />
+    <Compile Include="Components\ParallelCoordinates\Mandrill_ParallelCoordinatesStyle.cs" />
+    <Compile Include="Components\PDF\FitMode\Mandrill_PdfFitMode.cs" />
+    <Compile Include="Components\PDF\FitMode\Mandrill_PdfFitModeAttributes.cs" />
+    <Compile Include="Components\PDF\Orientation\Mandrill_PdfOrientation.cs" />
+    <Compile Include="Components\PDF\Orientation\Mandrill_PdfOrientationAttributes.cs" />
+    <Compile Include="Components\Text\FontStyle\Mandrill_FontStyle.cs" />
+    <Compile Include="Components\Text\FontStyle\Mandrill_FontStyleAttributes.cs" />
+    <Compile Include="Components\Text\FontTransform\Mandrill_FontTransform.cs" />
+    <Compile Include="Components\Text\FontTransform\Mandrill_FontTransformAttributes.cs" />
+    <Compile Include="Components\Text\FontWeight\Mandrill_FontWeight.cs" />
+    <Compile Include="Components\Text\FontWeight\Mandrill_FontWeightAttributes.cs" />
+    <Compile Include="GH_ValueListItem.cs" />
+    <Compile Include="Components\PDF\Mandrill_PDF.cs" />
+    <Compile Include="Components\PDF\Mandrill_PDFStyle.cs" />
+    <Compile Include="Components\PDF\Size\Mandrill_PdfSize.cs" />
+    <Compile Include="Components\PDF\Size\Mandrill_PdfSizeAttributes.cs" />
+    <Compile Include="Components\PieChart\Mandrill_PieChart.cs" />
+    <Compile Include="Components\PieChart\Mandrill_PieChartData.cs" />
+    <Compile Include="Components\PieChart\Mandrill_PieChartDataFromCSV.cs" />
+    <Compile Include="Components\PieChart\Mandrill_PieChartStyle.cs" />
+    <Compile Include="Components\Report\Mandrill_CreateReport.cs" />
+    <Compile Include="Components\Report\Mandrill_LaunchWindow.cs" />
+    <Compile Include="Components\ScatterPlotMatrix\Mandrill_ScatterPlotMatrix.cs" />
+    <Compile Include="Components\ScatterPlotMatrix\Mandrill_ScatterPlotMatrixData.cs" />
+    <Compile Include="Components\ScatterPlotMatrix\Mandrill_ScatterPlotMatrixDataFromCSV.cs" />
+    <Compile Include="Components\ScatterPlotMatrix\Mandrill_ScatterPlotMatrixStyle.cs" />
+    <Compile Include="Components\ScatterPlot\Mandrill_ScatterPlot.cs" />
+    <Compile Include="Components\ScatterPlot\Mandrill_ScatterPlotData.cs" />
+    <Compile Include="Components\ScatterPlot\Mandrill_ScatterPlotDataFromCSV.cs" />
+    <Compile Include="Components\ScatterPlot\Mandrill_ScatterPlotStyle.cs" />
+    <Compile Include="Components\StackedBarChart\Mandrill_StackedBarChart.cs" />
+    <Compile Include="Components\StackedBarChart\Mandrill_StackedBarChartData.cs" />
+    <Compile Include="Components\StackedBarChart\Mandrill_StackedBarChartDataFromCSV.cs" />
+    <Compile Include="Components\StackedBarChart\Mandrill_StackedBarChartStyle.cs" />
+    <Compile Include="Components\Text\Mandrill_Text.cs" />
+    <Compile Include="Components\Text\Mandrill_TextStyle.cs" />
+    <Compile Include="Controls\MandrillWindow.xaml.cs">
+      <DependentUpon>MandrillWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WebBrowserHelper.cs" />
+    <Compile Include="Mandrill_GrasshopperInfo.cs" />
+    <Compile Include="Mandrill_GrasshopperUtilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mandrill_d3\Mandrill_d3.csproj">
+      <Project>{63ed27cd-0302-4240-b322-990e76dbac42}</Project>
+      <Name>Mandrill_d3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mandrill_Resources\Mandrill_Resources.csproj">
+      <Project>{4e895fa3-4332-4345-b714-7d57a2bebb3b}</Project>
+      <Name>Mandrill_Resources</Name>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\MandrillWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
+Erase "$(TargetPath)"
+xcopy /Q/Y "$(TargetDir)$(TargetName).gha" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug32|AnyCPU' ">
+    <StartArguments>
+    </StartArguments>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files (x86)\Rhinoceros 5\System\Rhino4.exe</StartProgram>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FallbackCulture>en-US</FallbackCulture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug64|AnyCPU'">
+    <StartProgram>C:\Program Files\Rhinoceros 5 (64-bit)\System\Rhino.exe</StartProgram>
+    <StartArguments>
+    </StartArguments>
+    <StartAction>Program</StartAction>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets" Condition="Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets'))" />
+  </Target>
+</Project>

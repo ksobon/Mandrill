@@ -130,7 +130,6 @@
       <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoCore">
       <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\ProtoCore.dll</HintPath>
@@ -155,6 +154,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Nodes\Charts\HorizontalBarChart.cs" />
+    <Compile Include="Nodes\Charts\NormalizedStackedBarChart.cs" />
+    <Compile Include="Nodes\Charts\PieChart.cs" />
     <Compile Include="Nodes\Legend\Legend.cs" />
     <Compile Include="Nodes\Charts\ScatterPlotMatrix.cs" />
     <Compile Include="Nodes\Html\Image.cs" />
@@ -409,12 +411,6 @@
     <None Include="Resources\Image.Image.Style.Small.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Report.Pdf.SaveAs.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Report.Pdf.SaveAs.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Report.Pdf.Style.Large.png" />
   </ItemGroup>
   <ItemGroup>
@@ -455,6 +451,102 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Charts.ScatterPlotMatrix.Style.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.NormalizedStackedBarChart.Chart.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.NormalizedStackedBarChart.Chart.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.NormalizedStackedBarChart.Data.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.NormalizedStackedBarChart.Data.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.NormalizedStackedBarChart.DataFromCSV.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.NormalizedStackedBarChart.DataFromCSV.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.NormalizedStackedBarChart.Style.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.NormalizedStackedBarChart.Style.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Legends.Legend.Create.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Legends.Legend.Create.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Legends.Legend.Data.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Legends.Legend.Data.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Legends.Legend.Style.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Legends.Legend.Style.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.HorizontalBarChart.Chart.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.HorizontalBarChart.Chart.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.HorizontalBarChart.Data.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.HorizontalBarChart.Data.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.HorizontalBarChart.DataFromCSV.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.HorizontalBarChart.DataFromCSV.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.HorizontalBarChart.Style.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.HorizontalBarChart.Style.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.MiscNodes.Margins.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.MiscNodes.Margins.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.PieChart.Chart.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.PieChart.Chart.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.PieChart.Data.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.PieChart.Data.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.PieChart.DataFromCSV.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.PieChart.DataFromCSV.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.PieChart.Style.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charts.PieChart.Style.Small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets" Condition="Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" />

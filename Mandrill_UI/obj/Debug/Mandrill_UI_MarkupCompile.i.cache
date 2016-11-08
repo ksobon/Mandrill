@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-2381563131
+4435418862
 
-121381879967
-28433480296
-Controls\MandrillWindow.xaml;Controls\MandrillWindowButtonControl.xaml;
+161534253116
+30144374783
+Controls\PaperSizeDropdown.xaml;Controls\MandrillWindow.xaml;Controls\MandrillPrintButtonControl.xaml;Controls\MandrillWindowButtonControl.xaml;
 
 False
 

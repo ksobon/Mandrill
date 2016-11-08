@@ -9,13 +9,23 @@ namespace D3jsLib
 {
     public static class Charts
     {
-        private static string CreateResourcePath(string relativePath)
+        private static string CreateResourcePath(string relativePath, bool dropLast)
         {
             // charts is a list of all charts
             // each chart has an md value and row id assigned
             string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase); // this is bin folder
             string localAssemblyFolder = new Uri(assemblyFolder).LocalPath;
-            string mandrillPath = localAssemblyFolder.Remove(localAssemblyFolder.Length - 3);
+
+            string mandrillPath;
+            if (dropLast)
+            {
+                // remove last three letters /bin from path
+                mandrillPath = localAssemblyFolder.Remove(localAssemblyFolder.Length - 3);
+            }
+            else
+            {
+                mandrillPath = localAssemblyFolder;
+            }
 
             string cssFileName = Path.Combine(mandrillPath, relativePath);
             Uri uri = new Uri(cssFileName);
@@ -24,7 +34,7 @@ namespace D3jsLib
             return absoluteResourcePath;
         }
 
-        public static string CompileHtmlString(List<object> charts)
+        public static string CompileHtmlString(List<object> charts, bool dropLast)
         {
             StringBuilder b = new StringBuilder();
             b.AppendLine("<!DOCTYPE html>");
@@ -32,11 +42,11 @@ namespace D3jsLib
             b.AppendLine("<meta content=\"utf-8\">");
 
             // handle resource file imports
-            string demoCssPath = CreateResourcePath(@"extra\gridster\demo.css");
-            string gridsterCssPath = CreateResourcePath(@"extra\gridster\jquery.gridster.min.css");
-            string d3Path = CreateResourcePath(@"extra\d3\d3.v3.min.js");
-            string jqueryPath = CreateResourcePath(@"extra\gridster\jquery.min.js");
-            string jqueryGridsterPath = CreateResourcePath(@"extra\gridster\jquery.gridster.min.js");
+            string demoCssPath = CreateResourcePath(@"extra\gridster\demo.css", dropLast);
+            string gridsterCssPath = CreateResourcePath(@"extra\gridster\jquery.gridster.min.css", dropLast);
+            string d3Path = CreateResourcePath(@"extra\d3\d3.v3.min.js", dropLast);
+            string jqueryPath = CreateResourcePath(@"extra\gridster\jquery.min.js", dropLast);
+            string jqueryGridsterPath = CreateResourcePath(@"extra\gridster\jquery.gridster.min.js", dropLast);
             
 
             b.AppendLine("<link rel=\"stylesheet\" href=\"" + demoCssPath + "\">");
@@ -46,9 +56,9 @@ namespace D3jsLib
             b.AppendLine("<script type=\"text/javascript\" src=\"" + jqueryGridsterPath + "\" type=\"text/javascript\" charset=\"utf-8\"></script>");
 
             // handle CSS style
-            //b.AppendLine("<style>");
-            //b.AppendLine(ChartsUtilities.StreamEmbeddedResource("Mandrill_d3.Gridster.main.css"));
-            //b.AppendLine("</style>");
+            b.AppendLine("<style>");
+            b.AppendLine(ChartsUtilities.StreamEmbeddedResource("Mandrill_d3.Gridster.main.css"));
+            b.AppendLine("</style>");
             b.AppendLine("</head>");
             b.AppendLine("<body>");
 

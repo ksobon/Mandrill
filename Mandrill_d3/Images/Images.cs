@@ -38,19 +38,19 @@ namespace D3jsLib
         public override void CreateChartModel(int counter)
         {
             ImageModel model = new ImageModel();
-            model.Width = this.ImageStyle.Width.ToString();
-            model.Height = this.ImageStyle.Height.ToString();
+            model.Width = this.ImageStyle.Width;
+            model.Height = this.ImageStyle.Height;
             model.ImagePath = this.ImagePath;
             model.Tooltip = this.ImageStyle.Tooltip;
             model.DivId = "div" + counter.ToString();
 
             // set grid address
-            model.GridRow = this.ImageStyle.GridRow.ToString();
-            model.GridColumn = this.ImageStyle.GridColumn.ToString();
+            model.GridRow = this.ImageStyle.GridRow;
+            model.GridColumn = this.ImageStyle.GridColumn;
 
             // always round up for the grid size so chart is smaller then container
-            model.SizeX = System.Math.Ceiling(this.ImageStyle.Width / 100d).ToString();
-            model.SizeY = System.Math.Ceiling(this.ImageStyle.Height / 100d).ToString();
+            model.SizeX = (int)System.Math.Ceiling(this.ImageStyle.Width / 100d);
+            model.SizeY = (int)System.Math.Ceiling(this.ImageStyle.Height / 100d);
 
             this.ChartModel = model;
         }

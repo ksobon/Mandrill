@@ -1,11 +1,12 @@
 ﻿using D3jsLib.ParallelCoordinates;
 using System.Collections.Generic;
-using sColor = System.Windows.Media.Color;
+using sColor = System.Drawing.Color;
 using System.IO;
 using System.Linq;
 using System;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib;
+using D3jsLib.Utilities;
 
 namespace Charts
 {
@@ -23,6 +24,7 @@ namespace Charts
         /// </summary>
         /// <param name="LineColor">Color of the selected Lines/Values.</param>
         /// <param name="Address">Grid Coordinates.</param>
+        /// <param name="Margins">Margins in pixels.</param>
         /// <param name="Width">Width of the Chart in pixels.</param>
         /// <param name="Height">Height of the Chart in pixels.</param>
         /// <returns name="Style">Parallel Coordinates Style.</returns>
@@ -30,6 +32,7 @@ namespace Charts
         public static ParallelCoordinatesStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color LineColor,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
+            [DefaultArgument("Charts.MiscNodes.Margins()")] Margins Margins,
             int Width = 1000,
             int Height = 500)
         {
@@ -37,6 +40,7 @@ namespace Charts
             style.Width = Width;
             style.Height = Height;
             style.LineColor = sColor.FromArgb(LineColor.Alpha, LineColor.Red, LineColor.Green, LineColor.Blue);
+            style.Margins = Margins;
 
             if (Address != null)
             {
@@ -63,10 +67,10 @@ namespace Charts
             List<string> Headers,
             List<List<object>> Values)
         {
-            List<ParallelCoordinatesDataPoint> dataPoints = new List<ParallelCoordinatesDataPoint>();
+            List<DataPoint2> dataPoints = new List<DataPoint2>();
             foreach (List<object> subList in Values)
             {
-                ParallelCoordinatesDataPoint dataPoint = new ParallelCoordinatesDataPoint();
+                DataPoint2 dataPoint = new DataPoint2();
                 dataPoint.Name = subList[0].ToString();
                 Dictionary<string, double> values = new Dictionary<string, double>();
                 for (int i = 1; i < subList.Count(); i++)
@@ -103,36 +107,8 @@ namespace Charts
                 _filePath = ((FileInfo)FilePath).FullName;
             }
 
-            List<ParallelCoordinatesDataPoint> dataPoints = new List<ParallelCoordinatesDataPoint>();
-            var csv = new List<string[]>();
-            var lines = File.ReadAllLines(_filePath);
-
-            string[] headersArray = lines[0].Split(',');
-            for (int i = 1; i < lines.Count(); i++)
-            {
-                ParallelCoordinatesDataPoint dataPoint = new ParallelCoordinatesDataPoint();
-                dataPoint.Name = lines[i].Split(',')[0];
-
-                string[] lineArray = lines[i].Split(',');
-                Dictionary<string, double> values = new Dictionary<string, double>();
-                for (int j = 1; j < lineArray.Count(); j++)
-                {
-                    if (lineArray[j] != "")
-                    {
-                        values.Add(headersArray[j], Convert.ToDouble(lineArray[j]));
-                    }
-                    else
-                    {
-                        values.Add(headersArray[j], 0);
-                    }
-                }
-
-                dataPoint.Values = values;
-                dataPoints.Add(dataPoint);
-            }
-
             ParallelCoordinatesData data = new ParallelCoordinatesData();
-            data.Data = dataPoints;
+            data.Data = ChartsUtilities.Data2FromCSV(_filePath);
 
             return data;
         }

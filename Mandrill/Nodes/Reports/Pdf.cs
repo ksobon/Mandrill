@@ -1,5 +1,4 @@
 ﻿using D3jsLib;
-using System;
 
 namespace Report
 {
@@ -49,56 +48,6 @@ namespace Report
             style.MarginLeft = marginLeft;
 
             return style;
-        }
-
-        /// <summary>
-        ///     Save as PDF
-        /// </summary>
-        /// <param name="report"></param>
-        /// <param name="style">Style</param>
-        /// <param name="filePath">File path that PDF will be saved at.</param>
-        /// <returns name="Void">Void Return</returns>
-        public static void SaveAs(D3jsLib.Report report, D3jsLib.PdfStyle style, string filePath)
-        {
-            // attempt to move *dep file
-            D3jsLib.Utilities.ChartsUtilities.MoveDepFile();
-
-            // create converter
-            SelectPdf.HtmlToPdf converter = new SelectPdf.HtmlToPdf();
-            
-            // set converter options
-            SelectPdf.HtmlToPdfOptions options = converter.Options;
-            options.PdfPageOrientation = style.Orientation;
-            options.PdfPageSize = style.Size;
-            options.JpegCompressionLevel = style.Compression;
-            options.JavaScriptEnabled = true;
-            options.EmbedFonts = true;
-            options.KeepImagesTogether = true;
-            options.KeepTextsTogether = true;
-            options.AutoFitHeight = style.VerticalFit;
-            options.AutoFitWidth = style.HorizontalFit;
-            options.MarginTop = style.MarginTop;
-            options.MarginRight = style.MarginRight;
-            options.MarginBottom = style.MarginBottom;
-            options.MarginLeft = style.MarginLeft;
-
-            // created unescaped file path removes %20 from path etc.
-            string finalFilePath = filePath;
-
-            Uri uri = new Uri(filePath);
-            string absoluteFilePath = Uri.UnescapeDataString(uri.AbsoluteUri);
-
-
-            if (Uri.IsWellFormedUriString(absoluteFilePath, UriKind.RelativeOrAbsolute))
-            {
-                Uri newUri = new Uri(absoluteFilePath);
-                finalFilePath = newUri.LocalPath;
-            }
-
-            // convert html to document object and save
-            SelectPdf.PdfDocument doc = converter.ConvertHtmlString(report.HtmlString);
-            doc.Save(finalFilePath);
-            doc.Close();
         }
     }
 }

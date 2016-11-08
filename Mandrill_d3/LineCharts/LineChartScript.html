@@ -11,7 +11,7 @@
         }
         var tickArray = d3.permute(tickValues, indexes);
 
-        var margin = { top: 20, right: 20, bottom: 30, left: 50 },
+        var margin = { top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left) },
             width = @(Model.Width) - margin.left - margin.right,
             height = @(Model.Height) - margin.top - margin.bottom;
 

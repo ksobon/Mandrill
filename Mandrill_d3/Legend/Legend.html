@@ -19,36 +19,35 @@
           .attr("width", width)
           .attr("height", height)
 
-        var rectangles = svg.selectAll("rect")
-          .data(data)
-          .enter().append("rect")
-          .attr("width", recSize)
-          .attr("height", recSize)
-          .attr("y", function(d,i){return recSize * i;})
-          .style("fill", function(d, i){return color(i);})
-          .style("stroke", "#FFF")
-          .style("shape-rendering", "crispEdges")
+        var g = svg.selectAll("g")
+            .data(data)
+            .enter().append("g")
+            .attr("transform", function(d, i){
+                return "translate(" + (0) + "," + ((recSize + 2) * i) + ")";});
 
-        var text = svg.selectAll("text")
-          .data(data)
-          .enter().append("text")
-          .attr("x", recSize + 5)
-          .attr("y", function(d,i){return (recSize * i) + (recSize / 2);})
-          .attr("font-size", recSize/2 + "px")
-          .attr("font-family", "Arial")
-          .attr("font-weight", "normal")
-          .attr("dy", ".35em")
-          .text(function(d){return d;});
+        g.append("rect")
+            .attr("width", recSize)
+            .attr("height", recSize)
+            .style("stroke", "#fff")
+            .style("shape-rendering", "crispEdges")
+            .style("fill", function(d,i){ return color(i); });
+
+        g.append("text")
+            .attr("dy", "1.3em")
+            .style("text-anchor", "start")
+            .attr("dx", recSize + 5)
+            .attr("font-size", recSize/2 + "px")
+            .text(function(d){return d });
 
         var title = svg.append("text")
-          .attr("dy", ".35em")
-          .style("text-anchor", "middle")
-          .attr("font-family", "Segoe UI")
-          .attr("font-size", (recSize/2) + 5 + "px")
-          .attr("font-weight", "Bold")
-          .attr("x", width /2)
-          .attr("y", data.length * (recSize + 1) + 25)
-          .text("@(Model.Title)");
+            .attr("dy", ".35em")
+            .style("text-anchor", "middle")
+            .attr("font-family", "Segoe UI")
+            .attr("font-size", (recSize/2) + 5 + "px")
+            .attr("font-weight", "Bold")
+            .attr("x", width /2)
+            .attr("y", data.length * (recSize + 1) + 25)
+            .text("@(Model.Title)");
     }
     CreateLegend();
 </script>

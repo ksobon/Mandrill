@@ -2,7 +2,7 @@
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib.DonutChart;
-using sColor = System.Windows.Media.Color;
+using sColor = System.Drawing.Color;
 using System;
 using D3jsLib;
 using D3jsLib.Utilities;
@@ -25,8 +25,8 @@ namespace Charts
         /// <param name="HoverColor">Hover over color.</param>
         /// <param name="Colors">List of optional colors for chart values.</param>
         /// <param name="Address">Grid Coordinates.</param>
+        /// <param name="Margins">Margins in pixels.</param>
         /// <param name="Width">Width of chart in pixels.</param>
-        /// <param name="Margin">Margin around the chart(space for labels).</param>
         /// <param name="Labels">Boolean value that controls if Labels are displayed.</param>
         /// <param name="TotalLabel">Text appearing at center of the Donut chart.</param>
         /// <returns name="Style">Donut Chart Object.</returns>
@@ -35,8 +35,8 @@ namespace Charts
             [DefaultArgument("DSCore.Color.ByARGB(1,255,0,0)")] DSCore.Color HoverColor,
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] List<DSCore.Color> Colors,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
-            int Width = 1000,
-            int Margin = 40,
+            [DefaultArgument("Charts.MiscNodes.Margins()")] Margins Margins,
+            int Width = 400,
             bool Labels = true,
             string TotalLabel = "TOTAL")
         {
@@ -45,16 +45,11 @@ namespace Charts
             style.HoverColor = sColor.FromArgb(HoverColor.Alpha, HoverColor.Red, HoverColor.Green, HoverColor.Blue);
             style.Labels = Labels;
             style.TotalLabel = TotalLabel;
-            style.Margin = Margin;
+            style.Margins = Margins;
 
             if (Colors != null)
             {
-                List<string> hexColors = new List<string>();
-                foreach (DSCore.Color color in Colors)
-                {
-                    string col = ChartsUtilities.ColorToHexString(sColor.FromArgb(color.Alpha, color.Red, color.Green, color.Blue));
-                    hexColors.Add(col);
-                }
+                List<string> hexColors = Colors.Select(x => ChartsUtilities.ColorToHexString(sColor.FromArgb(x.Alpha, x.Red, x.Green, x.Blue))).ToList();
                 style.Colors = hexColors;
             }
             else
@@ -87,7 +82,7 @@ namespace Charts
             List<string> Names,
             List<double> Values)
         {
-            List<DonutChartDataPoint> dataPoints = Names.Zip(Values, (x, y) => new DonutChartDataPoint { name = x, val = y }).ToList();
+            List<DataPoint1> dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             DonutChartData data = new DonutChartData();
             data.Data = dataPoints;
 
@@ -114,7 +109,7 @@ namespace Charts
                 _filePath = ((FileInfo)FilePath).FullName;
             }
 
-            List<DonutChartDataPoint> dataPoints = new List<DonutChartDataPoint>();
+            List<DataPoint1> dataPoints = new List<DataPoint1>();
             var csv = new List<string[]>();
             var lines = System.IO.File.ReadAllLines(_filePath);
             for (int i = 0; i < lines.Count(); i++)
@@ -124,7 +119,7 @@ namespace Charts
                 {
                     string lineName = line.Split(',')[0];
                     double lineValue = Convert.ToDouble(line.Split(',')[1]);
-                    dataPoints.Add(new DonutChartDataPoint { name = lineName, val = lineValue });
+                    dataPoints.Add(new DataPoint1 { name = lineName, value = lineValue });
                 }
             }
             DonutChartData data = new DonutChartData();

@@ -1,6 +1,6 @@
 ﻿using D3jsLib.Legend;
 using System.Collections.Generic;
-using sColor = System.Windows.Media.Color;
+using sColor = System.Drawing.Color;
 using D3jsLib.Utilities;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib;

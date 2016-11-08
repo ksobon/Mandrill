@@ -39,19 +39,19 @@ namespace D3jsLib.Legend
         public override void CreateChartModel(int counter)
         {
             LegendModel model = new LegendModel();
-            model.Width = this.Style.Width.ToString();
-            model.Height = this.Style.Height.ToString();
+            model.Width = this.Style.Width;
+            model.Height = this.Style.Height;
             model.DivId = "div" + counter.ToString();
             model.Title = this.Style.Title;
             model.RectangleSize = this.Style.RectangleSize;
 
             // set grid address
-            model.GridRow = this.Style.GridRow.ToString();
-            model.GridColumn = this.Style.GridColumn.ToString();
+            model.GridRow = this.Style.GridRow;
+            model.GridColumn = this.Style.GridColumn;
 
             // always round up for the grid size so chart is smaller then container
-            model.SizeX = System.Math.Ceiling(this.Style.Width / 100d).ToString();
-            model.SizeY = System.Math.Ceiling(this.Style.Height / 100d).ToString();
+            model.SizeX = (int)System.Math.Ceiling(this.Style.Width / 100d);
+            model.SizeY = (int)System.Math.Ceiling(this.Style.Height / 100d);
 
             if (this.Style.Colors != null)
             {

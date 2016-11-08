@@ -2,7 +2,7 @@
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib.LineChart;
-using sColor = System.Windows.Media.Color;
+using sColor = System.Drawing.Color;
 using D3jsLib;
 using System.IO;
 using System;
@@ -22,6 +22,7 @@ namespace Charts
         ///     Line Chart Style object.
         /// </summary>
         /// <param name="Address">Grid Coordinates.</param>
+        /// <param name="Margins">Margins in pixels.</param>
         /// <param name="Width">Width of the entire chart in pixels.</param>
         /// <param name="Height">Height of the entire chart in pixels.</param>
         /// <param name="YAxisLabel">Text used to label Y Axis.</param>
@@ -32,6 +33,7 @@ namespace Charts
         public static LineChartStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,50,130,190)")] DSCore.Color LineColor,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
+            [DefaultArgument("Charts.MiscNodes.Margins()")] Margins Margins,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
@@ -43,6 +45,7 @@ namespace Charts
             style.YAxisLabel = YAxisLabel;
             style.LineColor = sColor.FromArgb(LineColor.Alpha, LineColor.Red, LineColor.Green, LineColor.Blue);
             style.TickMarksX = TickMarksX;
+            style.Margins = Margins;
 
             if (Address != null)
             {
@@ -71,7 +74,7 @@ namespace Charts
             List<double> Values, 
             [DefaultArgument("Charts.MiscNodes.GetNull()")] Domain Domain)
         {
-            List<LineChartDataPoint> dataPoints = Names.Zip(Values, (x, y) => new LineChartDataPoint { name = x, value = y }).ToList();
+            List<DataPoint1> dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             LineChartData lineData = new LineChartData();
             lineData.Data = dataPoints;
             lineData.Domain = Domain;
@@ -89,7 +92,7 @@ namespace Charts
             string FilePath,
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] Domain Domain)
         {
-            List<LineChartDataPoint> dataPoints = new List<LineChartDataPoint>();
+            List<DataPoint1> dataPoints = new List<DataPoint1>();
             var csv = new List<string[]>();
             var lines = File.ReadAllLines(FilePath);
             for (int i = 0; i < lines.Count(); i++)
@@ -99,7 +102,7 @@ namespace Charts
                 {
                     string dataName = line.Split(',')[0];
                     double dataValue = Convert.ToDouble(line.Split(',')[1]);
-                    dataPoints.Add(new LineChartDataPoint { name = dataName, value = dataValue });
+                    dataPoints.Add(new DataPoint1 { name = dataName, value = dataValue });
                 }
             }
             LineChartData lineData = new LineChartData();

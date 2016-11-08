@@ -9,7 +9,22 @@ namespace Charts
     public class MiscNodes
     {
         private MiscNodes()
-        { }
+        {
+        }
+
+        /// <summary>
+        ///     Chart Margins.
+        /// </summary>
+        /// <param name="Top">Top margin in pixels.</param>
+        /// <param name="Bottom">Top margin in pixels.</param>
+        /// <param name="Right">Right margin in pixels.</param>
+        /// <param name="Left">Left margin in pixels.</param>
+        /// <returns name="Margins">Margins</returns>
+        public static Margins Margins(int Top = 20, int Bottom = 40, int Right = 20, int Left = 40)
+        {
+            D3jsLib.Margins m = new D3jsLib.Margins(Top, Bottom, Left, Right);
+            return m;
+        }
 
         /// <summary>
         ///     Chart domain.

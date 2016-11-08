@@ -1,0 +1,87 @@
+﻿<script type="text/javascript">
+    function renderHorizontalBarChart() {
+
+        var data = @Raw(Model.Data);
+
+        var margin = {top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left)},
+            width = @(Model.Width) - margin.left - margin.right,
+            height = @(Model.Height) - margin.top - margin.bottom;
+
+        var y = d3.scale.ordinal()
+            .domain(data.map(function (d) { return d.name; }))
+            .rangeBands([0, height], 0.1, 0.35);
+
+        var x = d3.scale.linear()
+            .range([0, width])
+
+        @if(Model.Domain)
+        {
+            @:x.domain([@(Model.DomainA), @(Model.DomainB)]);
+        }
+        else
+        {
+            @:x.domain([0, d3.max(data, function (d) { return d.value; })]);
+        }
+
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .tickSize(-height)
+
+        var barChart = d3.select("#@(Model.DivId)").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");                                                                               
+
+        barChart.selectAll("#bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("id", "bar")
+            .attr("x", 0)
+            .attr("width", function(d){return x(d.value);})
+            .attr("y", function (d) { return y(d.name); })
+            .attr("fill", "@(Model.BarFill)")
+            .attr("height", y.rangeBand())
+            .on("mouseover", function(d){
+                d3.select(this).attr("fill", "@(Model.BarHover)");
+            })
+           .on("mouseout", function(){
+               d3.select(this).attr("fill", "@(Model.BarFill)");             
+           });
+
+        barChart.append("g")
+            .attr("class", "x axisHorizontal")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .append("text")
+            .style("text-anchor", "end")
+            .attr("x", width - 3)
+            .attr("y", -5)
+            .text("@(Model.YAxisLabel)")
+
+        barChart.append("g")
+            .selectAll("axisLabels")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("x", 0)
+            .attr("y", function(d){return y(d.name) + (y.rangeBand() / 2);})
+            .attr("text-anchor", "end")
+            .attr("dy", ".35em")
+            .attr("dx", -5)
+            .text(function(d){return d.name;})
+
+        barChart.append("g")
+            .selectAll("valueLabels")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("x", function(d){return x(d.value);})
+            .attr("y", function(d){return y(d.name) + (y.rangeBand() / 2);})
+            .attr("dy", ".35em")
+            .attr("dx", 5)
+            .text(function(d){return d.value;})
+            }
+    renderHorizontalBarChart();
+</script>

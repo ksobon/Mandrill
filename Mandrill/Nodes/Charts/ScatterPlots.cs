@@ -2,7 +2,7 @@
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib.d3ScatterPlots;
-using sColor = System.Windows.Media.Color;
+using sColor = System.Drawing.Color;
 using D3jsLib.Utilities;
 using System;
 using D3jsLib;
@@ -22,6 +22,7 @@ namespace Charts
         ///     Scatter Plot Style.
         /// </summary>
         /// <param name="Address">Grid Coordinates.</param>
+        /// <param name="Margins">Margins in pixels.</param>
         /// <param name="Width">Width in pixels.</param>
         /// <param name="Height">Height in pixels.</param>
         /// <param name="YAxisLabel">Label displayed for Y Axis.</param>
@@ -32,6 +33,7 @@ namespace Charts
         public static ScatterPlotStyle Style(
             [DefaultArgument("DSCore.Color.ByARGB(1,100,100,100)")] DSCore.Color DotColor,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
+            [DefaultArgument("Charts.MiscNodes.Margins()")] Margins Margins,
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
@@ -43,6 +45,7 @@ namespace Charts
             style.YAxisLabel = YAxisLabel;
             style.XAxisLabel = XAxisLabel;
             style.DotColor = sColor.FromArgb(DotColor.Alpha, DotColor.Red, DotColor.Green, DotColor.Blue);
+            style.Margins = Margins;
 
             if (Address != null)
             {
@@ -61,7 +64,7 @@ namespace Charts
         /// <summary>
         ///     Scatter Plot Data.
         /// </summary>
-        /// <param name="Name">Names for Data Points.</param>
+        /// <param name="Names">Names for Data Points.</param>
         /// <param name="ValueX">Value along X Axis.</param>
         /// <param name="ValueY">Value along Y Axis.</param>
         /// <param name="Size">Size of displayed dot.</param>
@@ -70,14 +73,14 @@ namespace Charts
         /// <returns name="Data">Scatter Plot Data.</returns>
         /// <search>scatter plot, data</search>
         public static ScatterPlotData Data(
-            List<string> Name, 
+            List<string> Names, 
             List<double> ValueX, 
             List<double> ValueY, 
             List<double> Size, 
             [DefaultArgument("Charts.MiscNodes.GetNull()")] Domain DomainX, 
             [DefaultArgument("Charts.MiscNodes.GetNull()")] Domain DomainY)
         {
-            List<ScatterPlotDataPoint> dataPoints = Name
+            List<ScatterPlotDataPoint> dataPoints = Names
                 .ZipFour(ValueX, ValueY, Size, (x, y, z, v) => new ScatterPlotDataPoint { name = x, valueX = y, valueY = z, size = v })
                 .ToList();
 
@@ -104,7 +107,7 @@ namespace Charts
             List<ScatterPlotDataPoint> dataPoints = new List<ScatterPlotDataPoint>();
             var csv = new List<string[]>();
             var lines = System.IO.File.ReadAllLines(FilePath);
-            for (int i = 0; i < lines.Count(); i++)
+            for (int i = 1; i < lines.Count(); i++)
             {
                 string line = lines[i];
                 if (i > 0)

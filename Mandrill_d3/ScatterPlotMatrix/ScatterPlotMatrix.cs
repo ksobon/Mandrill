@@ -9,32 +9,14 @@ namespace D3jsLib.ScatterPlotMatrix
         public List<string> Colors { get; set; }
     }
 
-    public class ScatterPlotMatrixDataPoint
-    {
-        public string Name { get; set; }
-        public Dictionary<string, double> Values { get; set; }
-
-        public Dictionary<string, object> ToDictionary()
-        {
-            Dictionary<string, object> output = new Dictionary<string, object>();
-            output.Add("Name", this.Name);
-            foreach (var value in this.Values)
-            {
-                output.Add(value.Key, value.Value);
-            }
-
-            return output;
-        }
-    }
-
     public class ScatterPlotMatrixData
     {
-        public List<ScatterPlotMatrixDataPoint> Data { get; set; }
+        public List<DataPoint2> Data { get; set; }
 
         public string ToJsonString()
         {
             List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-            foreach (ScatterPlotMatrixDataPoint dp in this.Data)
+            foreach (DataPoint2 dp in this.Data)
             {
                 list.Add(dp.ToDictionary());
             }
@@ -69,8 +51,8 @@ namespace D3jsLib.ScatterPlotMatrix
         public override void CreateChartModel(int counter)
         {
             ScatterPlotMatrixModel model = new ScatterPlotMatrixModel();
-            model.Width = this.Style.Width.ToString();
-            model.Height = this.Style.Width.ToString();
+            model.Width = this.Style.Width;
+            model.Height = this.Style.Width;
             model.Data = this.Data.ToJsonString();
             model.DivId = "div" + counter.ToString();
 
@@ -90,12 +72,12 @@ namespace D3jsLib.ScatterPlotMatrix
             }
 
             // set grid address
-            model.GridRow = this.Style.GridRow.ToString();
-            model.GridColumn = this.Style.GridColumn.ToString();
+            model.GridRow = this.Style.GridRow;
+            model.GridColumn = this.Style.GridColumn;
 
             // always round up for the grid size so chart is smaller then container
-            model.SizeX = System.Math.Ceiling(this.Style.Width / 100d).ToString();
-            model.SizeY = System.Math.Ceiling(this.Style.Width / 100d).ToString();
+            model.SizeX = (int)System.Math.Ceiling(this.Style.Width / 100d);
+            model.SizeY = (int)System.Math.Ceiling(this.Style.Width / 100d);
 
             this.ChartModel = model;
         }

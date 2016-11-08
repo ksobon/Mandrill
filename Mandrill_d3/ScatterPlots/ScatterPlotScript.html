@@ -1,9 +1,9 @@
-﻿<script>
+﻿<script type="text/javascript">
     function RenderScatterPlot() {
 
         var data = @Raw(Model.Data);
 
-	    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        var margin = {top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left)},
 		        width = @(Model.Width) - margin.left - margin.right,
 		        height = @(Model.Height) - margin.top - margin.bottom;
 
@@ -14,7 +14,6 @@
 	        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	    var tooltip = d3.select("#@(Model.DivId)").append("div")
-	        //.attr("class", "tooltip")
             .style("position", "absolute")
             .style("width", "200px")
             .style("height", "28px")
@@ -29,11 +28,11 @@
 
         @if(Model.DomainX)
         {
-            @:x.domain([@(Model.DomainXA), @(Model.DomainXB)]);
+            @:x.domain([@(Model.DomainXA)-1, @(Model.DomainXB)]);
         }
         else
         {
-            @:x.domain([d3.min(data, xValue), d3.max(data, xValue)]);
+            @:x.domain([d3.min(data, xValue)-1, d3.max(data, xValue)]);
         }
 
         var y = d3.scale.linear()
@@ -92,21 +91,18 @@
         nodeGroup.append("circle")
             .attr("r", function(d) {return rScale(d.size);})
             .attr("opacity", 0.7)
-            .style("fill", function(d){return color(d.color)})
-            //.style("fill", "@(Model.DotColor)")
-            .on("mouseover", function(d) {
-              tooltip.transition()
-                   .duration(200)
-                   .style("opacity", .9);
-              tooltip.html(d.name + "<br /> (" + xValue(d)
-                + ", " + yValue(d) + ")")
-                   .style("left", (d3.event.pageX + 5) + "px")
-                   .style("top", (d3.event.pageY - 28) + "px");})
-            .on("mouseout", function(d) {
-              tooltip.transition()
-                   .duration(500)
-                   .style("opacity", 0);});
+            .style("fill", function(d){return color(d.color);});
+            //.on("mouseover", function(d) {
+            //  tooltip.transition()
+            //       .duration(200)
+            //       .style("opacity", .9);
+            //  tooltip.html(d.name + "<br /> (" + xValue(d) + ", " + yValue(d) + ")")
+            //       .style("left", (d3.event.pageX + 5) + "px")
+            //       .style("top", (d3.event.pageY - 28) + "px");})
+            //.on("mouseout", function(d) { 
+            //    tooltip.transition()
+            //       .duration(500)
+            //       .style("opacity", 0);});
         }
-
     RenderScatterPlot();
 </script>

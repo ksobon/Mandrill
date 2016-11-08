@@ -1,0 +1,10 @@
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\bin\Debug\Mandrill_Authentication.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\bin\Debug\Mandrill_Authentication.pdb
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\bin\Debug\EO.Base.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\bin\Debug\EO.WebBrowser.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\bin\Debug\EO.WebEngine.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\bin\Debug\EO.Base.xml
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\bin\Debug\EO.WebBrowser.xml
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\bin\Debug\EO.WebEngine.xml
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\obj\Debug\Mandrill_Authentication.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Authentication\obj\Debug\Mandrill_Authentication.pdb

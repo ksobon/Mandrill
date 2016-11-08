@@ -1,0 +1,110 @@
+﻿<script type="text/javascript">
+    function renderPieChart() {
+
+        var data = @Raw(Model.Data);
+
+        var margin = {top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left)};
+
+        var width = @(Model.Width) - margin.left - margin.right,
+            height = @(Model.Width) - margin.top - margin.bottom,
+            radius = width / 2,
+            arc = d3.svg.arc().outerRadius(radius - 10).innerRadius(0),
+            arcOver = d3.svg.arc().innerRadius(0).outerRadius(radius - 10 + 5)
+            labelArc = d3.svg.arc().outerRadius(radius / 2).innerRadius(radius / 2);
+
+        @if(Model.Colors)
+        {
+            @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+        }
+        else
+        {
+            @:var color = d3.scale.category20c();
+        }
+
+        var pie = d3.layout.pie()
+            .sort(null)
+            .value(function(d) { return d.value; });
+
+        var svg = d3.select("#@(Model.DivId)").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + (width + margin.left + margin.right) / 2 + "," + (height + margin.top + margin.bottom) / 2 + ")");
+
+        var g = svg.selectAll(".arc")
+            .data(pie(data))
+            .enter().append("g")
+            .attr("class", "arc");
+
+        g.append("path")
+            .attr("d", arc)
+            .style("fill", function(d) { return color(d.data.name); })
+            .style("stroke", "white")
+            .style("stroke-width", 2);
+
+        g.selectAll("path")
+            .on("mouseover", function(d){
+
+                d3.select(this).transition()
+                  .duration(200)
+                  .attr("d", arcOver);
+
+                svg.append("text")
+                  .attr("transform", "translate(" + labelArc.centroid(d) + ")")
+                  .attr("dy", ".35em")
+                  .attr("class","tooltip")
+                  .attr("text-anchor", "middle")
+                  .attr("id", "label")
+                  .attr("font-family", "sans-serif")
+                  .attr("font-size", "14px")
+                  .attr("font-weight", "bold")
+                  .attr("fill", "black")
+                  .text(d.data.value);
+
+                d3.select(this).style("fill", "@(Model.HoverColor)");
+
+            })
+            .on("mouseout", function(){
+                d3.select(this).transition()
+                  .duration(100)
+                  .attr("d", arc);
+                svg.select("#label").remove();
+                d3.select(this).style("fill", function(d) { return color(d.data.name); });
+            });
+
+        @if(Model.Labels)
+        {<text>
+        function computeTextRotation(d) {
+            var rotation = (d.startAngle + d.endAngle)/2 * 180 / Math.PI - 90;
+            return {
+                global: rotation,
+                correction: rotation > 90 ? 180 : 0
+            };
+        }
+
+        g.append("text")
+            .attr("transform", function(d){
+                var rotation = computeTextRotation(d);
+                console.log(d.data.name)
+                console.log(rotation)
+                return "rotate(" + rotation.global + ")" + "translate(" + (radius + 15) + ",0)" + "rotate(" + -rotation.correction + ")";
+            })
+            .attr("dy", ".35em")
+            .attr("text-anchor", function(d){
+                var rotation = computeTextRotation(d);
+                return rotation.correction === 0 ? "start" : "end";
+            })
+            .text(function(d){return d.data.name;});
+        </text>
+        }
+        else
+        {
+        }
+
+        function type(d) {
+            d.value = +d.value;
+            return d;
+        }
+    }
+    renderPieChart();
+</script>
