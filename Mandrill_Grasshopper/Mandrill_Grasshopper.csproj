@@ -146,6 +146,7 @@
     <Compile Include="Components\Text\FontTransform\Mandrill_FontTransformAttributes.cs" />
     <Compile Include="Components\Text\FontWeight\Mandrill_FontWeight.cs" />
     <Compile Include="Components\Text\FontWeight\Mandrill_FontWeightAttributes.cs" />
+    <Compile Include="Mandrill_BaseDropdown.cs" />
     <Compile Include="GH_ValueListItem.cs" />
     <Compile Include="Components\PDF\Mandrill_PDF.cs" />
     <Compile Include="Components\PDF\Mandrill_PDFStyle.cs" />

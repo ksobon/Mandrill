@@ -11,4 +11,3 @@ E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.Pr
 E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.csproj.GenerateResource.Cache
 E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.dll
 E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.pdb
-E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.csprojResolveAssemblyReference.cache

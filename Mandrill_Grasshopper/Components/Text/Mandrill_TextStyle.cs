@@ -29,9 +29,9 @@ namespace Mandrill_Grasshopper.Components.Text
             pManager.AddIntegerParameter("Width", "W", Resources.Style_WidthDesc, GH_ParamAccess.item, 200);
             pManager.AddIntegerParameter("Height", "H", Resources.Style_HeightDesc, GH_ParamAccess.item, 100);
             pManager.AddNumberParameter("FontSize", "S", Resources.Style_FontSizeDesc, GH_ParamAccess.item, 20.0);
-            pManager.AddTextParameter("FontWeight", "FW", Resources.Style_FontWeightDesc, GH_ParamAccess.item, "normal");
-            pManager.AddTextParameter("FontStyle", "FS", Resources.Style_FontStyleDesc, GH_ParamAccess.item, "normal");
-            pManager.AddTextParameter("FontTransform", "FT", Resources.Style_FontTransformDesc, GH_ParamAccess.item, "none");
+            pManager.AddTextParameter("FontWeight", "FW", Resources.Style_FontWeightDesc, GH_ParamAccess.item, "1");
+            pManager.AddTextParameter("FontStyle", "FS", Resources.Style_FontStyleDesc, GH_ParamAccess.item, "1");
+            pManager.AddTextParameter("FontTransform", "FT", Resources.Style_FontTransformDesc, GH_ParamAccess.item, "1");
         }
 
         /// <summary>
@@ -53,9 +53,9 @@ namespace Mandrill_Grasshopper.Components.Text
             int width = 200;
             int height = 100;
             double fontSize = 20.0;
-            string fontWeight = "normal";
-            string fontStyle = "normal";
-            string fontTransform = "none";
+            string fontWeight = "1";
+            string fontStyle = "1";
+            string fontTransform = "1";
 
             DA.GetData<Color>(0, ref fontColor);
             DA.GetData<GridAddress>(1, ref address);
@@ -69,9 +69,9 @@ namespace Mandrill_Grasshopper.Components.Text
             TextStyle style = new TextStyle();
             style.FontSize = fontSize;
             style.FontColor = fontColor;
-            style.FontWeight = fontWeight;
-            style.FontStyle = fontStyle;
-            style.FontTransform = fontTransform;
+            style.FontWeight = ((D3jsLib.Text.FontWeights)int.Parse(fontWeight)).ToString(); 
+            style.FontStyle = ((D3jsLib.Text.FontStyle)int.Parse(fontStyle)).ToString();
+            style.FontTransform = ((D3jsLib.Text.FontTransform)int.Parse(fontTransform)).ToString();
             style.Width = width;
             style.Height = height;
             style.GridRow = address.X;

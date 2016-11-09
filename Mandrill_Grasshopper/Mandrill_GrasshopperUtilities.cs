@@ -42,7 +42,7 @@ namespace Mandrill_Grasshopper.Utilities
                 throw new ArgumentException("TEnum must be an Enumeration type");
 
             var res = from e in Enum.GetValues(typeof(TEnum)).Cast<TEnum>()
-                      select new GH_ValueListItem() { Name = e.ToString(), Expression = e.ToString() };
+                      select new GH_ValueListItem() { Name = e.ToString(), Expression = Convert.ToInt32(e).ToString() };
 
             return res.ToList();
         }

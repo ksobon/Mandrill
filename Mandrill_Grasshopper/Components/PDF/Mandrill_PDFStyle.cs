@@ -22,10 +22,10 @@ namespace Mandrill_Grasshopper.Components.PDF
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("pdfSize", "S", Resources.Style_PdfSizeDesc, GH_ParamAccess.item, "Letter11x17");
-            pManager.AddTextParameter("pdfOrientation", "O", Resources.Style_PdfOrientationDesc, GH_ParamAccess.item, "Landscape");
-            pManager.AddTextParameter("pdfHorizontalFit", "HF", Resources.Style_PdfHorizontalFitDesc, GH_ParamAccess.item, "AutoFit");
-            pManager.AddTextParameter("pdfVerticalFit", "VF", Resources.Style_PdfVerticalFitDesc, GH_ParamAccess.item, "AutoFit");
+            pManager.AddTextParameter("pdfSize", "S", Resources.Style_PdfSizeDesc, GH_ParamAccess.item, "28");
+            pManager.AddTextParameter("pdfOrientation", "O", Resources.Style_PdfOrientationDesc, GH_ParamAccess.item, "1");
+            pManager.AddTextParameter("pdfHorizontalFit", "HF", Resources.Style_PdfHorizontalFitDesc, GH_ParamAccess.item, "2");
+            pManager.AddTextParameter("pdfVerticalFit", "VF", Resources.Style_PdfVerticalFitDesc, GH_ParamAccess.item, "2");
             pManager.AddIntegerParameter("compression", "C", Resources.Style_CompressionDesc, GH_ParamAccess.item, 10);
             pManager.AddIntegerParameter("marginTop", "MT", Resources.Style_MarginDesc, GH_ParamAccess.item, 0);
             pManager.AddIntegerParameter("marginRight", "MR", Resources.Style_MarginDesc, GH_ParamAccess.item, 0);
@@ -47,10 +47,10 @@ namespace Mandrill_Grasshopper.Components.PDF
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            string size = "Letter11x17";
-            string orientation = "Landscape";
-            string horizontalFit = "AutoFit";
-            string verticalFit = "AutoFit";
+            string size = "28";
+            string orientation = "1";
+            string horizontalFit = "2";
+            string verticalFit = "2";
             int compression = 10;
             int marginTop = 0;
             int marginRight = 0;
@@ -68,10 +68,10 @@ namespace Mandrill_Grasshopper.Components.PDF
             DA.GetData<int>(8, ref marginLeft);
 
             PdfStyle style = new PdfStyle();
-            style.Size = (SelectPdf.PdfPageSize)System.Enum.Parse(typeof(SelectPdf.PdfPageSize), size);
-            style.Orientation = (SelectPdf.PdfPageOrientation)System.Enum.Parse(typeof(SelectPdf.PdfPageOrientation), orientation);
-            style.VerticalFit = (SelectPdf.HtmlToPdfPageFitMode)System.Enum.Parse(typeof(SelectPdf.HtmlToPdfPageFitMode), verticalFit);
-            style.HorizontalFit = (SelectPdf.HtmlToPdfPageFitMode)System.Enum.Parse(typeof(SelectPdf.HtmlToPdfPageFitMode), horizontalFit);
+            style.Size = (SelectPdf.PdfPageSize)int.Parse(size);
+            style.Orientation = (SelectPdf.PdfPageOrientation)int.Parse(orientation);
+            style.VerticalFit = (SelectPdf.HtmlToPdfPageFitMode)int.Parse(verticalFit);
+            style.HorizontalFit = (SelectPdf.HtmlToPdfPageFitMode)int.Parse(horizontalFit);
             style.Compression = compression;
             style.MarginTop = marginTop;
             style.MarginRight = marginRight;

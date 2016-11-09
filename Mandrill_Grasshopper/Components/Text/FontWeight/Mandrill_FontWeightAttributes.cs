@@ -1,6 +1,7 @@
 ﻿using Grasshopper.GUI;
 using Grasshopper.GUI.Canvas;
 using Grasshopper.Kernel;
+using Grasshopper.Kernel.Special;
 using System.Collections.Generic;
 
 namespace Mandrill_Grasshopper.Components.PDF
