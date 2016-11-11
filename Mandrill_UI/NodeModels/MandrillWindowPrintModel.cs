@@ -6,6 +6,7 @@ using Dynamo.Wpf;
 using System;
 using System.Linq;
 using System.Windows;
+using HtmlAgilityPack;
 
 namespace Mandrill.Print
 {
@@ -52,6 +53,7 @@ namespace Mandrill.Print
         public MandrillPrintNodeModel()
         {
             InPortData.Add(new PortData("FilePath", "A complete FilePath string including file extension."));
+            InPortData.Add(new PortData("Report", "Mandrill Report containing all Charts."));
             InPortData.Add(new PortData("Style", "PDF Style that defines pdf size, orientation etc."));
 
             RegisterAllPorts();
@@ -98,6 +100,7 @@ namespace Mandrill.Print
             public void PrintMandrillWindow(NodeModel model, NodeView nodeView)
             {
                 string filePath;
+                D3jsLib.Report report;
                 D3jsLib.PdfStyle style;
 
                 // collect inputs
@@ -117,35 +120,80 @@ namespace Mandrill.Print
                     var filePathMirror = nodeView.ViewModel.DynamoViewModel.Model.EngineController.GetMirror(filePathId);
                     filePath = filePathMirror.GetData().Data as string;
 
+                    // process filePath input
+                    var reportNode = model.InPorts[1].Connectors[0].Start.Owner;
+                    var reportIndex = model.InPorts[1].Connectors[0].Start.Index;
+                    var reportId = reportNode.GetAstIdentifierForOutputIndex(reportIndex).Name;
+                    var reportMirror = nodeView.ViewModel.DynamoViewModel.Model.EngineController.GetMirror(reportId);
+                    report = reportMirror.GetData().Data as D3jsLib.Report;
+
                     // process style input
-                    var styleNode = model.InPorts[1].Connectors[0].Start.Owner;
-                    var styleIndex = model.InPorts[1].Connectors[0].Start.Index;
+                    var styleNode = model.InPorts[2].Connectors[0].Start.Owner;
+                    var styleIndex = model.InPorts[2].Connectors[0].Start.Index;
                     var styleId = styleNode.GetAstIdentifierForOutputIndex(styleIndex).Name;
                     var styleMirror = nodeView.ViewModel.DynamoViewModel.Model.EngineController.GetMirror(styleId);
                     style = styleMirror.GetData().Data as D3jsLib.PdfStyle;
                 }
 
-                Mandrill.ChromeWindow.MandrillWindow win = null;
+                // print PDF
+                this.PrintPDF(report, style, filePath);
+            }
 
-                // get Mandrill window and invoke Print Method.
-                foreach (System.Windows.Window w in Application.Current.Windows)
+            private void PrintPDF(D3jsLib.Report report, D3jsLib.PdfStyle style, string filePath)
+            {
+                HtmlDocument htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(report.HtmlString);
+
+                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='gridster-box']");
+                foreach (HtmlNode n in nodes)
                 {
-                    // Compare Type
-                    if (w.GetType() == typeof(Mandrill.ChromeWindow.MandrillWindow))
-                    {
-                        win = (Mandrill.ChromeWindow.MandrillWindow)w;
-                        break;
-                    }
+                    n.InnerHtml = "";
                 }
 
-                // call print method
-                if (win != null)
+                // attempt to move *dep file
+                D3jsLib.Utilities.ChartsUtilities.MoveDepFile();
+
+                // create converter
+                SelectPdf.HtmlToPdf converter = new SelectPdf.HtmlToPdf();
+
+                // set converter options
+                SelectPdf.HtmlToPdfOptions options = converter.Options;
+                options.PdfPageOrientation = style.Orientation;
+                options.PdfPageSize = style.Size;
+                options.JpegCompressionLevel = style.Compression;
+                options.JavaScriptEnabled = true;
+                options.EmbedFonts = true;
+                options.KeepImagesTogether = true;
+                options.KeepTextsTogether = true;
+                options.AutoFitHeight = style.VerticalFit;
+                options.AutoFitWidth = style.HorizontalFit;
+                options.MarginTop = style.MarginTop;
+                options.MarginRight = style.MarginRight;
+                options.MarginBottom = style.MarginBottom;
+                options.MarginLeft = style.MarginLeft;
+
+                // created unescaped file path removes %20 from path etc.
+                string finalFilePath = filePath;
+
+                Uri uri = new Uri(filePath);
+                string absoluteFilePath = Uri.UnescapeDataString(uri.AbsoluteUri);
+
+                if (Uri.IsWellFormedUriString(absoluteFilePath, UriKind.RelativeOrAbsolute))
                 {
-                    win.Print(filePath, style);
+                    Uri newUri = new Uri(absoluteFilePath);
+                    finalFilePath = newUri.LocalPath;
                 }
-                else
+
+                try
                 {
-                    MessageBox.Show("No open Mandrill Window found. Please Launch a new Mandrill Window to Print.");
+                    // convert html to document object and save
+                    SelectPdf.PdfDocument pdfDoc = converter.ConvertHtmlString(htmlDoc.DocumentNode.InnerHtml);
+                    pdfDoc.Save(finalFilePath);
+                    pdfDoc.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Printing failed. Is file open in another application?");
                 }
             }
 
