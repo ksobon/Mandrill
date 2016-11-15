@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="146.294770214182" Y="25.0324114830644" zoom="0.867991561625705" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+<Workspace Version="1.2.0.2690" X="-885.436516028241" Y="307.814146457856" zoom="0.654936114174356" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
   <NamespaceResolutionMap>
     <ClassMap partialName="Color" resolvedName="DSCore.Color" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>
@@ -116,10 +116,8 @@
       <System.Int32>2</System.Int32>
       <Range min="1" max="20" step="1" />
     </CoreNodeModels.Input.IntegerSlider>
-    <Mandrill.ChromeWindow.MandrillReportNode guid="64eb3ff4-45b5-433a-a74d-510a2ed04030" type="Mandrill.ChromeWindow.MandrillReportNode" nickname="Create Report" x="1827.84727407536" y="21.414286989571" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+    <Mandrill.ChromeWindow.MandrillReportNode guid="64eb3ff4-45b5-433a-a74d-510a2ed04030" type="Mandrill.ChromeWindow.MandrillReportNode" nickname="Create Report" x="1827.84727407536" y="21.414286989571" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
       <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-      <PortInfo index="2" default="False" />
     </Mandrill.ChromeWindow.MandrillReportNode>
     <Mandrill.ChromeWindow.MandrillWindowNodeModel guid="598fb01b-0246-4c5a-ab03-54e26caa51f1" type="Mandrill.ChromeWindow.MandrillWindowNodeModel" nickname="Report Window" x="2062.21609604971" y="20.3046968473352" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
@@ -127,7 +125,7 @@
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="46942c69-c2c8-4359-bc09-1a079cd47cc4" start_index="0" end="deece2e5-54c1-4f12-b5a1-8679dd221c1a" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="f1fdf2a8-7e9d-4bf0-af4f-5651f749991d" start_index="0" end="64eb3ff4-45b5-433a-a74d-510a2ed04030" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f1fdf2a8-7e9d-4bf0-af4f-5651f749991d" start_index="0" end="64eb3ff4-45b5-433a-a74d-510a2ed04030" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="db953621-bd22-48c0-8ae1-b430396804f3" start_index="0" end="f1fdf2a8-7e9d-4bf0-af4f-5651f749991d" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="6fe54321-00b0-4398-9f95-447627151e0e" start_index="0" end="f1fdf2a8-7e9d-4bf0-af4f-5651f749991d" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="4d10f3a7-d618-4337-b646-02b4d902971e" start_index="0" end="db953621-bd22-48c0-8ae1-b430396804f3" end_index="1" portType="0" />
@@ -144,7 +142,6 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="69a2c6b3-f73d-4c74-a6b9-c8c18bf21593" start_index="0" end="9abbaa46-1b1c-4fca-945b-4d60bedc4e99" end_index="2" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="69a2c6b3-f73d-4c74-a6b9-c8c18bf21593" start_index="1" end="9abbaa46-1b1c-4fca-945b-4d60bedc4e99" end_index="4" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="ced599aa-8233-4d28-9bef-3029f9a700cb" start_index="0" end="9abbaa46-1b1c-4fca-945b-4d60bedc4e99" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="42beb4e7-18ff-464c-a987-37dd2b4e6cba" start_index="0" end="64eb3ff4-45b5-433a-a74d-510a2ed04030" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="04118519-7ab6-4e4a-a505-bd85e6f5054e" start_index="0" end="ced599aa-8233-4d28-9bef-3029f9a700cb" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="115ab90b-a183-4ce7-8047-a95cdcdbd369" start_index="0" end="ced599aa-8233-4d28-9bef-3029f9a700cb" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="d154a091-ecb9-4454-90f7-ca1c0a819071" start_index="0" end="42beb4e7-18ff-464c-a987-37dd2b4e6cba" end_index="0" portType="0" />
@@ -153,7 +150,6 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="064059c3-c358-4a00-be3a-bded7fdfac33" start_index="1" end="417e6aac-0f62-461a-bf48-6c532305571d" end_index="2" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="6c2c6a8d-b33e-4107-b503-af2c305d4a92" start_index="0" end="417e6aac-0f62-461a-bf48-6c532305571d" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="1a311a80-8c11-491d-8547-502b0d606275" start_index="0" end="6c2c6a8d-b33e-4107-b503-af2c305d4a92" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="18cf2732-233f-4b56-9ba9-8382e67a1fe5" start_index="0" end="64eb3ff4-45b5-433a-a74d-510a2ed04030" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="96d1fd64-891f-4a35-ae14-f8624d255de0" start_index="0" end="6c2c6a8d-b33e-4107-b503-af2c305d4a92" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="5ae8cadc-4f76-4c17-852e-ffee35f7c964" start_index="0" end="18cf2732-233f-4b56-9ba9-8382e67a1fe5" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="596b3ba9-cbc6-46c5-a727-0b2832464b0d" start_index="0" end="6fe54321-00b0-4398-9f95-447627151e0e" end_index="2" portType="0" />

@@ -1,5 +1,6 @@
 ﻿using Autodesk.DesignScript.Runtime;
 using D3jsLib;
+using System.Collections.Generic;
 
 namespace Charts
 {
@@ -59,6 +60,16 @@ namespace Charts
         public static object GetNull()
         {
             return null;
+        }
+
+        /// <summary>
+        ///     Returns a default color in a list.
+        /// </summary>
+        /// <returns></returns>
+        [IsVisibleInDynamoLibrary(false)]
+        public static List<DSCore.Color> GetColorList()
+        {
+            return new List<DSCore.Color>() { DSCore.Color.ByARGB(1, 50, 130, 190) };
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Mandrill_Grasshopper.Components.LineChart
             if (!DA.GetData<LineChartData>(0, ref data)) return;
             if (!DA.GetData<LineChartStyle>(1, ref style)) return;
 
-            d3LineChart chart = new d3LineChart(data, style);
+            D3jsLib.LineChart.LineChart chart = new D3jsLib.LineChart.LineChart(data, style);
 
             DA.SetData(0, chart);
         }

@@ -1,12 +1,14 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+
+<script type="text/javascript">
     function LoadText()
     {
         var paragraph = document.createElement("p");
-        paragraph.style.fontSize = "@(Model.FontSize)px";
-        paragraph.style.color = "@(Model.FontColor)";
-        paragraph.style.textTransform = "@(Model.FontTransform)";
-        paragraph.style.fontWeight = "@(Model.FontWeight)";
-        paragraph.style.fontStyle = "@(Model.FontStyle)";
+        paragraph.style.fontSize = "@(((TextStyle)Model.Style).FontSize)px";
+        paragraph.style.color = "@(((TextStyle)Model.Style).FontColor)";
+        paragraph.style.textTransform = "@(((TextStyle)Model.Style).FontTransform)";
+        paragraph.style.fontWeight = "@(((TextStyle)Model.Style).FontWeight)";
+        paragraph.style.fontStyle = "@(((TextStyle)Model.Style).FontStyle)";
 
         // center text note in div
         paragraph.style.margin = "0";
@@ -16,7 +18,7 @@
         paragraph.style.marginRight = "-50%";
         paragraph.style.transform = "translate(-50%, -50%)";
         
-        var node = document.createTextNode("@(Model.Text)");
+        var node = document.createTextNode("@(((TextNote)Model).Text)");
         paragraph.appendChild(node);
 
         document.getElementById("@(Model.DivId)").appendChild(paragraph);

@@ -1,12 +1,15 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+@using D3jsLib.DonutChart;
+
+<script type="text/javascript">
     function renderDonutChart() {
     
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
     
-        var margin = {top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left)};
+        var margin = {top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left)};
     
-        var w = @(Model.Width) - margin.left - margin.right,
-            h = @(Model.Width) - margin.top - margin.bottom,
+        var w = @(Model.Style.Width) - margin.left - margin.right,
+            h = @(Model.Style.Width) - margin.top - margin.bottom,
             r = w / 2,
             labelr = r + 10, // radius for label anchor
             donut = d3.layout.pie().sort(null),
@@ -14,9 +17,9 @@
             arc = d3.svg.arc().innerRadius(inner).outerRadius(r),
             arcOver = d3.svg.arc().innerRadius(inner + 5).outerRadius(r + 5);
     
-    @if(Model.Colors)
+    @if(((DonutChartStyle)Model.Style).Colors != null)
     {
-        @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+        @:var color = d3.scale.ordinal().range(@Raw(((DonutChartStyle)Model.Style).Colors));
     }
     else
     {
@@ -39,7 +42,7 @@
             .attr("fill", "#bbb")
             .attr("x", (w + margin.left + margin.right) / 2)
             .attr("y", ((h + margin.top + margin.bottom) / 2) - (r/7)/2)
-            .text("@(Model.TotalLabel)");
+            .text("@(((DonutChartStyle)Model.Style).TotalLabel)");
     
         var textBottom = vis.append("text")
             .attr("dy", ".35em")
@@ -63,7 +66,7 @@
             .style("stroke", "white")
             .style("stroke-width", 2);
     
-    @if(Model.Labels)
+    @if(((DonutChartStyle)Model.Style).Labels)
     {<text>
         function computeTextRotation(d) {
             var rotation = (d.startAngle + d.endAngle)/2 * 180 / Math.PI - 90;
@@ -98,14 +101,14 @@
                 textTop.text(d.data.name);
                 textBottom.text(d.data.value);
     
-                d3.select(this).style("fill", "@(Model.HoverColor)");
+                d3.select(this).style("fill", "@(((DonutChartStyle)Model.Style).HoverColor)");
             })
             .on("mouseout", function () {
                 d3.select(this).transition()
                     .duration(100)
                     .attr("d", arc);
     
-                textTop.text("@(Model.TotalLabel)");
+                textTop.text("@(((DonutChartStyle)Model.Style).TotalLabel)");
                 textBottom.text(total);
     
                 d3.select(this).style("fill", function (d) { return color(d.data.name); });

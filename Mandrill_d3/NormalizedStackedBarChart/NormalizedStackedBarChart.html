@@ -1,11 +1,14 @@
-﻿<script>
+﻿@using D3jsLib;
+@using D3jsLib.NormalizedStackedBarChart;
+
+<script>
     function RenderNormalizedStackedBarChart() {
 
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
 
-        var margin = {top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left)},
-            width = @(Model.Width) - margin.left - margin.right,
-            height = @(Model.Height) - margin.top - margin.bottom;
+        var margin = {top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left)},
+            width = @(Model.Style.Width) - margin.left - margin.right,
+            height = @(Model.Style.Height) - margin.top - margin.bottom;
 
         var x = d3.scale.ordinal()
           .rangeBands([0, width], 0.1, 0.35);
@@ -13,9 +16,9 @@
         var y = d3.scale.linear()
           .rangeRound([height, 0]);
 
-        @if(Model.Colors)
+        @if(((NormalizedStackedBarChartStyle)Model.Style).Colors != null)
         {
-            @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+            @:var color = d3.scale.ordinal().range(@Raw(((NormalizedStackedBarChartStyle)Model.Style).Colors));
         }
         else
         {
@@ -64,7 +67,7 @@
           .attr("y", 6)
           .attr("dy", ".71em")
           .style("text-anchor", "end")
-          .text("@(Model.YAxisLabel)");
+          .text("@(((NormalizedStackedBarChartStyle)Model.Style).YAxisLabel)");
 
         var state = svg.selectAll(".state")
           .data(data)
@@ -90,7 +93,7 @@
               var height = parseFloat(d3.select(this).attr("height"))
               var width = parseFloat(d3.select(this).attr("width"))
 
-              d3.select(this).style("fill", "@(Model.BarHover)");
+              d3.select(this).style("fill", "@(((NormalizedStackedBarChartStyle)Model.Style).BarHoverColor)");
 
               svg.append("text")
                   .attr("x",xPos)

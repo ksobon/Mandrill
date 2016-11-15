@@ -1,11 +1,14 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+@using D3jsLib.ParallelCoordinates;
+
+<script type="text/javascript">
     function renderParallelCoordinates() {
 
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
 
-        var margin = { top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left) },
-            width = @(Model.Width) - margin.left - margin.right,
-            height = @(Model.Height) - margin.top - margin.bottom;
+        var margin = { top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left) },
+            width = @(Model.Style.Width) - margin.left - margin.right,
+            height = @(Model.Style.Height) - margin.top - margin.bottom;
 
         var x = d3.scale.ordinal().rangePoints([0, width], 1),
             y = {},
@@ -46,7 +49,7 @@
             .data(data)
             .enter().append("path")
             .attr("fill", "none")
-            .attr("stroke", "@(Model.LineColor)")
+            .attr("stroke", "@(((ParallelCoordinatesStyle)Model.Style).LineColor)")
             .attr("d", path);
 
         // Add a group element for each dimension.

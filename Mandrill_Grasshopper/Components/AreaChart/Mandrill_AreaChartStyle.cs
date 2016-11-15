@@ -65,7 +65,7 @@ namespace Mandrill_Grasshopper.Components.AreaChart
             DA.GetData<int>(6, ref tickMarks);
 
             // create style
-            D3jsLib.d3AreaCharts.AreaChartStyle style = new D3jsLib.d3AreaCharts.AreaChartStyle();
+            D3jsLib.AreaCharts.AreaChartStyle style = new D3jsLib.AreaCharts.AreaChartStyle();
             style.AreaColor = areaColor;
             style.GridRow = address.X;
             style.GridColumn = address.Y;

@@ -4,6 +4,9 @@ using sColor = System.Drawing.Color;
 using D3jsLib.Utilities;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib;
+using System;
+using System.Linq;
+using System.Web.Script.Serialization;
 
 namespace Legends
 {
@@ -40,16 +43,13 @@ namespace Legends
             style.Height = Height;
             style.Title = Title;
             style.RectangleSize = RectangleSize;
+            style.SizeX = (int)Math.Ceiling(Width / 100d);
+            style.SizeY = (int)Math.Ceiling(Height / 100d);
 
             if (Colors != null)
             {
-                List<string> hexColors = new List<string>();
-                foreach (DSCore.Color color in Colors)
-                {
-                    string col = ChartsUtilities.ColorToHexString(sColor.FromArgb(color.Alpha, color.Red, color.Green, color.Blue));
-                    hexColors.Add(col);
-                }
-                style.Colors = hexColors;
+                List<string> hexColors = Colors.Select(x => ChartsUtilities.ColorToHexString(sColor.FromArgb(x.Alpha, x.Red, x.Green, x.Blue))).ToList();
+                style.Colors = new JavaScriptSerializer().Serialize(hexColors);
             }
             else
             {
@@ -79,7 +79,7 @@ namespace Legends
             List<string> Names)
         {
             LegendData data = new LegendData();
-            data.Data = Names;
+            data.Data = new JavaScriptSerializer().Serialize(Names);
 
             return data;
         }

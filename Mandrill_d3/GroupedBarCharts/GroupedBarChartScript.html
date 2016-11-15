@@ -1,11 +1,14 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+@using D3jsLib.GroupedBarChart;
+
+<script type="text/javascript">
     function renderGroupedBarChart() {
 
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
 
-        var margin = { top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left) },
-            width = @(Model.Width) - margin.left - margin.right,
-            height = @(Model.Height) - margin.top - margin.bottom;
+        var margin = { top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left) },
+            width = @(Model.Style.Width) - margin.left - margin.right,
+            height = @(Model.Style.Height) - margin.top - margin.bottom;
 
         var x0 = d3.scale.ordinal()
             .rangeRoundBands([0, width], .1);
@@ -15,9 +18,9 @@
         var y = d3.scale.linear()
             .range([height, 0]);
 
-        @if(Model.Colors)
+        @if(((GroupedBarChartStyle)Model.Style).Colors != null)
         {
-        @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+            @:var color = d3.scale.ordinal().range(@Raw(((GroupedBarChartStyle)Model.Style).Colors));
         }
         else
         {
@@ -48,9 +51,9 @@
         x0.domain(data.map(function (d) { return d.Name; }));
         x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
 
-        @if(Model.Domain)
+        @if(Model.Data.Domain != null)
         {
-            @:y.domain([@(Model.DomainA), @(Model.DomainB)]);
+            @:y.domain([@(Model.Data.Domain.A), @(Model.Data.Domain.B)]);
         }
         else
         {
@@ -70,7 +73,7 @@
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("@(Model.YAxisLabel)");
+            .text("@(((GroupedBarChartStyle)Model.Style).YAxisLabel)");
 
         var state = svg.selectAll(".groups")
             .data(data)
@@ -96,7 +99,7 @@
              var height = parseFloat(d3.select(this).attr("height"))
              var width = parseFloat(d3.select(this).attr("width"))
         
-             d3.select(this).style("fill", "@(Model.BarHover)");
+             d3.select(this).style("fill", "@(((GroupedBarChartStyle)Model.Style).BarHoverColor)");
         
              svg.append("text")
                  .attr("x",xPos)

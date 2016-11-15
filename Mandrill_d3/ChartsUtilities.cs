@@ -6,11 +6,60 @@ using RazorEngine;
 using System.IO;
 using System.Drawing;
 using LumenWorks.Framework.IO.Csv;
+using System.Web.Script.Serialization;
 
 namespace D3jsLib.Utilities
 {
     public static class ChartsUtilities
     {
+        /// <summary>
+        ///     Serialize list of data point 2's into a data string.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static string DataToJsonString(List<DataPoint2> data)
+        {
+            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+            foreach (DataPoint2 dp in data)
+            {
+                list.Add(dp.ToDictionary());
+            }
+
+            // serialize C# Array into JS Array
+            string jsData = new JavaScriptSerializer().Serialize(list);
+
+            return jsData;
+        }
+
+        /// <summary>
+        ///     Create List of DataPoint2 from List of values and headers.
+        /// </summary>
+        /// <param name="headers"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static List<DataPoint2> Data2FromList(List<string> headers, List<List<object>> values)
+        {
+            List<DataPoint2> dataPoints = new List<DataPoint2>();
+            foreach (List<object> subList in values)
+            {
+                DataPoint2 dataPoint = new DataPoint2();
+                dataPoint.Name = subList[0].ToString();
+                Dictionary<string, double> dict = new Dictionary<string, double>();
+                for (int i = 1; i < subList.Count; i++)
+                {
+                    dict.Add(headers[i], Convert.ToDouble(subList[i]));
+                }
+                dataPoint.Values = dict;
+                dataPoints.Add(dataPoint);
+            }
+            return dataPoints;
+        }
+
+        /// <summary>
+        ///     Create a list of data point 2s from a CSV path.
+        /// </summary>
+        /// <param name="_filePath"></param>
+        /// <returns></returns>
         public static List<DataPoint2> Data2FromCSV(string _filePath)
         {
             List<DataPoint2> dataPoints = new List<DataPoint2>();
@@ -107,11 +156,11 @@ namespace D3jsLib.Utilities
         /// <param name="func"></param>
         /// <returns></returns>
         public static IEnumerable<TResult> ZipFour<T1, T2, T3, T4, TResult>(
-        this IEnumerable<T1> source,
-        IEnumerable<T2> second,
-        IEnumerable<T3> third,
-        IEnumerable<T4> fourth,
-        Func<T1, T2, T3, T4, TResult> func)
+            this IEnumerable<T1> source,
+            IEnumerable<T2> second,
+            IEnumerable<T3> third,
+            IEnumerable<T4> fourth,
+            Func<T1, T2, T3, T4, TResult> func)
         {
             using (var e1 = source.GetEnumerator())
             using (var e2 = second.GetEnumerator())
@@ -120,6 +169,33 @@ namespace D3jsLib.Utilities
             {
                 while (e1.MoveNext() && e2.MoveNext() && e3.MoveNext() && e4.MoveNext())
                     yield return func(e1.Current, e2.Current, e3.Current, e4.Current);
+            }
+        }
+
+        /// <summary>
+        ///     Zip four lists together.
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="second"></param>
+        /// <param name="third"></param>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        public static IEnumerable<TResult> ZipThree<T1, T2, T3, TResult>(
+            this IEnumerable<T1> source,
+            IEnumerable<T2> second,
+            IEnumerable<T3> third,
+            Func<T1, T2, T3, TResult> func)
+        {
+            using (var e1 = source.GetEnumerator())
+            using (var e2 = second.GetEnumerator())
+            using (var e3 = third.GetEnumerator())
+            {
+                while (e1.MoveNext() && e2.MoveNext() && e3.MoveNext())
+                    yield return func(e1.Current, e2.Current, e3.Current);
             }
         }
 

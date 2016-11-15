@@ -2,6 +2,7 @@
 using sColor = System.Drawing.Color;
 using D3jsLib;
 using Autodesk.DesignScript.Runtime;
+using D3jsLib.Utilities;
 
 namespace Text
 {
@@ -51,12 +52,14 @@ namespace Text
         {
             TextStyle style = new TextStyle();
             style.FontSize = FontSize;
-            style.FontColor = sColor.FromArgb(FontColor.Alpha, FontColor.Red, FontColor.Green, FontColor.Blue);
+            style.FontColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(FontColor.Alpha, FontColor.Red, FontColor.Green, FontColor.Blue));
             style.FontWeight = FontWeight;
             style.FontStyle = FontStyle;
             style.FontTransform = FontTransform;
             style.Width = Width;
             style.Height = Height;
+            style.SizeX = (int)System.Math.Ceiling(Width / 100d);
+            style.SizeY = (int)System.Math.Ceiling(Height / 100d);
 
             if (Address != null)
             {

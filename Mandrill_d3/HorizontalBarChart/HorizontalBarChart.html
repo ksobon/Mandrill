@@ -1,11 +1,14 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+@using D3jsLib.HorizontalBarChart;
+
+<script type="text/javascript">
     function renderHorizontalBarChart() {
 
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
 
-        var margin = {top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left)},
-            width = @(Model.Width) - margin.left - margin.right,
-            height = @(Model.Height) - margin.top - margin.bottom;
+        var margin = {top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left)},
+            width = @(Model.Style.Width) - margin.left - margin.right,
+            height = @(Model.Style.Height) - margin.top - margin.bottom;
 
         var y = d3.scale.ordinal()
             .domain(data.map(function (d) { return d.name; }))
@@ -14,14 +17,16 @@
         var x = d3.scale.linear()
             .range([0, width])
 
-        @if(Model.Domain)
+        @if(Model.Data.Domain != null)
         {
-            @:x.domain([@(Model.DomainA), @(Model.DomainB)]);
+        @:x.domain([@(Model.Data.Domain.A), @(Model.Data.Domain.B)]);
         }
         else
         {
-            @:x.domain([0, d3.max(data, function (d) { return d.value; })]);
+        @:x.domain([0, d3.max(data, function (d) { return d.value; })]);
         }
+
+        var color = d3.scale.ordinal().range(@Raw(((HorizontalBarChartStyle)Model.Style).BarColor));
 
         var xAxis = d3.svg.axis()
             .scale(x)
@@ -41,13 +46,13 @@
             .attr("x", 0)
             .attr("width", function(d){return x(d.value);})
             .attr("y", function (d) { return y(d.name); })
-            .attr("fill", "@(Model.BarFill)")
+            .attr("fill", function(d){ return color(d.color); })
             .attr("height", y.rangeBand())
             .on("mouseover", function(d){
-                d3.select(this).attr("fill", "@(Model.BarHover)");
+                d3.select(this).attr("fill", "@(((HorizontalBarChartStyle)Model.Style).BarHoverColor)");
             })
            .on("mouseout", function(){
-               d3.select(this).attr("fill", "@(Model.BarFill)");             
+               d3.select(this).attr("fill", function(d) { return color(d.color); });           
            });
 
         barChart.append("g")
@@ -58,7 +63,7 @@
             .style("text-anchor", "end")
             .attr("x", width - 3)
             .attr("y", -5)
-            .text("@(Model.YAxisLabel)")
+            .text("@(((HorizontalBarChartStyle)Model.Style).YAxisLabel)")
 
         barChart.append("g")
             .selectAll("axisLabels")

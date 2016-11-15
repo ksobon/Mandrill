@@ -71,9 +71,7 @@ namespace D3jsLib
             foreach (object o in charts)
             {
                 Chart chart = o as Chart;
-
-                // create chart model
-                chart.CreateChartModel(counter);
+                chart.DivId = "div" + counter.ToString();
 
                 // get chart div for gridster
                 string divString = chart.EvaluateDivTemplate(counter);

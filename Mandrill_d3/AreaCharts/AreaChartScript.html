@@ -1,19 +1,22 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+@using D3jsLib.AreaCharts;
+
+<script type="text/javascript">
     function renderAreaChart() {
     
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
     
         var tickValues = data.map(function (d){return d.name;});
-        var step = Math.floor(tickValues.length / @(Model.TickMarksX));
+        var step = Math.floor(tickValues.length / @(((AreaChartStyle)Model.Style).TickMarksX));
         var indexes = d3.range(0,tickValues.length, step);
         if (indexes.indexOf(tickValues.length - 1) == -1){
             indexes.push(tickValues.length - 1);
         }
         var tickArray = d3.permute(tickValues, indexes);
     
-        var margin = { top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left) },
-            width = @(Model.Width) - margin.left - margin.right,
-            height = @(Model.Height) - margin.top - margin.bottom;
+        var margin = { top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left) },
+            width = @(Model.Style.Width) - margin.left - margin.right,
+            height = @(Model.Style.Height) - margin.top - margin.bottom;
     
         var x = d3.scale.ordinal()
             .domain(data.map(function (d) { return d.name; }))
@@ -60,9 +63,9 @@
             d.value = +d.value;
         });
     
-        @if(Model.Domain)
+        @if(Model.Data.Domain != null)
         {
-            @:y.domain([@(Model.DomainA), @(Model.DomainB)]);
+            @:y.domain([@(Model.Data.Domain.A), @(Model.Data.Domain.B)]);
         }
         else
         {
@@ -82,12 +85,12 @@
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("@(Model.YAxisLabel)");
+            .text("@(((AreaChartStyle)Model.Style).YAxisLabel)");
     
         svg.append("path")
             .datum(data)
             .attr("d", area)
-            .attr("fill", "@(Model.AreaColor)")
+            .attr("fill", "@(((AreaChartStyle)Model.Style).AreaColor)")
             .style("shape-rendering", "crispEdges");
     }
     renderAreaChart();

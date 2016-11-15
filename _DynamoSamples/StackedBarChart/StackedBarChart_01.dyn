@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2654" X="-167.955372237157" Y="157.816091573976" zoom="0.583998357481938" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+<Workspace Version="1.2.0.2690" X="38.9821521804354" Y="122.597578644812" zoom="0.602240885344188" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.Filename guid="46942c69-c2c8-4359-bc09-1a079cd47cc4" type="CoreNodeModels.Input.Filename" nickname="File Path" x="188.299953771056" y="246.951373608322" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
@@ -18,7 +18,7 @@
       <System.Int32>600</System.Int32>
       <Range min="1" max="2000" step="1" />
     </CoreNodeModels.Input.IntegerSlider>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="d9845ef0-59c3-4b20-b009-1ae54fd67ae2" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="317.166181635626" y="947.642551077716" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;Count per Floor&quot;;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="d9845ef0-59c3-4b20-b009-1ae54fd67ae2" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="322.098719108365" y="947.642551077716" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;Count per Floor&quot;;" ShouldFocus="false" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f9e20a9d-8110-48c4-a228-3f53b00c8450" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Pdf.SaveAsPDF" x="2510.31728540853" y="570.310977355698" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Report.Pdf.SaveAsPDF@var,var,string">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
@@ -50,13 +50,14 @@
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="48af9686-c5f3-4e5a-ae63-7ea946746e17" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="StackedBarChart.Style" x="600.539983446318" y="706.983158360927" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.StackedBarChart.Style@DSCore.Color,DSCore.Color[],var,int,int,string">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="48af9686-c5f3-4e5a-ae63-7ea946746e17" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="StackedBarChart.Style" x="600.539983446318" y="706.983158360927" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.StackedBarChart.Style@DSCore.Color,DSCore.Color[],var,var,int,int,string">
       <PortInfo index="0" default="True" />
       <PortInfo index="1" default="True" />
       <PortInfo index="2" default="True" />
       <PortInfo index="3" default="True" />
       <PortInfo index="4" default="True" />
       <PortInfo index="5" default="False" />
+      <PortInfo index="6" default="False" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="4460365a-253f-4299-9d35-0124fac623c2" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="StackedBarChart.DataFromCSV" x="615.491585418933" y="290.277666977878" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.StackedBarChart.DataFromCSV@var,var">
       <PortInfo index="0" default="False" />
@@ -146,9 +147,9 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="4d10f3a7-d618-4337-b646-02b4d902971e" start_index="0" end="4460365a-253f-4299-9d35-0124fac623c2" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="219e527c-78d3-4011-98bc-db26d1c21a98" start_index="0" end="4d10f3a7-d618-4337-b646-02b4d902971e" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="219e527c-78d3-4011-98bc-db26d1c21a98" start_index="1" end="4d10f3a7-d618-4337-b646-02b4d902971e" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="b4960bd0-bb34-477d-9f63-e7ab849eeda8" start_index="0" end="48af9686-c5f3-4e5a-ae63-7ea946746e17" end_index="3" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="26512b09-2319-4fd0-bbbe-ff87d7a82513" start_index="0" end="48af9686-c5f3-4e5a-ae63-7ea946746e17" end_index="4" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="d9845ef0-59c3-4b20-b009-1ae54fd67ae2" start_index="0" end="48af9686-c5f3-4e5a-ae63-7ea946746e17" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b4960bd0-bb34-477d-9f63-e7ab849eeda8" start_index="0" end="48af9686-c5f3-4e5a-ae63-7ea946746e17" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="26512b09-2319-4fd0-bbbe-ff87d7a82513" start_index="0" end="48af9686-c5f3-4e5a-ae63-7ea946746e17" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d9845ef0-59c3-4b20-b009-1ae54fd67ae2" start_index="0" end="48af9686-c5f3-4e5a-ae63-7ea946746e17" end_index="6" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="19d28ef0-5919-4119-9dfa-3ecf25ee9b65" start_index="0" end="f9e20a9d-8110-48c4-a228-3f53b00c8450" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="384a35f7-ff1c-4b4d-8894-f968031b70c3" start_index="0" end="f9e20a9d-8110-48c4-a228-3f53b00c8450" end_index="2" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="d0d31190-de0e-48a4-bd04-15c422e903b0" start_index="0" end="19d28ef0-5919-4119-9dfa-3ecf25ee9b65" end_index="0" portType="0" />

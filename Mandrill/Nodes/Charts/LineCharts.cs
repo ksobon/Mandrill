@@ -6,6 +6,8 @@ using sColor = System.Drawing.Color;
 using D3jsLib;
 using System.IO;
 using System;
+using D3jsLib.Utilities;
+using System.Web.Script.Serialization;
 
 namespace Charts
 {
@@ -43,9 +45,11 @@ namespace Charts
             style.Width = Width;
             style.Height = Height;
             style.YAxisLabel = YAxisLabel;
-            style.LineColor = sColor.FromArgb(LineColor.Alpha, LineColor.Red, LineColor.Green, LineColor.Blue);
+            style.LineColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(LineColor.Alpha, LineColor.Red, LineColor.Green, LineColor.Blue));
             style.TickMarksX = TickMarksX;
             style.Margins = Margins;
+            style.SizeX = (int)Math.Ceiling(Width / 100d);
+            style.SizeY = (int)Math.Ceiling(Height / 100d);
 
             if (Address != null)
             {
@@ -76,7 +80,7 @@ namespace Charts
         {
             List<DataPoint1> dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             LineChartData lineData = new LineChartData();
-            lineData.Data = dataPoints;
+            lineData.Data = new JavaScriptSerializer().Serialize(dataPoints);
             lineData.Domain = Domain;
             return lineData;
         }
@@ -89,24 +93,23 @@ namespace Charts
         /// <returns name="Data">Line Chart Data</returns>
         /// <search>line, chart, data</search>
         public static LineChartData DataFromCSV(
-            string FilePath,
+            object FilePath,
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] Domain Domain)
         {
-            List<DataPoint1> dataPoints = new List<DataPoint1>();
-            var csv = new List<string[]>();
-            var lines = File.ReadAllLines(FilePath);
-            for (int i = 0; i < lines.Count(); i++)
+            // get full path to file as string
+            // if File.FromPath is used it returns FileInfo class
+            string _filePath = "";
+            try
             {
-                string line = lines[i];
-                if (i > 0)
-                {
-                    string dataName = line.Split(',')[0];
-                    double dataValue = Convert.ToDouble(line.Split(',')[1]);
-                    dataPoints.Add(new DataPoint1 { name = dataName, value = dataValue });
-                }
+                _filePath = (string)FilePath;
             }
+            catch
+            {
+                _filePath = ((FileInfo)FilePath).FullName;
+            }
+
             LineChartData lineData = new LineChartData();
-            lineData.Data = dataPoints;
+            lineData.Data = new JavaScriptSerializer().Serialize(ChartsUtilities.Data1FromCSV(_filePath));
             lineData.Domain = Domain;
             return lineData;
         }
@@ -118,9 +121,9 @@ namespace Charts
         /// <param name="Style">Line Chart Style.</param>
         /// <returns name="Chart">Line Chart.</returns>
         /// <search>line, chart</search>
-        public static d3LineChart Chart(LineChartData Data, LineChartStyle Style)
+        public static D3jsLib.LineChart.LineChart Chart(LineChartData Data, LineChartStyle Style)
         {
-            d3LineChart chart = new d3LineChart(Data, Style);
+            D3jsLib.LineChart.LineChart chart = new D3jsLib.LineChart.LineChart(Data, Style);
             return chart;
         }
     }
