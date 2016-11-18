@@ -9,7 +9,7 @@
                 Horizontal Bar Chart.
             </summary>
         </member>
-        <member name="M:Charts.HorizontalBarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
+        <member name="M:Charts.HorizontalBarChart.Style(System.Collections.Generic.List{DSCore.Color},DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
             <summary>
                 Horizontal Bar Chart Style
             </summary>
@@ -22,12 +22,13 @@
             <param name="XAxisLabel">Text displayed in bottom-right corner of chart.</param>
             <returns name="Style">Style</returns>
         </member>
-        <member name="M:Charts.HorizontalBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},D3jsLib.Domain)">
+        <member name="M:Charts.HorizontalBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Int32},D3jsLib.Domain)">
             <summary>
                 Horizontal Bar Chart Data.
             </summary>
             <param name="Names"></param>
             <param name="Values"></param>
+            <param name="Colors"></param>
             <param name="Domain"></param>
             <returns name="Data">Data</returns>
         </member>
@@ -441,6 +442,12 @@
             <summary>
                 Returns null value.
             </summary>
+        </member>
+        <member name="M:Charts.MiscNodes.GetColorList">
+            <summary>
+                Returns a default color in a list.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Charts.ParallelCoordinates">
             <summary>
