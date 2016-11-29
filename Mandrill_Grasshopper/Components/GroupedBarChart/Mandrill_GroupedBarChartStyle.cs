@@ -7,6 +7,7 @@ using D3jsLib.GroupedBarChart;
 using System.Collections.Generic;
 using System.Linq;
 using D3jsLib.Utilities;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.GroupedBarChart
 {
@@ -74,14 +75,14 @@ namespace Mandrill_Grasshopper.Components.GroupedBarChart
             if (DA.GetDataList<Color>(1, colors))
             {
                 List<string> hexColors = colors.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
-                style.Colors = hexColors;
+                style.Colors = new JavaScriptSerializer().Serialize(hexColors);
             }
             else
             {
                 style.Colors = null;
             }
 
-            style.BarHoverColor = hoverColor;
+            style.BarHoverColor = ChartsUtilities.ColorToHexString(hoverColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Width = width;

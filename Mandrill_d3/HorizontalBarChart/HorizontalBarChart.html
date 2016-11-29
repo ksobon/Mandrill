@@ -19,11 +19,11 @@
 
         @if(Model.Data.Domain != null)
         {
-        @:x.domain([@(Model.Data.Domain.A), @(Model.Data.Domain.B)]);
+            @:x.domain([@(Model.Data.Domain.A), @(Model.Data.Domain.B)]);
         }
         else
         {
-        @:x.domain([0, d3.max(data, function (d) { return d.value; })]);
+            @:x.domain([0, d3.max(data, function (d) { return d.value; })]);
         }
 
         var color = d3.scale.ordinal().range(@Raw(((HorizontalBarChartStyle)Model.Style).BarColor));
@@ -71,11 +71,17 @@
             .enter()
             .append("text")
             .attr("x", 0)
-            .attr("y", function(d){return y(d.name) + (y.rangeBand() / 2);})
+            .attr("y", function(d){
+                var width = getPixelWidth(d.name);
+                var lineCount = Math.ceil(width / margin.left);
+                var center = (y(d.name) + (y.rangeBand() / 2)) - (lineCount * 3);
+                var offset = (y(d.name) + (y.rangeBand() / 2));
+                return lineCount > 1 ? center : offset;})
             .attr("text-anchor", "end")
             .attr("dy", ".35em")
             .attr("dx", -5)
             .text(function(d){return d.name;})
+            .call(wrap, margin.left);
 
         barChart.append("g")
             .selectAll("valueLabels")
@@ -87,6 +93,36 @@
             .attr("dy", ".35em")
             .attr("dx", 5)
             .text(function(d){return d.value;})
-            }
+
+        function getPixelWidth(text){
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext("2d");       
+            return width = ctx.measureText(text).width;}
+
+        function wrap(text, width) {
+            text.each(function() {
+                var text = d3.select(this),
+                    words = text.text().split(/\s+/).reverse(),
+                    word,
+                    line = [],
+                    lineNumber = 0,
+                    lineHeight = 1.1, // ems
+                    y = text.attr("y"),
+                    dy = parseFloat(text.attr("dy")),
+                    tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dx", -5).attr("dy", dy + "em");
+                while (word = words.pop()) {
+                    line.push(word);
+                    tspan.text(line.join(" "));
+                    if (tspan.node().getComputedTextLength() > width) {
+                        line.pop();
+                        tspan.text(line.join(" "));
+                        line = [word];
+                        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dx", -5).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                        console.log(lineNumber);
+                    }
+                }
+            });
+        }
+    }
     renderHorizontalBarChart();
 </script>

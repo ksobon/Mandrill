@@ -6,6 +6,7 @@ using sColor = System.Drawing.Color;
 using D3jsLib.Utilities;
 using System;
 using D3jsLib;
+using System.Web.Script.Serialization;
 
 namespace Charts
 {
@@ -44,8 +45,10 @@ namespace Charts
             style.Height = Height;
             style.YAxisLabel = YAxisLabel;
             style.XAxisLabel = XAxisLabel;
-            style.DotColor = sColor.FromArgb(DotColor.Alpha, DotColor.Red, DotColor.Green, DotColor.Blue);
+            style.DotColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(DotColor.Alpha, DotColor.Red, DotColor.Green, DotColor.Blue));
             style.Margins = Margins;
+            style.SizeX = (int)Math.Ceiling(Width / 100d);
+            style.SizeY = (int)Math.Ceiling(Height / 100d);
 
             if (Address != null)
             {
@@ -85,7 +88,7 @@ namespace Charts
                 .ToList();
 
             ScatterPlotData spData = new ScatterPlotData();
-            spData.Data = dataPoints;
+            spData.Data = new JavaScriptSerializer().Serialize(dataPoints);
             spData.DomainX = DomainX;
             spData.DomainY = DomainY;
             return spData;
@@ -122,7 +125,7 @@ namespace Charts
                 }
             }
             ScatterPlotData scatterData = new ScatterPlotData();
-            scatterData.Data = dataPoints;
+            scatterData.Data = new JavaScriptSerializer().Serialize(dataPoints);
             scatterData.DomainX = DomainX;
             scatterData.DomainY = DomainY;
             return scatterData;
