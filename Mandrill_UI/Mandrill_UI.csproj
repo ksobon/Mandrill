@@ -105,19 +105,20 @@
       <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="EO.Base, Version=16.2.9.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\packages\EO.WebBrowser.16.2.9.0\lib\EO.Base.dll</HintPath>
+    <Reference Include="EO.Base, Version=16.2.72.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.72.0\lib\EO.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.WebBrowser, Version=16.2.9.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\packages\EO.WebBrowser.16.2.9.0\lib\EO.WebBrowser.dll</HintPath>
+    <Reference Include="EO.WebBrowser, Version=16.2.72.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.72.0\lib\EO.WebBrowser.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EO.WebBrowser.Wpf">
-      <HintPath>..\packages\EO.WebBrowser.16.2.9.0\lib\EO.WebBrowser.Wpf.dll</HintPath>
+    <Reference Include="EO.WebBrowser.Wpf, Version=16.2.72.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EO.WebBrowser.16.2.72.0\lib\EO.WebBrowser.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="EO.WebEngine, Version=16.2.9.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\packages\EO.WebBrowser.16.2.9.0\lib\EO.WebEngine.dll</HintPath>
+    <Reference Include="EO.WebEngine, Version=16.2.72.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.72.0\lib\EO.WebEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
@@ -177,6 +178,7 @@
     <Compile Include="Utilities\WebBrowserHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
