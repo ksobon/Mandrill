@@ -4,6 +4,7 @@ using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib;
 using D3jsLib.d3ScatterPlots;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.ScatterPlot
 {
@@ -67,7 +68,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
 
             // create style
             ScatterPlotStyle style = new ScatterPlotStyle();
-            style.DotColor = dotColor;
+            style.DotColor = ChartsUtilities.ColorToHexString(dotColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Margins = margins;
@@ -75,6 +76,8 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
             style.Height = height;
             style.YAxisLabel = yAxisLabel;
             style.XAxisLabel = xAxisLabel;
+            style.SizeX = (int)Math.Ceiling(width / 100d);
+            style.SizeY = (int)Math.Ceiling(height / 100d);
 
             DA.SetData(0, style);
         }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using D3jsLib;
 using D3jsLib.Utilities;
 using System.Linq;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.ScatterPlot
 {
@@ -69,7 +70,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
                 .ToList();
 
             ScatterPlotData data = new ScatterPlotData();
-            data.Data = dataPoints;
+            data.Data = new JavaScriptSerializer().Serialize(dataPoints);
             data.DomainX = domainX;
             data.DomainY = domainY;
 

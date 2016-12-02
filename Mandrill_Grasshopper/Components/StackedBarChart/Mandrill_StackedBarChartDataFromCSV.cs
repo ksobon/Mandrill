@@ -3,6 +3,7 @@ using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.StackedBarChart;
 using D3jsLib;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.StackedBarChart
 {
@@ -49,7 +50,7 @@ namespace Mandrill_Grasshopper.Components.StackedBarChart
             DA.GetData<Domain>(1, ref domain);
 
             StackedBarChartData data = new StackedBarChartData();
-            data.Data = D3jsLib.Utilities.ChartsUtilities.Data2FromCSV(filePath);
+            data.Data = ChartsUtilities.DataToJsonString(ChartsUtilities.Data2FromCSV(filePath));
             data.Domain = domain;
 
             DA.SetData(0, data);

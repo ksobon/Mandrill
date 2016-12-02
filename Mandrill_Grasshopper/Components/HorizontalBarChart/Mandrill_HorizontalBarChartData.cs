@@ -50,7 +50,7 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
         {
             List<string> names = new List<string>();
             List<double> values = new List<double>();
-            List<int> colors = null;
+            List<int> colors = new List<int>();
             Domain domain = null;
 
             if (!DA.GetDataList<string>(0, names)) return;
@@ -59,7 +59,7 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
             DA.GetData<Domain>(3, ref domain);
 
             List<DataPoint1> dataPoints;
-            if (colors != null)
+            if (colors.Count > 0)
             {
                 dataPoints = names.ZipThree(values, colors, (x, y, z) => new DataPoint1 { name = x, value = y, color = z }).ToList();
             }

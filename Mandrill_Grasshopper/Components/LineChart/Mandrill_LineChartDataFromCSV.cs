@@ -2,6 +2,8 @@
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.LineChart;
+using D3jsLib.Utilities;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.LineChart
 {
@@ -48,7 +50,7 @@ namespace Mandrill_Grasshopper.Components.LineChart
             DA.GetData<D3jsLib.Domain>(1, ref domain);
 
             LineChartData data = new LineChartData();
-            data.Data = D3jsLib.Utilities.ChartsUtilities.Data1FromCSV(filePath);
+            data.Data = new JavaScriptSerializer().Serialize(ChartsUtilities.Data1FromCSV(filePath));
             data.Domain = domain;
 
             DA.SetData(0, data);

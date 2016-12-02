@@ -107,9 +107,9 @@ namespace Charts
         /// <param name="Data">Parallel Coordinates Data object.</param>
         /// <param name="Style">Parallel Coordinates Style object.</param>
         /// <returns name="Chart">Parallel Coordinates Chart.</returns>
-        public static D3jsLib.ParallelCoordinates.ParallelCoordinatesChart Chart(ParallelCoordinatesData Data, ParallelCoordinatesStyle Style)
+        public static ParallelCoordinatesChart Chart(ParallelCoordinatesData Data, ParallelCoordinatesStyle Style)
         {
-            D3jsLib.ParallelCoordinates.ParallelCoordinatesChart chart = new D3jsLib.ParallelCoordinates.ParallelCoordinatesChart(Data, Style);
+            ParallelCoordinatesChart chart = new ParallelCoordinatesChart(Data, Style);
             return chart;
         }
     }

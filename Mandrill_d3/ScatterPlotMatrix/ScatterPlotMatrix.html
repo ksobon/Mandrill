@@ -1,10 +1,14 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+@using D3jsLib.ScatterPlotMatrix;
+
+<script type="text/javascript">
     function renderScatterPlotMatrixChart() {
 
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
 
-        var width = @(Model.Width),
-            size = @(Model.FrameSize),
+        var width = @(Model.Style.Width),
+            count = Object.keys(data[0]).length - 1,
+            size = (width / count) - 10,
             padding = 20;
 
         var x = d3.scale.linear()
@@ -23,9 +27,9 @@
             .orient("left")
             .ticks(6);
 
-        @if(Model.Colors)
+        @if(((ScatterPlotMatrixStyle)Model.Style).Colors != null)
         {
-            @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+            @:var color = d3.scale.ordinal().range(@Raw(((ScatterPlotMatrixStyle)Model.Style).Colors));
         }
         else
         {

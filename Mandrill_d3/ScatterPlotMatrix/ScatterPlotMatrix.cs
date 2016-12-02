@@ -1,47 +1,18 @@
 ﻿using D3jsLib.Utilities;
-using System.Collections.Generic;
-using System.Web.Script.Serialization;
 
 namespace D3jsLib.ScatterPlotMatrix
 {
     public class ScatterPlotMatrixStyle : ChartStyle
     {
-        public List<string> Colors { get; set; }
+        public string Colors { get; set; }
     }
 
-    public class ScatterPlotMatrixData
+    public class ScatterPlotMatrixData : ChartData
     {
-        public List<DataPoint2> Data { get; set; }
-
-        public string ToJsonString()
-        {
-            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-            foreach (DataPoint2 dp in this.Data)
-            {
-                list.Add(dp.ToDictionary());
-            }
-
-            // serialize C# Array into JS Array
-            var serializer = new JavaScriptSerializer();
-            string jsData = serializer.Serialize(list);
-
-            return jsData;
-        }
-    }
-
-    public class ScatterPlotMatrixModel : ChartModel
-    {
-        public string Data { get; set; }
-        public bool Colors { get; set; }
-        public string DomainColors { get; set; }
-        public string FrameSize { get; set; }
     }
 
     public class ScatterPlotMatrix : Chart
     {
-        public ScatterPlotMatrixData Data;
-        public ScatterPlotMatrixStyle Style;
-
         public ScatterPlotMatrix(ScatterPlotMatrixData data, ScatterPlotMatrixStyle style)
         {
             this.Data = data;
@@ -85,8 +56,7 @@ namespace D3jsLib.ScatterPlotMatrix
         public override string EvaluateModelTemplate(int counter)
         {
             string templateName = "colDivTempScatterPlotMatrix" + counter.ToString();
-            ScatterPlotMatrixModel model = this.ChartModel as ScatterPlotMatrixModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.ScatterPlotMatrix.ScatterPlotMatrix.html", templateName);
+            string colString = ChartsUtilities.EvaluateTemplate(this, "Mandrill_d3.ScatterPlotMatrix.ScatterPlotMatrix.html", templateName);
             return colString;
         }
     }

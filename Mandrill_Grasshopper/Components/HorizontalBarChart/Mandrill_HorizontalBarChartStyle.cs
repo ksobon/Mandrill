@@ -53,7 +53,7 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<Color> barColor = new List<Color>() { Color.FromArgb(50, 130, 190) };
+            List<Color> barColor = new List<Color>() { };
             Color hoverColor = Color.FromArgb(255, 0, 0);
             GridAddress address = new GridAddress(1, 1);
             int width = 1000;

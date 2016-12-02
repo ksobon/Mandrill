@@ -24,7 +24,7 @@ namespace Text
         /// <returns name="TextNote">Text node object</returns>
         public static TextNote Create(string Text, TextStyle Style)
         {
-            TextNote tn = new D3jsLib.TextNote(Text, Style);
+            TextNote tn = new TextNote(Text, Style);
             return tn;
         }
 

@@ -7,6 +7,7 @@ using D3jsLib.ScatterPlotMatrix;
 using System.Collections.Generic;
 using System.Linq;
 using D3jsLib.Utilities;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.ScatterPlotMatrix
 {
@@ -61,7 +62,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlotMatrix
             if (DA.GetDataList<Color>(0, colors))
             {
                 List<string> hexColors = colors.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
-                style.Colors = hexColors;
+                style.Colors = new JavaScriptSerializer().Serialize(hexColors);
             }
             else
             {
@@ -71,6 +72,8 @@ namespace Mandrill_Grasshopper.Components.ScatterPlotMatrix
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Width = width;
+            style.SizeX = (int)Math.Ceiling(width / 100d);
+            style.SizeY = (int)Math.Ceiling(width / 100d);
 
             DA.SetData(0, style);
         }

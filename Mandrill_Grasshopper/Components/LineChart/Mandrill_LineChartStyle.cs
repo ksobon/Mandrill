@@ -4,6 +4,7 @@ using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib;
 using D3jsLib.LineChart;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.LineChart
 {
@@ -67,7 +68,7 @@ namespace Mandrill_Grasshopper.Components.LineChart
 
             // create style
             LineChartStyle style = new LineChartStyle();
-            style.LineColor = lineColor;
+            style.LineColor = ChartsUtilities.ColorToHexString(lineColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Width = width;
@@ -75,6 +76,8 @@ namespace Mandrill_Grasshopper.Components.LineChart
             style.YAxisLabel = yAxisLabel;
             style.TickMarksX = tickMarks;
             style.Margins = margins;
+            style.SizeX = (int)Math.Ceiling(width / 100d);
+            style.SizeY = (int)Math.Ceiling(height / 100d);
 
             DA.SetData(0, style);
         }

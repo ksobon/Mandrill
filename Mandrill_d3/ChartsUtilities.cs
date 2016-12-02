@@ -104,10 +104,20 @@ namespace D3jsLib.Utilities
             {
                 int fieldCount = csv.FieldCount;
                 string[] headers = csv.GetFieldHeaders();
-
                 while (csv.ReadNextRecord())
                 {
-                    dataPoints.Add(new DataPoint1() { name = csv[0], value = Convert.ToDouble(csv[1]) });
+                    switch (fieldCount)
+                    {
+                        case 2:
+                            dataPoints.Add(new DataPoint1() { name = csv[0], value = Convert.ToDouble(csv[1]) });
+                            break;
+                        case 3:
+                            dataPoints.Add(new DataPoint1() { name = csv[0], value = Convert.ToDouble(csv[1]), color = Convert.ToInt32(csv[2]) });
+                            break;
+                        default:
+                            dataPoints.Add(new DataPoint1() { name = csv[0], value = Convert.ToDouble(csv[1]) });
+                            break;
+                    }
                 }
             }
             return dataPoints;

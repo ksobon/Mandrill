@@ -4,6 +4,7 @@ using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib;
 using D3jsLib.ParallelCoordinates;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.ParallelCoordinates
 {
@@ -61,12 +62,14 @@ namespace Mandrill_Grasshopper.Components.ParallelCoordinates
 
             // create style
             ParallelCoordinatesStyle style = new ParallelCoordinatesStyle();
-            style.LineColor = lineColor;
+            style.LineColor = ChartsUtilities.ColorToHexString(lineColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Width = width;
             style.Height = height;
             style.Margins = margins;
+            style.SizeX = (int)Math.Ceiling(width / 100d);
+            style.SizeY = (int)Math.Ceiling(height / 100d);
 
             DA.SetData(0, style);
         }
