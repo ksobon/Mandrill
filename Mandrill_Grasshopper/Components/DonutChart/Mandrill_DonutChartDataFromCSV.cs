@@ -2,6 +2,7 @@
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.DonutChart;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.DonutChart
 {
@@ -44,7 +45,7 @@ namespace Mandrill_Grasshopper.Components.DonutChart
             if (!DA.GetData<string>(0, ref filePath)) return;
 
             DonutChartData data = new DonutChartData();
-            data.Data = D3jsLib.Utilities.ChartsUtilities.Data1FromCSV(filePath);
+            data.Data = new JavaScriptSerializer().Serialize(D3jsLib.Utilities.ChartsUtilities.Data1FromCSV(filePath));
 
             DA.SetData(0, data);
         }

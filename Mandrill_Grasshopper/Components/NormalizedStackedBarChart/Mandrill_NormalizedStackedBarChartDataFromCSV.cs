@@ -2,7 +2,7 @@
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.NormalizedStackedBarChart;
-using D3jsLib;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.NormalizedStackedBarChart
 {
@@ -45,7 +45,7 @@ namespace Mandrill_Grasshopper.Components.NormalizedStackedBarChart
             if (!DA.GetData<string>(0, ref filePath)) return;
 
             NormalizedStackedBarChartData data = new NormalizedStackedBarChartData();
-            data.Data = D3jsLib.Utilities.ChartsUtilities.Data2FromCSV(filePath);
+            data.Data = ChartsUtilities.DataToJsonString(ChartsUtilities.Data2FromCSV(filePath));
 
             DA.SetData(0, data);
         }

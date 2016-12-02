@@ -3,6 +3,7 @@ using System.Drawing;
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.AreaChart
 {
@@ -65,8 +66,8 @@ namespace Mandrill_Grasshopper.Components.AreaChart
             DA.GetData<int>(6, ref tickMarks);
 
             // create style
-            D3jsLib.d3AreaCharts.AreaChartStyle style = new D3jsLib.d3AreaCharts.AreaChartStyle();
-            style.AreaColor = areaColor;
+            D3jsLib.AreaCharts.AreaChartStyle style = new D3jsLib.AreaCharts.AreaChartStyle();
+            style.AreaColor = ChartsUtilities.ColorToHexString(areaColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Width = width;
@@ -74,6 +75,8 @@ namespace Mandrill_Grasshopper.Components.AreaChart
             style.YAxisLabel = yAxisLabel;
             style.TickMarksX = tickMarks;
             style.Margins = margins;
+            style.SizeX = (int)Math.Ceiling(width / 100d);
+            style.SizeY = (int)Math.Ceiling(height / 100d);
 
             DA.SetData(0, style);
         }

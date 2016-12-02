@@ -7,6 +7,7 @@ using System;
 using D3jsLib;
 using D3jsLib.Utilities;
 using System.IO;
+using System.Web.Script.Serialization;
 
 namespace Charts
 {
@@ -42,15 +43,17 @@ namespace Charts
         {
             DonutChartStyle style = new DonutChartStyle();
             style.Width = Width;
-            style.HoverColor = sColor.FromArgb(HoverColor.Alpha, HoverColor.Red, HoverColor.Green, HoverColor.Blue);
+            style.HoverColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(HoverColor.Alpha, HoverColor.Red, HoverColor.Green, HoverColor.Blue));
             style.Labels = Labels;
             style.TotalLabel = TotalLabel;
             style.Margins = Margins;
+            style.SizeX = (int)Math.Ceiling(Width / 100d);
+            style.SizeY = (int)Math.Ceiling(Width / 100d);
 
             if (Colors != null)
             {
                 List<string> hexColors = Colors.Select(x => ChartsUtilities.ColorToHexString(sColor.FromArgb(x.Alpha, x.Red, x.Green, x.Blue))).ToList();
-                style.Colors = hexColors;
+                style.Colors = new JavaScriptSerializer().Serialize(hexColors);
             }
             else
             {
@@ -84,7 +87,7 @@ namespace Charts
         {
             List<DataPoint1> dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             DonutChartData data = new DonutChartData();
-            data.Data = dataPoints;
+            data.Data = new JavaScriptSerializer().Serialize(dataPoints);
 
             return data;
         }
@@ -109,21 +112,8 @@ namespace Charts
                 _filePath = ((FileInfo)FilePath).FullName;
             }
 
-            List<DataPoint1> dataPoints = new List<DataPoint1>();
-            var csv = new List<string[]>();
-            var lines = System.IO.File.ReadAllLines(_filePath);
-            for (int i = 0; i < lines.Count(); i++)
-            {
-                string line = lines[i];
-                if (i > 0)
-                {
-                    string lineName = line.Split(',')[0];
-                    double lineValue = Convert.ToDouble(line.Split(',')[1]);
-                    dataPoints.Add(new DataPoint1 { name = lineName, value = lineValue });
-                }
-            }
             DonutChartData data = new DonutChartData();
-            data.Data = dataPoints;
+            data.Data = new JavaScriptSerializer().Serialize(ChartsUtilities.Data1FromCSV(_filePath));
 
             return data;
         }

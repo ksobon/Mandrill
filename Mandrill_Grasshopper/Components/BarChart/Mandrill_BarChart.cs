@@ -46,7 +46,7 @@ namespace Mandrill_Grasshopper.Components.BarChart
             if (!DA.GetData<BarData>(0, ref data)) return;
             if (!DA.GetData<BarStyle>(1, ref style)) return;
 
-            d3BarChart chart = new d3BarChart(data, style);
+            D3jsLib.BarChart.BarChart chart = new D3jsLib.BarChart.BarChart(data, style);
 
             DA.SetData(0, chart);
         }

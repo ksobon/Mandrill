@@ -607,6 +607,15 @@ namespace Mandrill_Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List of integers where each value will get a different color assigned..
+        /// </summary>
+        public static string Data_ColorsDesc {
+            get {
+                return ResourceManager.GetString("Data_ColorsDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Domain definiting upper and lower boundary of a chart Y-Axis..
         /// </summary>
         public static string Data_Domain {

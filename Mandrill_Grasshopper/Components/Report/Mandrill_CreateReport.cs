@@ -25,6 +25,7 @@ namespace Mandrill_Grasshopper.Components.Report
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
+            pManager.AddGenericParameter("Chart0", "A", "Chart 0", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -83,26 +84,29 @@ namespace Mandrill_Grasshopper.Components.Report
             get { return new Guid("{b5367f1c-28bb-468c-99da-a725b70ea88e}"); }
         }
 
-        bool IGH_VariableParameterComponent.CanInsertParameter(GH_ParameterSide side, int index)
+        public bool CanInsertParameter(GH_ParameterSide side, int index)
         {
-            // we only let input parameters to be added (output number is fixed at one)
-            if (side == GH_ParameterSide.Input) return true;
-            else return false;
+            if (side == GH_ParameterSide.Output) return false;
+            if (index == 0) return false;
+            return true;
         }
 
-        bool IGH_VariableParameterComponent.CanRemoveParameter(GH_ParameterSide side, int index)
+        public bool CanRemoveParameter(GH_ParameterSide side, int index)
         {
-            // we can only remove from the input
-            if (side == GH_ParameterSide.Input && Params.Input.Count > 0) return true;
-            else return false;
+            if (side == GH_ParameterSide.Output) return false;
+            if (Params.Input.Count <= 1) return false;
+            if (index == 0) return false;
+            return true;
         }
 
-        IGH_Param IGH_VariableParameterComponent.CreateParameter(GH_ParameterSide side, int index)
+        public IGH_Param CreateParameter(GH_ParameterSide side, int index)
         {
             Param_GenericObject param = new Param_GenericObject();
-            param.Name = GH_ComponentParamServer.InventUniqueNickname("ABCDEFGHIJKLMNOPQRSTUVWXYZ", Params.Input);
-            param.NickName = param.Name;
-            param.Description = "Param" + (Params.Input.Count + 1);
+            param.Name = String.Format("Chart{0}", index);
+            param.NickName = GH_ComponentParamServer.InventUniqueNickname("BCDEFGHIJKLMNOPQRSTUVWXYZ", Params.Input);
+            param.Description = String.Format("Chart {0}", index);
+            param.Access = GH_ParamAccess.item;
+            Params.RegisterInputParam(param, index);
 
             return param;
         }

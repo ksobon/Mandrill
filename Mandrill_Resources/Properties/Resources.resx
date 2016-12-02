@@ -1258,7 +1258,7 @@
   <data name="Charts_ScatterPlotMatrix_DataFromCSV" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACw0AAAsNAe0HwCwAAAAGYktHRAD/AP8A/6C9p5MAAAAZdEVYdFNvZnR3YXJlAEFk
+        YQUAAAAJcEhZcwAACwwAAAsMAT9AIsgAAAAGYktHRAD/AP8A/6C9p5MAAAAZdEVYdFNvZnR3YXJlAEFk
         b2JlIEltYWdlUmVhZHlxyWU8AAAEtElEQVRIS71UC2wURRje29u9vd1r09vZVwuhUiAEIiSEh7bVgFiK
         1CKtYOmDE1QKvStWsFx7tvWOqwQDVRsUKI3BCjSk9EF5VCNQ5WEiVJMa9EyU1qqkisYQo8akctu933+v
         LdEE5Wqif/JlZueff76Zb75Z6v8KekYy5y14gDvw1EPcvqLFXEPxMq4hfxHX4MrgGjLn2vdRFDvTQnOU
@@ -1708,7 +1708,7 @@
   <data name="Mandrill_UI_pdf_SizeUI_pdf_SizeUI" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACw0AAAsNAe0HwCwAAAAGYktHRAD/AP8A/6C9p5MAAAAZdEVYdFNvZnR3YXJlAEFk
+        YQUAAAAJcEhZcwAACwwAAAsMAT9AIsgAAAAGYktHRAD/AP8A/6C9p5MAAAAZdEVYdFNvZnR3YXJlAEFk
         b2JlIEltYWdlUmVhZHlxyWU8AAAEM0lEQVRIS72Uf2wURRTHZ3b3fuzddXfvbve65Up/3NlTCpS0TbW0
         GC22B14bipaQYjTFRg1if9OYYjAm/GOlBrRaUqpYoEmhLZQqGkMEo9DaGpUAVUhMxBj9AyM1pjSI3O09
         3/RaIUTpgdFv8smb3X1v3rw3s0P+L9EFqeLG6pXKa+WF0rZ1y+W2x5DSfKltQ5mz7f4sxzZCOD8hPEmw
@@ -1920,5 +1920,9 @@
   <data name="SubCategory_ScatterPlot" xml:space="preserve">
     <value>Scatter Plots</value>
     <comment>Category</comment>
+  </data>
+  <data name="Data_ColorsDesc" xml:space="preserve">
+    <value>List of integers where each value will get a different color assigned.</value>
+    <comment>Data</comment>
   </data>
 </root>

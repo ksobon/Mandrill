@@ -1,20 +1,23 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+@using D3jsLib.PieChart;
+
+<script type="text/javascript">
     function renderPieChart() {
 
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
 
-        var margin = {top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left)};
+        var margin = {top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left)};
 
-        var width = @(Model.Width) - margin.left - margin.right,
-            height = @(Model.Width) - margin.top - margin.bottom,
+        var width = @(Model.Style.Width) - margin.left - margin.right,
+            height = @(Model.Style.Width) - margin.top - margin.bottom,
             radius = width / 2,
             arc = d3.svg.arc().outerRadius(radius - 10).innerRadius(0),
             arcOver = d3.svg.arc().innerRadius(0).outerRadius(radius - 10 + 5)
             labelArc = d3.svg.arc().outerRadius(radius / 2).innerRadius(radius / 2);
 
-        @if(Model.Colors)
+        @if(((PieChartStyle)Model.Style).Colors != null)
         {
-            @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+            @:var color = d3.scale.ordinal().range(@Raw(((PieChartStyle)Model.Style).Colors));
         }
         else
         {
@@ -61,7 +64,7 @@
                   .attr("fill", "black")
                   .text(d.data.value);
 
-                d3.select(this).style("fill", "@(Model.HoverColor)");
+                d3.select(this).style("fill", "@(((PieChartStyle)Model.Style).HoverColor)");
 
             })
             .on("mouseout", function(){
@@ -72,7 +75,7 @@
                 d3.select(this).style("fill", function(d) { return color(d.data.name); });
             });
 
-        @if(Model.Labels)
+        @if(((PieChartStyle)Model.Style).Labels)
         {<text>
         function computeTextRotation(d) {
             var rotation = (d.startAngle + d.endAngle)/2 * 180 / Math.PI - 90;

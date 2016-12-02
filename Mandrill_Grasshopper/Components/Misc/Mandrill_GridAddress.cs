@@ -45,7 +45,7 @@ namespace Mandrill.Grasshopper.Components.Misc
             DA.GetData<int>(0, ref X);
             DA.GetData<int>(1, ref Y);
 
-            D3jsLib.GridAddress address = new D3jsLib.GridAddress(X, Y);
+            D3jsLib.GridAddress address = new D3jsLib.GridAddress(Y, X);
 
             DA.SetData(0, address);
         }

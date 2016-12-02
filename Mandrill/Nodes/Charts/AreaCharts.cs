@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
-using D3jsLib.d3AreaCharts;
+using D3jsLib.AreaCharts;
 using sColor = System.Drawing.Color;
 using System;
 using D3jsLib;
+using D3jsLib.Utilities;
+using System.Web.Script.Serialization;
+using System.IO;
 
 namespace Charts
 {
@@ -42,9 +45,11 @@ namespace Charts
             style.Width = Width;
             style.Height = Height;
             style.YAxisLabel = YAxisLabel;
-            style.AreaColor = sColor.FromArgb(AreaColor.Alpha, AreaColor.Red, AreaColor.Green, AreaColor.Blue);
+            style.AreaColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(AreaColor.Alpha, AreaColor.Red, AreaColor.Green, AreaColor.Blue));
             style.TickMarksX = TickMarksX;
             style.Margins = Margins;
+            style.SizeX = (int)Math.Ceiling(Width / 100d);
+            style.SizeY = (int)Math.Ceiling(Height / 100d);
 
             if (Address != null)
             {
@@ -75,7 +80,7 @@ namespace Charts
         {
             List<DataPoint1> dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             AreaChartData areaData = new AreaChartData();
-            areaData.Data = dataPoints;
+            areaData.Data = new JavaScriptSerializer().Serialize(dataPoints);
             areaData.Domain = Domain;
             return areaData;
         }
@@ -88,24 +93,23 @@ namespace Charts
         /// <returns name="Data">Area Chart Data.</returns>
         /// <search>area, chart, data</search>
         public static AreaChartData DataFromCSV(
-            string FilePath, 
+            object FilePath, 
             [DefaultArgumentAttribute("Charts.MiscNodes.GetNull()")] Domain Domain)
-        { 
-            List<DataPoint1> dataPoints = new List<DataPoint1>();
-            var csv = new List<string[]>();
-            var lines = System.IO.File.ReadAllLines(FilePath);
-            for (int i = 0; i < lines.Count(); i++)
+        {
+            // get full path to file as string
+            // if File.FromPath is used it returns FileInfo class
+            string _filePath = "";
+            try
             {
-                string line = lines[i];
-                if (i > 0)
-                {
-                    string lineName = line.Split(',')[0];
-                    double lineValue = Convert.ToDouble(line.Split(',')[1]);
-                    dataPoints.Add(new DataPoint1 { name = lineName, value = lineValue });
-                }
+                _filePath = (string)FilePath;
             }
+            catch
+            {
+                _filePath = ((FileInfo)FilePath).FullName;
+            }
+
             AreaChartData areaData = new AreaChartData();
-            areaData.Data = dataPoints;
+            areaData.Data = new JavaScriptSerializer().Serialize(ChartsUtilities.Data1FromCSV(_filePath));
             areaData.Domain = Domain;
             return areaData;
         }
@@ -117,9 +121,9 @@ namespace Charts
         /// <param name="Style">Area Chart Style.</param>
         /// <returns name="Chart">Area Chart.</returns>
         /// <search>area, chart</search>
-        public static d3AreaChart Chart(AreaChartData Data, AreaChartStyle Style)
+        public static D3jsLib.AreaCharts.AreaChart Chart(AreaChartData Data, AreaChartStyle Style)
         {
-            d3AreaChart chart = new d3AreaChart(Data, Style);
+            D3jsLib.AreaCharts.AreaChart chart = new D3jsLib.AreaCharts.AreaChart(Data, Style);
             return chart;
         }
     }

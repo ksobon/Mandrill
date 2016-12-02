@@ -7,6 +7,7 @@ using D3jsLib.PieChart;
 using System.Collections.Generic;
 using System.Linq;
 using D3jsLib.Utilities;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.PieChart
 {
@@ -71,19 +72,21 @@ namespace Mandrill_Grasshopper.Components.PieChart
             if (DA.GetDataList<Color>(1, colors))
             {
                 List<string> hexColors = colors.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
-                style.Colors = hexColors;
+                style.Colors = new JavaScriptSerializer().Serialize(hexColors);
             }
             else
             {
                 style.Colors = null;
             }
 
-            style.HoverColor = hoverColor;
+            style.HoverColor = ChartsUtilities.ColorToHexString(hoverColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Width = width;
             style.Labels = labels;
             style.Margins = margins;
+            style.SizeX = (int)Math.Ceiling(width / 100d);
+            style.SizeY = (int)Math.Ceiling(width / 100d);
 
             DA.SetData(0, style);
         }

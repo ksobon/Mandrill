@@ -4,6 +4,7 @@ using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib;
 using D3jsLib.BarChart;
+using D3jsLib.Utilities;
 
 namespace Mandrill.Grasshopper.Components.Charts.BarChart
 {
@@ -78,8 +79,8 @@ namespace Mandrill.Grasshopper.Components.Charts.BarChart
 
             // create style
             BarStyle style = new BarStyle();
-            style.BarColor = barColor;
-            style.BarHoverColor = hoverColor;
+            style.BarColor = ChartsUtilities.ColorToHexString(barColor);
+            style.BarHoverColor = ChartsUtilities.ColorToHexString(hoverColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Width = width;
@@ -88,6 +89,8 @@ namespace Mandrill.Grasshopper.Components.Charts.BarChart
             style.TickMarksX = tickMarks;
             style.xTextRotation = xRotation;
             style.Margins = margins;
+            style.SizeX = (int)Math.Ceiling(width / 100d);
+            style.SizeY = (int)Math.Ceiling(height / 100d);
 
             DA.SetData(0, style);
         }

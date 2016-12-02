@@ -4,6 +4,7 @@ using System.Linq;
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.PieChart;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.PieChart
 {
@@ -50,7 +51,7 @@ namespace Mandrill_Grasshopper.Components.PieChart
 
             List<D3jsLib.DataPoint1> dataPoints = names.Zip(values, (x, y) => new D3jsLib.DataPoint1 { name = x, value = y }).ToList();
             PieChartData data = new PieChartData();
-            data.Data = dataPoints;
+            data.Data = new JavaScriptSerializer().Serialize(dataPoints);
 
             DA.SetData(0, data);
         }

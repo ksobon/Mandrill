@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
-using D3jsLib.d3AreaCharts;
+using D3jsLib.AreaCharts;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.AreaChart
 {
@@ -54,7 +55,7 @@ namespace Mandrill_Grasshopper.Components.AreaChart
 
             List<D3jsLib.DataPoint1> dataPoints = names.Zip(values, (x, y) => new D3jsLib.DataPoint1 { name = x, value = y }).ToList();
             AreaChartData data = new AreaChartData();
-            data.Data = dataPoints;
+            data.Data = new JavaScriptSerializer().Serialize(dataPoints);
             data.Domain = domain;
 
             DA.SetData(0, data);

@@ -2,6 +2,8 @@
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.PieChart;
+using D3jsLib.Utilities;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.PieChart
 {
@@ -44,7 +46,7 @@ namespace Mandrill_Grasshopper.Components.PieChart
             if (!DA.GetData<string>(0, ref filePath)) return;
 
             PieChartData data = new PieChartData();
-            data.Data = D3jsLib.Utilities.ChartsUtilities.Data1FromCSV(filePath);
+            data.Data = new JavaScriptSerializer().Serialize(ChartsUtilities.Data1FromCSV(filePath));
 
             DA.SetData(0, data);
         }

@@ -2,6 +2,7 @@
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.BarChart;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.BarChart
 {
@@ -48,7 +49,7 @@ namespace Mandrill_Grasshopper.Components.BarChart
             DA.GetData<D3jsLib.Domain>(1, ref domain);
 
             BarData data = new BarData();
-            data.Data = D3jsLib.Utilities.ChartsUtilities.Data1FromCSV(filePath);
+            data.Data = new JavaScriptSerializer().Serialize(D3jsLib.Utilities.ChartsUtilities.Data1FromCSV(filePath));
             data.Domain = domain;
 
             DA.SetData(0, data);

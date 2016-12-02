@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
 using D3jsLib;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.ParallelCoordinates
 {
@@ -50,10 +51,8 @@ namespace Mandrill_Grasshopper.Components.ParallelCoordinates
             if (!DA.GetDataList<string>(0, headers)) return;
             if (!DA.GetDataTree(1, out values)) return;
 
-            List<DataPoint2> dataPoints = Mandrill_Grasshopper.Utilities.Utilities.Data2FromTree(headers, values);
-
             ParallelCoordinatesData data = new ParallelCoordinatesData();
-            data.Data = dataPoints;
+            data.Data = ChartsUtilities.DataToJsonString(Utilities.Utilities.Data2FromTree(headers, values));
 
             DA.SetData(0, data);
         }

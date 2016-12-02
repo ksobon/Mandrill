@@ -1,8 +1,8 @@
 ﻿using System;
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
+using HtmlAgilityPack;
 using System.Windows;
-using Mandrill_Grasshopper.Components.Report;
 
 namespace Mandrill_Grasshopper.Components.PDF
 {
@@ -23,7 +23,8 @@ namespace Mandrill_Grasshopper.Components.PDF
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("filePath", "P", Resources.Data_FilePathDesc, GH_ParamAccess.item);
+            pManager.AddTextParameter("FilePath", "P", Resources.Data_FilePathDesc, GH_ParamAccess.item);
+            pManager.AddGenericParameter("Report", "R", Resources.Report_ReportDesc, GH_ParamAccess.item);
             pManager.AddGenericParameter("Style", "S", Resources.PDF_StyleDesc, GH_ParamAccess.item);
             pManager.AddBooleanParameter("Print", "P", Resources.Report_ShowWindowDesc, GH_ParamAccess.item);
         }
@@ -43,40 +44,60 @@ namespace Mandrill_Grasshopper.Components.PDF
         {
             D3jsLib.PdfStyle style = null;
             string filePath = null;
+            D3jsLib.Report report = null;
             bool print = false;
 
             if (!DA.GetData<string>(0, ref filePath)) return;
-            if (!DA.GetData<D3jsLib.PdfStyle>(1, ref style)) return;
-            if (!DA.GetData<bool>(2, ref print)) return;
+            if (!DA.GetData<D3jsLib.Report>(1, ref report)) return;
+            if (!DA.GetData<D3jsLib.PdfStyle>(2, ref style)) return;
+            if (!DA.GetData<bool>(3, ref print)) return;
 
             if (print)
             {
-                bool printed = false;
-                Report.MandrillWindow win = null;
-                Mandrill_LaunchWindow winComponent = null;
+                PrintPDF(report, style, filePath);
+            }
+        }
 
-                foreach (IGH_DocumentObject obj in Grasshopper.Instances.ActiveCanvas.Document.Objects)
-                {
-                    if (obj.GetType() == typeof(Mandrill_LaunchWindow))
-                    {
-                        winComponent = (Mandrill_LaunchWindow)obj;
-                        if (winComponent != null)
-                        {
-                            win = winComponent.GetWindow();
-                            if (win != null)
-                            {
-                                win.Print(filePath, style);
-                                printed = true;
-                                break;
-                            }
-                        }
-                    }
-                }
+        private void PrintPDF(D3jsLib.Report report, D3jsLib.PdfStyle style, string filePath)
+        {
+            HtmlDocument htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(report.HtmlString);
 
-                if (!printed)
-                {
-                    AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "There is either no Mandrill Window Launch component on canvas or one doesn't have an open Window.");
-                }
+            HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='gridster-box']");
+            foreach (HtmlNode n in nodes)
+            {
+                n.InnerHtml = "";
+            }
+
+            // create converter
+            SelectPdf.HtmlToPdf converter = new SelectPdf.HtmlToPdf();
+
+            // set converter options
+            SelectPdf.HtmlToPdfOptions options = converter.Options;
+            options.PdfPageOrientation = style.Orientation;
+            options.PdfPageSize = style.Size;
+            options.JpegCompressionLevel = style.Compression;
+            options.JavaScriptEnabled = true;
+            options.EmbedFonts = true;
+            options.KeepImagesTogether = true;
+            options.KeepTextsTogether = true;
+            options.AutoFitHeight = style.VerticalFit;
+            options.AutoFitWidth = style.HorizontalFit;
+            options.MarginTop = style.MarginTop;
+            options.MarginRight = style.MarginRight;
+            options.MarginBottom = style.MarginBottom;
+            options.MarginLeft = style.MarginLeft;
+
+            try
+            {
+                // convert html to document object and save
+                SelectPdf.PdfDocument pdfDoc = converter.ConvertHtmlString(htmlDoc.DocumentNode.InnerHtml);
+                pdfDoc.Save(filePath);
+                pdfDoc.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Printing failed. Is file open in another application?");
             }
         }
 

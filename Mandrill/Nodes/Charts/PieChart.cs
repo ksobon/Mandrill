@@ -6,6 +6,7 @@ using sColor = System.Drawing.Color;
 using D3jsLib;
 using D3jsLib.Utilities;
 using System.IO;
+using System.Web.Script.Serialization;
 
 namespace Charts
 {
@@ -38,14 +39,16 @@ namespace Charts
         {
             PieChartStyle style = new PieChartStyle();
             style.Width = Width;
-            style.HoverColor = sColor.FromArgb(HoverColor.Alpha, HoverColor.Red, HoverColor.Green, HoverColor.Blue);
+            style.HoverColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(HoverColor.Alpha, HoverColor.Red, HoverColor.Green, HoverColor.Blue));
             style.Labels = Labels;
             style.Margins = Margins;
+            style.SizeX = (int)System.Math.Ceiling(Width / 100d);
+            style.SizeY = (int)System.Math.Ceiling(Width / 100d);
 
             if (Colors != null)
             {
                 List<string> hexColors = Colors.Select(x => ChartsUtilities.ColorToHexString(sColor.FromArgb(x.Alpha, x.Red, x.Green, x.Blue))).ToList();
-                style.Colors = hexColors;
+                style.Colors = new JavaScriptSerializer().Serialize(hexColors);
             }
             else
             {
@@ -78,7 +81,7 @@ namespace Charts
         {
             List<DataPoint1> dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             PieChartData data = new PieChartData();
-            data.Data = dataPoints;
+            data.Data = new JavaScriptSerializer().Serialize(dataPoints);
 
             return data;
         }
@@ -103,7 +106,7 @@ namespace Charts
             }
 
             PieChartData data = new PieChartData();
-            data.Data = ChartsUtilities.Data1FromCSV(_filePath);
+            data.Data = new JavaScriptSerializer().Serialize(ChartsUtilities.Data1FromCSV(_filePath));
 
             return data;
         }

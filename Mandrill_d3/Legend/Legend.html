@@ -1,14 +1,17 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+@using D3jsLib.Legend;
+
+<script type="text/javascript">
     function CreateLegend() {
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
 
-        var width = @(Model.Width),
-            height = @(Model.Height),
-            recSize = @(Model.RectangleSize);
+        var width = @(Model.Style.Width),
+            height = @(Model.Style.Height),
+            recSize = @(((LegendStyle)Model.Style).RectangleSize);
 
-        @if(Model.Colors)
+        @if(((LegendStyle)Model.Style).Colors != null)
         {
-            @:var color = d3.scale.ordinal().range(@Raw(Model.DomainColors));
+            @:var color = d3.scale.ordinal().range(@Raw(((LegendStyle)Model.Style).Colors));
         }
         else
         {
@@ -47,7 +50,7 @@
             .attr("font-weight", "Bold")
             .attr("x", width /2)
             .attr("y", data.length * (recSize + 1) + 25)
-            .text("@(Model.Title)");
+            .text("@(((LegendStyle)Model.Style).Title)");
     }
     CreateLegend();
 </script>

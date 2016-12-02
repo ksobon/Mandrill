@@ -2,6 +2,7 @@
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.ParallelCoordinates;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.ParallelCoordinates
 {
@@ -44,7 +45,7 @@ namespace Mandrill_Grasshopper.Components.ParallelCoordinates
             if (!DA.GetData<string>(0, ref filePath)) return;
 
             ParallelCoordinatesData data = new ParallelCoordinatesData();
-            data.Data = D3jsLib.Utilities.ChartsUtilities.Data2FromCSV(filePath);
+            data.Data = ChartsUtilities.DataToJsonString(ChartsUtilities.Data2FromCSV(filePath));
 
             DA.SetData(0, data);
         }

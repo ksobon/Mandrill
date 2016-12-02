@@ -117,16 +117,19 @@ namespace D3jsLib
     /// </summary>
     public abstract class Chart
     {
+        public string DivId { get; set; }
         public virtual ChartModel ChartModel { get; set; }
+        public virtual ChartStyle Style { get; set; }
+        public virtual ChartData Data { get; set; }
 
-        public abstract void CreateChartModel(int counter);
+        //public abstract void CreateChartModel(int counter);
         public abstract string EvaluateModelTemplate(int counter);
 
         public string EvaluateDivTemplate(int counter)
         {
             string templateName = "chart" + counter.ToString();
-            var model = this.ChartModel;
-            string colString = ChartsUtilities.EvaluateTemplate(model, "Mandrill_d3.Gridster.divTemplate.html", templateName);
+            //var model = this.ChartModel;
+            string colString = ChartsUtilities.EvaluateTemplate(this, "Mandrill_d3.Gridster.divTemplate.html", templateName);
             return colString;
         }
     }
@@ -160,10 +163,17 @@ namespace D3jsLib
         public virtual Margins Margins { get; set; }
     }
 
+    public abstract class ChartData
+    {
+        public virtual string Data { get; set; }
+        public virtual Domain Domain { get; set; }
+    }
+
     public class DataPoint1
     {
         public string name { get; set; }
         public double value { get; set; }
+        public int color { get; set; }
     }
 
     public class DataPoint2

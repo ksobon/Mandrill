@@ -3,6 +3,7 @@ using System.Drawing;
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.Text
 {
@@ -68,7 +69,7 @@ namespace Mandrill_Grasshopper.Components.Text
 
             TextStyle style = new TextStyle();
             style.FontSize = fontSize;
-            style.FontColor = fontColor;
+            style.FontColor = ChartsUtilities.ColorToHexString(fontColor);
             style.FontWeight = ((D3jsLib.Text.FontWeights)int.Parse(fontWeight)).ToString(); 
             style.FontStyle = ((D3jsLib.Text.FontStyle)int.Parse(fontStyle)).ToString();
             style.FontTransform = ((D3jsLib.Text.FontTransform)int.Parse(fontTransform)).ToString();
@@ -76,6 +77,8 @@ namespace Mandrill_Grasshopper.Components.Text
             style.Height = height;
             style.GridRow = address.X;
             style.GridColumn = address.Y;
+            style.SizeX = (int)Math.Ceiling(width / 100d);
+            style.SizeY = (int)Math.Ceiling(height / 100d);
 
             DA.SetData(0, style);
         }

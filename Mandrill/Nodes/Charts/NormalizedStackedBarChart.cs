@@ -7,6 +7,7 @@ using D3jsLib;
 using System.IO;
 using System.Linq;
 using System;
+using System.Web.Script.Serialization;
 
 namespace Charts
 {
@@ -45,13 +46,15 @@ namespace Charts
             style.Width = Width;
             style.Height = Height;
             style.YAxisLabel = YAxisLabel;
-            style.BarHoverColor = sColor.FromArgb(BarHoverColor.Alpha, BarHoverColor.Red, BarHoverColor.Green, BarHoverColor.Blue);
+            style.BarHoverColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(BarHoverColor.Alpha, BarHoverColor.Red, BarHoverColor.Green, BarHoverColor.Blue));
             style.Margins = Margins;
+            style.SizeX = (int)Math.Ceiling(Width / 100d);
+            style.SizeY = (int)Math.Ceiling(Height / 100d);
 
             if (Colors != null)
             {
                 List<string> hexColors = Colors.Select(x => ChartsUtilities.ColorToHexString(sColor.FromArgb(x.Alpha, x.Red, x.Green, x.Blue))).ToList();
-                style.Colors = hexColors;
+                style.Colors = new JavaScriptSerializer().Serialize(hexColors);
             }
             else
             {
@@ -84,21 +87,8 @@ namespace Charts
             List<string> Headers,
             List<List<object>> Values)
         {
-            List<DataPoint2> dataPoints = new List<DataPoint2>();
-            foreach (List<object> subList in Values)
-            {
-                DataPoint2 dataPoint = new DataPoint2();
-                dataPoint.Name = subList[0].ToString();
-                Dictionary<string, double> values = new Dictionary<string, double>();
-                for (int i = 1; i < subList.Count(); i++)
-                {
-                    values.Add(Headers[i], Convert.ToDouble(subList[i]));
-                }
-                dataPoint.Values = values;
-                dataPoints.Add(dataPoint);
-            }
             NormalizedStackedBarChartData data = new NormalizedStackedBarChartData();
-            data.Data = dataPoints;
+            data.Data = ChartsUtilities.DataToJsonString(ChartsUtilities.Data2FromList(Headers, Values));
 
             return data;
         }
@@ -125,7 +115,7 @@ namespace Charts
             }
 
             NormalizedStackedBarChartData data = new NormalizedStackedBarChartData();
-            data.Data = ChartsUtilities.Data2FromCSV(_filePath);
+            data.Data = ChartsUtilities.DataToJsonString(ChartsUtilities.Data2FromCSV(_filePath));
 
             return data;
         }

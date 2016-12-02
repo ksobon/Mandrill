@@ -1,7 +1,7 @@
 ﻿using System;
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
-using D3jsLib.d3AreaCharts;
+using D3jsLib.AreaCharts;
 
 namespace Mandrill_Grasshopper.Components.AreaChart
 {
@@ -46,7 +46,7 @@ namespace Mandrill_Grasshopper.Components.AreaChart
             if (!DA.GetData<AreaChartData>(0, ref data)) return;
             if (!DA.GetData<AreaChartStyle>(1, ref style)) return;
 
-            d3AreaChart chart = new d3AreaChart(data, style);
+            D3jsLib.AreaCharts.AreaChart chart = new D3jsLib.AreaCharts.AreaChart(data, style);
 
             DA.SetData(0, chart);
         }

@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using sColor = System.Drawing.Color;
 using Autodesk.DesignScript.Runtime;
 using D3jsLib.BarChart;
 using D3jsLib;
+using D3jsLib.Utilities;
+using System.Web.Script.Serialization;
 
 namespace Charts
 {
@@ -43,14 +46,16 @@ namespace Charts
             bool xTextRotation = false)
         {
             BarStyle style = new BarStyle();
-            style.BarColor = sColor.FromArgb(BarColor.Alpha, BarColor.Red, BarColor.Green, BarColor.Blue);
-            style.BarHoverColor = sColor.FromArgb(BarHoverColor.Alpha, BarHoverColor.Red, BarHoverColor.Green, BarHoverColor.Blue);
+            style.BarColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(BarColor.Alpha, BarColor.Red, BarColor.Green, BarColor.Blue));
+            style.BarHoverColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(BarHoverColor.Alpha, BarHoverColor.Red, BarHoverColor.Green, BarHoverColor.Blue));
             style.Width = Width;
             style.Height = Height;
             style.YAxisLabel = YAxisLabel;
             style.TickMarksX = TickMarksX;
             style.xTextRotation = xTextRotation;
             style.Margins = Margins;
+            style.SizeX = (int)Math.Ceiling(Width / 100d);
+            style.SizeY = (int)Math.Ceiling(Height / 100d);
 
             if (Address != null)
             {
@@ -81,7 +86,7 @@ namespace Charts
         {
             List<DataPoint1> dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             BarData barData = new BarData();
-            barData.Data = dataPoints;
+            barData.Data = new JavaScriptSerializer().Serialize(dataPoints);
             barData.Domain = Domain;
             return barData;
         }
@@ -110,7 +115,7 @@ namespace Charts
             }
 
             BarData barData = new BarData();
-            barData.Data = D3jsLib.Utilities.ChartsUtilities.Data1FromCSV(_filePath);
+            barData.Data = new JavaScriptSerializer().Serialize(ChartsUtilities.Data1FromCSV(_filePath));
             barData.Domain = Domain;
             return barData;
         }
@@ -122,9 +127,9 @@ namespace Charts
         /// <param name="Style">Bar Chart Style.</param>
         /// <returns name="Chart">Generated Bar Chart.</returns>
         /// <search>bar, chart</search>
-        public static d3BarChart Chart(BarData Data, BarStyle Style)
+        public static D3jsLib.BarChart.BarChart Chart(BarData Data, BarStyle Style)
         {
-            d3BarChart chart = new d3BarChart(Data, Style);
+            D3jsLib.BarChart.BarChart chart = new D3jsLib.BarChart.BarChart(Data, Style);
             return chart;
         }
     }

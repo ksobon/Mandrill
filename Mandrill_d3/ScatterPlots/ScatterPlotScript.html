@@ -1,11 +1,14 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+@using D3jsLib.d3ScatterPlots;
+
+<script type="text/javascript">
     function RenderScatterPlot() {
 
-        var data = @Raw(Model.Data);
+        var data = @Raw(Model.Data.Data);
 
-        var margin = {top: @(Model.Margins.Top), right: @(Model.Margins.Right), bottom: @(Model.Margins.Bottom), left: @(Model.Margins.Left)},
-		        width = @(Model.Width) - margin.left - margin.right,
-		        height = @(Model.Height) - margin.top - margin.bottom;
+        var margin = {top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left)},
+		        width = @(Model.Style.Width) - margin.left - margin.right,
+		        height = @(Model.Style.Height) - margin.top - margin.bottom;
 
 	    var svg = d3.select("#@(Model.DivId)").append("svg")
 	        .attr("width", width + margin.left + margin.right)
@@ -26,9 +29,9 @@
         var x = d3.scale.linear()
             .range([0, width - margin.left - margin.right]);
 
-        @if(Model.DomainX)
+        @if(((ScatterPlotData)Model.Data).DomainX != null)
         {
-            @:x.domain([@(Model.DomainXA)-1, @(Model.DomainXB)]);
+            @:x.domain([@(((ScatterPlotData)Model.Data).DomainX.A)-1, @(((ScatterPlotData)Model.Data).DomainX.B)]);
         }
         else
         {
@@ -38,9 +41,9 @@
         var y = d3.scale.linear()
             .range([height - margin.top - margin.bottom, 0]);
 
-        @if(Model.DomainY)
+        @if(((ScatterPlotData)Model.Data).DomainY != null)
         {
-            @:y.domain([@(Model.DomainYA), @(Model.DomainYB)]);
+            @:y.domain([@(((ScatterPlotData)Model.Data).DomainY.A), @(((ScatterPlotData)Model.Data).DomainY.B)]);
         }
         else
         {
@@ -49,7 +52,7 @@
 
         var rScale = d3.scale.linear()
 			.domain([0, d3.max(data, function(d) { return d.size; })])
-			.range([2, 10]);
+			.range([0, 10]);
 
         var xAxis = d3.svg.axis()
 		    .scale(x)
@@ -69,7 +72,7 @@
             .attr("x", width - margin.right - margin.left)
             .attr("y", -6)
             .style("text-anchor", "end")
-            .text("@(Model.XAxisLabel)");
+            .text("@(((ScatterPlotStyle)Model.Style).XAxisLabel)");
 
         svg.append("g")
 		    .attr("class", "y axis")
@@ -79,7 +82,7 @@
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("@(Model.YAxisLabel)");
+            .text("@(((ScatterPlotStyle)Model.Style).YAxisLabel)");
 
         var node = svg.selectAll("g.node")
 		    .data(data, function (d) {return d.name;});
@@ -92,17 +95,6 @@
             .attr("r", function(d) {return rScale(d.size);})
             .attr("opacity", 0.7)
             .style("fill", function(d){return color(d.color);});
-            //.on("mouseover", function(d) {
-            //  tooltip.transition()
-            //       .duration(200)
-            //       .style("opacity", .9);
-            //  tooltip.html(d.name + "<br /> (" + xValue(d) + ", " + yValue(d) + ")")
-            //       .style("left", (d3.event.pageX + 5) + "px")
-            //       .style("top", (d3.event.pageY - 28) + "px");})
-            //.on("mouseout", function(d) { 
-            //    tooltip.transition()
-            //       .duration(500)
-            //       .style("opacity", 0);});
         }
     RenderScatterPlot();
 </script>

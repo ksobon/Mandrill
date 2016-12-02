@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
 using D3jsLib;
+using D3jsLib.Utilities;
 
 namespace Mandrill_Grasshopper.Components.GroupedBarChart
 {
@@ -54,10 +55,8 @@ namespace Mandrill_Grasshopper.Components.GroupedBarChart
             if (!DA.GetDataTree(1, out values)) return;
             DA.GetData<D3jsLib.Domain>(2, ref domain);
 
-            List<DataPoint2> dataPoints = Mandrill_Grasshopper.Utilities.Utilities.Data2FromTree(headers, values);
-
             GroupedBarChartData data = new GroupedBarChartData();
-            data.Data = dataPoints;
+            data.Data = ChartsUtilities.DataToJsonString(Mandrill_Grasshopper.Utilities.Utilities.Data2FromTree(headers, values));
             data.Domain = domain;
 
             DA.SetData(0, data);
