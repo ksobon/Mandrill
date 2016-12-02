@@ -7,13 +7,13 @@ using Rhino.PlugIns;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mandrill_Grasshopper")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Mandrill")]
+[assembly: AssemblyDescription("Grasshopper plug-in for creating data visualizations with D3.js")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("archi-lab,llc")]
 [assembly: AssemblyProduct("Mandrill_Grasshopper")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright © konrad k sobon 2016")]
+[assembly: AssemblyTrademark("archi-lab,llc")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
