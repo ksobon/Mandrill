@@ -765,6 +765,23 @@
             </summary>
       <param name="index">The index of the cookie to retrieve from the collection.</param>
     </member>
+    <member name="F:EO.WebBrowser.DevToolsUI.components">
+      <summary>
+            Required designer variable.
+            </summary>
+    </member>
+    <member name="M:EO.WebBrowser.DevToolsUI.Dispose(System.Boolean)">
+      <summary>
+            Clean up any resources being used.
+            </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="M:EO.WebBrowser.DevToolsUI.InitializeComponent">
+      <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+    </member>
     <member name="T:EO.WebBrowser.DOM.Collection`1">
       <summary>
             Represents a collection of objects.
@@ -4326,6 +4343,16 @@
             Returns a <see cref="T:EO.WebBrowser.PreloadTask" /> that you can use to wait for the preload to complete.
             </returns>
     </member>
+    <member name="M:EO.WebBrowser.WebView.ShowDebugUI">
+      <summary>
+            Displays debug UI for you to examine all <see cref="T:EO.WebBrowser.WebView" /> instances in the current process.
+            </summary>
+    </member>
+    <member name="M:EO.WebBrowser.WebView.CloseDebugUI">
+      <summary>
+            Close the debug UI.
+            </summary>
+    </member>
     <member name="P:EO.WebBrowser.WebView.Engine">
       <summary>
             Gets or sets the <see cref="T:EO.WebEngine.Engine" /> associated to this <see cref="T:EO.WebBrowser.WebView" />.
@@ -4884,9 +4911,29 @@
             An error. This can be from an unhandled JavaScript exception, or by calling console.error().
             </summary>
     </member>
+    <member name="T:EO.WebBrowser.ConsoleMessageType">
+      <summary>
+            Specifies the type of the console message.
+            </summary>
+    </member>
+    <member name="F:EO.WebBrowser.ConsoleMessageType.Network">
+      <summary>
+            Message related to the network.
+            </summary>
+    </member>
+    <member name="F:EO.WebBrowser.ConsoleMessageType.ConsoleAPI">
+      <summary>
+            Message from the console API.
+            </summary>
+    </member>
     <member name="T:EO.WebBrowser.ConsoleMessageEventArgs">
       <summary>
             Provide additional data for the <see cref="E:EO.WebBrowser.WebView.ConsoleMessage" /> event.
+            </summary>
+    </member>
+    <member name="P:EO.WebBrowser.ConsoleMessageEventArgs.Type">
+      <summary>
+            Gets the message type.
             </summary>
     </member>
     <member name="P:EO.WebBrowser.ConsoleMessageEventArgs.Severity">

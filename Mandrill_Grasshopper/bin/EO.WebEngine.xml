@@ -514,6 +514,11 @@
             Gets the engine state.
             </summary>
     </member>
+    <member name="P:EO.WebEngine.Engine.CachePath">
+      <summary>
+            Gets the engine cache path.
+            </summary>
+    </member>
     <member name="P:EO.WebEngine.Engine.Data">
       <summary>
             Gets or sets custom engine data.
@@ -715,11 +720,6 @@
             keyboard only if such device does not exist. Setting this property to true to always
             display the on screen keyboard even if such device exists.
             </remarks>
-    </member>
-    <member name="P:EO.WebEngine.EngineOptions.DisableCache">
-      <summary>
-            Gets or sets a value to whether to disable caching.
-            </summary>
     </member>
   </members>
 </doc>

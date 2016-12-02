@@ -124,3 +124,4 @@ E:\Google Drive\Work\Mandrill\Mandrill_UI\obj\Debug\Mandrill_UI.Properties.Resou
 E:\Google Drive\Work\Mandrill\Mandrill_UI\obj\Debug\Mandrill_UI.csproj.GenerateResource.Cache
 E:\Google Drive\Work\Mandrill\Mandrill_UI\obj\Debug\Mandrill_UI.dll
 E:\Google Drive\Work\Mandrill\Mandrill_UI\obj\Debug\Mandrill_UI.pdb
+E:\Google Drive\Work\Mandrill\Mandrill_UI\bin\Debug\Mandrill_UI.dll.config
