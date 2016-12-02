@@ -4,6 +4,10 @@ using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib;
 using D3jsLib.HorizontalBarChart;
+using System.Collections.Generic;
+using System.Linq;
+using D3jsLib.Utilities;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.HorizontalBarChart
 {
@@ -24,7 +28,7 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddColourParameter("BarColor", "BC", Resources.Style_BarColorDesc, GH_ParamAccess.item, Color.FromArgb(50, 130, 190));
+            pManager.AddColourParameter("BarColor", "BC", Resources.Style_BarColorDesc, GH_ParamAccess.list, new List<Color>() { Color.FromArgb(50, 130, 190) });
             pManager.AddColourParameter("BarHoverColor", "HC", Resources.Style_HoverColorDesc, GH_ParamAccess.item, Color.FromArgb(255, 0, 0));
             pManager.AddGenericParameter("Address", "A", Resources.Style_AddressDesc, GH_ParamAccess.item);
             pManager[2].Optional = true;
@@ -49,7 +53,7 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Color barColor = Color.FromArgb(50, 130, 190);
+            List<Color> barColor = new List<Color>() { Color.FromArgb(50, 130, 190) };
             Color hoverColor = Color.FromArgb(255, 0, 0);
             GridAddress address = new GridAddress(1, 1);
             int width = 1000;
@@ -57,7 +61,7 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
             string xAxisLabel = "Label";
             Margins margins = new Margins();
 
-            DA.GetData<Color>(0, ref barColor);
+            DA.GetDataList<Color>(0, barColor);
             DA.GetData<Color>(1, ref hoverColor);
             DA.GetData<GridAddress>(2, ref address);
             DA.GetData<Margins>(3, ref margins);
@@ -67,14 +71,17 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
 
             // create style
             HorizontalBarChartStyle style = new HorizontalBarChartStyle();
-            style.BarColor = barColor;
-            style.BarHoverColor = hoverColor;
+            List<string> hexColors = barColor.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
+            style.BarColor = new JavaScriptSerializer().Serialize(hexColors);
+            style.BarHoverColor = ChartsUtilities.ColorToHexString(hoverColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Width = width;
             style.Height = height;
             style.YAxisLabel = xAxisLabel;
             style.Margins = margins;
+            style.SizeX = (int)Math.Ceiling(width / 100d);
+            style.SizeY = (int)Math.Ceiling(height / 100d);
 
             DA.SetData(0, style);
         }

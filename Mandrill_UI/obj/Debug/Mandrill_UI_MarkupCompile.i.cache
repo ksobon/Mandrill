@@ -16,5 +16,5 @@ DEBUG;TRACE
 311913237105
 Controls\PaperSizeDropdown.xaml;Controls\MandrillWindow.xaml;Controls\MandrillPrintButtonControl.xaml;Controls\MandrillWindowButtonControl.xaml;
 
-True
+False
 

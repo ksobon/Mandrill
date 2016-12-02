@@ -88,7 +88,6 @@ namespace Charts
             else
             {
                 dataPoints = Names.Zip(Values, (x, y) => new DataPoint1 { name = x, value = y}).ToList();
-
             }
             HorizontalBarChartData barData = new HorizontalBarChartData();
             barData.Data = new JavaScriptSerializer().Serialize(dataPoints);

@@ -113,6 +113,11 @@ namespace D3jsLib.Utilities
             return dataPoints;
         }
 
+        public static string ColorToHexString()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         ///     Method for converting local path to HTML compatible file:/// path.
         /// </summary>

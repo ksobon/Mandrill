@@ -4,6 +4,9 @@ using System.Linq;
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.HorizontalBarChart;
+using D3jsLib.Utilities;
+using D3jsLib;
+using System.Web.Script.Serialization;
 
 namespace Mandrill_Grasshopper.Components.HorizontalBarChart
 {
@@ -26,8 +29,9 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
         {
             pManager.AddTextParameter("Names", "N", Resources.Data_NamesDesc, GH_ParamAccess.list);
             pManager.AddNumberParameter("Values", "V", Resources.Data_ValuesDesc, GH_ParamAccess.list);
+            pManager.AddIntegerParameter("Colors", "C", Resources.Data_ColorsDesc, GH_ParamAccess.list);
             pManager.AddGenericParameter("Domain", "D", Resources.Data_Domain, GH_ParamAccess.item);
-            pManager[2].Optional = true;
+            pManager[3].Optional = true;
         }
 
         /// <summary>
@@ -46,15 +50,25 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
         {
             List<string> names = new List<string>();
             List<double> values = new List<double>();
-            D3jsLib.Domain domain = null;
+            List<int> colors = null;
+            Domain domain = null;
 
             if (!DA.GetDataList<string>(0, names)) return;
             if (!DA.GetDataList<double>(1, values)) return;
-            DA.GetData<D3jsLib.Domain>(2, ref domain);
+            DA.GetDataList<int>(2, colors);
+            DA.GetData<Domain>(3, ref domain);
 
-            List<D3jsLib.DataPoint1> dataPoints = names.Zip(values, (x, y) => new D3jsLib.DataPoint1 { name = x, value = y }).ToList();
+            List<DataPoint1> dataPoints;
+            if (colors != null)
+            {
+                dataPoints = names.ZipThree(values, colors, (x, y, z) => new DataPoint1 { name = x, value = y, color = z }).ToList();
+            }
+            else
+            {
+                dataPoints = names.Zip(values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
+            }
             HorizontalBarChartData data = new HorizontalBarChartData();
-            data.Data = dataPoints;
+            data.Data = new JavaScriptSerializer().Serialize(dataPoints);
             data.Domain = domain;
 
             DA.SetData(0, data);

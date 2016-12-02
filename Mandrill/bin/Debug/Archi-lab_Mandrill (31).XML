@@ -1,0 +1,699 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Archi-lab_Mandrill</name>
+    </assembly>
+    <members>
+        <member name="T:Charts.HorizontalBarChart">
+            <summary>
+                Horizontal Bar Chart.
+            </summary>
+        </member>
+        <member name="M:Charts.HorizontalBarChart.Style(System.Collections.Generic.List{DSCore.Color},DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
+            <summary>
+                Horizontal Bar Chart Style
+            </summary>
+            <param name="BarColor">Fill color for bars.</param>
+            <param name="BarHoverColor">Fill color when hovered over.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width of the entire chart in pixels.</param>
+            <param name="Height">Height of the entire chart in pixels.</param>
+            <param name="XAxisLabel">Text displayed in bottom-right corner of chart.</param>
+            <returns name="Style">Style</returns>
+        </member>
+        <member name="M:Charts.HorizontalBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Int32},D3jsLib.Domain)">
+            <summary>
+                Horizontal Bar Chart Data.
+            </summary>
+            <param name="Names"></param>
+            <param name="Values"></param>
+            <param name="Colors"></param>
+            <param name="Domain"></param>
+            <returns name="Data">Data</returns>
+        </member>
+        <member name="M:Charts.HorizontalBarChart.DataFromCSV(System.Object,D3jsLib.Domain)">
+            <summary>
+                Horizontal Bar Chart Data.
+            </summary>
+            <param name="FilePath"></param>
+            <param name="Domain"></param>
+            <returns name="Data">Data</returns>
+        </member>
+        <member name="M:Charts.HorizontalBarChart.Chart(D3jsLib.HorizontalBarChart.HorizontalBarChartData,D3jsLib.HorizontalBarChart.HorizontalBarChartStyle)">
+            <summary>
+                Horizontal Bar Chart
+            </summary>
+            <param name="Data"></param>
+            <param name="Style"></param>
+            <returns name="Chart">Chart</returns>
+        </member>
+        <member name="T:Charts.NormalizedStackedBarChart">
+            <summary>
+                Normalized Stacked Bar Chart nodes.
+            </summary>
+        </member>
+        <member name="M:Charts.NormalizedStackedBarChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
+            <summary>
+               Normalized Stacked Bar Chart Style.
+            </summary>
+            <param name="BarHoverColor"></param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width"></param>
+            <param name="Height"></param>
+            <param name="YAxisLabel"></param>
+            <param name="Colors"></param>
+            <returns name="Style">Normalized Stacked Bar Chart Style</returns>
+            <search>normalized, stacked, bar, chart, style</search>
+        </member>
+        <member name="M:Charts.NormalizedStackedBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}})">
+            <summary>
+                Normalized Stacked Bar Chart Data object.
+            </summary>
+            <param name="Headers">Names of all values that will be grouped. First value is always "Name".</param>
+            <param name="Values">Nested List of values where first item in a sub-list is Group Name. Following items 
+            must match number of value names defined in Headers input. </param>
+            <returns name="Data">Normalized Stacked Bar Chart Data</returns>
+            <search>normalized, data, stacked, bar, chart</search>
+        </member>
+        <member name="M:Charts.NormalizedStackedBarChart.DataFromCSV(System.Object)">
+            <summary>
+                Normalized Stacked Bar Chart Data object.
+            </summary>
+            <param name="FilePath">Path to a CSV file.</param>
+            <returns name="Data">Data Class for use with Stacked Bar Chart.</returns>
+            <search>normalized, data, stacked bar chart, chart, bar, grouped</search>
+        </member>
+        <member name="M:Charts.NormalizedStackedBarChart.Chart(D3jsLib.NormalizedStackedBarChart.NormalizedStackedBarChartData,D3jsLib.NormalizedStackedBarChart.NormalizedStackedBarChartStyle)">
+            <summary>
+                New Normalized Stacked Bar Chart object.
+            </summary>
+            <param name="Data">Normalized Stacked Bar Chart Data.</param>
+            <param name="Style">Normalized Stacked Bar Chart Style.</param>
+            <returns name="Chart">Generated Bar Chart.</returns>
+            <search>normalized, bar, chart, grouped</search>
+        </member>
+        <member name="T:Charts.PieChart">
+            <summary>
+                Donut Chart
+            </summary>
+        </member>
+        <member name="M:Charts.PieChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Boolean)">
+            <summary>
+                Pie Chart Style
+            </summary>
+            <param name="HoverColor">Hover over color.</param>
+            <param name="Colors">List of optional colors for chart values.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width of chart in pixels.</param>
+            <param name="Labels">Boolean value that controls if Labels are displayed.</param>
+            <returns name="Style">Pie Chart Style object.</returns>
+        </member>
+        <member name="M:Charts.PieChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double})">
+            <summary>
+                Pie Chart Data.
+            </summary>
+            <param name="Names">Names of each data points.</param>
+            <param name="Values">Values of each data point.</param>
+            <returns name="Data">Pie Chart data object.</returns>
+        </member>
+        <member name="M:Charts.PieChart.DataFromCSV(System.Object)">
+            <summary>
+                Pie Chart Data
+            </summary>
+            <param name="FilePath">File Path to CSV file.</param>
+            <returns name="Data">Pie Chart Data object.</returns>
+        </member>
+        <member name="M:Charts.PieChart.Chart(D3jsLib.PieChart.PieChartData,D3jsLib.PieChart.PieChartStyle)">
+            <summary>
+                Pie chart
+            </summary>
+            <param name="Data">Pie Chart data object.</param>
+            <param name="Style">Pie Chart Style object.</param>
+            <returns name="Chart">Pie Chart object.</returns>
+        </member>
+        <member name="T:Charts.ScatterPlotMatrix">
+            <summary>
+                Scatter Plot Matrix Nodes.
+            </summary>
+        </member>
+        <member name="M:Charts.ScatterPlotMatrix.Style(System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32)">
+            <summary>
+                Style
+            </summary>
+            <param name="Colors">List of Colors.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Width">Width in pixels.</param>
+            <returns name="Style">Style</returns>
+        </member>
+        <member name="M:Charts.ScatterPlotMatrix.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}})">
+            <summary>
+                Data.
+            </summary>
+            <param name="Headers">Header values.</param>
+            <param name="Values">Data values.</param>
+            <returns name="Data">Data</returns>
+        </member>
+        <member name="M:Charts.ScatterPlotMatrix.DataFromCSV(System.Object)">
+            <summary>
+                Data from CSV
+            </summary>
+            <param name="FilePath">File path to CSV file.</param>
+            <returns name="Data">Data</returns>
+        </member>
+        <member name="M:Charts.ScatterPlotMatrix.Chart(D3jsLib.ScatterPlotMatrix.ScatterPlotMatrixData,D3jsLib.ScatterPlotMatrix.ScatterPlotMatrixStyle)">
+            <summary>
+                Scatter Plot Matrix Chart
+            </summary>
+            <param name="Data">Data</param>
+            <param name="Style">Style</param>
+            <returns name="Chart">Chart.</returns>
+        </member>
+        <member name="T:Charts.AreaChart">
+            <summary>
+                Area Chart
+            </summary>
+        </member>
+        <member name="M:Charts.AreaChart.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+                Area Chart Style object.
+            </summary>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Marings in pixels.</param>
+            <param name="Width">Width of the entire chart in pixels.</param>
+            <param name="Height">Height of the entire chart in pixels.</param>
+            <param name="YAxisLabel">Text used to label Y Axis.</param>
+            <param name="AreaColor">Color for Area Chart fill.</param>
+            <param name="TickMarksX">Approximate number of tick marks on X Axis.</param>
+            <returns name="Style">Area Chart Style.</returns>
+            <search>area, chart, style</search>
+        </member>
+        <member name="M:Charts.AreaChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},D3jsLib.Domain)">
+            <summary>
+                Area Chart Data object.
+            </summary>
+            <param name="Names">Name property for each value.</param>
+            <param name="Values">Numerical value to plot.</param>
+            <param name="Domain">Optional domain for data set.</param>
+            <returns name="Data">Area Chart Data.</returns>
+            <search>area, chart, data</search>
+        </member>
+        <member name="M:Charts.AreaChart.DataFromCSV(System.Object,D3jsLib.Domain)">
+            <summary>
+                Area Chart Data from CSV File.
+            </summary>
+            <param name="FilePath">File Path to where CSV is stored.</param>
+            <param name="Domain">Custom domain.</param>
+            <returns name="Data">Area Chart Data.</returns>
+            <search>area, chart, data</search>
+        </member>
+        <member name="M:Charts.AreaChart.Chart(D3jsLib.AreaCharts.AreaChartData,D3jsLib.AreaCharts.AreaChartStyle)">
+            <summary>
+                New Area Chart object
+            </summary>
+            <param name="Data">Area Chart Data.</param>
+            <param name="Style">Area Chart Style.</param>
+            <returns name="Chart">Area Chart.</returns>
+            <search>area, chart</search>
+        </member>
+        <member name="T:Charts.BarChart">
+            <summary>
+                Bar Charts Class.
+            </summary>
+        </member>
+        <member name="M:Charts.BarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32,System.Boolean)">
+            <summary>
+                Bar Chart Style object.
+            </summary>
+            <param name="BarColor">Fill color for bars.</param>
+            <param name="BarHoverColor">Fill color when hovered over.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width of the entire chart in pixels.</param>
+            <param name="Height">Height of the entire chart in pixels.</param>
+            <param name="YAxisLabel">Text displayed in top-left corner of chart.</param>
+            <param name="TickMarksX">Approximate number of tick mark values for X Axis.</param>
+            <param name="xTextRotation">Indicates if labels along x-axis are rotated.</param>
+            <returns name="Style">Bar Chart Style.</returns>
+            <search>bar, chart, style</search>
+        </member>
+        <member name="M:Charts.BarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},D3jsLib.Domain)">
+            <summary>
+                Bar Chart Data object.
+            </summary>
+            <param name="Names">Name property for each value.</param>
+            <param name="Values">Numerical value to plot.</param>
+            <param name="Domain">Optional domain for data set.</param>
+            <returns name="Data">Bar Chart Data</returns>
+            <search>bar, chart, data</search>
+        </member>
+        <member name="M:Charts.BarChart.DataFromCSV(System.Object,D3jsLib.Domain)">
+            <summary>
+                Bar Chart Data object.
+            </summary>
+            <param name="FilePath">CSV File Path.</param>
+            <param name="Domain">Optional Domain for data set.</param>
+            <returns name="Data">Bar Chart Data</returns>
+            <search>bar, chart, data</search>
+        </member>
+        <member name="M:Charts.BarChart.Chart(D3jsLib.BarChart.BarData,D3jsLib.BarChart.BarStyle)">
+            <summary>
+                New Bar Chart object.
+            </summary>
+            <param name="Data">Bar Chart Data.</param>
+            <param name="Style">Bar Chart Style.</param>
+            <returns name="Chart">Generated Bar Chart.</returns>
+            <search>bar, chart</search>
+        </member>
+        <member name="T:Charts.DonutChart">
+            <summary>
+                Donut Chart
+            </summary>
+        </member>
+        <member name="M:Charts.DonutChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Boolean,System.String)">
+            <summary>
+                Donut Chart Style object.
+            </summary>
+            <param name="HoverColor">Hover over color.</param>
+            <param name="Colors">List of optional colors for chart values.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width of chart in pixels.</param>
+            <param name="Labels">Boolean value that controls if Labels are displayed.</param>
+            <param name="TotalLabel">Text appearing at center of the Donut chart.</param>
+            <returns name="Style">Donut Chart Object.</returns>
+            <search>donut, chart, style</search>
+        </member>
+        <member name="M:Charts.DonutChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double})">
+            <summary>
+                Donut Chart Data object.
+            </summary>
+            <param name="Names">Names of each data points.</param>
+            <param name="Values">Values of each data point.</param>
+            <returns name="Data">Donut Chart Data</returns>
+            <search>data, donut, chart, donut chart data</search>
+        </member>
+        <member name="M:Charts.DonutChart.DataFromCSV(System.Object)">
+            <summary>
+                Donut Chart Data from CSV.
+            </summary>
+            <param name="FilePath">File Path to CSV file.</param>
+            <returns name="Data">Donut Chart Data</returns>
+            <search>csv, donut, chart, data</search>
+        </member>
+        <member name="M:Charts.DonutChart.Chart(D3jsLib.DonutChart.DonutChartData,D3jsLib.DonutChart.DonutChartStyle)">
+            <summary>
+                Donut Chart object.
+            </summary>
+            <param name="Data">Donut Chart Data object.</param>
+            <param name="Style">Donut Chart Style object.</param>
+            <returns name="Chart">Donut Chart</returns>
+            <search>donut chart, chart, donut</search>
+        </member>
+        <member name="T:Charts.GroupedBarChart">
+            <summary>
+                Grouped Bar Chart nodes.
+            </summary>
+        </member>
+        <member name="M:Charts.GroupedBarChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
+            <summary>
+                Grouped Bar Chart Style.
+            </summary>
+            <param name="BarHoverColor">Hover over color.</param>
+            <param name="Address">Grid Coordinates</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width in pixels.</param>
+            <param name="Height">Height in pixels.</param>
+            <param name="YAxisLabel">Label for Y-Axis.</param>
+            <param name="Colors">Optional list of colors for each group.</param>
+            <returns name="Style">Bar Chart Style object.</returns>
+            <search>grouped, bar, chart, style</search>
+        </member>
+        <member name="M:Charts.GroupedBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}},D3jsLib.Domain)">
+            <summary>
+                Grouped Bar Chart Data.
+            </summary>
+            <param name="Headers"></param>
+            <param name="Values"></param>
+            <param name="Domain"></param>
+            <returns name="Data">Grouped Bar Chart Data object</returns>
+        </member>
+        <member name="M:Charts.GroupedBarChart.DataFromCSV(System.Object,D3jsLib.Domain)">
+            <summary>
+                Grouped Bar Chart Data object.
+            </summary>
+            <param name="FilePath">Path to a CSV file.</param>
+            <param name="Domain">Y Domain of a chart.</param>
+            <returns name="Data">Data Class for use with Grouped Bar Chart.</returns>
+            <search>data, grouped bar chart, chart, bar, grouped</search>
+        </member>
+        <member name="M:Charts.GroupedBarChart.Chart(D3jsLib.GroupedBarChart.GroupedBarChartData,D3jsLib.GroupedBarChart.GroupedBarChartStyle)">
+            <summary>
+                New Grouped Bar Chart object.
+            </summary>
+            <param name="Data">Bar Chart Data.</param>
+            <param name="Style">Bar Chart Style.</param>
+            <returns name="Chart">Generated Bar Chart.</returns>
+            <search>bar, chart, grouped</search>
+        </member>
+        <member name="T:Charts.LineChart">
+            <summary>
+                Line Chart nodes
+            </summary>
+        </member>
+        <member name="M:Charts.LineChart.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+                Line Chart Style object.
+            </summary>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width of the entire chart in pixels.</param>
+            <param name="Height">Height of the entire chart in pixels.</param>
+            <param name="YAxisLabel">Text used to label Y Axis.</param>
+            <param name="LineColor">Color for Line Chart Line.</param>
+            <param name="TickMarksX">Approximate number of tick mark values for X Axis.</param>
+            <returns name="Style">Line Chart Style.</returns>
+            <search>line, style</search>
+        </member>
+        <member name="M:Charts.LineChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},D3jsLib.Domain)">
+            <summary>
+                Line Chart Data object.
+            </summary>
+            <param name="Names">Name property for each value.</param>
+            <param name="Values">Numerical value.</param>
+            <param name="Domain">Optional domain for data set.</param>
+            <returns name="Data">Line Chart Data.</returns>
+            <search>data</search>
+        </member>
+        <member name="M:Charts.LineChart.DataFromCSV(System.Object,D3jsLib.Domain)">
+            <summary>
+                Line Chart Data object.
+            </summary>
+            <param name="FilePath">CSV File Path.</param>
+            <param name="Domain">Optional Domain for data set.</param>
+            <returns name="Data">Line Chart Data</returns>
+            <search>line, chart, data</search>
+        </member>
+        <member name="M:Charts.LineChart.Chart(D3jsLib.LineChart.LineChartData,D3jsLib.LineChart.LineChartStyle)">
+            <summary>
+                New Line Chart object.
+            </summary>
+            <param name="Data">Line Chart Data.</param>
+            <param name="Style">Line Chart Style.</param>
+            <returns name="Chart">Line Chart.</returns>
+            <search>line, chart</search>
+        </member>
+        <member name="T:Charts.MiscNodes">
+            <summary>
+                Nodes shared across all chart types.
+            </summary>
+        </member>
+        <member name="M:Charts.MiscNodes.Margins(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Chart Margins.
+            </summary>
+            <param name="Top">Top margin in pixels.</param>
+            <param name="Bottom">Top margin in pixels.</param>
+            <param name="Right">Right margin in pixels.</param>
+            <param name="Left">Left margin in pixels.</param>
+            <returns name="Margins">Margins</returns>
+        </member>
+        <member name="M:Charts.MiscNodes.Domain(System.Double,System.Double)">
+            <summary>
+                Chart domain.
+            </summary>
+            <param name="A">Domain start.</param>
+            <param name="B">Domain end.</param>
+            <returns name="Domain">Area Chart Domain.</returns>
+            <search>area, chart, domain</search>
+        </member>
+        <member name="M:Charts.MiscNodes.Address(System.Int32,System.Int32)">
+            <summary>
+                Grid Address node.
+            </summary>
+            <param name="column">Column integer.</param>
+            <param name="row">Row integer.</param>
+            <returns name="Address">Grid Address for chart placement.</returns>
+            <search>address, mandrill, grid, gridster</search>
+        </member>
+        <member name="M:Charts.MiscNodes.GetNull">
+            <summary>
+                Returns null value.
+            </summary>
+        </member>
+        <member name="M:Charts.MiscNodes.GetColorList">
+            <summary>
+                Returns a default color in a list.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Charts.ParallelCoordinates">
+            <summary>
+                Grouped Bar Chart nodes.
+            </summary>
+        </member>
+        <member name="M:Charts.ParallelCoordinates.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32)">
+            <summary>
+                Parallel Coordinates Style object.
+            </summary>
+            <param name="LineColor">Color of the selected Lines/Values.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width of the Chart in pixels.</param>
+            <param name="Height">Height of the Chart in pixels.</param>
+            <returns name="Style">Parallel Coordinates Style.</returns>
+            <search>parallel, coordinates, style</search>
+        </member>
+        <member name="M:Charts.ParallelCoordinates.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}})">
+            <summary>
+                Parallel Coordinates Data.
+            </summary>
+            <param name="Headers">Names of each Axis.</param>
+            <param name="Values">Values for each data point.</param>
+            <returns name="Data">Parallel Coordinates Data.</returns>
+            <search>parallel, coordinates, data</search>
+        </member>
+        <member name="M:Charts.ParallelCoordinates.DataFromCSV(System.Object)">
+            <summary>
+                Parallel Coordinates Data.
+            </summary>
+            <param name="FilePath">File Path for CSV file.</param>
+            <returns name="Data">Parallel Coordinates Data.</returns>
+            <search>parallel, coordinates, data, csv</search>
+        </member>
+        <member name="M:Charts.ParallelCoordinates.Chart(D3jsLib.ParallelCoordinates.ParallelCoordinatesData,D3jsLib.ParallelCoordinates.ParallelCoordinatesStyle)">
+            <summary>
+                Parallel Coordinates Chart.
+            </summary>
+            <param name="Data">Parallel Coordinates Data object.</param>
+            <param name="Style">Parallel Coordinates Style object.</param>
+            <returns name="Chart">Parallel Coordinates Chart.</returns>
+        </member>
+        <member name="T:Charts.ScatterPlot">
+            <summary>
+                Scatter Plot nodes.
+            </summary>
+        </member>
+        <member name="M:Charts.ScatterPlot.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+                Scatter Plot Style.
+            </summary>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width in pixels.</param>
+            <param name="Height">Height in pixels.</param>
+            <param name="YAxisLabel">Label displayed for Y Axis.</param>
+            <param name="XAxisLabel">Label displayed for X Axis.</param>
+            <param name="DotColor">Color of Scatter Plot dot.</param>
+            <returns name="Style">Scatter Plot Style.</returns>
+            <search>style, scatter plot</search>
+        </member>
+        <member name="M:Charts.ScatterPlot.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},D3jsLib.Domain,D3jsLib.Domain)">
+            <summary>
+                Scatter Plot Data.
+            </summary>
+            <param name="Names">Names for Data Points.</param>
+            <param name="ValueX">Value along X Axis.</param>
+            <param name="ValueY">Value along Y Axis.</param>
+            <param name="Size">Size of displayed dot.</param>
+            <param name="DomainX">Boundary domain for values along X Axis.</param>
+            <param name="DomainY">Boundary domain for values along Y Axis.</param>
+            <returns name="Data">Scatter Plot Data.</returns>
+            <search>scatter plot, data</search>
+        </member>
+        <member name="M:Charts.ScatterPlot.DataFromCSV(System.String,D3jsLib.Domain,D3jsLib.Domain)">
+            <summary>
+                Scatter Plot Data from CSV File.
+            </summary>
+            <param name="FilePath">File Path to where CSV is stored.</param>
+            <param name="DomainX">Boundary domain for values along X Axis.</param>
+            <param name="DomainY">Boundary domain for values along Y Axis.</param>
+            <returns name="Data">Scatter Plot Data.</returns>
+            <search>scatter plot, data</search>
+        </member>
+        <member name="M:Charts.ScatterPlot.Chart(D3jsLib.d3ScatterPlots.ScatterPlotData,D3jsLib.d3ScatterPlots.ScatterPlotStyle)">
+            <summary>
+                Scatter Plot Chart.
+            </summary>
+            <param name="Data">Scatter Plot Data.</param>
+            <param name="Style">Scatter Plot Style.</param>
+            <returns name="Chart">Scatter Plot Chart.</returns>
+            <search>scatter plot, chart</search>
+        </member>
+        <member name="T:Charts.StackedBarChart">
+            <summary>
+                Stacked Bar Chart nodes.
+            </summary>
+        </member>
+        <member name="M:Charts.StackedBarChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
+            <summary>
+                Stacked Bar Chart Style.
+            </summary>
+            <param name="BarHoverColor"></param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width"></param>
+            <param name="Height"></param>
+            <param name="YAxisLabel"></param>
+            <param name="Colors"></param>
+            <returns name="Style">Stacked Bar Chart Style</returns>
+            <search>stacked, bar, chart, style</search>
+        </member>
+        <member name="M:Charts.StackedBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}},D3jsLib.Domain)">
+            <summary>
+                Staked Bar Chart Data object.
+            </summary>
+            <param name="Headers">Names of all values that will be grouped. First value is always "Name".</param>
+            <param name="Values">Nested List of values where first item in a sub-list is Group Name. Following items 
+            must match number of value names defined in Headers input. </param>
+            <param name="Domain">Y Domain for the Chart.</param>
+            <returns name="Data">Stacked Bar Chart Data</returns>
+            <search>data, stacked, bar, chart</search>
+        </member>
+        <member name="M:Charts.StackedBarChart.DataFromCSV(System.Object,D3jsLib.Domain)">
+            <summary>
+                Stacked Bar Chart Data object.
+            </summary>
+            <param name="FilePath">Path to a CSV file.</param>
+            <param name="Domain">Y Domain of a chart.</param>
+            <returns name="Data">Data Class for use with Grouped Bar Chart.</returns>
+            <search>data, stacked bar chart, chart, bar, grouped</search>
+        </member>
+        <member name="M:Charts.StackedBarChart.Chart(D3jsLib.StackedBarChart.StackedBarChartData,D3jsLib.StackedBarChart.StackedBarChartStyle)">
+            <summary>
+                New Grouped Bar Chart object.
+            </summary>
+            <param name="Data">Bar Chart Data.</param>
+            <param name="Style">Bar Chart Style.</param>
+            <returns name="Chart">Generated Bar Chart.</returns>
+            <search>bar, chart, grouped</search>
+        </member>
+        <member name="T:Legends.Legend">
+            <summary>
+                Grouped Bar Chart nodes.
+            </summary>
+        </member>
+        <member name="M:Legends.Legend.Style(System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+                Legend Style
+            </summary>
+            <param name="Colors">List of colors for each rectangle.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Width">Width in pixels.</param>
+            <param name="Height">Height in pixels.</param>
+            <param name="Title">Title below legend.</param>
+            <param name="RectangleSize">Rectangle size in pixels.</param>
+            <returns name="Style">Style</returns>
+        </member>
+        <member name="M:Legends.Legend.Data(System.Collections.Generic.List{System.String})">
+            <summary>
+                Data
+            </summary>
+            <param name="Names">List of strings.</param>
+            <returns name="Data">Data</returns>
+        </member>
+        <member name="M:Legends.Legend.Create(D3jsLib.Legend.LegendData,D3jsLib.Legend.LegendStyle)">
+            <summary>
+                Legend
+            </summary>
+            <param name="Data">Legend Data</param>
+            <param name="Style">Legend Style</param>
+            <returns name="legend">Legend object.</returns>
+        </member>
+        <member name="T:Image.Image">
+            <summary>
+                Image Class.
+            </summary>
+        </member>
+        <member name="M:Image.Image.Create(System.String,D3jsLib.ImageStyle)">
+            <summary>
+                Image class.
+            </summary>
+            <param name="FilePath">Path to the image.</param>
+            <param name="Style">Style</param>
+            <returns name="Image">Image object</returns>
+            <search>image</search>
+        </member>
+        <member name="M:Image.Image.Style(D3jsLib.GridAddress,System.Int32,System.Int32,System.String)">
+            <summary>
+                Image Style object 
+            </summary>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Width">Width of the image.</param>
+            <param name="Height">Height of the image.</param>
+            <param name="Tooltip">Tooltip message that will appear when you hover over image.</param>
+            <returns name="Style">Style object.</returns>
+            <search>image style, style</search>
+        </member>
+        <member name="T:Text.Text">
+            <summary>
+                Text Box Class.
+            </summary>
+        </member>
+        <member name="M:Text.Text.Create(System.String,D3jsLib.TextStyle)">
+            <summary>
+                Create Text Note
+            </summary>
+            <param name="Text">String to be displayed.</param>
+            <param name="Style">Style object.</param>
+            <returns name="TextNote">Text node object</returns>
+        </member>
+        <member name="M:Text.Text.Style(DSCore.Color,D3jsLib.GridAddress,System.Int32,System.Int32,System.Double,System.String,System.String,System.String)">
+            <summary>
+                Create Text Style
+            </summary>
+            <param name="FontColor">Color</param>
+            <param name="Address">Grid Coordinates</param>
+            <param name="Width">Width of Grid container.</param>
+            <param name="Height">Height of Grid Container.</param>
+            <param name="FontSize">Size</param>
+            <param name="FontWeight">Weight</param>
+            <param name="FontStyle">Style</param>
+            <param name="FontTransform">Transform</param>
+            <returns name="Style">Style for the Text Note object</returns>
+        </member>
+        <member name="T:Report.Pdf">
+            <summary>
+                Report Class
+            </summary>
+        </member>
+        <member name="M:Report.Pdf.Style(System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                PDF Settings that control document page size, orientation etc
+            </summary>
+            <param name="pdfSize">Size of the generated PDF Document. Example: Letter, 11x17 etc.</param>
+            <param name="pdfOrientation">Orientation for the generated PDF document. Example: Landscape.</param>
+            <param name="pdfHorizontalFit">Defines if Report will be resized (width) to automatically fit onto specified page size.</param>
+            <param name="pdfVerticalFit">Defines if Report will be resized (height) to automatically fit onto specified page size.</param>
+            <param name="compression">Value between 0-100 where 0 is best image quality while 100 ensures highest compression and lowest image quality.</param>
+            <param name="marginTop">Margin value in points where 1 point is 1/72 inches.</param>
+            <param name="marginRight">Margin value in points where 1 point is 1/72 inches.</param>
+            <param name="marginBottom">Margin value in points where 1 point is 1/72 inches.</param>
+            <param name="marginLeft">Margin value in points where 1 point is 1/72 inches.</param>
+            <returns name="Style">PDF Style settings.</returns>
+            <search>pdf, style, settings, pdf style</search>
+        </member>
+    </members>
+</doc>
