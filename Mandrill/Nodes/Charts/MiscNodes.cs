@@ -1,11 +1,12 @@
 ﻿using Autodesk.DesignScript.Runtime;
 using D3jsLib;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Charts
 {
     /// <summary>
-    ///     Nodes shared across all chart types.
+    /// Nodes shared across all chart types.
     /// </summary>
     public class MiscNodes
     {
@@ -14,7 +15,26 @@ namespace Charts
         }
 
         /// <summary>
-        ///     Chart Margins.
+        /// Returns JSON string of the data object.
+        /// </summary>
+        /// <param name="data">Any of the Mandrill Chart Data objects.</param>
+        /// <param name="pretty">If set to True string will be indented.</param>
+        /// <returns name="Json">Json string representation of data.</returns>
+        public static string DataToJson(object data, bool pretty = false)
+        {
+            if (pretty)
+            {
+                var obj = JsonConvert.DeserializeObject(((D3jsLib.ChartData)data).Data);
+                return JsonConvert.SerializeObject(obj, Formatting.Indented);
+            }
+            else
+            {
+                return ((D3jsLib.ChartData)data).Data;
+            }
+        }
+
+        /// <summary>
+        /// Chart Margins.
         /// </summary>
         /// <param name="Top">Top margin in pixels.</param>
         /// <param name="Bottom">Top margin in pixels.</param>
@@ -28,7 +48,7 @@ namespace Charts
         }
 
         /// <summary>
-        ///     Chart domain.
+        /// Chart domain.
         /// </summary>
         /// <param name="A">Domain start.</param>
         /// <param name="B">Domain end.</param>
@@ -41,7 +61,7 @@ namespace Charts
         }
 
         /// <summary>
-        ///     Grid Address node.
+        /// Grid Address node.
         /// </summary>
         /// <param name="column">Column integer.</param>
         /// <param name="row">Row integer.</param>
@@ -54,7 +74,7 @@ namespace Charts
         }
 
         /// <summary>
-        ///     Returns null value.
+        /// Returns null value.
         /// </summary>
         [IsVisibleInDynamoLibrary(false)]
         public static object GetNull()
@@ -63,7 +83,7 @@ namespace Charts
         }
 
         /// <summary>
-        ///     Returns a default color in a list.
+        /// Returns a default color in a list.
         /// </summary>
         /// <returns></returns>
         [IsVisibleInDynamoLibrary(false)]

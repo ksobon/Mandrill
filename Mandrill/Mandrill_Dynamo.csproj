@@ -122,6 +122,10 @@
       <HintPath>..\packages\HtmlRenderer.WPF.1.5.0.6\lib\net45\HtmlRenderer.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
       <Private>True</Private>
@@ -569,7 +573,8 @@ xcopy /Q/Y "$(TargetDir)Mandrill_UI.xml" "C:\Users\ksobon\AppData\Roaming\Dynamo
 xcopy /Q/Y "$(TargetDir)RazorEngine.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Archi-lab_Mandrill\bin"
 xcopy /Q/Y "$(TargetDir)Select.HtmlToPdf.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Archi-lab_Mandrill\bin"
 xcopy /Q/Y "$(TargetDir)Select.Html.dep" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Archi-lab_Mandrill\extra"
-xcopy /Q/Y "$(TargetDir)Archi-lab_Mandrill.customization.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Archi-lab_Mandrill\bin"</PostBuildEvent>
+xcopy /Q/Y "$(TargetDir)Archi-lab_Mandrill.customization.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Newtonsoft.Json.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Archi-lab_Mandrill\bin"</PostBuildEvent>
   </PropertyGroup>
   <Target Name="BeforeBuild">
     <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">

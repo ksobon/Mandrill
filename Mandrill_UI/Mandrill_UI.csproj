@@ -167,6 +167,7 @@
     <Compile Include="NodeModels\MandrillPaperSizeDropdown.cs" />
     <Compile Include="NodeModels\MandrillDropdowns.cs" />
     <Compile Include="NodeModels\MandrillVariableInputNode.cs" />
+    <Compile Include="NodeModels\MandrillWindowHtmlModel.cs" />
     <Compile Include="NodeModels\MandrillWindowPrintModel.cs" />
     <Compile Include="NodeModels\MandrillWindowNodeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

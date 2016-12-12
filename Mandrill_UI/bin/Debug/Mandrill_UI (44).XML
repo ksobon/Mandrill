@@ -32,6 +32,11 @@
                 Mandrill Window class.
             </summary>
         </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindow.Print(System.String,D3jsLib.PdfStyle)">
+            <summary>
+                Print method.
+            </summary>
+        </member>
         <member name="M:Mandrill.ChromeWindow.MandrillWindow.InitializeComponent">
             <summary>
             InitializeComponent

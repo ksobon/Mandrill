@@ -407,12 +407,20 @@
         </member>
         <member name="T:Charts.MiscNodes">
             <summary>
-                Nodes shared across all chart types.
+            Nodes shared across all chart types.
             </summary>
+        </member>
+        <member name="M:Charts.MiscNodes.DataToJson(System.Object,System.Boolean)">
+            <summary>
+            Returns JSON string of the data object.
+            </summary>
+            <param name="data">Any of the Mandrill Chart Data objects.</param>
+            <param name="pretty">If set to True string will be indented.</param>
+            <returns name="Json">Json string representation of data.</returns>
         </member>
         <member name="M:Charts.MiscNodes.Margins(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-                Chart Margins.
+            Chart Margins.
             </summary>
             <param name="Top">Top margin in pixels.</param>
             <param name="Bottom">Top margin in pixels.</param>
@@ -422,7 +430,7 @@
         </member>
         <member name="M:Charts.MiscNodes.Domain(System.Double,System.Double)">
             <summary>
-                Chart domain.
+            Chart domain.
             </summary>
             <param name="A">Domain start.</param>
             <param name="B">Domain end.</param>
@@ -431,7 +439,7 @@
         </member>
         <member name="M:Charts.MiscNodes.Address(System.Int32,System.Int32)">
             <summary>
-                Grid Address node.
+            Grid Address node.
             </summary>
             <param name="column">Column integer.</param>
             <param name="row">Row integer.</param>
@@ -440,12 +448,12 @@
         </member>
         <member name="M:Charts.MiscNodes.GetNull">
             <summary>
-                Returns null value.
+            Returns null value.
             </summary>
         </member>
         <member name="M:Charts.MiscNodes.GetColorList">
             <summary>
-                Returns a default color in a list.
+            Returns a default color in a list.
             </summary>
             <returns></returns>
         </member>

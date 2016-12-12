@@ -193,7 +193,7 @@
         </member>
         <member name="T:Mandrill.Print.MandrillPrintNodeModel">
             <summary>
-                Hydra Share node implementation.
+            Prints Mandrill Report to PDF.
             </summary>
         </member>
         <member name="F:Mandrill.Print.MandrillPrintNodeModel.RequestPrint">
@@ -250,6 +250,57 @@
         <member name="M:Mandrill.Window.LaunchWindowButtonControl.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Mandrill.Html.MandrillHtmlNodeModel">
+            <summary>
+            Exports Mandrill Report to Html.
+            </summary>
+        </member>
+        <member name="F:Mandrill.Html.MandrillHtmlNodeModel.RequestSave">
+            <summary>
+                Request save action.
+            </summary>
+        </member>
+        <member name="P:Mandrill.Html.MandrillHtmlNodeModel.Message">
+            <summary>
+                A message that will appear on the button
+            </summary>
+        </member>
+        <member name="P:Mandrill.Html.MandrillHtmlNodeModel.MessageCommand">
+            <summary>
+                Delegate Command.
+            </summary>
+        </member>
+        <member name="M:Mandrill.Html.MandrillHtmlNodeModel.#ctor">
+            <summary>
+                The constructor for a NodeModel is used to create
+                the input and output ports and specify the argument
+                lacing.
+            </summary>
+        </member>
+        <member name="T:Mandrill.Html.MandrillHtmlNodeModel.CustomNodeModelNodeViewCustomization">
+            <summary>
+                View customizer for CustomNodeModel Node Model.
+            </summary>
+        </member>
+        <member name="M:Mandrill.Html.MandrillHtmlNodeModel.CustomNodeModelNodeViewCustomization.CustomizeView(Mandrill.Html.MandrillHtmlNodeModel,Dynamo.Controls.NodeView)">
+            <summary>
+                Customization for Node View
+            </summary>
+            <param name="model">The NodeModel representing the node's core logic.</param>
+            <param name="nodeView">The NodeView representing the node in the graph.</param>
+        </member>
+        <member name="M:Mandrill.Html.MandrillHtmlNodeModel.CustomNodeModelNodeViewCustomization.SaveMandrillWindow(Dynamo.Graph.Nodes.NodeModel,Dynamo.Controls.NodeView)">
+            <summary>
+                Method that finds Mandrill Window and calls its Print() method.
+            </summary>
+            <param name="model"></param>
+            <param name="nodeView"></param>
+        </member>
+        <member name="M:Mandrill.Html.MandrillHtmlNodeModel.CustomNodeModelNodeViewCustomization.Dispose">
+            <summary>
+                Dispose of model.
             </summary>
         </member>
         <member name="T:Mandrill_UI.CustomGenericEnumerationDropDown">

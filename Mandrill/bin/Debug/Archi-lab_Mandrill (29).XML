@@ -507,7 +507,7 @@
             <summary>
                 Scatter Plot Data.
             </summary>
-            <param name="Names">Names for Data Points.</param>
+            <param name="Name">Names for Data Points.</param>
             <param name="ValueX">Value along X Axis.</param>
             <param name="ValueY">Value along Y Axis.</param>
             <param name="Size">Size of displayed dot.</param>

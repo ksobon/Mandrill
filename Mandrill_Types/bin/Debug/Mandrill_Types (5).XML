@@ -9,11 +9,18 @@
                 Utility methods for UI nodes
             </summary>
         </member>
-        <member name="M:MandrillTypes.Utilities.CreateGridsterReport(System.Collections.Generic.List{System.Object})">
+        <member name="M:MandrillTypes.Utilities.CreateRowContainer(System.Collections.Generic.List{System.Object})">
             <summary>
-                Static method for report generation.
+                Handle creation of a RowContainer from multiple Chart inputs.
             </summary>
             <param name="chartObjects"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MandrillTypes.Utilities.CreateReport(System.Collections.Generic.List{System.Object})">
+            <summary>
+                Handles creation of a Report from multiple Container inputs.
+            </summary>
+            <param name="containers"></param>
             <returns></returns>
         </member>
     </members>

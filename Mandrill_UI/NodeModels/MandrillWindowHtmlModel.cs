@@ -8,23 +8,23 @@ using System.Linq;
 using System.Windows;
 using HtmlAgilityPack;
 
-namespace Mandrill.Print
+namespace Mandrill.Html
 {
     /// <summary>
-    /// Prints Mandrill Report to PDF.
+    /// Exports Mandrill Report to Html.
     /// </summary>
-    [NodeName("Print to PDF")]
-    [NodeCategory("Archi-lab_Mandrill.Report.Pdf")]
-    [NodeDescription("Print Mandrill window to PDF.")]
+    [NodeName("Save to Html")]
+    [NodeCategory("Archi-lab_Mandrill.Report.Html")]
+    [NodeDescription("Save Mandrill window as Html file.")]
     [IsDesignScriptCompatible]
-    public class MandrillPrintNodeModel : NodeModel
+    public class MandrillHtmlNodeModel : NodeModel
     {
         private string message;
 
         /// <summary>
         ///     Request save action.
         /// </summary>
-        public Action RequestPrint;
+        public Action RequestSave;
 
         /// <summary>
         ///     A message that will appear on the button
@@ -50,16 +50,15 @@ namespace Mandrill.Print
         ///     the input and output ports and specify the argument
         ///     lacing.
         /// </summary>
-        public MandrillPrintNodeModel()
+        public MandrillHtmlNodeModel()
         {
             InPortData.Add(new PortData("FilePath", "A complete FilePath string including file extension."));
             InPortData.Add(new PortData("Report", "Mandrill Report containing all Charts."));
-            InPortData.Add(new PortData("Style", "PDF Style that defines pdf size, orientation etc."));
 
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
             MessageCommand = new DelegateCommand(ShowMessage, CanShowMessage);
-            Message = "   Print" + Environment.NewLine + "Window";
+            Message = " Save" + Environment.NewLine + " Html";
         }
 
         private static bool CanShowMessage(object obj)
@@ -69,27 +68,27 @@ namespace Mandrill.Print
 
         private void ShowMessage(object obj)
         {
-            this.RequestPrint();
+            this.RequestSave();
         }
 
         /// <summary>
         ///     View customizer for CustomNodeModel Node Model.
         /// </summary>
-        public class CustomNodeModelNodeViewCustomization : INodeViewCustomization<MandrillPrintNodeModel>
+        public class CustomNodeModelNodeViewCustomization : INodeViewCustomization<MandrillHtmlNodeModel>
         {
             /// <summary>
             ///     Customization for Node View
             /// </summary>
             /// <param name="model">The NodeModel representing the node's core logic.</param>
             /// <param name="nodeView">The NodeView representing the node in the graph.</param>
-            public void CustomizeView(MandrillPrintNodeModel model, NodeView nodeView)
+            public void CustomizeView(MandrillHtmlNodeModel model, NodeView nodeView)
             {
-                var buttonControl = new MandrillPrintControl();
+                var buttonControl = new Print.MandrillPrintControl();
                 nodeView.inputGrid.Width = 100;
                 nodeView.inputGrid.Children.Add(buttonControl);
                 buttonControl.DataContext = model;
 
-                model.RequestPrint += () => PrintMandrillWindow(model, nodeView);
+                model.RequestSave += () => SaveMandrillWindow(model, nodeView);
             }
 
             /// <summary>
@@ -97,11 +96,10 @@ namespace Mandrill.Print
             /// </summary>
             /// <param name="model"></param>
             /// <param name="nodeView"></param>
-            public void PrintMandrillWindow(NodeModel model, NodeView nodeView)
+            public void SaveMandrillWindow(NodeModel model, NodeView nodeView)
             {
                 string filePath;
                 D3jsLib.Report report;
-                D3jsLib.PdfStyle style;
 
                 // collect inputs
                 // prevent running if any input ports are empty
@@ -126,20 +124,13 @@ namespace Mandrill.Print
                     var reportId = reportNode.GetAstIdentifierForOutputIndex(reportIndex).Name;
                     var reportMirror = nodeView.ViewModel.DynamoViewModel.Model.EngineController.GetMirror(reportId);
                     report = reportMirror.GetData().Data as D3jsLib.Report;
-
-                    // process style input
-                    var styleNode = model.InPorts[2].Connectors[0].Start.Owner;
-                    var styleIndex = model.InPorts[2].Connectors[0].Start.Index;
-                    var styleId = styleNode.GetAstIdentifierForOutputIndex(styleIndex).Name;
-                    var styleMirror = nodeView.ViewModel.DynamoViewModel.Model.EngineController.GetMirror(styleId);
-                    style = styleMirror.GetData().Data as D3jsLib.PdfStyle;
                 }
 
                 // print PDF
-                this.PrintPDF(report, style, filePath);
+                this.SaveHtml(report, filePath);
             }
 
-            private void PrintPDF(D3jsLib.Report report, D3jsLib.PdfStyle style, string filePath)
+            private void SaveHtml(D3jsLib.Report report, string filePath)
             {
                 HtmlDocument htmlDoc = new HtmlDocument();
                 htmlDoc.LoadHtml(report.HtmlString);
@@ -149,28 +140,6 @@ namespace Mandrill.Print
                 {
                     n.InnerHtml = "";
                 }
-
-                // attempt to move *dep file
-                D3jsLib.Utilities.ChartsUtilities.MoveDepFile();
-
-                // create converter
-                SelectPdf.HtmlToPdf converter = new SelectPdf.HtmlToPdf();
-
-                // set converter options
-                SelectPdf.HtmlToPdfOptions options = converter.Options;
-                options.PdfPageOrientation = style.Orientation;
-                options.PdfPageSize = style.Size;
-                options.JpegCompressionLevel = style.Compression;
-                options.JavaScriptEnabled = true;
-                options.EmbedFonts = true;
-                options.KeepImagesTogether = true;
-                options.KeepTextsTogether = true;
-                options.AutoFitHeight = style.VerticalFit;
-                options.AutoFitWidth = style.HorizontalFit;
-                options.MarginTop = style.MarginTop;
-                options.MarginRight = style.MarginRight;
-                options.MarginBottom = style.MarginBottom;
-                options.MarginLeft = style.MarginLeft;
 
                 // created unescaped file path removes %20 from path etc.
                 string finalFilePath = filePath;
@@ -186,10 +155,8 @@ namespace Mandrill.Print
 
                 try
                 {
-                    // convert html to document object and save
-                    SelectPdf.PdfDocument pdfDoc = converter.ConvertHtmlString(htmlDoc.DocumentNode.InnerHtml);
-                    pdfDoc.Save(finalFilePath);
-                    pdfDoc.Close();
+                    // save html
+                    System.IO.File.WriteAllText(filePath, htmlDoc.DocumentNode.InnerHtml);
                 }
                 catch
                 {

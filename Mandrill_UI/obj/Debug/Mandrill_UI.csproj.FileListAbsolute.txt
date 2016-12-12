@@ -125,3 +125,4 @@ E:\Google Drive\Work\Mandrill\Mandrill_UI\obj\Debug\Mandrill_UI.csproj.GenerateR
 E:\Google Drive\Work\Mandrill\Mandrill_UI\obj\Debug\Mandrill_UI.dll
 E:\Google Drive\Work\Mandrill\Mandrill_UI\obj\Debug\Mandrill_UI.pdb
 E:\Google Drive\Work\Mandrill\Mandrill_UI\bin\Debug\Mandrill_UI.dll.config
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_UI\bin\Debug\Mandrill_UI.dll.config

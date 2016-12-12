@@ -71,3 +71,8 @@ E:\Google Drive\Work\Mandrill\Mandrill_Grasshopper\obj\Debug64\Controls\Mandrill
 E:\Google Drive\Work\Mandrill\Mandrill_Grasshopper\obj\Debug64\Mandrill_Grasshopper.g.resources
 E:\Google Drive\Work\Mandrill\Mandrill_Grasshopper\obj\Debug64\Mandrill_Grasshopper.dll
 E:\Google Drive\Work\Mandrill\Mandrill_Grasshopper\obj\Debug64\Mandrill_Grasshopper.pdb
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Grasshopper\bin\Mandrill_Grasshopper.dll.config
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Grasshopper\bin\Select.Html.dep
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Grasshopper\bin\HtmlAgilityPack.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Grasshopper\bin\HtmlAgilityPack.pdb
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Grasshopper\bin\HtmlAgilityPack.xml

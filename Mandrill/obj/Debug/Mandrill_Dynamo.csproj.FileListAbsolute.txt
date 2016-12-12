@@ -95,3 +95,8 @@ E:\Google Drive\Work\Mandrill\Mandrill\obj\Debug\Archi-lab_Mandrill.pdb
 E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\Archi-lab_Mandrill.dll.config
 E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\EO.WebBrowser.dll
 E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\EO.WebBrowser.xml
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill\bin\Debug\Archi-lab_Mandrill.dll.config
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill\bin\Debug\EO.WebBrowser.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill\bin\Debug\EO.WebBrowser.xml
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill\bin\Debug\Newtonsoft.Json.xml
