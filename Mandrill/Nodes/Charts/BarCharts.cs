@@ -32,6 +32,7 @@ namespace Charts
         /// <param name="YAxisLabel">Text displayed in top-left corner of chart.</param>
         /// <param name="TickMarksX">Approximate number of tick mark values for X Axis.</param>
         /// <param name="xTextRotation">Indicates if labels along x-axis are rotated.</param>
+        /// <param name="Labels">Indicates if labels with actual bar values appear above each bar.</param>
         /// <returns name="Style">Bar Chart Style.</returns>
         /// <search>bar, chart, style</search>
         public static BarStyle Style(
@@ -43,7 +44,8 @@ namespace Charts
             int Height = 500,
             string YAxisLabel = "Label",
             int TickMarksX = 10,
-            bool xTextRotation = false)
+            bool xTextRotation = false,
+            bool Labels = false)
         {
             BarStyle style = new BarStyle();
             style.BarColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(BarColor.Alpha, BarColor.Red, BarColor.Green, BarColor.Blue));
@@ -56,6 +58,7 @@ namespace Charts
             style.Margins = Margins;
             style.SizeX = (int)Math.Ceiling(Width / 100d);
             style.SizeY = (int)Math.Ceiling(Height / 100d);
+            style.Labels = Labels;
 
             if (Address != null)
             {

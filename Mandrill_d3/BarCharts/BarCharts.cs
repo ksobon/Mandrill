@@ -13,6 +13,7 @@ namespace D3jsLib.BarChart
         public string YAxisLabel { get; set; }
         public bool xTextRotation { get; set; }
         public int TickMarksX { get; set; }
+        public bool Labels { get; set; }
     }
 
     public class BarChart : Chart

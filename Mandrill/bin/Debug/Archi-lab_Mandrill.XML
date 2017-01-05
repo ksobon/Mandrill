@@ -223,7 +223,7 @@
                 Bar Charts Class.
             </summary>
         </member>
-        <member name="M:Charts.BarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32,System.Boolean)">
+        <member name="M:Charts.BarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32,System.Boolean,System.Boolean)">
             <summary>
                 Bar Chart Style object.
             </summary>
@@ -236,6 +236,7 @@
             <param name="YAxisLabel">Text displayed in top-left corner of chart.</param>
             <param name="TickMarksX">Approximate number of tick mark values for X Axis.</param>
             <param name="xTextRotation">Indicates if labels along x-axis are rotated.</param>
+            <param name="Labels">Indicates if labels with actual bar values appear above each bar.</param>
             <returns name="Style">Bar Chart Style.</returns>
             <search>bar, chart, style</search>
         </member>

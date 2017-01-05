@@ -118,9 +118,26 @@
                 barChart.selectAll("#tooltip").remove();
                 d3.select(this).attr("fill", "@(((BarStyle)Model.Style).BarColor)");             
             });
-    
+        
+        @if(((BarStyle)Model.Style).Labels)
+        {<text>
+        barChart.append("g")
+            .selectAll("valueLabels")
+            .data(data).enter()
+            .append("text")
+            .attr("id", "valueLabel")
+            .attr("x", function(d){return x(d.name) + (x.rangeBand() / 2);})
+            .attr("y", function(d){return y(d.value);})
+            .attr("dy", -3)
+            .style("text-anchor", "middle")
+            .text(function(d){return d.name +": "+ d.value;})
+        </text>
+        }
+        else
+        {
+        }
+
         var sortOrder = false;
-    
         var sortBars = function() {
     
             //Flip value of sortOrder
@@ -144,7 +161,18 @@
     
             transition.select(".x.axis")
                 .call(xAxis)
-    
+
+            @if(((BarStyle)Model.Style).Labels)
+            {<text>
+            transition.selectAll("#valueLabel")
+               .delay(delay)
+               .attr("x", function(d){ return x0(d.name) + (x0.rangeBand() / 2);});
+            </text>
+            }
+            else
+            {
+            }
+
             @if(((BarStyle)Model.Style).xTextRotation)
             {<text>
             barChart.select('.x.axis')
@@ -155,7 +183,10 @@
                     .attr("transform", function(d){ return "rotate(-65)";});
             </text>
             }
-            else{}
+            else
+            {
+            }
+
             };
     
         function type(d) {
