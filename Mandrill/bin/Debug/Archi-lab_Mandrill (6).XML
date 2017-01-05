@@ -168,27 +168,27 @@
             <summary>
                 Donut Chart Data object.
             </summary>
-            <param name="Names"></param>
-            <param name="Values"></param>
-            <returns name="Data"></returns>
-            <search></search>
+            <param name="Names">Names of each data points.</param>
+            <param name="Values">Values of each data point.</param>
+            <returns name="Data">Donut Chart Data</returns>
+            <search>data, donut, chart, donut chart data</search>
         </member>
         <member name="M:Charts.DonutChart.DataFromCSV(System.Object)">
             <summary>
                 Donut Chart Data from CSV.
             </summary>
-            <param name="FilePath"></param>
-            <returns name="Data"></returns>
-            <search></search>
+            <param name="FilePath">File Path to CSV file.</param>
+            <returns name="Data">Donut Chart Data</returns>
+            <search>csv, donut, chart, data</search>
         </member>
         <member name="M:Charts.DonutChart.Chart(D3jsLib.DonutChart.DonutChartData,D3jsLib.DonutChart.DonutChartStyle)">
             <summary>
                 Donut Chart object.
             </summary>
-            <param name="Data"></param>
-            <param name="Style"></param>
-            <returns name="Chart"></returns>
-            <search></search>
+            <param name="Data">Donut Chart Data object.</param>
+            <param name="Style">Donut Chart Style object.</param>
+            <returns name="Chart">Donut Chart</returns>
+            <search>donut chart, chart, donut</search>
         </member>
         <member name="T:Charts.GroupedBarChart">
             <summary>
@@ -204,19 +204,17 @@
             <param name="Height"></param>
             <param name="YAxisLabel"></param>
             <param name="Colors"></param>
-            <returns name="Style"></returns>
+            <returns name="Style">Bar Chart Style object.</returns>
             <search>grouped, bar, chart, style</search>
         </member>
         <member name="M:Charts.GroupedBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}},D3jsLib.Domain)">
             <summary>
-                Grouped Bar Chart Data object.
+                Grouped Bar Chart Data.
             </summary>
-            <param name="Headers">Names of all values that will be grouped. First value is always "Name".</param>
-            <param name="Values">Nested List of values where first item in a sub-list is Group Name. Following items 
-            must match number of value names defined in Headers input. </param>
-            <param name="Domain">Y Domain for the Chart.</param>
-            <returns name="Data"></returns>
-            <search>data, grouped, bar, chart</search>
+            <param name="Headers"></param>
+            <param name="Values"></param>
+            <param name="Domain"></param>
+            <returns name="Data">Grouped Bar Chart Data object</returns>
         </member>
         <member name="M:Charts.GroupedBarChart.DataFromCSV(System.Object,D3jsLib.Domain)">
             <summary>
@@ -364,7 +362,7 @@
             <param name="Height"></param>
             <param name="YAxisLabel"></param>
             <param name="Colors"></param>
-            <returns name="Style"></returns>
+            <returns name="Style">Stacked Bar Chart Style</returns>
             <search>stacked, bar, chart, style</search>
         </member>
         <member name="M:Charts.StackedBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}},D3jsLib.Domain)">
@@ -375,7 +373,7 @@
             <param name="Values">Nested List of values where first item in a sub-list is Group Name. Following items 
             must match number of value names defined in Headers input. </param>
             <param name="Domain">Y Domain for the Chart.</param>
-            <returns name="Data"></returns>
+            <returns name="Data">Stacked Bar Chart Data</returns>
             <search>data, stacked, bar, chart</search>
         </member>
         <member name="M:Charts.StackedBarChart.DataFromCSV(System.Object,D3jsLib.Domain)">

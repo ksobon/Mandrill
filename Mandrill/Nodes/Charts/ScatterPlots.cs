@@ -7,6 +7,7 @@ using D3jsLib.Utilities;
 using System;
 using D3jsLib;
 using System.Web.Script.Serialization;
+using System.IO;
 
 namespace Charts
 {
@@ -32,7 +33,7 @@ namespace Charts
         /// <returns name="Style">Scatter Plot Style.</returns>
         /// <search>style, scatter plot</search>
         public static ScatterPlotStyle Style(
-            [DefaultArgument("DSCore.Color.ByARGB(1,100,100,100)")] DSCore.Color DotColor,
+            [DefaultArgument("Charts.MiscNodes.GetColorList()")] List<DSCore.Color> DotColor,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] GridAddress Address,
             [DefaultArgument("Charts.MiscNodes.Margins()")] Margins Margins,
             int Width = 1000,
@@ -45,7 +46,10 @@ namespace Charts
             style.Height = Height;
             style.YAxisLabel = YAxisLabel;
             style.XAxisLabel = XAxisLabel;
-            style.DotColor = ChartsUtilities.ColorToHexString(sColor.FromArgb(DotColor.Alpha, DotColor.Red, DotColor.Green, DotColor.Blue));
+
+            List<string> hexColors = DotColor.Select(x => ChartsUtilities.ColorToHexString(sColor.FromArgb(x.Alpha, x.Red, x.Green, x.Blue))).ToList();
+            style.DotColor = new JavaScriptSerializer().Serialize(hexColors);
+
             style.Margins = Margins;
             style.SizeX = (int)Math.Ceiling(Width / 100d);
             style.SizeY = (int)Math.Ceiling(Height / 100d);
@@ -71,6 +75,7 @@ namespace Charts
         /// <param name="ValueX">Value along X Axis.</param>
         /// <param name="ValueY">Value along Y Axis.</param>
         /// <param name="Size">Size of displayed dot.</param>
+        /// <param name="Colors">Color of each dot.</param>
         /// <param name="DomainX">Boundary domain for values along X Axis.</param>
         /// <param name="DomainY">Boundary domain for values along Y Axis.</param>
         /// <returns name="Data">Scatter Plot Data.</returns>
@@ -80,11 +85,12 @@ namespace Charts
             List<double> ValueX, 
             List<double> ValueY, 
             List<double> Size, 
+            List<int> Colors,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] Domain DomainX, 
             [DefaultArgument("Charts.MiscNodes.GetNull()")] Domain DomainY)
         {
             List<ScatterPlotDataPoint> dataPoints = Names
-                .ZipFour(ValueX, ValueY, Size, (x, y, z, v) => new ScatterPlotDataPoint { name = x, valueX = y, valueY = z, size = v })
+                .ZipFive(ValueX, ValueY, Size, Colors, (x, y, z, v, w) => new ScatterPlotDataPoint { name = x, valueX = y, valueY = z, size = v, color = w })
                 .ToList();
 
             ScatterPlotData spData = new ScatterPlotData();
@@ -103,13 +109,25 @@ namespace Charts
         /// <returns name="Data">Scatter Plot Data.</returns>
         /// <search>scatter plot, data</search>
         public static ScatterPlotData DataFromCSV(
-            string FilePath,
+            object FilePath,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] Domain DomainX,
             [DefaultArgument("Charts.MiscNodes.GetNull()")] Domain DomainY)
         {
+            // get full path to file as string
+            // if File.FromPath is used it returns FileInfo class
+            string _filePath = "";
+            try
+            {
+                _filePath = (string)FilePath;
+            }
+            catch
+            {
+                _filePath = ((FileInfo)FilePath).FullName;
+            }
+
             List<ScatterPlotDataPoint> dataPoints = new List<ScatterPlotDataPoint>();
             var csv = new List<string[]>();
-            var lines = System.IO.File.ReadAllLines(FilePath);
+            var lines = System.IO.File.ReadAllLines(_filePath);
             for (int i = 1; i < lines.Count(); i++)
             {
                 string line = lines[i];
@@ -119,7 +137,7 @@ namespace Charts
                     double lineValueX = Convert.ToDouble(line.Split(',')[1]);
                     double lineValueY = Convert.ToDouble(line.Split(',')[2]);
                     double lineSize = Convert.ToDouble(line.Split(',')[3]);
-                    string lineColor = line.Split(',')[4];
+                    int lineColor = Convert.ToInt32(line.Split(',')[4]);
 
                     dataPoints.Add(new ScatterPlotDataPoint { name = lineName, valueX = lineValueX, valueY = lineValueY, size = lineSize, color = lineColor});
                 }

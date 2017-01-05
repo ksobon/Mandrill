@@ -504,7 +504,7 @@
                 Scatter Plot nodes.
             </summary>
         </member>
-        <member name="M:Charts.ScatterPlot.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.String)">
+        <member name="M:Charts.ScatterPlot.Style(System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.String)">
             <summary>
                 Scatter Plot Style.
             </summary>
@@ -518,7 +518,7 @@
             <returns name="Style">Scatter Plot Style.</returns>
             <search>style, scatter plot</search>
         </member>
-        <member name="M:Charts.ScatterPlot.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},D3jsLib.Domain,D3jsLib.Domain)">
+        <member name="M:Charts.ScatterPlot.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Int32},D3jsLib.Domain,D3jsLib.Domain)">
             <summary>
                 Scatter Plot Data.
             </summary>
@@ -526,12 +526,13 @@
             <param name="ValueX">Value along X Axis.</param>
             <param name="ValueY">Value along Y Axis.</param>
             <param name="Size">Size of displayed dot.</param>
+            <param name="Colors">Color of each dot.</param>
             <param name="DomainX">Boundary domain for values along X Axis.</param>
             <param name="DomainY">Boundary domain for values along Y Axis.</param>
             <returns name="Data">Scatter Plot Data.</returns>
             <search>scatter plot, data</search>
         </member>
-        <member name="M:Charts.ScatterPlot.DataFromCSV(System.String,D3jsLib.Domain,D3jsLib.Domain)">
+        <member name="M:Charts.ScatterPlot.DataFromCSV(System.Object,D3jsLib.Domain,D3jsLib.Domain)">
             <summary>
                 Scatter Plot Data from CSV File.
             </summary>

@@ -157,7 +157,42 @@ namespace D3jsLib.Utilities
         }
 
         /// <summary>
-        ///     Zips four lists together.
+        /// Zips five lists together.
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <typeparam name="T5"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="second"></param>
+        /// <param name="third"></param>
+        /// <param name="fourth"></param>
+        /// <param name="fifth"></param>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        public static IEnumerable<TResult> ZipFive<T1, T2, T3, T4, T5, TResult>(
+            this IEnumerable<T1> source,
+            IEnumerable<T2> second,
+            IEnumerable<T3> third,
+            IEnumerable<T4> fourth,
+            IEnumerable<T5> fifth,
+            Func<T1, T2, T3, T4, T5, TResult> func)
+        {
+            using (var e1 = source.GetEnumerator())
+            using (var e2 = second.GetEnumerator())
+            using (var e3 = third.GetEnumerator())
+            using (var e4 = fourth.GetEnumerator())
+            using (var e5 = fifth.GetEnumerator())
+            {
+                while (e1.MoveNext() && e2.MoveNext() && e3.MoveNext() && e4.MoveNext() && e5.MoveNext())
+                    yield return func(e1.Current, e2.Current, e3.Current, e4.Current, e5.Current);
+            }
+        }
+
+        /// <summary>
+        /// Zips four lists together.
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -188,7 +223,7 @@ namespace D3jsLib.Utilities
         }
 
         /// <summary>
-        ///     Zip four lists together.
+        ///     Zip three lists together.
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>

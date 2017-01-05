@@ -21,6 +21,7 @@
             .style("width", "200px")
             .style("height", "28px")
             .style("pointer-events", "none")
+            .style("color", "black")
 	        .style("opacity", 0);
 
         var xValue = function(d) { return d.valueX;};
@@ -51,8 +52,8 @@
         }
 
         var rScale = d3.scale.linear()
-			.domain([0, d3.max(data, function(d) { return d.size; })])
-			.range([0, 10]);
+            .domain([1, 10])
+            .range([1, 30])
 
         var xAxis = d3.svg.axis()
 		    .scale(x)
@@ -62,7 +63,8 @@
 		    .scale(y)
             .orient("left")
 
-        var color = d3.scale.category10();
+        //var color = d3.scale.category10();
+        var color = d3.scale.ordinal().range(@Raw(((ScatterPlotStyle)Model.Style).DotColor));
 
         svg.append("g")
 		    .attr("class", "x axis")
@@ -94,7 +96,20 @@
         nodeGroup.append("circle")
             .attr("r", function(d) {return rScale(d.size);})
             .attr("opacity", 0.7)
-            .style("fill", function(d){return color(d.color);});
+            .style("fill", function(d){return color(d.color);})
+            .on("mouseover", function(d) {
+                tooltip.transition()
+                     .duration(200)
+                     .style("opacity", .9);
+                tooltip.html(d["name"] + "<br/> (" + xValue(d) + ", " + yValue(d) + ")")
+                     .style("left", (d3.event.pageX - 100) + "px")
+                     .style("top", (d3.event.pageY - 50) + "px");
+            })
+            .on("mouseout", function(d) {
+                tooltip.transition()
+                     .duration(500)
+                     .style("opacity", 0);
+            });
         }
     RenderScatterPlot();
 </script>

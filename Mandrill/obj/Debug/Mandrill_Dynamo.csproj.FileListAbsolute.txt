@@ -100,3 +100,13 @@ C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill\bin\Debug\EO.WebBrowser.dll
 C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill\bin\Debug\EO.WebBrowser.xml
 C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill\bin\Debug\Newtonsoft.Json.dll
 C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill\bin\Debug\Newtonsoft.Json.xml
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\HtmlRenderer.WinForms.dll
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\Newtonsoft.Json.dll
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\PdfSharp.Charting.dll
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\PdfSharp.dll
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\HtmlRenderer.WinForms.pdb
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\Newtonsoft.Json.xml
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\PdfSharp.xml
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\PdfSharp.Charting.xml
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\de\PdfSharp.resources.dll
+E:\Google Drive\Work\Mandrill\Mandrill\bin\Debug\de\PdfSharp.Charting.resources.dll

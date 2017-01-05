@@ -19,109 +19,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Mandrill.Dropdown.PaperSizeWrapper">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Mandrill.Dropdown.PaperSizeWrapper.Index">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Mandrill.Dropdown.PaperSizeWrapper.Name">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Mandrill.Dropdown.PaperSizeWrapper.#ctor(System.Int32,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="index"></param>
-            <param name="name"></param>
-        </member>
-        <member name="M:Mandrill.Dropdown.PaperSizeWrapper.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Mandrill.Dropdown.PaperSizeDropdownNodeModel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="E:Mandrill.Dropdown.PaperSizeDropdownNodeModel.RequestChangeCollection">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.OnRequestChangeCollection">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Mandrill.Dropdown.PaperSizeDropdownNodeModel.AvailablePaperSizes">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Mandrill.Dropdown.PaperSizeDropdownNodeModel.SelectedPaperSize">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.GetAvailablePrinters(Dynamo.Engine.EngineController)">
-            <summary>
-            
-            </summary>
-            <param name="engine"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
-            <summary>
-            
-            </summary>
-            <param name="inputAstNodes"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.SerializeCore(System.Xml.XmlElement,Dynamo.Graph.SaveContext)">
-            <summary>
-            
-            </summary>
-            <param name="element"></param>
-            <param name="context"></param>
-        </member>
-        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.DeserializeCore(System.Xml.XmlElement,Dynamo.Graph.SaveContext)">
-            <summary>
-            
-            </summary>
-            <param name="element"></param>
-            <param name="context"></param>
-        </member>
-        <member name="T:Mandrill.Dropdown.DropdownNodeViewCustomization">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Mandrill.Dropdown.DropdownNodeViewCustomization.CustomizeView(Mandrill.Dropdown.PaperSizeDropdownNodeModel,Dynamo.Controls.NodeView)">
-            <summary>
-            
-            </summary>
-            <param name="model"></param>
-            <param name="nodeView"></param>
-        </member>
-        <member name="M:Mandrill.Dropdown.DropdownNodeViewCustomization.Dispose">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Mandrill.ChromeWindow.MandrillWindow">
             <summary>
                 Interaction logic for MandrillWindow.xaml
@@ -137,7 +34,7 @@
         </member>
         <member name="M:Mandrill.ChromeWindow.MandrillWindow.Print(System.String,D3jsLib.PdfStyle)">
             <summary>
-            
+                Print method.
             </summary>
         </member>
         <member name="M:Mandrill.ChromeWindow.MandrillWindow.InitializeComponent">

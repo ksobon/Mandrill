@@ -67,7 +67,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
                     double lineValueX = Convert.ToDouble(line.Split(',')[1]);
                     double lineValueY = Convert.ToDouble(line.Split(',')[2]);
                     double lineSize = Convert.ToDouble(line.Split(',')[3]);
-                    string lineColor = line.Split(',')[4];
+                    int lineColor = Convert.ToInt32(line.Split(',')[4]);
 
                     dataPoints.Add(new ScatterPlotDataPoint { name = lineName, valueX = lineValueX, valueY = lineValueY, size = lineSize, color = lineColor });
                 }

@@ -15,7 +15,7 @@ namespace D3jsLib.d3ScatterPlots
         public double valueX { get; set; }
         public double valueY { get; set; }
         public double size { get; set; }
-        public string color { get; set; }
+        public int color { get; set; }
     }
 
     public class ScatterPlotData : ChartData

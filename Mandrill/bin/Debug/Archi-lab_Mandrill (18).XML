@@ -4,17 +4,61 @@
         <name>Archi-lab_Mandrill</name>
     </assembly>
     <members>
+        <member name="T:Charts.HorizontalBarChart">
+            <summary>
+                Horizontal Bar Chart.
+            </summary>
+        </member>
+        <member name="M:Charts.HorizontalBarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
+            <summary>
+                Horizontal Bar Chart Style
+            </summary>
+            <param name="BarColor">Fill color for bars.</param>
+            <param name="BarHoverColor">Fill color when hovered over.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width of the entire chart in pixels.</param>
+            <param name="Height">Height of the entire chart in pixels.</param>
+            <param name="XAxisLabel">Text displayed in bottom-right corner of chart.</param>
+            <returns name="Style">Style</returns>
+        </member>
+        <member name="M:Charts.HorizontalBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},D3jsLib.Domain)">
+            <summary>
+                Horizontal Bar Chart Data.
+            </summary>
+            <param name="Names"></param>
+            <param name="Values"></param>
+            <param name="Domain"></param>
+            <returns name="Data">Data</returns>
+        </member>
+        <member name="M:Charts.HorizontalBarChart.DataFromCSV(System.Object,D3jsLib.Domain)">
+            <summary>
+                Horizontal Bar Chart Data.
+            </summary>
+            <param name="FilePath"></param>
+            <param name="Domain"></param>
+            <returns name="Data">Data</returns>
+        </member>
+        <member name="M:Charts.HorizontalBarChart.Chart(D3jsLib.HorizontalBarChart.HorizontalBarChartData,D3jsLib.HorizontalBarChart.HorizontalBarChartStyle)">
+            <summary>
+                Horizontal Bar Chart
+            </summary>
+            <param name="Data"></param>
+            <param name="Style"></param>
+            <returns name="Chart">Chart</returns>
+        </member>
         <member name="T:Charts.NormalizedStackedBarChart">
             <summary>
                 Normalized Stacked Bar Chart nodes.
             </summary>
         </member>
-        <member name="M:Charts.NormalizedStackedBarChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32,System.Int32,System.String)">
+        <member name="M:Charts.NormalizedStackedBarChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
             <summary>
                Normalized Stacked Bar Chart Style.
             </summary>
             <param name="BarHoverColor"></param>
             <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
             <param name="Width"></param>
             <param name="Height"></param>
             <param name="YAxisLabel"></param>
@@ -48,6 +92,46 @@
             <param name="Style">Normalized Stacked Bar Chart Style.</param>
             <returns name="Chart">Generated Bar Chart.</returns>
             <search>normalized, bar, chart, grouped</search>
+        </member>
+        <member name="T:Charts.PieChart">
+            <summary>
+                Donut Chart
+            </summary>
+        </member>
+        <member name="M:Charts.PieChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Boolean)">
+            <summary>
+                Pie Chart Style
+            </summary>
+            <param name="HoverColor">Hover over color.</param>
+            <param name="Colors">List of optional colors for chart values.</param>
+            <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
+            <param name="Width">Width of chart in pixels.</param>
+            <param name="Labels">Boolean value that controls if Labels are displayed.</param>
+            <returns name="Style">Pie Chart Style object.</returns>
+        </member>
+        <member name="M:Charts.PieChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double})">
+            <summary>
+                Pie Chart Data.
+            </summary>
+            <param name="Names">Names of each data points.</param>
+            <param name="Values">Values of each data point.</param>
+            <returns name="Data">Pie Chart data object.</returns>
+        </member>
+        <member name="M:Charts.PieChart.DataFromCSV(System.Object)">
+            <summary>
+                Pie Chart Data
+            </summary>
+            <param name="FilePath">File Path to CSV file.</param>
+            <returns name="Data">Pie Chart Data object.</returns>
+        </member>
+        <member name="M:Charts.PieChart.Chart(D3jsLib.PieChart.PieChartData,D3jsLib.PieChart.PieChartStyle)">
+            <summary>
+                Pie chart
+            </summary>
+            <param name="Data">Pie Chart data object.</param>
+            <param name="Style">Pie Chart Style object.</param>
+            <returns name="Chart">Pie Chart object.</returns>
         </member>
         <member name="T:Charts.ScatterPlotMatrix">
             <summary>
@@ -91,11 +175,12 @@
                 Area Chart
             </summary>
         </member>
-        <member name="M:Charts.AreaChart.Style(DSCore.Color,D3jsLib.GridAddress,System.Int32,System.Int32,System.String,System.Int32)">
+        <member name="M:Charts.AreaChart.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32)">
             <summary>
                 Area Chart Style object.
             </summary>
             <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Marings in pixels.</param>
             <param name="Width">Width of the entire chart in pixels.</param>
             <param name="Height">Height of the entire chart in pixels.</param>
             <param name="YAxisLabel">Text used to label Y Axis.</param>
@@ -137,13 +222,14 @@
                 Bar Charts Class.
             </summary>
         </member>
-        <member name="M:Charts.BarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,System.Int32,System.Int32,System.String,System.Int32,System.Boolean)">
+        <member name="M:Charts.BarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32,System.Boolean)">
             <summary>
                 Bar Chart Style object.
             </summary>
             <param name="BarColor">Fill color for bars.</param>
             <param name="BarHoverColor">Fill color when hovered over.</param>
             <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
             <param name="Width">Width of the entire chart in pixels.</param>
             <param name="Height">Height of the entire chart in pixels.</param>
             <param name="YAxisLabel">Text displayed in top-left corner of chart.</param>
@@ -185,15 +271,15 @@
                 Donut Chart
             </summary>
         </member>
-        <member name="M:Charts.DonutChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32,System.Int32,System.Boolean,System.String)">
+        <member name="M:Charts.DonutChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Boolean,System.String)">
             <summary>
                 Donut Chart Style object.
             </summary>
             <param name="HoverColor">Hover over color.</param>
             <param name="Colors">List of optional colors for chart values.</param>
             <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
             <param name="Width">Width of chart in pixels.</param>
-            <param name="Margin">Margin around the chart(space for labels).</param>
             <param name="Labels">Boolean value that controls if Labels are displayed.</param>
             <param name="TotalLabel">Text appearing at center of the Donut chart.</param>
             <returns name="Style">Donut Chart Object.</returns>
@@ -230,12 +316,13 @@
                 Grouped Bar Chart nodes.
             </summary>
         </member>
-        <member name="M:Charts.GroupedBarChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32,System.Int32,System.String)">
+        <member name="M:Charts.GroupedBarChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
             <summary>
                 Grouped Bar Chart Style.
             </summary>
             <param name="BarHoverColor">Hover over color.</param>
             <param name="Address">Grid Coordinates</param>
+            <param name="Margins">Margins in pixels.</param>
             <param name="Width">Width in pixels.</param>
             <param name="Height">Height in pixels.</param>
             <param name="YAxisLabel">Label for Y-Axis.</param>
@@ -275,11 +362,12 @@
                 Line Chart nodes
             </summary>
         </member>
-        <member name="M:Charts.LineChart.Style(DSCore.Color,D3jsLib.GridAddress,System.Int32,System.Int32,System.String,System.Int32)">
+        <member name="M:Charts.LineChart.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32)">
             <summary>
                 Line Chart Style object.
             </summary>
             <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
             <param name="Width">Width of the entire chart in pixels.</param>
             <param name="Height">Height of the entire chart in pixels.</param>
             <param name="YAxisLabel">Text used to label Y Axis.</param>
@@ -321,6 +409,16 @@
                 Nodes shared across all chart types.
             </summary>
         </member>
+        <member name="M:Charts.MiscNodes.Margins(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Chart Margins.
+            </summary>
+            <param name="Top">Top margin in pixels.</param>
+            <param name="Bottom">Top margin in pixels.</param>
+            <param name="Right">Right margin in pixels.</param>
+            <param name="Left">Left margin in pixels.</param>
+            <returns name="Margins">Margins</returns>
+        </member>
         <member name="M:Charts.MiscNodes.Domain(System.Double,System.Double)">
             <summary>
                 Chart domain.
@@ -349,12 +447,13 @@
                 Grouped Bar Chart nodes.
             </summary>
         </member>
-        <member name="M:Charts.ParallelCoordinates.Style(DSCore.Color,D3jsLib.GridAddress,System.Int32,System.Int32)">
+        <member name="M:Charts.ParallelCoordinates.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32)">
             <summary>
                 Parallel Coordinates Style object.
             </summary>
             <param name="LineColor">Color of the selected Lines/Values.</param>
             <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
             <param name="Width">Width of the Chart in pixels.</param>
             <param name="Height">Height of the Chart in pixels.</param>
             <returns name="Style">Parallel Coordinates Style.</returns>
@@ -390,11 +489,12 @@
                 Scatter Plot nodes.
             </summary>
         </member>
-        <member name="M:Charts.ScatterPlot.Style(DSCore.Color,D3jsLib.GridAddress,System.Int32,System.Int32,System.String,System.String)">
+        <member name="M:Charts.ScatterPlot.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.String)">
             <summary>
                 Scatter Plot Style.
             </summary>
             <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
             <param name="Width">Width in pixels.</param>
             <param name="Height">Height in pixels.</param>
             <param name="YAxisLabel">Label displayed for Y Axis.</param>
@@ -440,12 +540,13 @@
                 Stacked Bar Chart nodes.
             </summary>
         </member>
-        <member name="M:Charts.StackedBarChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,System.Int32,System.Int32,System.String)">
+        <member name="M:Charts.StackedBarChart.Style(DSCore.Color,System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
             <summary>
                 Stacked Bar Chart Style.
             </summary>
             <param name="BarHoverColor"></param>
             <param name="Address">Grid Coordinates.</param>
+            <param name="Margins">Margins in pixels.</param>
             <param name="Width"></param>
             <param name="Height"></param>
             <param name="YAxisLabel"></param>
