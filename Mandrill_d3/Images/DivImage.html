@@ -1,11 +1,13 @@
-﻿<script type="text/javascript">
+﻿@using D3jsLib;
+
+<script type="text/javascript">
     function LoadImage() {
         var elem = document.createElement("img");
-        elem.src = "@Raw(@Model.ImagePath)";
-        elem.setAttribute("width", "@(Model.Width)");
-        elem.setAttribute("height", "@(Model.Height)");
+        elem.src = "@Raw(((Image)@Model).ImagePath)";
+        elem.setAttribute("width", "@(Model.Style.Width)");
+        elem.setAttribute("height", "@(Model.Style.Height)");
         elem.setAttribute("style", "block");
-        elem.setAttribute("title", "@(Model.Tooltip)")
+        elem.setAttribute("title", "@(((ImageStyle)Model.Style).Tooltip)")
         document.getElementById("@(Model.DivId)").appendChild(elem);
     }
     LoadImage();

@@ -1,5 +1,6 @@
 ﻿using Autodesk.DesignScript.Runtime;
 using D3jsLib;
+using System.IO;
 
 namespace Image
 {
@@ -20,9 +21,21 @@ namespace Image
         /// <param name="Style">Style</param>
         /// <returns name="Image">Image object</returns>
         /// <search>image</search>
-        public static D3jsLib.Image Create(string FilePath, ImageStyle Style)
+        public static D3jsLib.Image Create(object FilePath, ImageStyle Style)
         {
-            D3jsLib.Image image = new D3jsLib.Image(FilePath, Style);
+            // get full path to file as string
+            // if File.FromPath is used it returns FileInfo class
+            string _filePath = "";
+            try
+            {
+                _filePath = (string)FilePath;
+            }
+            catch
+            {
+                _filePath = ((FileInfo)FilePath).FullName;
+            }
+
+            D3jsLib.Image image = new D3jsLib.Image(_filePath, Style);
             return image;
         }
 
@@ -45,6 +58,8 @@ namespace Image
             style.Width = Width;
             style.Height = Height;
             style.Tooltip = Tooltip;
+            style.SizeX = (int)System.Math.Ceiling(Width / 100d);
+            style.SizeY = (int)System.Math.Ceiling(Height / 100d);
 
             if (Address != null)
             {

@@ -637,7 +637,7 @@
                 Image Class.
             </summary>
         </member>
-        <member name="M:Image.Image.Create(System.String,D3jsLib.ImageStyle)">
+        <member name="M:Image.Image.Create(System.Object,D3jsLib.ImageStyle)">
             <summary>
                 Image class.
             </summary>
