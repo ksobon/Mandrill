@@ -30,6 +30,8 @@ namespace Charts
         /// <param name="YAxisLabel">Text used to label Y Axis.</param>
         /// <param name="AreaColor">Color for Area Chart fill.</param>
         /// <param name="TickMarksX">Approximate number of tick marks on X Axis.</param>
+        /// <param name="LineValue">If values is set it will show a horizontal line across the chart.</param>
+        /// <param name="LineLabel">Text used to describe horizontal line across the chart.</param>
         /// <returns name="Style">Area Chart Style.</returns>
         /// <search>area, chart, style</search>
         public static AreaChartStyle Style(
@@ -39,7 +41,9 @@ namespace Charts
             int Width = 1000,
             int Height = 500,
             string YAxisLabel = "Label",
-            int TickMarksX = 10)
+            int TickMarksX = 10,
+            double LineValue = 0.0,
+            string LineLabel = "")
         {
             AreaChartStyle style = new AreaChartStyle();
             style.Width = Width;
@@ -50,6 +54,8 @@ namespace Charts
             style.Margins = Margins;
             style.SizeX = (int)Math.Ceiling(Width / 100d);
             style.SizeY = (int)Math.Ceiling(Height / 100d);
+            style.LineValue = LineValue;
+            style.LineLabel = LineLabel;
 
             if (Address != null)
             {

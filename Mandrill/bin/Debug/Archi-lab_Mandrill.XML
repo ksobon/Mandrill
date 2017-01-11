@@ -176,7 +176,7 @@
                 Area Chart
             </summary>
         </member>
-        <member name="M:Charts.AreaChart.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32)">
+        <member name="M:Charts.AreaChart.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32,System.Double,System.String)">
             <summary>
                 Area Chart Style object.
             </summary>
@@ -187,6 +187,8 @@
             <param name="YAxisLabel">Text used to label Y Axis.</param>
             <param name="AreaColor">Color for Area Chart fill.</param>
             <param name="TickMarksX">Approximate number of tick marks on X Axis.</param>
+            <param name="LineValue">If values is set it will show a horizontal line across the chart.</param>
+            <param name="LineLabel">Text used to describe horizontal line across the chart.</param>
             <returns name="Style">Area Chart Style.</returns>
             <search>area, chart, style</search>
         </member>

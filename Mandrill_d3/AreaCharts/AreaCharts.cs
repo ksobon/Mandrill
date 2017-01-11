@@ -7,6 +7,8 @@ namespace D3jsLib.AreaCharts
         public string YAxisLabel { get; set; }
         public string AreaColor { get; set; }
         public int TickMarksX { get; set; }
+        public double LineValue { get; set; }
+        public string LineLabel { get; set; }
     }
 
     public class AreaChartData : ChartData
