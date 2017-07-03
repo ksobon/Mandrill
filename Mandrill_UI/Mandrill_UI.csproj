@@ -94,7 +94,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '13|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\13\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Release1.3</DefineConstants>
     <DocumentationFile>bin\Debug\Mandrill_UI.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -124,7 +124,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '20|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\20\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Release2.0</DefineConstants>
     <DocumentationFile>bin\Debug\Mandrill_UI.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -281,7 +281,6 @@
     <Compile Include="Controls\MandrillWindowButtonControl.xaml.cs">
       <DependentUpon>MandrillWindowButtonControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NodeModels\MandrillPaperSizeDropdown.cs" />
     <Compile Include="NodeModels\MandrillDropdowns.cs" />
     <Compile Include="NodeModels\MandrillVariableInputNode.cs" />
     <Compile Include="NodeModels\MandrillWindowHtmlModel.cs" />

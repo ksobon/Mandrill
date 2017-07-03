@@ -24,7 +24,7 @@ namespace Mandrill.ChromeWindow
             this.browser.WebView.SetOptions(options);
 
             // attach window to dynamo
-            this.Owner = MandrillWindowNodeModel.dv;
+            this.Owner = MandrillWindowNodeModel.Dv;
 
             // add closing event
             this.Closing += MandrillWindowNodeModel.OnWindowClosing;

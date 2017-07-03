@@ -1,0 +1,7 @@
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\bin\20\Mandrill_Resources.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\bin\20\Mandrill_Resources.pdb
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\20\Mandrill_Resources.Properties.Resources.resources
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\20\Mandrill_Resources.csproj.GenerateResource.Cache
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\20\Mandrill_Resources.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\20\Mandrill_Resources.pdb
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\20\Mandrill_Resources.csprojResolveAssemblyReference.cache

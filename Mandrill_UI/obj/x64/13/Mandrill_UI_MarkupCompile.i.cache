@@ -8,13 +8,13 @@ C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_UI\obj\x64\13\
 Mandrill_UI
 none
 false
-DEBUG;TRACE
+TRACE;DEBUG;Release1.3
 
 4435418862
 
-17-2141131270
+16-384521037
 45-1758935446
 Controls\PaperSizeDropdown.xaml;Controls\MandrillWindow.xaml;Controls\MandrillPrintButtonControl.xaml;Controls\MandrillWindowButtonControl.xaml;
 
-False
+True
 

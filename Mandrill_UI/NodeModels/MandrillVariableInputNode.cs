@@ -13,6 +13,12 @@ namespace Mandrill.ChromeWindow
     [NodeDescription("Creates Mandrill Report object that can be viewed in a Window or Printed to PDF.")]
     [NodeCategory("Archi-lab_Mandrill.Report.Window")]
     [IsDesignScriptCompatible]
+    [InPortNames("Chart0")]
+    [InPortDescriptions("MandrillChart0")]
+    [InPortTypes("Chart")]
+    [OutPortNames("Report")]
+    [OutPortDescriptions("OutToolTip0")]
+    [OutPortTypes("Report")]
     public class MandrillReportNode : VariableInputNode
     {
         /// <summary>
@@ -20,8 +26,6 @@ namespace Mandrill.ChromeWindow
         /// </summary>
         public MandrillReportNode()
         {
-            InPortData.Add(new PortData("Chart0", "MandrillChart0"));
-            OutPortData.Add(new PortData("Report", "OutToolTip0"));
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
         }
@@ -51,17 +55,13 @@ namespace Mandrill.ChromeWindow
         /// </summary>
         protected override void RemoveInput()
         {
-            if (InPortData.Count > 1)
-                base.RemoveInput();
+            if (InPorts.Count > 1) base.RemoveInput();
         }
 
         /// <summary>
         ///     Base implementation
         /// </summary>
-        public override bool IsConvertible
-        {
-            get { return true; }
-        }
+        public override bool IsConvertible => true;
 
         /// <summary>
         ///     AST Implementation
@@ -83,7 +83,7 @@ namespace Mandrill.ChromeWindow
             AssociativeNode functionCall =
                 AstFactory.BuildFunctionCall(
                     new Func<List<object>, D3jsLib.Report>(MandrillTypes.Utilities.CreateGridsterReport),
-                    new List<AssociativeNode>() { listNode });
+                    new List<AssociativeNode> { listNode });
 
             return new[]
             {

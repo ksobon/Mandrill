@@ -25,17 +25,17 @@ namespace Mandrill.ChromeWindow
     [InPortNames("Report")]
     [InPortTypes("string")]
     [InPortDescriptions("Html report to render.")]
-    public class MandrillWindowNodeModel : NodeModel, INotifyPropertyChanged
+    public class MandrillWindowNodeModel : NodeModel
     {
         /// <summary>
         ///     Window closed variable
         /// </summary>
-        public bool isWindowClosed = true;
+        public bool IsWindowClosed = true;
 
         /// <summary>
         ///     Dynamo view variable
         /// </summary>
-        public static DynamoView dv;
+        public static DynamoView Dv;
 
         /// <summary>
         ///     Window event
@@ -49,9 +49,9 @@ namespace Mandrill.ChromeWindow
         /// <param name="e"></param>
         public static void OnWindowClosing(object sender, CancelEventArgs e)
         {
-            MandrillWindow win = (MandrillWindow)sender;
-            MandrillWindowNodeModel model = win.DataContext as MandrillWindowNodeModel;
-            model.isWindowClosed = true;
+            var win = (MandrillWindow)sender;
+            var model = win.DataContext as MandrillWindowNodeModel;
+            if (model != null) model.IsWindowClosed = true;
         }
 
         /// <summary>
@@ -64,8 +64,7 @@ namespace Mandrill.ChromeWindow
         /// </summary>
         protected virtual void OnRequestChangeHtmlString()
         {
-            if (RequestChangeHtmlString != null)
-                RequestChangeHtmlString();
+            RequestChangeHtmlString?.Invoke();
         }
 
         private string _myHtml;
@@ -78,25 +77,23 @@ namespace Mandrill.ChromeWindow
             get { return _myHtml; }
             set
             {
-                if (_myHtml != value)
-                {
-                    _myHtml = value;
-                    RaisePropertyChanged("MyHtml");
-                }
+                if (_myHtml == value) return;
+                _myHtml = value;
+                RaisePropertyChanged("MyHtml");
             }
         }
 
-        private string message;
+        private string _message;
 
         /// <summary>
         ///     Button message - databinding
         /// </summary>
         public string Message
         {
-            get { return message; }
+            get { return _message; }
             set
             {
-                message = value;
+                _message = value;
                 RaisePropertyChanged("NodeMessage");
             }
         }
@@ -115,7 +112,7 @@ namespace Mandrill.ChromeWindow
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
 
-            this.PropertyChanged += HtmlString_PropertyChanged;
+            PropertyChanged += HtmlString_PropertyChanged;
             foreach (var port in InPorts)
             {
                 port.Connectors.CollectionChanged += Connectors_CollectionChanged;
@@ -125,12 +122,12 @@ namespace Mandrill.ChromeWindow
             Message = " Launch" + Environment.NewLine + "Window";
         }
 
-        void Connectors_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Connectors_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             OnRequestChangeHtmlString();
         }
 
-        void HtmlString_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void HtmlString_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName != "CachedValue")
                 return;
@@ -148,23 +145,18 @@ namespace Mandrill.ChromeWindow
         /// <returns></returns>
         public string GetInputString(EngineController engine)
         {
-            string htmlString;
+            var htmlString = string.Empty;
 
             // If there is an input supplied
-            if (HasConnectedInput(0))
-            {
-                // retrieve input string from input
-                var node = InPorts[0].Connectors[0].Start.Owner;
-                var nodeIndex = InPorts[0].Connectors[0].Start.Index;
-                var nodeName = node.GetAstIdentifierForOutputIndex(nodeIndex).Name;
-                var mirrorData = engine.GetMirror(nodeName);
-                D3jsLib.Report report = mirrorData.GetData().Data as D3jsLib.Report;
-                htmlString = report.HtmlString;
-            }
-            else
-            {
-                htmlString = string.Empty;
-            }
+            if (!HasConnectedInput(0)) return htmlString;
+
+            // retrieve input string from input
+            var node = InPorts[0].Connectors[0].Start.Owner;
+            var nodeIndex = InPorts[0].Connectors[0].Start.Index;
+            var nodeName = node.GetAstIdentifierForOutputIndex(nodeIndex).Name;
+            var mirrorData = engine.GetMirror(nodeName);
+            var report = mirrorData.GetData().Data as D3jsLib.Report;
+            if (report != null) htmlString = report.HtmlString;
             return htmlString;
         }
 
@@ -175,7 +167,7 @@ namespace Mandrill.ChromeWindow
 
         private void ShowMessage(object obj)
         {
-            this.RequestNewWindow();
+            RequestNewWindow();
         }
     }
 
@@ -184,10 +176,10 @@ namespace Mandrill.ChromeWindow
     /// </summary>
     public class MandrillWindowNodeViewCustomization : INodeViewCustomization<MandrillWindowNodeModel>
     {
-        private DynamoModel dynamoModel;
-        private DynamoViewModel dynamoViewModel;
-        private MandrillWindowNodeModel mandrillNode;
-        private const string defaultHtml =
+        private DynamoModel _dynamoModel;
+        private DynamoViewModel _dynamoViewModel;
+        private MandrillWindowNodeModel _mandrillNode;
+        private const string DefaultHtml =
                         @"<html>
                     <head>
                     <meta http-equiv=""Content-Type"" content=""text/html; charset=UTF-8"" />
@@ -204,46 +196,45 @@ namespace Mandrill.ChromeWindow
         /// <param name="nodeView"></param>
         public void CustomizeView(MandrillWindowNodeModel model, NodeView nodeView)
         {
-            this.dynamoModel = nodeView.ViewModel.DynamoViewModel.Model;
-            this.dynamoViewModel = nodeView.ViewModel.DynamoViewModel;
-            mandrillNode = model;
+            _dynamoModel = nodeView.ViewModel.DynamoViewModel.Model;
+            _dynamoViewModel = nodeView.ViewModel.DynamoViewModel;
+            _mandrillNode = model;
 
             // load button control into node, set data context
-            var helloDynamoControl = new Mandrill.Window.LaunchWindowButtonControl();
+            var helloDynamoControl = new Window.LaunchWindowButtonControl();
             nodeView.inputGrid.Width = 100;
             nodeView.inputGrid.Children.Add(helloDynamoControl);
             helloDynamoControl.DataContext = model;
 
             // attach mandrill window to Dynamo control
-            MandrillWindowNodeModel.dv = FindUpVisualTree<DynamoView>(nodeView);
+            MandrillWindowNodeModel.Dv = FindUpVisualTree<DynamoView>(nodeView);
 
             // attach input update and new window events to Dynamo control
-            mandrillNode.RequestChangeHtmlString += UpdateHtmlString;
-            model.RequestNewWindow += () => CreateNewWindow();
+            _mandrillNode.RequestChangeHtmlString += UpdateHtmlString;
+            model.RequestNewWindow += CreateNewWindow;
         }
 
         private void CreateNewWindow()
         {
-            if (mandrillNode.isWindowClosed)
-            {
-                var mandrillWindow = new MandrillWindow();
-                if (mandrillNode.MyHtml == string.Empty || mandrillNode.MyHtml == null)
-                {
-                    mandrillNode.MyHtml = defaultHtml;
-                }
+            if (!_mandrillNode.IsWindowClosed) return;
 
-                mandrillWindow.DataContext = mandrillNode;
-                mandrillWindow.Show();
-                mandrillNode.isWindowClosed = false;
+            var mandrillWindow = new MandrillWindow();
+            if (string.IsNullOrEmpty(_mandrillNode.MyHtml))
+            {
+                _mandrillNode.MyHtml = DefaultHtml;
             }
+
+            mandrillWindow.DataContext = _mandrillNode;
+            mandrillWindow.Show();
+            _mandrillNode.IsWindowClosed = false;
         }
 
         private void UpdateHtmlString()
         {
-            var s = dynamoViewModel.Model.Scheduler;
+            var s = _dynamoViewModel.Model.Scheduler;
             var t = new DelegateBasedAsyncTask(s, () =>
             {
-                mandrillNode.MyHtml = mandrillNode.GetInputString(dynamoModel.EngineController);
+                _mandrillNode.MyHtml = _mandrillNode.GetInputString(_dynamoModel.EngineController);
             });
 
             s.ScheduleForExecution(t);
@@ -252,7 +243,7 @@ namespace Mandrill.ChromeWindow
         // Thanks to Hans Hubers for this bit.
         private static T FindUpVisualTree<T>(DependencyObject initial) where T : DependencyObject
         {
-            DependencyObject current = initial;
+            var current = initial;
             while (current != null && current.GetType() != typeof(T))
             {
                 current = VisualTreeHelper.GetParent(current);
@@ -265,5 +256,4 @@ namespace Mandrill.ChromeWindow
         /// </summary>
         public void Dispose() { }
     }
-
 }

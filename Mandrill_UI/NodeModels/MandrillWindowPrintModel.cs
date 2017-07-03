@@ -17,9 +17,12 @@ namespace Mandrill.Print
     [NodeCategory("Archi-lab_Mandrill.Report.Pdf")]
     [NodeDescription("Print Mandrill window to PDF.")]
     [IsDesignScriptCompatible]
+    [InPortNames("FilePath", "Report", "Style")]
+    [InPortDescriptions("A complete FilePath string including file extension.", "Mandrill Report containing all Charts.", "PDF Style that defines pdf size, orientation etc.")]
+    [InPortTypes("String", "Report", "Style")]
     public class MandrillPrintNodeModel : NodeModel
     {
-        private string message;
+        private string _message;
 
         /// <summary>
         ///     Request save action.
@@ -31,10 +34,10 @@ namespace Mandrill.Print
         /// </summary>
         public string Message
         {
-            get { return message; }
+            get { return _message; }
             set
             {
-                message = value;
+                _message = value;
                 RaisePropertyChanged("NodeMessage");
             }
         }
@@ -52,10 +55,6 @@ namespace Mandrill.Print
         /// </summary>
         public MandrillPrintNodeModel()
         {
-            InPortData.Add(new PortData("FilePath", "A complete FilePath string including file extension."));
-            InPortData.Add(new PortData("Report", "Mandrill Report containing all Charts."));
-            InPortData.Add(new PortData("Style", "PDF Style that defines pdf size, orientation etc."));
-
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
             MessageCommand = new DelegateCommand(ShowMessage, CanShowMessage);
