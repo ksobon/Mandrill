@@ -23,3 +23,19 @@ Mandrill is distributed in the hope that it will be useful, but WITHOUT ANY WARR
 You should have received a copy of the GNU General Public License along with Mandrill; If not, see http://www.gnu.org/licenses/.
 
 @license GPL-3.0+ http://spdx.org/licenses/GPL-3.0+
+
+Credits
+============
+
+If you wish to build on top of Mandrill, or reuse any of the code posted here and would like to give credit, you can do so: 
+
+When citing within the code, the citation information could be placed as a comment above the reused code, as shows below:
+
+***************************************************************************************/
+*    Title: Mandrill
+*    Author: Konrad K Sobon
+*    Date: 2017
+*    Code version: 1.0
+*    Availability: https://github.com/BadMonkeysTeam/Mandrill
+*
+***************************************************************************************/
