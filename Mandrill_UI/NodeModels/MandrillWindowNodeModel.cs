@@ -25,6 +25,9 @@ namespace Mandrill.UI.NodeModels
     [InPortNames("Report", "Launch")]
     [InPortTypes("string", "bool")]
     [InPortDescriptions("Html report to render.", "Boolean toggle to launch window.")]
+    [OutPortNames("Launched")]
+    [OutPortDescriptions("Launched Window.")]
+    [OutPortTypes("Boolean")]
     public class MandrillWindowNodeModel : NodeModel
     {
         /// <summary>

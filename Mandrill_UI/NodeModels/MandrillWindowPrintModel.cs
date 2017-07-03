@@ -17,30 +17,32 @@ namespace Mandrill.Print
     [NodeCategory("Archi-lab_Mandrill.Report.Pdf")]
     [NodeDescription("Print Mandrill window to PDF.")]
     [IsDesignScriptCompatible]
+    [InPortNames("FilePath", "Report", "Style")]
+    [InPortDescriptions("A complete FilePath string including file extension.", "Mandrill Report containing all Charts.", "PDF Style that defines pdf size, orientation etc.")]
+    [InPortTypes("String", "Report", "Style")]
     public class MandrillPrintNodeModel : NodeModel
     {
-        private string message;
-
         /// <summary>
-        ///     Request save action.
+        /// Request save action.
         /// </summary>
         public Action RequestPrint;
 
+        private string _message;
         /// <summary>
-        ///     A message that will appear on the button
+        /// A message that will appear on the button
         /// </summary>
         public string Message
         {
-            get { return message; }
+            get { return _message; }
             set
             {
-                message = value;
+                _message = value;
                 RaisePropertyChanged("NodeMessage");
             }
         }
 
         /// <summary>
-        ///     Delegate Command.
+        /// Delegate Command.
         /// </summary>
         [IsVisibleInDynamoLibrary(false)]
         public DelegateCommand MessageCommand { get; set; }
@@ -52,9 +54,9 @@ namespace Mandrill.Print
         /// </summary>
         public MandrillPrintNodeModel()
         {
-            InPortData.Add(new PortData("FilePath", "A complete FilePath string including file extension."));
-            InPortData.Add(new PortData("Report", "Mandrill Report containing all Charts."));
-            InPortData.Add(new PortData("Style", "PDF Style that defines pdf size, orientation etc."));
+            //InPortData.Add(new PortData(, ));
+            //InPortData.Add(new PortData(, ));
+            //InPortData.Add(new PortData(, ));
 
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;

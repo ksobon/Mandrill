@@ -17,24 +17,26 @@ namespace Mandrill.Html
     [NodeCategory("Archi-lab_Mandrill.Report.Html")]
     [NodeDescription("Save Mandrill window as Html file.")]
     [IsDesignScriptCompatible]
+    [InPortNames("FilePath", "Report")]
+    [InPortDescriptions("A complete FilePath string including file extension.", "Mandrill Report containing all Charts.")]
+    [InPortTypes("String", "Report")]
     public class MandrillHtmlNodeModel : NodeModel
     {
-        private string message;
-
         /// <summary>
         ///     Request save action.
         /// </summary>
         public Action RequestSave;
 
+        private string _message;
         /// <summary>
         ///     A message that will appear on the button
         /// </summary>
         public string Message
         {
-            get { return message; }
+            get { return _message; }
             set
             {
-                message = value;
+                _message = value;
                 RaisePropertyChanged("NodeMessage");
             }
         }
@@ -52,8 +54,8 @@ namespace Mandrill.Html
         /// </summary>
         public MandrillHtmlNodeModel()
         {
-            InPortData.Add(new PortData("FilePath", "A complete FilePath string including file extension."));
-            InPortData.Add(new PortData("Report", "Mandrill Report containing all Charts."));
+            //InPortData.Add(new PortData(, ));
+            //InPortData.Add(new PortData(, ));
 
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;

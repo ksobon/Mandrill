@@ -200,7 +200,6 @@
     <Compile Include="Controls\MandrillWindowButtonControl.xaml.cs">
       <DependentUpon>MandrillWindowButtonControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NodeModels\MandrillPaperSizeDropdown.cs" />
     <Compile Include="NodeModels\MandrillDropdowns.cs" />
     <Compile Include="NodeModels\MandrillVariableInputNode.cs" />
     <Compile Include="NodeModels\MandrillWindowHtmlModel.cs" />

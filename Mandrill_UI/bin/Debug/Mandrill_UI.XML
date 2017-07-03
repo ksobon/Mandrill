@@ -117,17 +117,17 @@
         </member>
         <member name="F:Mandrill.Print.MandrillPrintNodeModel.RequestPrint">
             <summary>
-                Request save action.
+            Request save action.
             </summary>
         </member>
         <member name="P:Mandrill.Print.MandrillPrintNodeModel.Message">
             <summary>
-                A message that will appear on the button
+            A message that will appear on the button
             </summary>
         </member>
         <member name="P:Mandrill.Print.MandrillPrintNodeModel.MessageCommand">
             <summary>
-                Delegate Command.
+            Delegate Command.
             </summary>
         </member>
         <member name="M:Mandrill.Print.MandrillPrintNodeModel.#ctor">

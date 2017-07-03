@@ -57,3 +57,4 @@ C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\bin\Debug\Select.HtmlToPd
 C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\bin\Debug\System.Web.Razor.xml
 C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.dll
 C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.pdb
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_d3\obj\Debug\Mandrill_d3.csprojResolveAssemblyReference.cache
