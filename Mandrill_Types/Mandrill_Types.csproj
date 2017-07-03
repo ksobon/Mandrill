@@ -76,9 +76,13 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamoServices">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="DynamoServices, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.1.3.0\lib\net45\DynamoServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NodeServices2, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.1.3.0\lib\net45\NodeServices2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -98,6 +102,9 @@
       <Project>{63ed27cd-0302-4240-b322-990e76dbac42}</Project>
       <Name>Mandrill_d3</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -32,3 +32,5 @@ E:\Google Drive\Work\Mandrill\Mandrill_Types\bin\Debug\System.Web.Razor.xml
 E:\Google Drive\Work\Mandrill\Mandrill_Types\obj\Debug\Mandrill_Types.csprojResolveAssemblyReference.cache
 E:\Google Drive\Work\Mandrill\Mandrill_Types\obj\Debug\Mandrill_Types.dll
 E:\Google Drive\Work\Mandrill\Mandrill_Types\obj\Debug\Mandrill_Types.pdb
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Types\bin\Debug\DynamoServices.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Types\bin\Debug\NodeServices2.dll
