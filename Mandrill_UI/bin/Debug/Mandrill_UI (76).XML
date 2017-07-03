@@ -1,0 +1,441 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mandrill_UI</name>
+    </assembly>
+    <members>
+        <member name="T:Mandrill.Dropdown.PaperSizeDropdownControl">
+            <summary>
+            PaperSizeDropdownControl
+            </summary>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Mandrill.Dropdown.PaperSizeWrapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mandrill.Dropdown.PaperSizeWrapper.Index">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mandrill.Dropdown.PaperSizeWrapper.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeWrapper.#ctor(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeWrapper.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Mandrill.Dropdown.PaperSizeDropdownNodeModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Mandrill.Dropdown.PaperSizeDropdownNodeModel.RequestChangeCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.OnRequestChangeCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mandrill.Dropdown.PaperSizeDropdownNodeModel.AvailablePaperSizes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mandrill.Dropdown.PaperSizeDropdownNodeModel.SelectedPaperSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.GetAvailablePrinters(Dynamo.Engine.EngineController)">
+            <summary>
+            
+            </summary>
+            <param name="engine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+            
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.SerializeCore(System.Xml.XmlElement,Dynamo.Graph.SaveContext)">
+            <summary>
+            
+            </summary>
+            <param name="element"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mandrill.Dropdown.PaperSizeDropdownNodeModel.DeserializeCore(System.Xml.XmlElement,Dynamo.Graph.SaveContext)">
+            <summary>
+            
+            </summary>
+            <param name="element"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Mandrill.Dropdown.DropdownNodeViewCustomization">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mandrill.Dropdown.DropdownNodeViewCustomization.CustomizeView(Mandrill.Dropdown.PaperSizeDropdownNodeModel,Dynamo.Controls.NodeView)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <param name="nodeView"></param>
+        </member>
+        <member name="M:Mandrill.Dropdown.DropdownNodeViewCustomization.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Mandrill.ChromeWindow.MandrillWindow">
+            <summary>
+                Interaction logic for MandrillWindow.xaml
+            </summary>
+            <summary>
+            MandrillWindow
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindow.#ctor">
+            <summary>
+                Mandrill Window class.
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindow.Print(System.String,D3jsLib.PdfStyle)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Mandrill.ChromeWindow.MandrillReportNode">
+            <summary>
+                Report
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.#ctor">
+            <summary>
+                Report Node
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.GetInputName(System.Int32)">
+            <summary>
+                Get input name
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.GetInputTooltip(System.Int32)">
+            <summary>
+                Get input tooltip
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.RemoveInput">
+            <summary>
+                Remove input
+            </summary>
+        </member>
+        <member name="P:Mandrill.ChromeWindow.MandrillReportNode.IsConvertible">
+            <summary>
+                Base implementation
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportNode.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+                AST Implementation
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mandrill.ChromeWindow.MandrillReportViewCustomization">
+            <summary>
+                View Customization
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillReportViewCustomization.CustomizeView(Mandrill.ChromeWindow.MandrillReportNode,Dynamo.Controls.NodeView)">
+            <summary>
+                Customize view
+            </summary>
+            <param name="model"></param>
+            <param name="nodeView"></param>
+        </member>
+        <member name="T:Mandrill.ChromeWindow.MandrillWindowNodeModel">
+            <summary>
+                Custom Mandrill Chrome Window node implementation
+            </summary>
+        </member>
+        <member name="F:Mandrill.ChromeWindow.MandrillWindowNodeModel.isWindowClosed">
+            <summary>
+                Window closed variable
+            </summary>
+        </member>
+        <member name="F:Mandrill.ChromeWindow.MandrillWindowNodeModel.dv">
+            <summary>
+                Dynamo view variable
+            </summary>
+        </member>
+        <member name="F:Mandrill.ChromeWindow.MandrillWindowNodeModel.RequestNewWindow">
+            <summary>
+                Window event
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.OnWindowClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+                Window closing event
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:Mandrill.ChromeWindow.MandrillWindowNodeModel.RequestChangeHtmlString">
+            <summary>
+                Html string change event
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.OnRequestChangeHtmlString">
+            <summary>
+                On request event handler
+            </summary>
+        </member>
+        <member name="P:Mandrill.ChromeWindow.MandrillWindowNodeModel.MyHtml">
+            <summary>
+                Html string - databinding
+            </summary>
+        </member>
+        <member name="P:Mandrill.ChromeWindow.MandrillWindowNodeModel.Message">
+            <summary>
+                Button message - databinding
+            </summary>
+        </member>
+        <member name="P:Mandrill.ChromeWindow.MandrillWindowNodeModel.MessageCommand">
+            <summary>
+                Delegate command for setting button message.
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.#ctor">
+            <summary>
+                Defines Mandrill Node model
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.GetInputString(Dynamo.Engine.EngineController)">
+            <summary>
+                Retrieves input string from connected input node.
+            </summary>
+            <param name="engine"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mandrill.ChromeWindow.MandrillWindowNodeViewCustomization">
+            <summary>
+                Mandrill node customization implementation.
+            </summary>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeViewCustomization.CustomizeView(Mandrill.ChromeWindow.MandrillWindowNodeModel,Dynamo.Controls.NodeView)">
+            <summary>
+                View customization.
+            </summary>
+            <param name="model"></param>
+            <param name="nodeView"></param>
+        </member>
+        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeViewCustomization.Dispose">
+            <summary>
+                Dispose of model.
+            </summary>
+        </member>
+        <member name="T:Mandrill.ChromeWindow.WebBrowserHelper">
+            <summary>
+                Attached property class that allows for property binding on WebBrowser control.
+            </summary>
+        </member>
+        <member name="T:Mandrill.Print.MandrillPrintControl">
+            <summary>
+            MandrillPrintControl
+            </summary>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintControl.#ctor">
+            <summary>
+                Print Button Control.
+            </summary>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Mandrill.Print.MandrillPrintNodeModel">
+            <summary>
+                Hydra Share node implementation.
+            </summary>
+        </member>
+        <member name="F:Mandrill.Print.MandrillPrintNodeModel.RequestPrint">
+            <summary>
+                Request save action.
+            </summary>
+        </member>
+        <member name="P:Mandrill.Print.MandrillPrintNodeModel.Message">
+            <summary>
+                A message that will appear on the button
+            </summary>
+        </member>
+        <member name="P:Mandrill.Print.MandrillPrintNodeModel.MessageCommand">
+            <summary>
+                Delegate Command.
+            </summary>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintNodeModel.#ctor">
+            <summary>
+                The constructor for a NodeModel is used to create
+                the input and output ports and specify the argument
+                lacing.
+            </summary>
+        </member>
+        <member name="T:Mandrill.Print.MandrillPrintNodeModel.CustomNodeModelNodeViewCustomization">
+            <summary>
+                View customizer for CustomNodeModel Node Model.
+            </summary>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintNodeModel.CustomNodeModelNodeViewCustomization.CustomizeView(Mandrill.Print.MandrillPrintNodeModel,Dynamo.Controls.NodeView)">
+            <summary>
+                Customization for Node View
+            </summary>
+            <param name="model">The NodeModel representing the node's core logic.</param>
+            <param name="nodeView">The NodeView representing the node in the graph.</param>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintNodeModel.CustomNodeModelNodeViewCustomization.PrintMandrillWindow(Dynamo.Graph.Nodes.NodeModel,Dynamo.Controls.NodeView)">
+            <summary>
+                Method that finds Mandrill Window and calls its Print() method.
+            </summary>
+            <param name="model"></param>
+            <param name="nodeView"></param>
+        </member>
+        <member name="M:Mandrill.Print.MandrillPrintNodeModel.CustomNodeModelNodeViewCustomization.Dispose">
+            <summary>
+                Dispose of model.
+            </summary>
+        </member>
+        <member name="T:Mandrill.Window.LaunchWindowButtonControl">
+            <summary>
+            LaunchWindowButtonControl
+            </summary>
+        </member>
+        <member name="M:Mandrill.Window.LaunchWindowButtonControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Mandrill_UI.CustomGenericEnumerationDropDown">
+            <summary>
+                Custom Enumeration Class for dropdown
+            </summary>
+        </member>
+        <member name="M:Mandrill_UI.CustomGenericEnumerationDropDown.#ctor(System.String,System.Type)">
+            <summary>
+                Generate Dropdown
+            </summary>
+            <param name="name"></param>
+            <param name="enumerationType"></param>
+        </member>
+        <member name="F:Mandrill_UI.CustomGenericEnumerationDropDown.EnumerationType">
+            <summary>
+                Type variable
+            </summary>
+        </member>
+        <member name="M:Mandrill_UI.CustomGenericEnumerationDropDown.PopulateItemsCore(System.String)">
+            <summary>
+                Populate Dropdown
+            </summary>
+            <param name="currentSelection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mandrill_UI.CustomGenericEnumerationDropDown.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+                Build Output.
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mandrill_UI.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Mandrill_UI.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Mandrill_UI.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

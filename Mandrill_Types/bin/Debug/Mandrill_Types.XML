@@ -16,5 +16,12 @@
             <param name="chartObjects"></param>
             <returns></returns>
         </member>
+        <member name="M:MandrillTypes.Utilities.BuildBool(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

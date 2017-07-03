@@ -1,13 +1,25 @@
-C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.dll
-C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.pdb
-C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.Properties.Resources.resources
-C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.csproj.GenerateResource.Cache
-C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.dll
-C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.pdb
 E:\Google Drive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.dll
 E:\Google Drive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.pdb
 E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.Properties.Resources.resources
 E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.csproj.GenerateResource.Cache
 E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.dll
 E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.pdb
-C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.csprojResolveAssemblyReference.cache
+E:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.csprojResolveAssemblyReference.cache
+D:\Google Drive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.dll
+D:\Google Drive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.pdb
+D:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.Properties.Resources.resources
+D:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.csproj.GenerateResource.Cache
+D:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.dll
+D:\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.pdb
+C:\Users\konrad.sobon\OneDrive - HOK\GoogleDrive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.dll
+C:\Users\konrad.sobon\OneDrive - HOK\GoogleDrive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.pdb
+C:\Users\konrad.sobon\OneDrive - HOK\GoogleDrive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.Properties.Resources.resources
+C:\Users\konrad.sobon\OneDrive - HOK\GoogleDrive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.csproj.GenerateResource.Cache
+C:\Users\konrad.sobon\OneDrive - HOK\GoogleDrive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.dll
+C:\Users\konrad.sobon\OneDrive - HOK\GoogleDrive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.pdb
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\bin\Debug\Mandrill_Resources.pdb
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.Properties.Resources.resources
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.csproj.GenerateResource.Cache
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.dll
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_Resources\obj\Debug\Mandrill_Resources.pdb

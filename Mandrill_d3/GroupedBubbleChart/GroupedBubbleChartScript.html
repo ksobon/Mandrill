@@ -1,0 +1,45 @@
+﻿@using D3jsLib;
+@using D3jsLib.GroupedBubbleChart;
+
+<script type="text/javascript">
+    function renderGroupedBubbleChart() {
+
+        var data = @Raw(Model.Data.Data);
+
+        var diameter = 500,
+            format = d3.format(",d"),
+            color = d3.scaleOrdinal(d3.schemeCategory20c);
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", diameter)
+            .attr("height", diameter);
+
+        var g = svg.append("g")
+            .attr("transform", "translate(10,10)");
+
+        var pack = d3.pack()
+            .size([diameter - 4, diameter - 4]);
+
+        root = d3.hierarchy(data)
+            .sum(function (d) { return d.size; })
+            .sort(function (a, b) { return b.value - a.value; });
+
+        var node = g.selectAll(".node")
+            .data(pack(root).descendants())
+            .enter().append("g")
+            .attr("class", function (d) { return d.children ? "node" : "leaf node"; })
+            .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+        node.append("title")
+            .text(function (d) { return d.data.name + "\n" + format(d.value); });
+
+        node.append("circle")
+            .attr("r", function (d) { return d.r; })
+            .style("fill", function (d) { return color(d.data.color); });
+
+        node.filter(function (d) { return !d.children; }).append("text")
+            .attr("dy", "0.3em")
+            .text(function (d) { return d.data.name.substring(0, d.r / 3); });
+         }
+    renderGroupedBarChart();
+</script>

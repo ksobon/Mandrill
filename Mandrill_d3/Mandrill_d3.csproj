@@ -113,6 +113,7 @@
     <Compile Include="ChartsUtilities.cs" />
     <Compile Include="DonutCharts\DonutCharts.cs" />
     <Compile Include="GroupedBarCharts\GroupedBarChart.cs" />
+    <Compile Include="GroupedBubbleChart\GroupedBubbleChart.cs" />
     <Compile Include="HorizontalBarChart\HorizontalBarChart.cs" />
     <Compile Include="Images\Images.cs" />
     <Compile Include="LineCharts\LineCharts.cs" />
@@ -171,6 +172,9 @@
   <ItemGroup>
     <EmbeddedResource Include="PieChart\PieChartScript.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GroupedBubbleChart\GroupedBubbleChartScript.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets" Condition="Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -180,12 +184,12 @@
     <Error Condition="!Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Q/Y "$(TargetDir)System.Web.Razor.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)System.Web.Razor.dll" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"
-xcopy /Q/Y "$(TargetDir)RazorEngine.dll" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"
-xcopy /Q/Y "$(TargetPath)" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"
-xcopy /Q/Y "$(TargetDir)LumenWorks.Framework.IO.dll" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"
-xcopy /Q/Y "$(TargetDir)LumenWorks.Framework.IO.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.2\packages\Archi-lab_Mandrill\bin"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetDir)System.Web.Razor.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+copy "$(TargetDir)System.Web.Razor.dll" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"
+copy "$(TargetDir)RazorEngine.dll" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"
+copy "$(TargetPath)" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"
+copy "$(TargetDir)LumenWorks.Framework.IO.dll" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"
+copy "$(TargetDir)LumenWorks.Framework.IO.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

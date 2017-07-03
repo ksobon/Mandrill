@@ -1,0 +1,37 @@
+<Workspace Version="1.2.1.3083" X="-672.629029977809" Y="-309.769076683456" zoom="1.25584483561315" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="09e22584-bed1-4fd0-bebd-16aa4d72b92c" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="GroupedBubbleChart.Data" x="756.5" y="394.5" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.GroupedBubbleChart.Data@string[],double[],int[]">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="6ec997f8-3271-4548-ae4c-47a9fcc087bc" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="292.443785815755" y="397.550161979845" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{&quot;Group.Squares.Square1&quot;,&#xA;&quot;Group.Squares.Square2&quot;,&#xA;&quot;Group.Circles.Circle1&quot;,&#xA;&quot;Group.Circles.Circle2&quot;,&#xA;&quot;Group.Triangles.Triangle1&quot;,&#xA;&quot;Group.Triangles.Triangle2&quot;};" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="25639fca-9ff3-4983-9ea3-5e43ab556948" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="601.125144027171" y="445.883116521286" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{12,2,&#xA;32,33,&#xA;4,12};" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="e8f59c6a-fdd7-413b-b5b6-ba7a7789ba51" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="602.783934217837" y="561.285718265855" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{1,1,2,2,3,3};" ShouldFocus="false" />
+    <CoreNodeModels.Watch guid="7fc63c66-3858-41bd-a1c3-8a30ce519e26" type="CoreNodeModels.Watch" nickname="Watch" x="1348.74619957159" y="394.377211208385" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="486e6391-6f02-41af-9f67-704b19e96b2d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.DataToJson" x="1112.08975560713" y="393.224911448649" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.DataToJson@var,bool">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.BoolSelector guid="c2e2bb46-e2c3-45d1-99d8-6f665090d611" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="954.082661206534" y="448.724321409474" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Boolean>True</System.Boolean>
+    </CoreNodeModels.Input.BoolSelector>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="09e22584-bed1-4fd0-bebd-16aa4d72b92c" start_index="0" end="486e6391-6f02-41af-9f67-704b19e96b2d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6ec997f8-3271-4548-ae4c-47a9fcc087bc" start_index="0" end="09e22584-bed1-4fd0-bebd-16aa4d72b92c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="25639fca-9ff3-4983-9ea3-5e43ab556948" start_index="0" end="09e22584-bed1-4fd0-bebd-16aa4d72b92c" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e8f59c6a-fdd7-413b-b5b6-ba7a7789ba51" start_index="0" end="09e22584-bed1-4fd0-bebd-16aa4d72b92c" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="486e6391-6f02-41af-9f67-704b19e96b2d" start_index="0" end="7fc63c66-3858-41bd-a1c3-8a30ce519e26" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c2e2bb46-e2c3-45d1-99d8-6f665090d611" start_index="0" end="486e6391-6f02-41af-9f67-704b19e96b2d" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

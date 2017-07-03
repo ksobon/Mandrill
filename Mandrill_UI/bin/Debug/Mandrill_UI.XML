@@ -90,87 +90,6 @@
             <param name="model"></param>
             <param name="nodeView"></param>
         </member>
-        <member name="T:Mandrill.ChromeWindow.MandrillWindowNodeModel">
-            <summary>
-                Custom Mandrill Chrome Window node implementation
-            </summary>
-        </member>
-        <member name="F:Mandrill.ChromeWindow.MandrillWindowNodeModel.isWindowClosed">
-            <summary>
-                Window closed variable
-            </summary>
-        </member>
-        <member name="F:Mandrill.ChromeWindow.MandrillWindowNodeModel.dv">
-            <summary>
-                Dynamo view variable
-            </summary>
-        </member>
-        <member name="F:Mandrill.ChromeWindow.MandrillWindowNodeModel.RequestNewWindow">
-            <summary>
-                Window event
-            </summary>
-        </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.OnWindowClosing(System.Object,System.ComponentModel.CancelEventArgs)">
-            <summary>
-                Window closing event
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="E:Mandrill.ChromeWindow.MandrillWindowNodeModel.RequestChangeHtmlString">
-            <summary>
-                Html string change event
-            </summary>
-        </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.OnRequestChangeHtmlString">
-            <summary>
-                On request event handler
-            </summary>
-        </member>
-        <member name="P:Mandrill.ChromeWindow.MandrillWindowNodeModel.MyHtml">
-            <summary>
-                Html string - databinding
-            </summary>
-        </member>
-        <member name="P:Mandrill.ChromeWindow.MandrillWindowNodeModel.Message">
-            <summary>
-                Button message - databinding
-            </summary>
-        </member>
-        <member name="P:Mandrill.ChromeWindow.MandrillWindowNodeModel.MessageCommand">
-            <summary>
-                Delegate command for setting button message.
-            </summary>
-        </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.#ctor">
-            <summary>
-                Defines Mandrill Node model
-            </summary>
-        </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeModel.GetInputString(Dynamo.Engine.EngineController)">
-            <summary>
-                Retrieves input string from connected input node.
-            </summary>
-            <param name="engine"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Mandrill.ChromeWindow.MandrillWindowNodeViewCustomization">
-            <summary>
-                Mandrill node customization implementation.
-            </summary>
-        </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeViewCustomization.CustomizeView(Mandrill.ChromeWindow.MandrillWindowNodeModel,Dynamo.Controls.NodeView)">
-            <summary>
-                View customization.
-            </summary>
-            <param name="model"></param>
-            <param name="nodeView"></param>
-        </member>
-        <member name="M:Mandrill.ChromeWindow.MandrillWindowNodeViewCustomization.Dispose">
-            <summary>
-                Dispose of model.
-            </summary>
-        </member>
         <member name="T:Mandrill.ChromeWindow.WebBrowserHelper">
             <summary>
                 Attached property class that allows for property binding on WebBrowser control.
@@ -303,6 +222,124 @@
                 Dispose of model.
             </summary>
         </member>
+        <member name="T:Mandrill.UI.NodeModels.MandrillWindowNodeModel">
+            <summary>
+            Custom Mandrill Chrome Window node implementation
+            </summary>
+        </member>
+        <member name="F:Mandrill.UI.NodeModels.MandrillWindowNodeModel.IsWindowClosed">
+            <summary>
+            Window closed variable
+            </summary>
+        </member>
+        <member name="F:Mandrill.UI.NodeModels.MandrillWindowNodeModel.LaunchInput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Mandrill.UI.NodeModels.MandrillWindowNodeModel.MWindow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Mandrill.UI.NodeModels.MandrillWindowNodeModel.RequestNewWindow">
+            <summary>
+            Window event
+            </summary>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeModel.OnWindowClosing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Window closing event
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeModel.OnWindowLoaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:Mandrill.UI.NodeModels.MandrillWindowNodeModel.RequestChangeHtmlString">
+            <summary>
+            Html string change event
+            </summary>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeModel.OnRequestChangeHtmlString">
+            <summary>
+            On request event handler
+            </summary>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeModel.OnRequestNewWindow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mandrill.UI.NodeModels.MandrillWindowNodeModel.MyHtml">
+            <summary>
+            Html string - databinding
+            </summary>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeModel.#ctor">
+            <summary>
+            Defines Mandrill Node model
+            </summary>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeModel.GetInputString(Dynamo.Engine.EngineController)">
+            <summary>
+            Retrieves input string from connected input node.
+            </summary>
+            <param name="engine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeModel.GetBooleanInput(Dynamo.Engine.EngineController)">
+            <summary>
+            
+            </summary>
+            <param name="engine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeModel.BuildOutputAst(System.Collections.Generic.List{ProtoCore.AST.AssociativeAST.AssociativeNode})">
+            <summary>
+            
+            </summary>
+            <param name="inputAstNodes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mandrill.UI.NodeModels.MandrillWindowNodeViewCustomization">
+            <summary>
+            Mandrill node customization implementation.
+            </summary>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeViewCustomization.CustomizeView(Mandrill.UI.NodeModels.MandrillWindowNodeModel,Dynamo.Controls.NodeView)">
+            <summary>
+            View customization.
+            </summary>
+            <param name="model"></param>
+            <param name="nodeView"></param>
+        </member>
+        <member name="M:Mandrill.UI.NodeModels.MandrillWindowNodeViewCustomization.Dispose">
+            <summary>
+            Dispose of model.
+            </summary>
+        </member>
+        <member name="T:Mandrill.UI.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Mandrill.UI.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Mandrill.UI.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
         <member name="T:Mandrill_UI.CustomGenericEnumerationDropDown">
             <summary>
                 Custom Enumeration Class for dropdown
@@ -333,22 +370,6 @@
             </summary>
             <param name="inputAstNodes"></param>
             <returns></returns>
-        </member>
-        <member name="T:Mandrill_UI.Properties.Resources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Mandrill_UI.Properties.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Mandrill_UI.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>

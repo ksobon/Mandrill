@@ -13,6 +13,12 @@ namespace Mandrill.ChromeWindow
     [NodeDescription("Creates Mandrill Report object that can be viewed in a Window or Printed to PDF.")]
     [NodeCategory("Archi-lab_Mandrill.Report.Window")]
     [IsDesignScriptCompatible]
+    [InPortDescriptions("MandrillChart0")]
+    [InPortNames("Chart0")]
+    [InPortTypes("Chart")]
+    [OutPortDescriptions("OutTooltip0")]
+    [OutPortNames("Report")]
+    [OutPortTypes("Report")]
     public class MandrillReportNode : VariableInputNode
     {
         /// <summary>
@@ -20,8 +26,8 @@ namespace Mandrill.ChromeWindow
         /// </summary>
         public MandrillReportNode()
         {
-            InPortData.Add(new PortData("Chart0", "MandrillChart0"));
-            OutPortData.Add(new PortData("Report", "OutToolTip0"));
+            //InPortData.Add(new PortData("Chart0", "MandrillChart0"));
+            //OutPortData.Add(new PortData("Report", "OutToolTip0"));
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
         }
@@ -51,8 +57,12 @@ namespace Mandrill.ChromeWindow
         /// </summary>
         protected override void RemoveInput()
         {
-            if (InPortData.Count > 1)
+            if (InPorts.Count > 1)
+            {
                 base.RemoveInput();
+            }
+            //if (InPortData.Count > 1)
+            //    base.RemoveInput();
         }
 
         /// <summary>

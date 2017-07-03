@@ -9,7 +9,7 @@
                 Horizontal Bar Chart.
             </summary>
         </member>
-        <member name="M:Charts.HorizontalBarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
+        <member name="M:Charts.HorizontalBarChart.Style(System.Collections.Generic.List{DSCore.Color},DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String)">
             <summary>
                 Horizontal Bar Chart Style
             </summary>
@@ -22,12 +22,13 @@
             <param name="XAxisLabel">Text displayed in bottom-right corner of chart.</param>
             <returns name="Style">Style</returns>
         </member>
-        <member name="M:Charts.HorizontalBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},D3jsLib.Domain)">
+        <member name="M:Charts.HorizontalBarChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Int32},D3jsLib.Domain)">
             <summary>
                 Horizontal Bar Chart Data.
             </summary>
             <param name="Names"></param>
             <param name="Values"></param>
+            <param name="Colors"></param>
             <param name="Domain"></param>
             <returns name="Data">Data</returns>
         </member>
@@ -175,7 +176,7 @@
                 Area Chart
             </summary>
         </member>
-        <member name="M:Charts.AreaChart.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32)">
+        <member name="M:Charts.AreaChart.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32,System.Double,System.String)">
             <summary>
                 Area Chart Style object.
             </summary>
@@ -186,6 +187,8 @@
             <param name="YAxisLabel">Text used to label Y Axis.</param>
             <param name="AreaColor">Color for Area Chart fill.</param>
             <param name="TickMarksX">Approximate number of tick marks on X Axis.</param>
+            <param name="LineValue">If values is set it will show a horizontal line across the chart.</param>
+            <param name="LineLabel">Text used to describe horizontal line across the chart.</param>
             <returns name="Style">Area Chart Style.</returns>
             <search>area, chart, style</search>
         </member>
@@ -199,7 +202,7 @@
             <returns name="Data">Area Chart Data.</returns>
             <search>area, chart, data</search>
         </member>
-        <member name="M:Charts.AreaChart.DataFromCSV(System.String,D3jsLib.Domain)">
+        <member name="M:Charts.AreaChart.DataFromCSV(System.Object,D3jsLib.Domain)">
             <summary>
                 Area Chart Data from CSV File.
             </summary>
@@ -208,7 +211,7 @@
             <returns name="Data">Area Chart Data.</returns>
             <search>area, chart, data</search>
         </member>
-        <member name="M:Charts.AreaChart.Chart(D3jsLib.d3AreaCharts.AreaChartData,D3jsLib.d3AreaCharts.AreaChartStyle)">
+        <member name="M:Charts.AreaChart.Chart(D3jsLib.AreaCharts.AreaChartData,D3jsLib.AreaCharts.AreaChartStyle)">
             <summary>
                 New Area Chart object
             </summary>
@@ -222,7 +225,7 @@
                 Bar Charts Class.
             </summary>
         </member>
-        <member name="M:Charts.BarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32,System.Boolean)">
+        <member name="M:Charts.BarChart.Style(DSCore.Color,DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.Int32,System.Boolean,System.Boolean)">
             <summary>
                 Bar Chart Style object.
             </summary>
@@ -235,6 +238,7 @@
             <param name="YAxisLabel">Text displayed in top-left corner of chart.</param>
             <param name="TickMarksX">Approximate number of tick mark values for X Axis.</param>
             <param name="xTextRotation">Indicates if labels along x-axis are rotated.</param>
+            <param name="Labels">Indicates if labels with actual bar values appear above each bar.</param>
             <returns name="Style">Bar Chart Style.</returns>
             <search>bar, chart, style</search>
         </member>
@@ -386,7 +390,7 @@
             <returns name="Data">Line Chart Data.</returns>
             <search>data</search>
         </member>
-        <member name="M:Charts.LineChart.DataFromCSV(System.String,D3jsLib.Domain)">
+        <member name="M:Charts.LineChart.DataFromCSV(System.Object,D3jsLib.Domain)">
             <summary>
                 Line Chart Data object.
             </summary>
@@ -406,12 +410,20 @@
         </member>
         <member name="T:Charts.MiscNodes">
             <summary>
-                Nodes shared across all chart types.
+            Nodes shared across all chart types.
             </summary>
+        </member>
+        <member name="M:Charts.MiscNodes.DataToJson(System.Object,System.Boolean)">
+            <summary>
+            Returns JSON string of the data object.
+            </summary>
+            <param name="data">Any of the Mandrill Chart Data objects.</param>
+            <param name="pretty">If set to True string will be indented.</param>
+            <returns name="Json">Json string representation of data.</returns>
         </member>
         <member name="M:Charts.MiscNodes.Margins(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-                Chart Margins.
+            Chart Margins.
             </summary>
             <param name="Top">Top margin in pixels.</param>
             <param name="Bottom">Top margin in pixels.</param>
@@ -421,7 +433,7 @@
         </member>
         <member name="M:Charts.MiscNodes.Domain(System.Double,System.Double)">
             <summary>
-                Chart domain.
+            Chart domain.
             </summary>
             <param name="A">Domain start.</param>
             <param name="B">Domain end.</param>
@@ -430,7 +442,7 @@
         </member>
         <member name="M:Charts.MiscNodes.Address(System.Int32,System.Int32)">
             <summary>
-                Grid Address node.
+            Grid Address node.
             </summary>
             <param name="column">Column integer.</param>
             <param name="row">Row integer.</param>
@@ -439,8 +451,14 @@
         </member>
         <member name="M:Charts.MiscNodes.GetNull">
             <summary>
-                Returns null value.
+            Returns null value.
             </summary>
+        </member>
+        <member name="M:Charts.MiscNodes.GetColorList">
+            <summary>
+            Returns a default color in a list.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Charts.ParallelCoordinates">
             <summary>
@@ -489,7 +507,7 @@
                 Scatter Plot nodes.
             </summary>
         </member>
-        <member name="M:Charts.ScatterPlot.Style(DSCore.Color,D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.String)">
+        <member name="M:Charts.ScatterPlot.Style(System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32,System.Int32,System.String,System.String)">
             <summary>
                 Scatter Plot Style.
             </summary>
@@ -503,20 +521,21 @@
             <returns name="Style">Scatter Plot Style.</returns>
             <search>style, scatter plot</search>
         </member>
-        <member name="M:Charts.ScatterPlot.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},D3jsLib.Domain,D3jsLib.Domain)">
+        <member name="M:Charts.ScatterPlot.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Int32},D3jsLib.Domain,D3jsLib.Domain)">
             <summary>
                 Scatter Plot Data.
             </summary>
-            <param name="Name">Names for Data Points.</param>
+            <param name="Names">Names for Data Points.</param>
             <param name="ValueX">Value along X Axis.</param>
             <param name="ValueY">Value along Y Axis.</param>
             <param name="Size">Size of displayed dot.</param>
+            <param name="Colors">Color of each dot.</param>
             <param name="DomainX">Boundary domain for values along X Axis.</param>
             <param name="DomainY">Boundary domain for values along Y Axis.</param>
             <returns name="Data">Scatter Plot Data.</returns>
             <search>scatter plot, data</search>
         </member>
-        <member name="M:Charts.ScatterPlot.DataFromCSV(System.String,D3jsLib.Domain,D3jsLib.Domain)">
+        <member name="M:Charts.ScatterPlot.DataFromCSV(System.Object,D3jsLib.Domain,D3jsLib.Domain)">
             <summary>
                 Scatter Plot Data from CSV File.
             </summary>
@@ -620,7 +639,7 @@
                 Image Class.
             </summary>
         </member>
-        <member name="M:Image.Image.Create(System.String,D3jsLib.ImageStyle)">
+        <member name="M:Image.Image.Create(System.Object,D3jsLib.ImageStyle)">
             <summary>
                 Image class.
             </summary>

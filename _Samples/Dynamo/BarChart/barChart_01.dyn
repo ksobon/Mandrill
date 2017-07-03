@@ -1,13 +1,13 @@
-<Workspace Version="1.2.0.2690" X="451.989722144207" Y="285.870993097874" zoom="0.476345869864654" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+<Workspace Version="1.3.0.875" X="-845.267054541804" Y="389.730851529201" zoom="1.03937985230912" ScaleFactor="1" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
   <NamespaceResolutionMap>
     <ClassMap partialName="DSCore.Color" resolvedName="DSCore.Color" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>
   <Elements>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ab515183-8b5f-402c-b100-0c3f5dae4383" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.DataFromCSV" x="416.93858973152" y="226.665247511073" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.DataFromCSV@var,var">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ab515183-8b5f-402c-b100-0c3f5dae4383" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.DataFromCSV" x="416.93858973152" y="226.665247511073" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.DataFromCSV@var,var">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="True" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ded3fed4-c3b8-4bad-900a-36fb793f75de" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Style" x="378.994715506008" y="521.379220239402" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Style@DSCore.Color,DSCore.Color,var,var,int,int,string,int,bool,bool">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ded3fed4-c3b8-4bad-900a-36fb793f75de" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Style" x="378.994715506008" y="521.379220239402" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Style@DSCore.Color,DSCore.Color,var,var,int,int,string,int,bool,bool">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
       <PortInfo index="2" default="True" />
@@ -21,34 +21,34 @@
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
     <CoreNodeModels.Input.Filename guid="017a6677-2fb4-463f-a1b0-c0ec703f7657" type="CoreNodeModels.Input.Filename" nickname="File Path" x="-34.9485737224513" y="226.985135994895" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <System.String>.\Level1.csv</System.String>
-      <HintPath>E:\Google Drive\Work\Mandrill\_Samples\Dynamo\BarChart\Level1.csv</HintPath>
+      <HintPath>C:\Users\ksobon\Google Drive\Work\Mandrill\_Samples\Dynamo\BarChart\Level1.csv</HintPath>
     </CoreNodeModels.Input.Filename>
     <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="6eeed4c1-3380-4928-bfd3-ce296974e93e" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="185.675729472122" y="652.066410724095" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1500;&#xA;600;&#xA;&quot;Wall Count&quot;;&#xA;13;&#xA;true;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="a90c080a-19b5-462d-925d-335256d3231d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Domain" x="205.816764313756" y="278.939993972743" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Domain@double,double">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="a90c080a-19b5-462d-925d-335256d3231d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Domain" x="205.816764313756" y="278.939993972743" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Domain@double,double">
       <PortInfo index="0" default="True" />
       <PortInfo index="1" default="True" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
     <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="0c57e534-5ca1-44c8-a557-e4dbda4c78f7" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="105.350567035915" y="289.149963433278" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0;&#xA;16;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ec8f4d31-3663-4d03-9f02-57785915dbf0" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Chart" x="785.078545662242" y="225.905846352475" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Chart@var,var">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ec8f4d31-3663-4d03-9f02-57785915dbf0" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Chart" x="785.078545662242" y="225.905846352475" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Chart@var,var">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="1fa8b36c-8006-4a0d-b9f3-8bfcc856c278" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Data" x="388.205551884942" y="-255.76019331729" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Data@string[],double[],var">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="1fa8b36c-8006-4a0d-b9f3-8bfcc856c278" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Data" x="388.205551884942" y="-255.76019331729" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Data@string[],double[],var">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
       <PortInfo index="2" default="True" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
     <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="3c8d3aea-2bac-4077-84a2-f1df17f29c1a" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="186.545733270679" y="-248.841103452731" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{&quot;A&quot;, &quot;B&quot;, &quot;C&quot;};&#xA;{1,20,10};" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e7390b59-68c4-45fc-9188-3581031a55a1" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Domain" x="176.265142050432" y="-137.40487506232" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Domain@double,double">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e7390b59-68c4-45fc-9188-3581031a55a1" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Domain" x="176.265142050432" y="-137.40487506232" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Domain@double,double">
       <PortInfo index="0" default="True" />
       <PortInfo index="1" default="True" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="208ae4cd-d733-4994-8ae4-8d2e4fb0f5fa" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="75.7989447725914" y="-127.194905601785" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0;&#xA;20;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f65f8fa8-0f40-4a78-bb4b-aff9ef0f61bd" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Chart" x="850.864876119211" y="-256.779225211943" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Chart@var,var">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="208ae4cd-d733-4994-8ae4-8d2e4fb0f5fa" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="75.7989447725914" y="-127.194905601785" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0;&#xA;30;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f65f8fa8-0f40-4a78-bb4b-aff9ef0f61bd" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Chart" x="850.864876119211" y="-256.779225211943" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Chart@var,var">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="fd1c7965-f8fa-4423-84b7-081aaea444e7" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Style" x="593.129329069948" y="-193.863486159247" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Style@DSCore.Color,DSCore.Color,var,var,int,int,string,int,bool,bool">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="fd1c7965-f8fa-4423-84b7-081aaea444e7" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="BarChart.Style" x="593.129329069948" y="-193.863486159247" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.BarChart.Style@DSCore.Color,DSCore.Color,var,var,int,int,string,int,bool,bool">
       <PortInfo index="0" default="True" />
       <PortInfo index="1" default="True" />
       <PortInfo index="2" default="True" />
@@ -60,8 +60,8 @@
       <PortInfo index="8" default="True" />
       <PortInfo index="9" default="True" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="bc797641-7cd4-4c16-8d2d-4273912c48d6" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="474.44582482505" y="-6.90338453212776" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="3;" ShouldFocus="false" />
-    <Mandrill.ChromeWindow.MandrillReportNode guid="da24b185-2bcd-45d0-9b04-60295b183223" type="Mandrill.ChromeWindow.MandrillReportNode" nickname="Create Report" x="1043.64646629196" y="-256.901330223871" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="bc797641-7cd4-4c16-8d2d-4273912c48d6" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="474.44582482505" y="-6.90338453212776" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="2;" ShouldFocus="false" />
+    <Mandrill.ChromeWindow.MandrillReportNode guid="da24b185-2bcd-45d0-9b04-60295b183223" type="Mandrill.ChromeWindow.MandrillReportNode" nickname="Create Report" x="1085.5187101279" y="-255.799429070294" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
       <PortInfo index="0" default="False" />
     </Mandrill.ChromeWindow.MandrillReportNode>
     <Mandrill.ChromeWindow.MandrillWindowNodeModel guid="028b119a-32d7-4959-a527-4efecd589ace" type="Mandrill.ChromeWindow.MandrillWindowNodeModel" nickname="Report Window" x="1203.3500869266" y="-256.901330223871" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
@@ -84,7 +84,7 @@
       <System.String>C:\Users\ksobon\Desktop\testPrint.pdf</System.String>
       <HintPath>C:\Users\ksobon\Desktop\testPrint.pdf</HintPath>
     </CoreNodeModels.Input.Filename>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="8d2a2528-aab8-4409-a995-40e2b2dc315d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Pdf.Style" x="1869.13180180398" y="196.815027140417" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Report.Pdf.Style@string,string,string,string,int,int,int,int,int">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="8d2a2528-aab8-4409-a995-40e2b2dc315d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Pdf.Style" x="1869.13180180398" y="196.815027140417" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Report.Pdf.Style@string,string,string,string,int,int,int,int,int">
       <PortInfo index="0" default="True" />
       <PortInfo index="1" default="True" />
       <PortInfo index="2" default="True" />
@@ -102,7 +102,7 @@
       <PortInfo index="1" default="False" />
       <PortInfo index="2" default="False" />
     </Mandrill.Print.MandrillPrintNodeModel>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="5dc30e69-f822-4e2b-b49a-4faa4b215e87" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Margins" x="-128.022066022461" y="696.790882378937" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Margins@int,int,int,int">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="5dc30e69-f822-4e2b-b49a-4faa4b215e87" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Margins" x="-128.022066022461" y="696.790882378937" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Margins@int,int,int,int">
       <PortInfo index="0" default="True" />
       <PortInfo index="1" default="True" />
       <PortInfo index="2" default="True" />
@@ -112,7 +112,7 @@
       <System.Int32>18</System.Int32>
       <Range min="0" max="100" step="1" />
     </CoreNodeModels.Input.IntegerSlider>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="3b41bf52-d2cd-435f-99f3-ea39bc091c85" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Address" x="-126.013986324868" y="576.161466416546" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo%20Revit\1.2\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Address@int,int">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="3b41bf52-d2cd-435f-99f3-ea39bc091c85" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="MiscNodes.Address" x="-126.013986324868" y="576.161466416546" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\..\..\..\..\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin\Archi-lab_Mandrill.dll" function="Charts.MiscNodes.Address@int,int">
       <PortInfo index="0" default="True" />
       <PortInfo index="1" default="True" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
@@ -127,6 +127,17 @@
     <CoreNodeModels.Input.BoolSelector guid="042a3f80-30b9-4f2a-b19d-da34fc02b716" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="196.343298823244" y="800.982469379091" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <System.Boolean>True</System.Boolean>
     </CoreNodeModels.Input.BoolSelector>
+    <Mandrill.UI.NodeModels.MandrillWindowNodeModel guid="6efe4d4e-6ca8-4df5-a703-cd3565b61850" type="Mandrill.UI.NodeModels.MandrillWindowNodeModel" nickname="Report Window" x="1426.57732155994" y="-181.234775575076" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Mandrill.UI.NodeModels.MandrillWindowNodeModel>
+    <CoreNodeModels.Input.BoolSelector guid="a099017a-b486-4930-8d66-395be14b07a4" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="988.18287040722" y="-80.7320482930097" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Boolean>False</System.Boolean>
+    </CoreNodeModels.Input.BoolSelector>
+    <Mandrill.UI.NodeModels.MandrillWindowNodeModel guid="952d7c88-d3fa-4889-a1cd-f141f235437f" type="Mandrill.UI.NodeModels.MandrillWindowNodeModel" nickname="Report Window" x="1184.84689410381" y="-118.184419138288" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Mandrill.UI.NodeModels.MandrillWindowNodeModel>
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="ab515183-8b5f-402c-b100-0c3f5dae4383" start_index="0" end="ec8f4d31-3663-4d03-9f02-57785915dbf0" end_index="0" portType="0" />
@@ -147,11 +158,12 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="e7390b59-68c4-45fc-9188-3581031a55a1" start_index="0" end="1fa8b36c-8006-4a0d-b9f3-8bfcc856c278" end_index="2" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="208ae4cd-d733-4994-8ae4-8d2e4fb0f5fa" start_index="0" end="e7390b59-68c4-45fc-9188-3581031a55a1" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="208ae4cd-d733-4994-8ae4-8d2e4fb0f5fa" start_index="1" end="e7390b59-68c4-45fc-9188-3581031a55a1" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="f65f8fa8-0f40-4a78-bb4b-aff9ef0f61bd" start_index="0" end="da24b185-2bcd-45d0-9b04-60295b183223" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="f65f8fa8-0f40-4a78-bb4b-aff9ef0f61bd" start_index="0" end="ac169cab-3001-478a-98eb-be3ccd488c01" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f65f8fa8-0f40-4a78-bb4b-aff9ef0f61bd" start_index="0" end="da24b185-2bcd-45d0-9b04-60295b183223" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="fd1c7965-f8fa-4423-84b7-081aaea444e7" start_index="0" end="f65f8fa8-0f40-4a78-bb4b-aff9ef0f61bd" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="bc797641-7cd4-4c16-8d2d-4273912c48d6" start_index="0" end="fd1c7965-f8fa-4423-84b7-081aaea444e7" end_index="7" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="da24b185-2bcd-45d0-9b04-60295b183223" start_index="0" end="028b119a-32d7-4959-a527-4efecd589ace" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="da24b185-2bcd-45d0-9b04-60295b183223" start_index="0" end="952d7c88-d3fa-4889-a1cd-f141f235437f" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="ac169cab-3001-478a-98eb-be3ccd488c01" start_index="0" end="570a3c19-1d0e-4252-a58c-2e22fc056ce8" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="ac169cab-3001-478a-98eb-be3ccd488c01" start_index="0" end="79971476-9d8d-4fc4-905b-e0a4d12fd665" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="455470a8-e5dc-4df3-ae7c-bf802f8b28b7" start_index="0" end="ded3fed4-c3b8-4bad-900a-36fb793f75de" end_index="0" portType="0" />
@@ -171,6 +183,7 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="d6e1a75c-ec93-43f4-9a51-bc20d37f5ef7" start_index="0" end="5dc30e69-f822-4e2b-b49a-4faa4b215e87" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="185d95c8-a6ee-4517-8001-1ebcad410d05" start_index="0" end="fd1c7965-f8fa-4423-84b7-081aaea444e7" end_index="9" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="042a3f80-30b9-4f2a-b19d-da34fc02b716" start_index="0" end="ded3fed4-c3b8-4bad-900a-36fb793f75de" end_index="9" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a099017a-b486-4930-8d66-395be14b07a4" start_index="0" end="952d7c88-d3fa-4889-a1cd-f141f235437f" end_index="1" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />

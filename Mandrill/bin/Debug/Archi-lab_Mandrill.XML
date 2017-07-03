@@ -4,6 +4,38 @@
         <name>Archi-lab_Mandrill</name>
     </assembly>
     <members>
+        <member name="T:Charts.GroupedBubbleChart">
+            <summary>
+                Grouped Bubble Chart nodes.
+            </summary>
+        </member>
+        <member name="M:Charts.GroupedBubbleChart.Style(System.Collections.Generic.List{DSCore.Color},D3jsLib.GridAddress,D3jsLib.Margins,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Colors"></param>
+            <param name="Address"></param>
+            <param name="Margins"></param>
+            <param name="Width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Charts.GroupedBubbleChart.Data(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="Names"></param>
+            <param name="Values"></param>
+            <param name="Colors"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Charts.GroupedBubbleChart.Chart(D3jsLib.GroupedBubbleChart.GroupedBubbleChartData,D3jsLib.GroupedBubbleChart.GroupedBubbleChartStyle)">
+            <summary>
+            
+            </summary>
+            <param name="Data"></param>
+            <param name="Style"></param>
+            <returns></returns>
+        </member>
         <member name="T:Charts.HorizontalBarChart">
             <summary>
                 Horizontal Bar Chart.

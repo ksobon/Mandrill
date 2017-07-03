@@ -199,7 +199,7 @@
             <returns name="Data">Area Chart Data.</returns>
             <search>area, chart, data</search>
         </member>
-        <member name="M:Charts.AreaChart.DataFromCSV(System.String,D3jsLib.Domain)">
+        <member name="M:Charts.AreaChart.DataFromCSV(System.Object,D3jsLib.Domain)">
             <summary>
                 Area Chart Data from CSV File.
             </summary>
@@ -208,7 +208,7 @@
             <returns name="Data">Area Chart Data.</returns>
             <search>area, chart, data</search>
         </member>
-        <member name="M:Charts.AreaChart.Chart(D3jsLib.d3AreaCharts.AreaChartData,D3jsLib.d3AreaCharts.AreaChartStyle)">
+        <member name="M:Charts.AreaChart.Chart(D3jsLib.AreaCharts.AreaChartData,D3jsLib.AreaCharts.AreaChartStyle)">
             <summary>
                 New Area Chart object
             </summary>
@@ -507,7 +507,7 @@
             <summary>
                 Scatter Plot Data.
             </summary>
-            <param name="Name">Names for Data Points.</param>
+            <param name="Names">Names for Data Points.</param>
             <param name="ValueX">Value along X Axis.</param>
             <param name="ValueY">Value along Y Axis.</param>
             <param name="Size">Size of displayed dot.</param>

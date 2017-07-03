@@ -4,8 +4,8 @@
 library
 C#
 .cs
-E:\Google Drive\Work\Mandrill\Mandrill_UI\obj\Debug\
-Mandrill_UI
+C:\Users\ksobon\Google Drive\Work\Mandrill\Mandrill_UI\obj\Debug\
+Mandrill.UI
 none
 false
 DEBUG;TRACE
@@ -13,8 +13,8 @@ DEBUG;TRACE
 4435418862
 
 17-1535546874
-31-1382883725
+452116411588
 Controls\PaperSizeDropdown.xaml;Controls\MandrillWindow.xaml;Controls\MandrillPrintButtonControl.xaml;Controls\MandrillWindowButtonControl.xaml;
 
-True
+False
 
