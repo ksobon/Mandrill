@@ -4,4 +4,12 @@
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Dynamo\Dynamo Revit\1.2\DynamoSandbox.exe</StartProgram>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '13|AnyCPU'">
+    <StartProgram>C:\Program Files\Dynamo\Dynamo Revit\1.2\DynamoSandbox.exe</StartProgram>
+    <StartAction>Program</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '20|AnyCPU'">
+    <StartProgram>C:\Program Files\Dynamo\Dynamo Revit\1.2\DynamoSandbox.exe</StartProgram>
+    <StartAction>Program</StartAction>
+  </PropertyGroup>
 </Project>

@@ -77,6 +77,66 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '13|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\13\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Archi-lab_Mandrill.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '13|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\13\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Archi-lab_Mandrill.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '13|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\13\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Archi-lab_Mandrill.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '20|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\20\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Archi-lab_Mandrill.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '20|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\20\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Archi-lab_Mandrill.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '20|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\20\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Archi-lab_Mandrill.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Analysis, Version=1.3.0.1281, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.1.3.0\lib\net45\Analysis.dll</HintPath>
@@ -629,7 +689,14 @@
     <Error Condition="!Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Q/Y "$(TargetPath)" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
+    <PostBuildEvent>echo Configuration: $(Configuration)
+
+if $(Configuration) == 13 goto Build13
+if $(Configuration) == 20 goto Build20
+
+:Build13
+echo Copying results to 1.3
+xcopy /Q/Y "$(TargetPath)" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
 xcopy /Q/Y "$(TargetDir)$(TargetName).XML" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
 xcopy /Q/Y "$(TargetDir)Mandrill_d3.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
 xcopy /Q/Y "$(TargetDir)Mandrill_Types.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
@@ -640,7 +707,26 @@ xcopy /Q/Y "$(TargetDir)RazorEngine.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo
 xcopy /Q/Y "$(TargetDir)Select.HtmlToPdf.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
 xcopy /Q/Y "$(TargetDir)Select.Html.dep" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\extra"
 xcopy /Q/Y "$(TargetDir)Archi-lab_Mandrill.customization.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Newtonsoft.Json.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"</PostBuildEvent>
+xcopy /Q/Y "$(TargetDir)Newtonsoft.Json.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
+goto exit
+
+:Build20
+echo Copying results to 2.0
+xcopy /Q/Y "$(TargetPath)" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)$(TargetName).XML" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_d3.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_Types.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_Types.xml" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_UI.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Mandrill_UI.xml" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)RazorEngine.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Select.HtmlToPdf.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Select.Html.dep" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\extra"
+xcopy /Q/Y "$(TargetDir)Archi-lab_Mandrill.customization.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)Newtonsoft.Json.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+goto exit
+
+:exit</PostBuildEvent>
   </PropertyGroup>
   <Target Name="BeforeBuild">
     <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
