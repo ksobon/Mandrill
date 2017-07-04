@@ -1,0 +1,128 @@
+﻿@using D3jsLib;
+@using D3jsLib.HorizontalBarChart;
+
+<script type="text/javascript">
+    function renderHorizontalBarChart() {
+
+        var data = @Raw(Model.Data.Data);
+
+        var margin = {top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left)},
+            width = @(Model.Style.Width) - margin.left - margin.right,
+            height = @(Model.Style.Height) - margin.top - margin.bottom;
+
+        var y = d3.scale.ordinal()
+            .domain(data.map(function (d) { return d.name; }))
+            .rangeBands([0, height], 0.1, 0.35);
+
+        var x = d3.scale.linear()
+            .range([0, width])
+
+        @if(Model.Data.Domain != null)
+        {
+            @:x.domain([@(Model.Data.Domain.A), @(Model.Data.Domain.B)]);
+        }
+        else
+        {
+            @:x.domain([0, d3.max(data, function (d) { return d.value; })]);
+        }
+
+        var color = d3.scale.ordinal().range(@Raw(((HorizontalBarChartStyle)Model.Style).BarColor));
+
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .tickSize(-height)
+
+        var barChart = d3.select("#@(Model.DivId)").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");                                                                               
+
+        barChart.selectAll("#bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("id", "bar")
+            .attr("x", 0)
+            .attr("width", function(d){return x(d.value);})
+            .attr("y", function (d) { return y(d.name); })
+            .attr("fill", function(d){ return color(d.color); })
+            .attr("height", y.rangeBand())
+            .on("mouseover", function(d){
+                d3.select(this).attr("fill", "@(((HorizontalBarChartStyle)Model.Style).BarHoverColor)");
+            })
+           .on("mouseout", function(){
+               d3.select(this).attr("fill", function(d) { return color(d.color); });           
+           });
+
+        barChart.append("g")
+            .attr("class", "x axisHorizontal")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .append("text")
+            .style("text-anchor", "end")
+            .attr("x", width - 3)
+            .attr("y", -5)
+            .text("@(((HorizontalBarChartStyle)Model.Style).YAxisLabel)")
+
+        barChart.append("g")
+            .selectAll("axisLabels")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("x", 0)
+            .attr("y", function(d){
+                var width = getPixelWidth(d.name);
+                var lineCount = Math.ceil(width / margin.left);
+                var center = (y(d.name) + (y.rangeBand() / 2)) - (lineCount * 3);
+                var offset = (y(d.name) + (y.rangeBand() / 2));
+                return lineCount > 1 ? center : offset;})
+            .attr("text-anchor", "end")
+            .attr("dy", ".35em")
+            .attr("dx", -5)
+            .text(function(d){return d.name;})
+            .call(wrap, margin.left);
+
+        barChart.append("g")
+            .selectAll("valueLabels")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("x", function(d){return x(d.value);})
+            .attr("y", function(d){return y(d.name) + (y.rangeBand() / 2);})
+            .attr("dy", ".35em")
+            .attr("dx", 5)
+            .text(function(d){return d.value;})
+
+        function getPixelWidth(text){
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext("2d");       
+            return width = ctx.measureText(text).width;}
+
+        function wrap(text, width) {
+            text.each(function() {
+                var text = d3.select(this),
+                    words = text.text().split(/\s+/).reverse(),
+                    word,
+                    line = [],
+                    lineNumber = 0,
+                    lineHeight = 1.1, // ems
+                    y = text.attr("y"),
+                    dy = parseFloat(text.attr("dy")),
+                    tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dx", -5).attr("dy", dy + "em");
+                while (word = words.pop()) {
+                    line.push(word);
+                    tspan.text(line.join(" "));
+                    if (tspan.node().getComputedTextLength() > width) {
+                        line.pop();
+                        tspan.text(line.join(" "));
+                        line = [word];
+                        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dx", -5).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                        console.log(lineNumber);
+                    }
+                }
+            });
+        }
+    }
+    renderHorizontalBarChart();
+</script>

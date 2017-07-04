@@ -1,0 +1,198 @@
+﻿@using D3jsLib;
+@using D3jsLib.BarChart;
+
+<script type="text/javascript">
+    function renderBarChart() {
+    
+        var data =  @Raw(Model.Data.Data);
+    
+        var tickValues = data.map(function (d){return d.name;});
+        var step = Math.floor(tickValues.length / @(((BarStyle)Model.Style).TickMarksX));
+        var indexes = d3.range(0,tickValues.length, step);
+        if (indexes.indexOf(tickValues.length - 1) == -1){
+            indexes.push(tickValues.length - 1);
+        }
+        var tickArray = d3.permute(tickValues, indexes);
+    
+        var margin = { top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left) },
+            width = @(Model.Style.Width) - margin.left - margin.right,
+            height = @(Model.Style.Height) - margin.top - margin.bottom;
+    
+        var x = d3.scale.ordinal()
+            .domain(data.map(function (d) { return d.name; }))
+            .rangeBands([0, width], 0.1, 0.35);
+    
+        var y = d3.scale.linear()
+            .range([height, 0]);
+    
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .tickValues(tickArray);
+    
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left");
+    
+        var barChart = d3.select("#@(Model.DivId)").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
+        @if(Model.Data.Domain != null)
+        {
+            @:y.domain([@(Model.Data.Domain.A), @(Model.Data.Domain.B)]);
+        }
+        else
+        {
+            @:y.domain([0, d3.max(data, function (d) { return d.value; })]);
+        }
+    
+        @if(((BarStyle)Model.Style).xTextRotation)
+        {<text>
+            barChart.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+                .selectAll("text")
+                  .style("text-anchor", "end")
+                  .attr("dx", "-0.8em")
+                  .attr("dy", "0.15em")
+                  .attr("transform", function(d){
+                      return "rotate(-65)"
+                  });
+         </text>
+        }
+        else
+        {<text>
+            barChart.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+        </text>
+        }
+    
+        barChart.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("@(((BarStyle)Model.Style).YAxisLabel)");
+    
+        barChart.selectAll("#bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("id", "bar")
+            .attr("x", function (d) { return x(d.name); })
+            .attr("width", x.rangeBand())
+            .attr("y", function (d) { return y(d.value); })
+            .attr("fill", "@(((BarStyle)Model.Style).BarColor)")
+            .attr("height", function (d) { return height - y(d.value); })
+            .on("click", function() {sortBars();})
+            .on("mouseover", function(d){
+    
+                var xPos = parseFloat(d3.select(this).attr("x"));
+                var yPos = parseFloat(d3.select(this).attr("y"));
+                var height = parseFloat(d3.select(this).attr("height"));
+                var width = parseFloat(d3.select(this).attr("width"));
+    
+                d3.select(this).attr("fill", "@(((BarStyle)Model.Style).BarHoverColor)");
+    
+                barChart.append("text")
+                    .attr("x",xPos)
+                    .attr("y", yPos - 3)
+                    .attr("font-family", "sans-serif")
+                    .attr("font-size", "10px")
+                    .attr("font-weight", "bold")
+                    .attr("fill", "black")
+                    .attr("text-anchor", "middle")
+                    .attr("id", "tooltip")
+                    .attr("transform", "translate(" + width/2 + ")")
+                    .text(d.name +": "+ d.value);
+            })
+            .on("mouseout", function(){
+                barChart.selectAll("#tooltip").remove();
+                d3.select(this).attr("fill", "@(((BarStyle)Model.Style).BarColor)");             
+            });
+        
+        @if(((BarStyle)Model.Style).Labels)
+        {<text>
+        barChart.append("g")
+            .selectAll("valueLabels")
+            .data(data).enter()
+            .append("text")
+            .attr("id", "valueLabel")
+            .attr("x", function(d){return x(d.name) + (x.rangeBand() / 2);})
+            .attr("y", function(d){return y(d.value);})
+            .attr("dy", -3)
+            .style("text-anchor", "middle")
+            .text(function(d){return d.name +": "+ d.value;})
+        </text>
+        }
+        else
+        {
+        }
+
+        var sortOrder = false;
+        var sortBars = function() {
+    
+            //Flip value of sortOrder
+            sortOrder = !sortOrder;
+    
+            var x0 = x.domain(data.sort(sortOrder
+              ? function(a, b) { return b.value - a.value; }
+              : function(a, b) { return d3.ascending(a.name, b.name); })
+              .map(function(d) { return d.name; }))
+              .copy();
+    
+            barChart.selectAll("#bar")
+              .sort(function(a, b) { return x0(a.name) - x0(b.name); });
+    
+            var transition = barChart.transition().duration(750);
+            var delay = function(d, i) { return i * 50; };
+    
+            transition.selectAll("#bar")
+                .delay(delay)
+                .attr("x", function(d) { return x0(d.name); });
+    
+            transition.select(".x.axis")
+                .call(xAxis)
+
+            @if(((BarStyle)Model.Style).Labels)
+            {<text>
+            transition.selectAll("#valueLabel")
+               .delay(delay)
+               .attr("x", function(d){ return x0(d.name) + (x0.rangeBand() / 2);});
+            </text>
+            }
+            else
+            {
+            }
+
+            @if(((BarStyle)Model.Style).xTextRotation)
+            {<text>
+            barChart.select('.x.axis')
+                .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-0.8em")
+                    .attr("dy", "0.15em")
+                    .attr("transform", function(d){ return "rotate(-65)";});
+            </text>
+            }
+            else
+            {
+            }
+
+            };
+    
+        function type(d) {
+            d.value = +d.value;
+            return d;
+        }
+    }
+    renderBarChart();
+</script>

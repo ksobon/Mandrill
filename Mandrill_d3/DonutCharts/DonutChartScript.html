@@ -1,0 +1,118 @@
+﻿@using D3jsLib;
+@using D3jsLib.DonutChart;
+
+<script type="text/javascript">
+    function renderDonutChart() {
+    
+        var data = @Raw(Model.Data.Data);
+    
+        var margin = {top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left)};
+    
+        var w = @(Model.Style.Width) - margin.left - margin.right,
+            h = @(Model.Style.Width) - margin.top - margin.bottom,
+            r = w / 2,
+            labelr = r + 10, // radius for label anchor
+            donut = d3.layout.pie().sort(null),
+            inner = r * 0.6,
+            arc = d3.svg.arc().innerRadius(inner).outerRadius(r),
+            arcOver = d3.svg.arc().innerRadius(inner + 5).outerRadius(r + 5);
+    
+    @if(((DonutChartStyle)Model.Style).Colors != null)
+    {
+        @:var color = d3.scale.ordinal().range(@Raw(((DonutChartStyle)Model.Style).Colors));
+    }
+    else
+    {
+        @:var color = d3.scale.category20c();
+    }
+    
+        var total = d3.sum(data, function(d) { return d3.sum(d3.values(d));});
+    
+        var vis = d3.select("#@(Model.DivId)")
+            .append("svg")
+            .data([data])
+            .attr("width", w + margin.left + margin.right)
+            .attr("height", h + margin.top + margin.bottom);
+    
+        var textTop = vis.append("text")
+            .attr("dy", ".35em")
+            .style("text-anchor", "middle")
+            .attr("font-family", "Segoe UI")
+            .attr("font-size", r/7 + "px")
+            .attr("fill", "#bbb")
+            .attr("x", (w + margin.left + margin.right) / 2)
+            .attr("y", ((h + margin.top + margin.bottom) / 2) - (r/7)/2)
+            .text("@(((DonutChartStyle)Model.Style).TotalLabel)");
+    
+        var textBottom = vis.append("text")
+            .attr("dy", ".35em")
+            .attr("font-family", "Segoe UI")
+            .style("text-anchor", "middle")
+            .attr("font-weight", "bold")
+            .attr("font-size", r/6 + "px")
+            .text(total)
+            .attr("x", (w + margin.left + margin.right) / 2)
+            .attr("y", ((h + margin.top + margin.bottom) / 2) + (r/6)/2);
+    
+        var arcs = vis.selectAll("arc")
+            .data(donut.value(function (d) { return d.value; }))
+            .enter().append("g")
+            .attr("class", "arc")
+            .attr("transform", "translate(" + (w + margin.left + margin.right) / 2 + "," + (h + margin.top + margin.bottom) / 2 + ")");
+    
+        arcs.append("path")
+            .attr("fill", function (d) { return color(d.data.name); })
+            .attr("d", arc)
+            .style("stroke", "white")
+            .style("stroke-width", 2);
+    
+    @if(((DonutChartStyle)Model.Style).Labels)
+    {<text>
+        function computeTextRotation(d) {
+            var rotation = (d.startAngle + d.endAngle)/2 * 180 / Math.PI - 90;
+            return {
+                global: rotation,
+                correction: rotation > 90 ? 180 : 0
+            };
+        }
+    
+        arcs.append("text")
+            .attr("transform", function(d){
+                var rotation = computeTextRotation(d);
+                return "rotate(" + rotation.global + ")" + "translate(" + (r + 15) + ",0)" + "rotate(" + -rotation.correction + ")";
+            })
+            .attr("dy", ".35em")
+            .attr("text-anchor", function(d){
+                var rotation = computeTextRotation(d);
+                return rotation.correction === 0 ? "start" : "end";
+            })
+            .text(function(d) { return d.data.name; });
+        </text>
+    }
+    else
+    {
+    }
+        arcs.selectAll("path")
+            .on("mouseover", function (d) {
+                d3.select(this).transition()
+                    .duration(200)
+                    .attr("d", arcOver);
+    
+                textTop.text(d.data.name);
+                textBottom.text(d.data.value);
+    
+                d3.select(this).style("fill", "@(((DonutChartStyle)Model.Style).HoverColor)");
+            })
+            .on("mouseout", function () {
+                d3.select(this).transition()
+                    .duration(100)
+                    .attr("d", arc);
+    
+                textTop.text("@(((DonutChartStyle)Model.Style).TotalLabel)");
+                textBottom.text(total);
+    
+                d3.select(this).style("fill", function (d) { return color(d.data.name); });
+            });
+    }
+    renderDonutChart();
+</script>

@@ -1,0 +1,115 @@
+﻿@using D3jsLib;
+@using D3jsLib.AreaCharts;
+
+<script type="text/javascript">
+    function renderAreaChart() {
+    
+        var data = @Raw(Model.Data.Data);
+    
+        var tickValues = data.map(function (d){return d.name;});
+        var step = Math.floor(tickValues.length / @(((AreaChartStyle)Model.Style).TickMarksX));
+        var indexes = d3.range(0,tickValues.length, step);
+        if (indexes.indexOf(tickValues.length - 1) == -1){
+            indexes.push(tickValues.length - 1);
+        }
+        var tickArray = d3.permute(tickValues, indexes);
+    
+        var margin = { top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left) },
+            width = @(Model.Style.Width) - margin.left - margin.right,
+            height = @(Model.Style.Height) - margin.top - margin.bottom;
+    
+        var x = d3.scale.ordinal()
+            .domain(data.map(function (d) { return d.name; }))
+            .rangePoints([0, width], 0.55);
+    
+        var y = d3.scale.linear()
+            .range([height, 0]);
+    
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .tickValues(tickArray);
+    
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left");
+
+        var area = d3.svg.area()
+            .x(function (d) { return x(d.name); })
+            .y0(height)
+            .y1(function (d) { return y(d.value); });
+    
+        var svg = d3.select("#@(Model.DivId)").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
+        //svg.
+        //    style("font-family", "Arial").
+        //    style("font-size", "10px").
+        //    style("font-style", "normal").
+        //    style("font-variant", "normal").
+        //    style("font-weight", "normal").
+        //    style("text-rendering", "optimizeLegibility").
+        //    style("shape-rendering", "crispEdges");
+    
+        data.forEach(function (d) {
+            d.name = d.name;
+            d.value = +d.value;
+        });
+    
+        @if(Model.Data.Domain != null)
+        {
+            @:y.domain([@(Model.Data.Domain.A), @(Model.Data.Domain.B)]);
+        }
+        else
+        {
+            @:y.domain(d3.extent(data, function (d) { return d.value; }));
+        }
+    
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+    
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("@(((AreaChartStyle)Model.Style).YAxisLabel)");
+    
+        svg.append("path")
+            .datum(data)
+            .attr("d", area)
+            .attr("fill", "@(((AreaChartStyle)Model.Style).AreaColor)")
+            .style("shape-rendering", "crispEdges");
+
+        @if(((AreaChartStyle)Model.Style).LineValue != 0.0)
+        {<text>
+        svg.append("line")
+            .attr("x1", 0)
+            .attr("y1", function(d){ return y(@(((AreaChartStyle)Model.Style).LineValue)); })
+            .attr("x2", width)
+            .attr("y2", function(d){ return y(@(((AreaChartStyle)Model.Style).LineValue)); })
+            .style("stroke", "#777")
+            .style("stroke-dasharray", "3,3")
+            .style("stroke-width", "0.2");
+
+        svg.append("text")
+            .attr("x", width)
+            .attr("y", function(d){ return y(@(((AreaChartStyle)Model.Style).LineValue)) - 5; })
+            .style("text-anchor", "end")
+            .text("@(((AreaChartStyle)Model.Style).LineLabel)");
+        </text>
+        }
+        else
+        {
+        }
+    }
+    renderAreaChart();
+</script>

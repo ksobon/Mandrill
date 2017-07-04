@@ -1,0 +1,115 @@
+﻿@using D3jsLib;
+@using D3jsLib.d3ScatterPlots;
+
+<script type="text/javascript">
+    function RenderScatterPlot() {
+
+        var data = @Raw(Model.Data.Data);
+
+        var margin = {top: @(Model.Style.Margins.Top), right: @(Model.Style.Margins.Right), bottom: @(Model.Style.Margins.Bottom), left: @(Model.Style.Margins.Left)},
+		        width = @(Model.Style.Width) - margin.left - margin.right,
+		        height = @(Model.Style.Height) - margin.top - margin.bottom;
+
+	    var svg = d3.select("#@(Model.DivId)").append("svg")
+	        .attr("width", width + margin.left + margin.right)
+	        .attr("height", height + margin.top + margin.bottom)
+	        .append("g")
+	        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	    var tooltip = d3.select("#@(Model.DivId)").append("div")
+            .style("position", "absolute")
+            .style("width", "200px")
+            .style("height", "28px")
+            .style("pointer-events", "none")
+            .style("color", "black")
+	        .style("opacity", 0);
+
+        var xValue = function(d) { return d.valueX;};
+        var yValue = function(d) { return d.valueY;};
+
+        var x = d3.scale.linear()
+            .range([0, width - margin.left - margin.right]);
+
+        @if(((ScatterPlotData)Model.Data).DomainX != null)
+        {
+            @:x.domain([@(((ScatterPlotData)Model.Data).DomainX.A)-1, @(((ScatterPlotData)Model.Data).DomainX.B)]);
+        }
+        else
+        {
+            @:x.domain([d3.min(data, xValue)-1, d3.max(data, xValue)]);
+        }
+
+        var y = d3.scale.linear()
+            .range([height - margin.top - margin.bottom, 0]);
+
+        @if(((ScatterPlotData)Model.Data).DomainY != null)
+        {
+            @:y.domain([@(((ScatterPlotData)Model.Data).DomainY.A), @(((ScatterPlotData)Model.Data).DomainY.B)]);
+        }
+        else
+        {
+             @:y.domain([d3.min(data, yValue), d3.max(data, yValue)]);
+        }
+
+        var rScale = d3.scale.linear()
+            .domain([1, 10])
+            .range([1, 30])
+
+        var xAxis = d3.svg.axis()
+		    .scale(x)
+            .orient("bottom")
+
+        var yAxis = d3.svg.axis()
+		    .scale(y)
+            .orient("left")
+
+        //var color = d3.scale.category10();
+        var color = d3.scale.ordinal().range(@Raw(((ScatterPlotStyle)Model.Style).DotColor));
+
+        svg.append("g")
+		    .attr("class", "x axis")
+            .attr("transform", "translate(0," + y.range()[0] + ")")
+            .call(xAxis)
+            .append("text")
+            .attr("x", width - margin.right - margin.left)
+            .attr("y", -6)
+            .style("text-anchor", "end")
+            .text("@(((ScatterPlotStyle)Model.Style).XAxisLabel)");
+
+        svg.append("g")
+		    .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("@(((ScatterPlotStyle)Model.Style).YAxisLabel)");
+
+        var node = svg.selectAll("g.node")
+		    .data(data, function (d) {return d.name;});
+
+        var nodeGroup = node.enter()
+		    .append("g")
+	        .attr('transform', function (d) {return "translate(" + x(d.valueX) + "," + y(d.valueY) + ")";});
+
+        nodeGroup.append("circle")
+            .attr("r", function(d) {return rScale(d.size);})
+            .attr("opacity", 0.7)
+            .style("fill", function(d){return color(d.color);})
+            .on("mouseover", function(d) {
+                tooltip.transition()
+                     .duration(200)
+                     .style("opacity", .9);
+                tooltip.html(d["name"] + "<br/> (" + xValue(d) + ", " + yValue(d) + ")")
+                     .style("left", (d3.event.pageX - 100) + "px")
+                     .style("top", (d3.event.pageY - 50) + "px");
+            })
+            .on("mouseout", function(d) {
+                tooltip.transition()
+                     .duration(500)
+                     .style("opacity", 0);
+            });
+        }
+    RenderScatterPlot();
+</script>
