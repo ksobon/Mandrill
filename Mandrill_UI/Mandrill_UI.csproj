@@ -393,11 +393,13 @@ if $(Configuration) == 20 goto Build20
 :Build13
 echo Copying results to 1.3
 xcopy /Q/Y "$(TargetDir)Mandrill_UI.customization.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)HtmlAgilityPack.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\1.3\packages\Archi-lab_Mandrill\bin"
 goto exit
 
 :Build20
 echo Copying results to 2.0
 xcopy /Q/Y "$(TargetDir)Mandrill_UI.customization.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
+xcopy /Q/Y "$(TargetDir)HtmlAgilityPack.dll" "C:\Users\ksobon\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
 goto exit
 
 :exit
