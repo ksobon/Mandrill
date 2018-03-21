@@ -94,7 +94,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Mandrill_License">
-      <HintPath>..\..\Mandrill_License\Mandrill_License\bin\Debug\Mandrill_License.dll</HintPath>
+      <HintPath>..\packages\build\Mandrill_License.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
