@@ -230,7 +230,7 @@
   <PropertyGroup>
     <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
 Erase "$(TargetPath)"
-xcopy /Q/Y "$(TargetDir)$(TargetName).gha" "C:\Users\ksobon\AppData\Roaming\Grasshopper\Libraries\Mandrill"</PostBuildEvent>
+xcopy /Q/Y "$(TargetDir)$(TargetName).gha" "%25AppData%25\Grasshopper\Libraries\Mandrill"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug32|AnyCPU' ">
     <StartArguments>
