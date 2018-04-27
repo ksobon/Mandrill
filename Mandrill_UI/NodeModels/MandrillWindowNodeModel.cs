@@ -24,9 +24,6 @@ namespace Mandrill.ChromeWindow
     [NodeCategory("Archi-lab_Mandrill.Report.Window")]
     [NodeDescription("Use this node to launch a new window that charts will be displayed in.")]
     [IsDesignScriptCompatible]
-    [InPortNames("Report")]
-    [InPortTypes("string")]
-    [InPortDescriptions("Html report to render.")]
     public class MandrillWindowNodeModel : NodeModel
     {
         /// <summary>
@@ -43,6 +40,7 @@ namespace Mandrill.ChromeWindow
         /// <summary>
         /// Window event
         /// </summary>
+        [JsonIgnore]
         public Action RequestNewWindow;
 
         /// <summary>

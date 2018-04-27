@@ -27,6 +27,7 @@ namespace Mandrill.Print
         /// <summary>
         /// Request save action.
         /// </summary>
+        [JsonIgnore]
         public Action RequestPrint;
 
         /// <summary>

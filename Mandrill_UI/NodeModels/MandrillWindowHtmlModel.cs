@@ -27,6 +27,7 @@ namespace Mandrill.Html
         /// <summary>
         /// Request save action.
         /// </summary>
+        [JsonIgnore]
         public Action RequestSave;
 
         /// <summary>
