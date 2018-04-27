@@ -4,6 +4,7 @@ using Dynamo.Graph.Nodes;
 using Dynamo.UI.Commands;
 using Dynamo.Wpf;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
@@ -12,11 +13,12 @@ using Dynamo.ViewModels;
 using Dynamo.Scheduler;
 using Dynamo.Engine;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Mandrill.ChromeWindow
 {
     /// <summary>
-    ///     Custom Mandrill Chrome Window node implementation
+    /// Custom Mandrill Chrome Window node implementation
     /// </summary>
     [NodeName("Report Window")]
     [NodeCategory("Archi-lab_Mandrill.Report.Window")]
@@ -28,22 +30,23 @@ namespace Mandrill.ChromeWindow
     public class MandrillWindowNodeModel : NodeModel
     {
         /// <summary>
-        ///     Window closed variable
+        /// Window closed variable
         /// </summary>
         public bool IsWindowClosed = true;
 
         /// <summary>
-        ///     Dynamo view variable
+        /// Dynamo view variable
         /// </summary>
+        [JsonIgnore]
         public static DynamoView Dv;
 
         /// <summary>
-        ///     Window event
+        /// Window event
         /// </summary>
         public Action RequestNewWindow;
 
         /// <summary>
-        ///     Window closing event
+        /// Window closing event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -55,12 +58,12 @@ namespace Mandrill.ChromeWindow
         }
 
         /// <summary>
-        ///     Html string change event
+        /// Html string change event
         /// </summary>
         public event Action RequestChangeHtmlString;
 
         /// <summary>
-        ///     On request event handler
+        /// On request event handler
         /// </summary>
         protected virtual void OnRequestChangeHtmlString()
         {
@@ -70,7 +73,7 @@ namespace Mandrill.ChromeWindow
         private string _myHtml;
 
         /// <summary>
-        ///     Html string - databinding
+        /// Html string - databinding
         /// </summary>
         public string MyHtml
         {
@@ -86,7 +89,7 @@ namespace Mandrill.ChromeWindow
         private string _message;
 
         /// <summary>
-        ///     Button message - databinding
+        /// Button message - databinding
         /// </summary>
         public string Message
         {
@@ -99,19 +102,40 @@ namespace Mandrill.ChromeWindow
         }
 
         /// <summary>
-        ///     Delegate command for setting button message.
+        /// Delegate command for setting button message.
         /// </summary>
+        [JsonIgnore]
         [IsVisibleInDynamoLibrary(false)]
         public DelegateCommand MessageCommand { get; set; }
 
         /// <summary>
-        ///     Defines Mandrill Node model
+        /// Defines Mandrill Node model
         /// </summary>
         public MandrillWindowNodeModel()
         {
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Report", "Html report to render.")));
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
 
+            PropertyChanged += HtmlString_PropertyChanged;
+            foreach (var port in InPorts)
+            {
+                port.Connectors.CollectionChanged += Connectors_CollectionChanged;
+            }
+
+            MessageCommand = new DelegateCommand(ShowMessage, CanShowMessage);
+            Message = " Launch" + Environment.NewLine + "Window";
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inPorts"></param>
+        /// <param name="outPorts"></param>
+        [JsonConstructor]
+        protected MandrillWindowNodeModel(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts,
+            outPorts)
+        {
             PropertyChanged += HtmlString_PropertyChanged;
             foreach (var port in InPorts)
             {
@@ -139,16 +163,13 @@ namespace Mandrill.ChromeWindow
         }
 
         /// <summary>
-        ///     Retrieves input string from connected input node.
+        /// Retrieves input string from connected input node.
         /// </summary>
         /// <param name="engine"></param>
         /// <returns></returns>
         public string GetInputString(EngineController engine)
         {
             var htmlString = string.Empty;
-
-            // If there is an input supplied
-            if (!HasConnectedInput(0)) return htmlString;
 
             // retrieve input string from input
             var node = InPorts[0].Connectors[0].Start.Owner;
@@ -172,7 +193,7 @@ namespace Mandrill.ChromeWindow
     }
 
     /// <summary>
-    ///     Mandrill node customization implementation.
+    /// Mandrill node customization implementation.
     /// </summary>
     public class MandrillWindowNodeViewCustomization : INodeViewCustomization<MandrillWindowNodeModel>
     {
@@ -190,7 +211,7 @@ namespace Mandrill.ChromeWindow
                     </html>";
 
         /// <summary>
-        ///     View customization.
+        /// View customization.
         /// </summary>
         /// <param name="model"></param>
         /// <param name="nodeView"></param>
@@ -252,7 +273,7 @@ namespace Mandrill.ChromeWindow
         }
 
         /// <summary>
-        ///     Dispose of model.
+        /// Dispose of model.
         /// </summary>
         public void Dispose() { }
     }

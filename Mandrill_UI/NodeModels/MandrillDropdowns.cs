@@ -5,38 +5,55 @@ using Dynamo.Utilities;
 using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using System.Linq;
+using Newtonsoft.Json;
+#pragma warning disable 1591
 
 namespace Mandrill_UI
 {
     /// <summary>
-    ///     Custom Enumeration Class for dropdown
+    /// Custom Enumeration Class for dropdown
     /// </summary>
     public abstract class CustomGenericEnumerationDropDown : DSDropDownBase
     {
         /// <summary>
-        ///     Generate Dropdown
+        /// Generic Enumeration Dropdown
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="enumerationType"></param>
-        public CustomGenericEnumerationDropDown(string name, Type enumerationType) : base(name)
+        /// <param name="name">Node Name</param>
+        /// <param name="enumerationType">Type of Enumeration to Display</param>
+        protected CustomGenericEnumerationDropDown(string name, Type enumerationType) : base(name)
         {
-            this.EnumerationType = enumerationType;
-            PopulateItems();
+            EnumerationType = enumerationType;
+            PopulateDropDownItems();
+        }
+
+        [JsonConstructor]
+        protected CustomGenericEnumerationDropDown(string name, Type enumerationType, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(name, inPorts, outPorts)
+        {
+            EnumerationType = enumerationType;
+            PopulateDropDownItems();
         }
 
         /// <summary>
-        ///     Type variable
+        /// Type of Enumeration
         /// </summary>
-        public Type EnumerationType;
+        private Type EnumerationType
+        {
+            get;
+        }
 
-        /// <summary>
-        ///     Populate Dropdown
-        /// </summary>
-        /// <param name="currentSelection"></param>
-        /// <returns></returns>
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
-            if (this.EnumerationType != null)
+            PopulateDropDownItems();
+            return SelectionState.Done;
+        }
+
+        /// <summary>
+        /// Populate Items in Dropdown menu
+        /// </summary>
+        public void PopulateDropDownItems()
+        {
+            if (EnumerationType != null)
             {
                 // Clear the dropdown list
                 Items.Clear();
@@ -44,31 +61,29 @@ namespace Mandrill_UI
                 // Get all enumeration names and add them to the dropdown menu
                 foreach (string name in Enum.GetNames(EnumerationType))
                 {
-                    Items.Add(new CoreNodeModels.DynamoDropDownItem(name, Enum.Parse(EnumerationType, name)));
+                    Items.Add(new DynamoDropDownItem(name, Enum.Parse(EnumerationType, name)));
                 }
 
                 Items = Items.OrderBy(x => x.Name).ToObservableCollection();
-                SelectedIndex = 0;
-                return SelectionState.Done;
             }
-            return SelectionState.Restore;
         }
 
         /// <summary>
-        ///     Build Output.
+        /// Assign the selected Enumeration value to the output
         /// </summary>
-        /// <param name="inputAstNodes"></param>
-        /// <returns></returns>
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            // If there the dropdown is still empty try to populate it again
+            // If the dropdown is still empty try to populate it again          
             if (Items.Count == 0 || Items.Count == -1)
             {
-                PopulateItems();
+                if (EnumerationType != null && Enum.GetNames(EnumerationType).Length > 0)
+                {
+                    PopulateItems();
+                }
             }
 
             // get the selected items name
-            var stringNode = AstFactory.BuildStringNode((string)Items[SelectedIndex].Name);
+            var stringNode = AstFactory.BuildStringNode(Items[SelectedIndex].Name);
 
             // assign the selected name to an actual enumeration value
             var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), stringNode);
@@ -82,53 +97,83 @@ namespace Mandrill_UI
     [NodeCategory("Archi-lab_Mandrill.Report.Pdf")]
     [NodeDescription("Retrieves all available PDF Page fit modes.")]
     [IsDesignScriptCompatible]
-    public class pdf_FitModeUI : CustomGenericEnumerationDropDown
+    public class PdfFitModeUi : CustomGenericEnumerationDropDown
     {
-        public pdf_FitModeUI() : base("pdfFitMode", typeof(SelectPdf.HtmlToPdfPageFitMode)) { }
+        private const string OutputName = "pdfFitMode";
+        public PdfFitModeUi() : base(OutputName, typeof(SelectPdf.HtmlToPdfPageFitMode)) { }
+
+        [JsonConstructor]
+        public PdfFitModeUi(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(OutputName, typeof(SelectPdf.HtmlToPdfPageFitMode), inPorts, outPorts) { }
     }
 
     [NodeName("PDF Orientation")]
     [NodeCategory("Archi-lab_Mandrill.Report.Pdf")]
     [NodeDescription("Retrieves all available PDF Page Orientations.")]
     [IsDesignScriptCompatible]
-    public class pdf_OrientationUI : CustomGenericEnumerationDropDown
+    public class PdfOrientationUi : CustomGenericEnumerationDropDown
     {
-        public pdf_OrientationUI() : base("pdfOrientation", typeof(SelectPdf.PdfPageOrientation)) { }
+        private const string OutputName = "pdfOrientation";
+        public PdfOrientationUi() : base(OutputName, typeof(SelectPdf.PdfPageOrientation)) { }
+
+        [JsonConstructor]
+        public PdfOrientationUi(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(OutputName, typeof(SelectPdf.PdfPageOrientation), inPorts, outPorts) { }
     }
 
     [NodeName("PDF Size")]
     [NodeCategory("Archi-lab_Mandrill.Report.Pdf")]
     [NodeDescription("Retrieves all available PDF Page Sizes.")]
     [IsDesignScriptCompatible]
-    public class pdf_SizeUI : CustomGenericEnumerationDropDown
+    public class PdfSizeUi : CustomGenericEnumerationDropDown
     {
-        public pdf_SizeUI() : base("pdfSize", typeof(SelectPdf.PdfPageSize)) { }
+        private const string OutputName = "pdfSize";
+        public PdfSizeUi() : base(OutputName, typeof(SelectPdf.PdfPageSize)) { }
+
+        [JsonConstructor]
+        public PdfSizeUi(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(OutputName, typeof(SelectPdf.PdfPageSize), inPorts, outPorts) { }
     }
 
     [NodeName("Font Weight")]
     [NodeCategory("Archi-lab_Mandrill.Text.Text")]
     [NodeDescription("Select Font Weight type for a Text Note.")]
     [IsDesignScriptCompatible]
-    public class tn_FontWeight : CustomGenericEnumerationDropDown
+    public class TnFontWeight : CustomGenericEnumerationDropDown
     {
-        public tn_FontWeight() : base("fontWeight", typeof(D3jsLib.Text.FontWeights)) { }
+        private const string OutputName = "fontWeight";
+        public TnFontWeight() : base(OutputName, typeof(D3jsLib.Text.FontWeights)) { }
+
+        [JsonConstructor]
+        public TnFontWeight(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(OutputName, typeof(D3jsLib.Text.FontWeights), inPorts, outPorts) { }
     }
 
     [NodeName("Font Style")]
     [NodeCategory("Archi-lab_Mandrill.Text.Text")]
     [NodeDescription("Select Font Style for a Text Note.")]
     [IsDesignScriptCompatible]
-    public class tn_FontStyle : CustomGenericEnumerationDropDown
+    public class TnFontStyle : CustomGenericEnumerationDropDown
     {
-        public tn_FontStyle() : base("fontStyle", typeof(D3jsLib.Text.FontStyle)) { }
+        private const string OutputName = "fontStyle";
+        public TnFontStyle() : base(OutputName, typeof(D3jsLib.Text.FontStyle)) { }
+
+        [JsonConstructor]
+        public TnFontStyle(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(OutputName, typeof(D3jsLib.Text.FontStyle), inPorts, outPorts) { }
     }
 
     [NodeName("Font Transform")]
     [NodeCategory("Archi-lab_Mandrill.Text.Text")]
     [NodeDescription("Select transformation type for a Text Note.")]
     [IsDesignScriptCompatible]
-    public class tn_FontTransform : CustomGenericEnumerationDropDown
+    public class TnFontTransform : CustomGenericEnumerationDropDown
     {
-        public tn_FontTransform() : base("fontTransform", typeof(D3jsLib.Text.FontTransform)) { }
+        private const string OutputName = "fontTransform";
+        public TnFontTransform() : base(OutputName, typeof(D3jsLib.Text.FontTransform)) { }
+
+        [JsonConstructor]
+        public TnFontTransform(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(OutputName, typeof(D3jsLib.Text.FontTransform), inPorts, outPorts) { }
     }
 }

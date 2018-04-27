@@ -3,40 +3,40 @@ using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using Dynamo.Wpf;
 using System;
+using Newtonsoft.Json;
 
 namespace Mandrill.ChromeWindow
 {
     /// <summary>
-    ///     Report
+    /// Report
     /// </summary>
     [NodeName("Create Report")]
     [NodeDescription("Creates Mandrill Report object that can be viewed in a Window or Printed to PDF.")]
     [NodeCategory("Archi-lab_Mandrill.Report.Window")]
     [IsDesignScriptCompatible]
-    [InPortNames("Chart0")]
-    [InPortDescriptions("MandrillChart0")]
-    [InPortTypes("Chart")]
-#if Release20
-    [OutPortNames("Report")]
-    [OutPortDescriptions("OutToolTip0")]
-    [OutPortTypes("Report")]
-#endif
     public class MandrillReportNode : VariableInputNode
     {
         /// <summary>
-        ///     Report Node
+        /// Report Node
         /// </summary>
         public MandrillReportNode()
         {
-#if Release13
-            OutPortData.Add(new PortData("Chart0", "MandrillChart0"));
-#endif
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Chart0", "MandrillChart0.")));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Report", "OutToolTip0.")));
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
         }
 
         /// <summary>
-        ///     Get input name
+        /// 
+        /// </summary>
+        /// <param name="inPorts"></param>
+        /// <param name="outPorts"></param>
+        [JsonConstructor]
+        protected MandrillReportNode(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
+
+        /// <summary>
+        /// Get input name
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -46,7 +46,7 @@ namespace Mandrill.ChromeWindow
         }
 
         /// <summary>
-        ///     Get input tooltip
+        /// Get input tooltip
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Mandrill.ChromeWindow
         }
 
         /// <summary>
-        ///     Remove input
+        /// Remove input
         /// </summary>
         protected override void RemoveInput()
         {
@@ -64,12 +64,15 @@ namespace Mandrill.ChromeWindow
         }
 
         /// <summary>
-        ///     Base implementation
+        /// Base implementation
         /// </summary>
-        public override bool IsConvertible => true;
+        public override bool IsConvertible
+        {
+            get { return true; }
+        }
 
         /// <summary>
-        ///     AST Implementation
+        /// AST Implementation
         /// </summary>
         /// <param name="inputAstNodes"></param>
         /// <returns></returns>
@@ -98,7 +101,7 @@ namespace Mandrill.ChromeWindow
     }
 
     /// <summary>
-    ///     View Customization
+    /// View Customization
     /// </summary>
     public class MandrillReportViewCustomization : VariableInputNodeViewCustomization, INodeViewCustomization<MandrillReportNode>
     {

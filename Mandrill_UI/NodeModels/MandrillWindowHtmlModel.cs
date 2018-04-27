@@ -4,9 +4,12 @@ using Dynamo.Graph.Nodes;
 using Dynamo.UI.Commands;
 using Dynamo.Wpf;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using D3jsLib;
 using HtmlAgilityPack;
+using Newtonsoft.Json;
 
 namespace Mandrill.Html
 {
@@ -17,20 +20,17 @@ namespace Mandrill.Html
     [NodeCategory("Archi-lab_Mandrill.Report.Html")]
     [NodeDescription("Save Mandrill window as Html file.")]
     [IsDesignScriptCompatible]
-    [InPortNames("FilePath", "Report")]
-    [InPortDescriptions("A complete FilePath string including file extension.", "Mandrill Report containing all Charts.")]
-    [InPortTypes("String", "Report")]
     public class MandrillHtmlNodeModel : NodeModel
     {
         private string _message;
 
         /// <summary>
-        ///     Request save action.
+        /// Request save action.
         /// </summary>
         public Action RequestSave;
 
         /// <summary>
-        ///     A message that will appear on the button
+        /// A message that will appear on the button
         /// </summary>
         public string Message
         {
@@ -43,20 +43,36 @@ namespace Mandrill.Html
         }
 
         /// <summary>
-        ///     Delegate Command.
+        /// Delegate Command.
         /// </summary>
+        [JsonIgnore]
         [IsVisibleInDynamoLibrary(false)]
         public DelegateCommand MessageCommand { get; set; }
 
         /// <summary>
-        ///     The constructor for a NodeModel is used to create
-        ///     the input and output ports and specify the argument
-        ///     lacing.
+        /// The constructor for a NodeModel is used to create
+        /// the input and output ports and specify the argument
+        /// lacing.
         /// </summary>
         public MandrillHtmlNodeModel()
         {
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("FilePath", "A complete FilePath string including file extension.")));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Report", "Mandrill Report containing all Charts.")));
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Disabled;
+            MessageCommand = new DelegateCommand(ShowMessage, CanShowMessage);
+            Message = " Save" + Environment.NewLine + " Html";
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inPorts"></param>
+        /// <param name="outPorts"></param>
+        [JsonConstructor]
+        protected MandrillHtmlNodeModel(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts,
+            outPorts)
+        {
             MessageCommand = new DelegateCommand(ShowMessage, CanShowMessage);
             Message = " Save" + Environment.NewLine + " Html";
         }
@@ -68,7 +84,7 @@ namespace Mandrill.Html
 
         private void ShowMessage(object obj)
         {
-            this.RequestSave();
+            RequestSave();
         }
 
         /// <summary>
@@ -77,7 +93,7 @@ namespace Mandrill.Html
         public class CustomNodeModelNodeViewCustomization : INodeViewCustomization<MandrillHtmlNodeModel>
         {
             /// <summary>
-            ///     Customization for Node View
+            /// Customization for Node View
             /// </summary>
             /// <param name="model">The NodeModel representing the node's core logic.</param>
             /// <param name="nodeView">The NodeView representing the node in the graph.</param>
@@ -92,64 +108,54 @@ namespace Mandrill.Html
             }
 
             /// <summary>
-            ///     Method that finds Mandrill Window and calls its Print() method.
+            /// Method that finds Mandrill Window and calls its Print() method.
             /// </summary>
             /// <param name="model"></param>
             /// <param name="nodeView"></param>
             public void SaveMandrillWindow(NodeModel model, NodeView nodeView)
             {
-                string filePath;
-                D3jsLib.Report report;
-
                 // collect inputs
                 // prevent running if any input ports are empty
-                if (model.InPorts.Any(x => x.Connectors.Count == 0))
-                {
-                    return;
-                }
-                else
-                {
-                    var graph = nodeView.ViewModel.DynamoViewModel.Model.CurrentWorkspace;
+                if (model.InPorts.Any(x => x.Connectors.Count == 0)) return;
 
-                    // process filePath input
-                    var filePathNode = model.InPorts[0].Connectors[0].Start.Owner;
-                    var filePathIndex = model.InPorts[0].Connectors[0].Start.Index;
-                    var filePathId = filePathNode.GetAstIdentifierForOutputIndex(filePathIndex).Name;
-                    var filePathMirror = nodeView.ViewModel.DynamoViewModel.Model.EngineController.GetMirror(filePathId);
-                    filePath = filePathMirror.GetData().Data as string;
+                // process filePath input
+                var filePathNode = model.InPorts[0].Connectors[0].Start.Owner;
+                var filePathIndex = model.InPorts[0].Connectors[0].Start.Index;
+                var filePathId = filePathNode.GetAstIdentifierForOutputIndex(filePathIndex).Name;
+                var filePathMirror = nodeView.ViewModel.DynamoViewModel.Model.EngineController.GetMirror(filePathId);
+                var filePath = filePathMirror.GetData().Data as string;
 
-                    // process report input
-                    var reportNode = model.InPorts[1].Connectors[0].Start.Owner;
-                    var reportIndex = model.InPorts[1].Connectors[0].Start.Index;
-                    var reportId = reportNode.GetAstIdentifierForOutputIndex(reportIndex).Name;
-                    var reportMirror = nodeView.ViewModel.DynamoViewModel.Model.EngineController.GetMirror(reportId);
-                    report = reportMirror.GetData().Data as D3jsLib.Report;
-                }
+                // process report input
+                var reportNode = model.InPorts[1].Connectors[0].Start.Owner;
+                var reportIndex = model.InPorts[1].Connectors[0].Start.Index;
+                var reportId = reportNode.GetAstIdentifierForOutputIndex(reportIndex).Name;
+                var reportMirror = nodeView.ViewModel.DynamoViewModel.Model.EngineController.GetMirror(reportId);
+                var report = reportMirror.GetData().Data as Report;
 
                 // print PDF
-                this.SaveHtml(report, filePath);
+                SaveHtml(report, filePath);
             }
 
-            private void SaveHtml(D3jsLib.Report report, string filePath)
+            private static void SaveHtml(Report report, string filePath)
             {
-                HtmlDocument htmlDoc = new HtmlDocument();
+                var htmlDoc = new HtmlDocument();
                 htmlDoc.LoadHtml(report.HtmlString);
 
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='gridster-box']");
-                foreach (HtmlNode n in nodes)
+                var nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='gridster-box']");
+                foreach (var n in nodes)
                 {
                     n.InnerHtml = "";
                 }
 
                 // created unescaped file path removes %20 from path etc.
-                string finalFilePath = filePath;
+                var finalFilePath = filePath;
 
-                Uri uri = new Uri(filePath);
-                string absoluteFilePath = Uri.UnescapeDataString(uri.AbsoluteUri);
+                var uri = new Uri(filePath);
+                var absoluteFilePath = Uri.UnescapeDataString(uri.AbsoluteUri);
 
                 if (Uri.IsWellFormedUriString(absoluteFilePath, UriKind.RelativeOrAbsolute))
                 {
-                    Uri newUri = new Uri(absoluteFilePath);
+                    var newUri = new Uri(absoluteFilePath);
                     finalFilePath = newUri.LocalPath;
                 }
 
@@ -165,7 +171,7 @@ namespace Mandrill.Html
             }
 
             /// <summary>
-            ///     Dispose of model.
+            /// Dispose of model.
             /// </summary>
             public void Dispose()
             {
