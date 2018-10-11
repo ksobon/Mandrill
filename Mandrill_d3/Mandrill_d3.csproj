@@ -197,6 +197,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Select.Html.dep">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ParallelCoordinatesChart\parallelCoordinatesChart.html" />
@@ -233,13 +236,27 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets'))" />
   </Target>
+  <Target Name="CopyFiles" AfterTargets="AfterBuild;NonWinFodyTarget">
+    <Message Text="Copy files..." Importance="high" />
+    <Message Text="" Importance="high" />
+    <Message Text="$(TargetPath) copied to Dynamo\Packages" Importance="high" />
+    <Message Text="$(TargetPath) copied to Grasshopper\\Libraries" Importance="high" />
+    
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(ProjectDir)Select.Html.dep" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)LumenWorks.Framework.IO.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)RazorEngine.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)System.Web.Razor.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(ProjectDir)Select.Html.dep" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)LumenWorks.Framework.IO.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)RazorEngine.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)System.Web.Razor.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+  </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Q/Y "$(TargetDir)System.Web.Razor.dll" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)LumenWorks.Framework.IO.dll" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)System.Web.Razor.dll" "%25AppData%25\Grasshopper\Libraries\Mandrill"
-xcopy /Q/Y "$(TargetDir)RazorEngine.dll" "%25AppData%25\Grasshopper\Libraries\Mandrill"
-xcopy /Q/Y "$(TargetPath)" "%25AppData%25\Grasshopper\Libraries\Mandrill"
-xcopy /Q/Y "$(TargetDir)LumenWorks.Framework.IO.dll" "%25AppData%25\Grasshopper\Libraries\Mandrill"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

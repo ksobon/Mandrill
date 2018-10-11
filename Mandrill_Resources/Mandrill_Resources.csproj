@@ -282,8 +282,17 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Q/Y "$(TargetPath)" "%25AppData%25\Grasshopper\Libraries\Mandrill"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
+  <Target Name="CopyFiles" AfterTargets="AfterBuild;NonWinFodyTarget">
+    <Message Text="Copy files..." Importance="high" />
+    <Message Text="" Importance="high" />
+    <Message Text="$(TargetPath) copied to Dynamo\Packages" Importance="high" />
+    <Message Text="$(TargetPath) copied to Grasshopper\\Libraries" Importance="high" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
