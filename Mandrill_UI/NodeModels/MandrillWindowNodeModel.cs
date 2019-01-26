@@ -71,7 +71,7 @@ namespace Mandrill.ChromeWindow
         private string _myHtml;
 
         /// <summary>
-        /// Html string - databinding
+        /// Html string - data binding
         /// </summary>
         public string MyHtml
         {
@@ -87,7 +87,7 @@ namespace Mandrill.ChromeWindow
         private string _message;
 
         /// <summary>
-        /// Button message - databinding
+        /// Button message - data binding
         /// </summary>
         public string Message
         {

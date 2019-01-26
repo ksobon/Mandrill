@@ -15,7 +15,7 @@
             // make a license request
             Authentication.License.RequestLicense();
 
-            // set webbroser options
+            // set WebBrowser options
             //options.AllowJavaScript = false;
             //options.DefaultEncoding = System.Text.Encoding.UTF8;
             // (Konrad) These options are critical for the app to work. 
