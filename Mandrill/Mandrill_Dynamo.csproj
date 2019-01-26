@@ -140,63 +140,63 @@
   <ItemGroup>
     <Reference Include="Analysis, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.0.0.4714\lib\net45\Analysis.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModels, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.0.0.4714\lib\net45\CoreNodeModels.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModelsWpf, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.0.0.4714\lib\net45\CoreNodeModelsWpf.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DesignScriptBuiltin, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\DesignScriptBuiltin.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.0.0.4714\lib\net45\DSCoreNodes.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DSIronPython, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\DSIronPython.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoApplications, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\DynamoApplications.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\DynamoCore.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreWpf, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.0.0.4714\lib\net45\DynamoCoreWpf.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoInstallDetective, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\DynamoInstallDetective.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.2.0.0.4714\lib\net45\DynamoServices.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoShapeManager, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\DynamoShapeManager.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.0.0.4714\lib\net45\DynamoUnits.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUtilities, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\DynamoUtilities.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="GeometryColor, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.0.0.4714\lib\net45\GeometryColor.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="HtmlRenderer, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlRenderer.Core.1.5.0.6\lib\net45\HtmlRenderer.dll</HintPath>
@@ -220,11 +220,11 @@
     </Reference>
     <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -236,7 +236,7 @@
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
@@ -250,11 +250,11 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoCore, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\ProtoCore.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.0.0.4714\lib\net45\ProtoGeometry.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Select.HtmlToPdf, Version=2.3.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
       <HintPath>..\packages\Select.HtmlToPdf.2.3.0.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
@@ -280,7 +280,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="VMDataBridge, Version=2.0.0.4714, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\VMDataBridge.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -313,14 +313,17 @@
     <ProjectReference Include="..\Mandrill_d3\Mandrill_d3.csproj">
       <Project>{63ed27cd-0302-4240-b322-990e76dbac42}</Project>
       <Name>Mandrill_d3</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Mandrill_Types\Mandrill_Types.csproj">
       <Project>{cddd1df6-1a31-4960-be81-62fd692f2a82}</Project>
       <Name>Mandrill_Types</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Mandrill_UI\Mandrill_UI.csproj">
       <Project>{c665e3fe-575e-4e8a-9284-359def02a553}</Project>
       <Name>Mandrill_UI</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -689,18 +692,8 @@
     <Error Condition="!Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Q/Y "$(TargetPath)" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)$(TargetName).XML" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Mandrill_d3.dll" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Mandrill_Types.dll" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Mandrill_Types.xml" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Mandrill_UI.dll" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Mandrill_UI.xml" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)RazorEngine.dll" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Select.HtmlToPdf.dll" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Select.Html.dep" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\extra"
-xcopy /Q/Y "$(TargetDir)Archi-lab_Mandrill.customization.dll" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"
-xcopy /Q/Y "$(TargetDir)Newtonsoft.Json.dll" "%25AppData%25\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Target Name="BeforeBuild">
     <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
@@ -710,5 +703,34 @@ xcopy /Q/Y "$(TargetDir)Newtonsoft.Json.dll" "%25AppData%25\Dynamo\Dynamo Revit\
     <AL TargetType="library" EmbedResources="$(ProjectDir)Archi-lab_MandrillImages.resources" OutputAssembly="$(OutDir)Archi-lab_Mandrill.customization.dll" />
   </Target>
   <Target Name="AfterBuild">
+  </Target>
+  <Target Name="CopyFiles" AfterTargets="AfterBuild;NonWinFodyTarget">
+    <Message Text="Copy files..." Importance="high" />
+    <Message Text="" Importance="high" />
+    <Message Text="$(TargetPath) copied to Dynamo\Packages" Importance="high" />
+    <Message Text="$(TargetPath) copied to Grasshopper\\Libraries" Importance="high" />
+    
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).xml" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).customization.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)HtmlRenderer.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)HtmlRenderer.WinForms.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)HtmlRenderer.WPF.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)HtmlRenderer.PdfSharp.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)PdfSharp.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)PdfSharp.Charting.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)Microsoft.Practices.ServiceLocation.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)System.Windows.Interactivity.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)Microsoft.Expression.Interactions.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    
+    <Copy SourceFiles="$(TargetDir)HtmlRenderer.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)HtmlRenderer.WinForms.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)HtmlRenderer.WPF.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)HtmlRenderer.PdfSharp.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)PdfSharp.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)PdfSharp.Charting.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)Microsoft.Practices.ServiceLocation.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)System.Windows.Interactivity.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)Microsoft.Expression.Interactions.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
   </Target>
 </Project>

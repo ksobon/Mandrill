@@ -65,21 +65,18 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EO.Base, Version=16.2.72.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\packages\EO.WebBrowser.16.2.72.0\lib\EO.Base.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EO.Base, Version=16.2.50.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.50.0\lib\EO.Base.dll</HintPath>
     </Reference>
-    <Reference Include="EO.WebBrowser, Version=16.2.72.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\packages\EO.WebBrowser.16.2.72.0\lib\EO.WebBrowser.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EO.WebBrowser, Version=16.2.50.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.50.0\lib\EO.WebBrowser.dll</HintPath>
     </Reference>
-    <Reference Include="EO.WebBrowser.Wpf, Version=16.2.72.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+    <Reference Include="EO.WebBrowser.Wpf, Version=16.2.50.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EO.WebBrowser.16.2.72.0\lib\EO.WebBrowser.Wpf.dll</HintPath>
+      <HintPath>..\packages\EO.WebBrowser.16.2.50.0\lib\EO.WebBrowser.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="EO.WebEngine, Version=16.2.72.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\packages\EO.WebBrowser.16.2.72.0\lib\EO.WebEngine.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EO.WebEngine, Version=16.2.50.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.16.2.50.0\lib\EO.WebEngine.dll</HintPath>
     </Reference>
     <Reference Include="GH_IO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
       <HintPath>..\packages\Grasshopper.0.9.76\lib\net35\GH_IO.dll</HintPath>
@@ -95,6 +92,7 @@
     </Reference>
     <Reference Include="Mandrill_License">
       <HintPath>..\packages\build\Mandrill_License.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
@@ -202,11 +200,12 @@
     <ProjectReference Include="..\Mandrill_d3\Mandrill_d3.csproj">
       <Project>{63ed27cd-0302-4240-b322-990e76dbac42}</Project>
       <Name>Mandrill_d3</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Mandrill_Resources\Mandrill_Resources.csproj">
       <Project>{4e895fa3-4332-4345-b714-7d57a2bebb3b}</Project>
       <Name>Mandrill_Resources</Name>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -257,6 +256,13 @@ xcopy /Q/Y "$(TargetDir)$(TargetName).gha" "%25AppData%25\Grasshopper\Libraries\
     <Error Condition="!Exists('..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.2.3.0.0\build\Select.HtmlToPdf.targets'))" />
     <Error Condition="!Exists('..\packages\RhinoCommon.5.12.50810.13095\build\net35\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.5.12.50810.13095\build\net35\RhinoCommon.targets'))" />
     <Error Condition="!Exists('..\packages\Grasshopper.0.9.76\build\net35\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.0.9.76\build\net35\Grasshopper.targets'))" />
+  </Target>
+  <Target Name="CopyFiles" AfterTargets="AfterBuild;NonWinFodyTarget">
+    <Message Text="Copy files..." Importance="high" />
+    <Message Text="" Importance="high" />
+    <Message Text="$(TargetPath) copied to Dynamo\Packages" Importance="high" />
+    <Message Text="$(TargetPath) copied to Grasshopper\\Libraries" Importance="high" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).gha" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
   </Target>
   <Import Project="..\packages\RhinoCommon.5.12.50810.13095\build\net35\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.5.12.50810.13095\build\net35\RhinoCommon.targets')" />
   <Import Project="..\packages\Grasshopper.0.9.76\build\net35\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.0.9.76\build\net35\Grasshopper.targets')" />
