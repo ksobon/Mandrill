@@ -1,8 +1,6 @@
-﻿using System.Windows.Controls;
-
-namespace Mandrill.Dropdown
+﻿namespace Mandrill.Dropdown
 {
-    public partial class PaperSizeDropdownControl : UserControl
+    public partial class PaperSizeDropdownControl
     {
         /// <summary>
         /// 

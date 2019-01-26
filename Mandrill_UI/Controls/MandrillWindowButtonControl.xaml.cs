@@ -1,8 +1,6 @@
-﻿using System.Windows.Controls;
-
-namespace Mandrill.Window
+﻿namespace Mandrill.Window
 {
-    public partial class LaunchWindowButtonControl : UserControl
+    public partial class LaunchWindowButtonControl
     {
         public LaunchWindowButtonControl()
         {

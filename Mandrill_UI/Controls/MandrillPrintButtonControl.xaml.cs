@@ -1,8 +1,6 @@
-﻿using System.Windows.Controls;
-
-namespace Mandrill.Print
+﻿namespace Mandrill.Print
 {
-    public partial class MandrillPrintControl : UserControl
+    public partial class MandrillPrintControl
     {
         /// <summary>
         ///     Print Button Control.

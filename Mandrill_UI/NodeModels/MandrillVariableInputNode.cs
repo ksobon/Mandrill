@@ -106,7 +106,7 @@ namespace Mandrill.ChromeWindow
     public class MandrillReportViewCustomization : VariableInputNodeViewCustomization, INodeViewCustomization<MandrillReportNode>
     {
         /// <summary>
-        ///     Customize view
+        /// Customize view
         /// </summary>
         /// <param name="model"></param>
         /// <param name="nodeView"></param>
