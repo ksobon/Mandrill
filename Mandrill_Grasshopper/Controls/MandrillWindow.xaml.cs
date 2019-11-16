@@ -1,9 +1,11 @@
 ﻿using HtmlAgilityPack;
 using System;
+using System.IO;
+using System.Reflection;
 
 namespace Mandrill_Grasshopper.Components.Report
 {
-    public partial class MandrillWindow : System.Windows.Window
+    public partial class MandrillWindow
     {
         public MandrillWindow()
         {
@@ -12,15 +14,34 @@ namespace Mandrill_Grasshopper.Components.Report
             // make a license request
             Mandrill.Authentication.License.RequestLicense();
 
-            // set webbroser options
-            EO.WebEngine.BrowserOptions options = new EO.WebEngine.BrowserOptions();
-            //options.AllowJavaScript = false;
-            options.EnableWebSecurity = false;
-            //options.DefaultEncoding = System.Text.Encoding.UTF8;
+            try
+            {
+                // set child process location (preferred location somewhere where user has access and won't be stopped by anti-virus)
+                EO.Base.Runtime.InitWorkerProcessExecutable(Path.Combine(AssemblyDirectory, "eowp.exe"));
+            }
+            catch
+            {
+                // ignore
+            }
 
-            this.browser.WebView.SetOptions(options);
+            // set WebBrowser options
+            var options = new EO.WebEngine.BrowserOptions
+            {
+                EnableWebSecurity = false
+            };
 
+            browser.WebView.SetOptions(options);
+        }
 
+        private static string AssemblyDirectory
+        {
+            get
+            {
+                var codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                var uri = new UriBuilder(codeBase);
+                var path = Uri.UnescapeDataString(uri.Path);
+                return Path.GetDirectoryName(path);
+            }
         }
 
         /// <summary>
@@ -28,18 +49,18 @@ namespace Mandrill_Grasshopper.Components.Report
         /// </summary>
         public void Print(string filePath, D3jsLib.PdfStyle style)
         {
-            EO.WebBrowser.WebView view = this.browser.WebView;
+            var view = browser.WebView;
             if (view != null)
             {
-                string htmlCode = view.GetHtml();
+                var htmlCode = view.GetHtml();
 
-                HtmlDocument htmlDoc = new HtmlDocument();
+                var htmlDoc = new HtmlDocument();
                 htmlDoc.LoadHtml(htmlCode);
 
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='gridster-box']");
+                var nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='gridster-box']");
                 if (nodes != null)
                 {
-                    foreach (HtmlNode n in nodes)
+                    foreach (var n in nodes)
                     {
                         n.InnerHtml = "";
                     }
@@ -48,10 +69,10 @@ namespace Mandrill_Grasshopper.Components.Report
                     D3jsLib.Utilities.ChartsUtilities.MoveDepFile();
 
                     // create converter
-                    SelectPdf.HtmlToPdf converter = new SelectPdf.HtmlToPdf();
+                    var converter = new SelectPdf.HtmlToPdf();
 
                     // set converter options
-                    SelectPdf.HtmlToPdfOptions options = converter.Options;
+                    var options = converter.Options;
                     options.PdfPageOrientation = style.Orientation;
                     options.PdfPageSize = style.Size;
                     options.JpegCompressionLevel = style.Compression;
@@ -67,25 +88,21 @@ namespace Mandrill_Grasshopper.Components.Report
                     options.MarginLeft = style.MarginLeft;
 
                     // created unescaped file path removes %20 from path etc.
-                    string finalFilePath = filePath;
+                    var finalFilePath = filePath;
 
-                    Uri uri = new Uri(filePath);
-                    string absoluteFilePath = Uri.UnescapeDataString(uri.AbsoluteUri);
+                    var uri = new Uri(filePath);
+                    var absoluteFilePath = Uri.UnescapeDataString(uri.AbsoluteUri);
 
                     if (Uri.IsWellFormedUriString(absoluteFilePath, UriKind.RelativeOrAbsolute))
                     {
-                        Uri newUri = new Uri(absoluteFilePath);
+                        var newUri = new Uri(absoluteFilePath);
                         finalFilePath = newUri.LocalPath;
                     }
 
                     // convert html to document object and save
-                    SelectPdf.PdfDocument pdfDoc = converter.ConvertHtmlString(htmlDoc.DocumentNode.InnerHtml);
+                    var pdfDoc = converter.ConvertHtmlString(htmlDoc.DocumentNode.InnerHtml);
                     pdfDoc.Save(finalFilePath);
                     pdfDoc.Close();
-                }
-                else
-                {
-                    
                 }
             }
         }
