@@ -32,11 +32,11 @@
 
         @if(((ScatterPlotData)Model.Data).DomainX != null)
         {
-            @:x.domain([@(((ScatterPlotData)Model.Data).DomainX.A)-1, @(((ScatterPlotData)Model.Data).DomainX.B)]);
+            @:x.domain([@(((ScatterPlotData)Model.Data).DomainX.A), @(((ScatterPlotData)Model.Data).DomainX.B)]);
         }
         else
         {
-            @:x.domain([d3.min(data, xValue)-1, d3.max(data, xValue)]);
+            @:x.domain([d3.min(data, xValue), d3.max(data, xValue)]);
         }
 
         var y = d3.scale.linear()
