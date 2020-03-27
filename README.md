@@ -6,7 +6,6 @@ Data viz plug-in for Dynamo
 This is a Data Vizualization plug-in for Dynamo. 
 
 Current collaborators:
- - Adam Sheater @Gytaco
  - Konrad Sobon @arch_laboratory http://archi-lab.net/
 
 License
