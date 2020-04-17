@@ -7,6 +7,8 @@ using D3jsLib;
 using D3jsLib.Utilities;
 using System.Linq;
 using System.Web.Script.Serialization;
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
 
 namespace Mandrill_Grasshopper.Components.ScatterPlot
 {
@@ -25,7 +27,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("Names", "N", Resources.Data_NamesDesc, GH_ParamAccess.list);
             pManager.AddNumberParameter("ValueX", "VX", Resources.Data_ValuesDesc, GH_ParamAccess.list);
@@ -40,7 +42,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("Data", "D", Resources.Chart_DataDesc, GH_ParamAccess.item);
         }
@@ -51,25 +53,25 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<string> names = new List<string>();
-            List<double> valuesX = new List<double>();
-            List<double> valuesY = new List<double>();
-            List<double> sizes = new List<double>();
+            var names = new List<string>();
+            var valuesX = new List<double>();
+            var valuesY = new List<double>();
+            var sizes = new List<double>();
             Domain domainX = null;
             Domain domainY = null;
 
-            if (!DA.GetDataList<string>(0, names)) return;
-            if (!DA.GetDataList<double>(1, valuesX)) return;
-            if (!DA.GetDataList<double>(2, valuesY)) return;
-            if (!DA.GetDataList<double>(3, sizes)) return;
-            DA.GetData<Domain>(4, ref domainX);
-            DA.GetData<Domain>(5, ref domainY);
+            if (!DA.GetDataList(0, names)) return;
+            if (!DA.GetDataList(1, valuesX)) return;
+            if (!DA.GetDataList(2, valuesY)) return;
+            if (!DA.GetDataList(3, sizes)) return;
+            DA.GetData(4, ref domainX);
+            DA.GetData(5, ref domainY);
 
-            List<ScatterPlotDataPoint> dataPoints = names
+            var dataPoints = names
                 .ZipFour(valuesX, valuesY, sizes, (x, y, z, v) => new ScatterPlotDataPoint { name = x, valueX = y, valueY = z, size = v })
                 .ToList();
 
-            ScatterPlotData data = new ScatterPlotData();
+            var data = new ScatterPlotData();
             data.Data = new JavaScriptSerializer().Serialize(dataPoints);
             data.DomainX = domainX;
             data.DomainY = domainY;

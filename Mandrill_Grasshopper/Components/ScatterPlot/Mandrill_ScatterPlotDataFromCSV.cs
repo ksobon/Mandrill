@@ -6,6 +6,8 @@ using D3jsLib;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Script.Serialization;
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
 
 namespace Mandrill_Grasshopper.Components.ScatterPlot
 {
@@ -24,7 +26,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("filePath", "P", Resources.Data_FilePathDesc, GH_ParamAccess.item);
             pManager.AddGenericParameter("DomainX", "DX", Resources.Data_Domain, GH_ParamAccess.item);
@@ -36,7 +38,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("Data", "D", Resources.Chart_DataDesc, GH_ParamAccess.item);
         }
@@ -51,31 +53,31 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
             Domain domainX = null;
             Domain domainY = null;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
-            DA.GetData<Domain>(1, ref domainX);
-            DA.GetData<Domain>(2, ref domainY);
+            if (!DA.GetData(0, ref filePath)) return;
+            DA.GetData(1, ref domainX);
+            DA.GetData(2, ref domainY);
 
-            List<ScatterPlotDataPoint> dataPoints = new List<ScatterPlotDataPoint>();
-            var csv = new List<string[]>();
+            var dataPoints = new List<ScatterPlotDataPoint>();
             var lines = System.IO.File.ReadAllLines(filePath);
-            for (int i = 1; i < lines.Count(); i++)
+            for (var i = 1; i < lines.Count(); i++)
             {
-                string line = lines[i];
+                var line = lines[i];
                 if (i > 0)
                 {
-                    string lineName = line.Split(',')[0];
-                    double lineValueX = Convert.ToDouble(line.Split(',')[1]);
-                    double lineValueY = Convert.ToDouble(line.Split(',')[2]);
-                    double lineSize = Convert.ToDouble(line.Split(',')[3]);
-                    int lineColor = Convert.ToInt32(line.Split(',')[4]);
+                    var lineName = line.Split(',')[0];
+                    var lineValueX = Convert.ToDouble(line.Split(',')[1]);
+                    var lineValueY = Convert.ToDouble(line.Split(',')[2]);
+                    var lineSize = Convert.ToDouble(line.Split(',')[3]);
+                    var lineColor = Convert.ToInt32(line.Split(',')[4]);
 
                     dataPoints.Add(new ScatterPlotDataPoint { name = lineName, valueX = lineValueX, valueY = lineValueY, size = lineSize, color = lineColor });
                 }
             }
-            ScatterPlotData data = new ScatterPlotData();
-            data.Data = new JavaScriptSerializer().Serialize(dataPoints);
-            data.DomainX = domainX;
-            data.DomainY = domainY;
+
+            var data = new ScatterPlotData
+            {
+                Data = new JavaScriptSerializer().Serialize(dataPoints), DomainX = domainX, DomainY = domainY
+            };
 
             DA.SetData(0, data);
         }

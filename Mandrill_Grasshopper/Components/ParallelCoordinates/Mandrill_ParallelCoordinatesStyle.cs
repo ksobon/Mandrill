@@ -48,20 +48,20 @@ namespace Mandrill_Grasshopper.Components.ParallelCoordinates
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Color lineColor = Color.FromArgb(50, 130, 190);
-            GridAddress address = new GridAddress(1, 1);
-            Margins margins = new Margins();
-            int width = 1000;
-            int height = 500;
+            var lineColor = Color.FromArgb(50, 130, 190);
+            var address = new GridAddress(1, 1);
+            var margins = new Margins();
+            var width = 1000;
+            var height = 500;
 
-            DA.GetData<Color>(0, ref lineColor);
-            DA.GetData<GridAddress>(1, ref address);
-            DA.GetData<Margins>(2, ref margins);
-            DA.GetData<int>(3, ref width);
-            DA.GetData<int>(4, ref height);
+            DA.GetData(0, ref lineColor);
+            DA.GetData(1, ref address);
+            DA.GetData(2, ref margins);
+            DA.GetData(3, ref width);
+            DA.GetData(4, ref height);
 
             // create style
-            ParallelCoordinatesStyle style = new ParallelCoordinatesStyle();
+            var style = new ParallelCoordinatesStyle();
             style.LineColor = ChartsUtilities.ColorToHexString(lineColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;

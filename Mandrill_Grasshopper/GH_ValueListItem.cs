@@ -91,9 +91,9 @@ namespace Mandrill_Grasshopper.Components.PDF
                 {
                     try
                     {
-                        GH_ExpressionParser parser = new GH_ExpressionParser();
-                        string exp = GH_ExpressionSyntaxWriter.RewriteAll(this.Expression);
-                        GH_Variant val = parser.Evaluate(exp);
+                        var parser = new GH_ExpressionParser();
+                        var exp = GH_ExpressionSyntaxWriter.RewriteAll(this.Expression);
+                        var val = parser.Evaluate(exp);
                         if (val != null)
                         {
                             this.m_value = val.ToGoo();
@@ -136,7 +136,7 @@ namespace Mandrill_Grasshopper.Components.PDF
 
         internal void SetDropdownBounds(System.Drawing.RectangleF bounds)
         {
-            System.Drawing.RectangleF rectangleF = new System.Drawing.RectangleF(bounds.X, bounds.Y, 0f, bounds.Height);
+            var rectangleF = new System.Drawing.RectangleF(bounds.X, bounds.Y, 0f, bounds.Height);
             this.BoxLeft = rectangleF;
             rectangleF = new System.Drawing.RectangleF(bounds.X, bounds.Y, bounds.Width - 22f, bounds.Height);
             this.BoxName = rectangleF;
@@ -146,7 +146,7 @@ namespace Mandrill_Grasshopper.Components.PDF
 
         internal void SetEmptyBounds(System.Drawing.RectangleF bounds)
         {
-            System.Drawing.RectangleF rectangleF = new System.Drawing.RectangleF(bounds.X, bounds.Y, 0f, 0f);
+            var rectangleF = new System.Drawing.RectangleF(bounds.X, bounds.Y, 0f, 0f);
             this.BoxLeft = rectangleF;
             rectangleF = new System.Drawing.RectangleF(bounds.X, bounds.Y, 0f, 0f);
             this.BoxName = rectangleF;

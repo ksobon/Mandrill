@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using Grasshopper.Kernel.Parameters;
+// ReSharper disable InconsistentNaming
 
 namespace Mandrill_Grasshopper.Components.Report
 {
     public class Mandrill_CreateReport : GH_Component, IGH_VariableParameterComponent
     {
-        public string innerHtml = "";
+        public string InnerHtml = "";
 
         /// <summary>
         /// Initializes a new instance of the Mandrill_CreateReport class.
@@ -23,7 +24,7 @@ namespace Mandrill_Grasshopper.Components.Report
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Chart0", "A", "Chart 0", GH_ParamAccess.item);
         }
@@ -31,7 +32,7 @@ namespace Mandrill_Grasshopper.Components.Report
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("Report", "R", Resources.Report_ReportDesc, GH_ParamAccess.item);
         }
@@ -42,11 +43,11 @@ namespace Mandrill_Grasshopper.Components.Report
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<object> charts = new List<object>();
-            for (int i = 0; i < Params.Input.Count; i++)
+            var charts = new List<object>();
+            for (var i = 0; i < Params.Input.Count; i++)
             {
                 D3jsLib.Chart currentChart = null;
-                DA.GetData<D3jsLib.Chart>(i, ref currentChart);
+                DA.GetData(i, ref currentChart);
                 if (currentChart != null)
                 {
                     charts.Add(currentChart);
@@ -57,9 +58,9 @@ namespace Mandrill_Grasshopper.Components.Report
                 }
             }
 
-            string finalHtmlString = D3jsLib.Charts.CompileHtmlString(charts, false);
-            this.innerHtml = finalHtmlString;
-            D3jsLib.Report report = new D3jsLib.Report(finalHtmlString);
+            var finalHtmlString = D3jsLib.Charts.CompileHtmlString(charts, false);
+            InnerHtml = finalHtmlString;
+            var report = new D3jsLib.Report(finalHtmlString);
             DA.SetData(0, report);
         }
 
@@ -87,25 +88,25 @@ namespace Mandrill_Grasshopper.Components.Report
         public bool CanInsertParameter(GH_ParameterSide side, int index)
         {
             if (side == GH_ParameterSide.Output) return false;
-            if (index == 0) return false;
-            return true;
+            return index != 0;
         }
 
         public bool CanRemoveParameter(GH_ParameterSide side, int index)
         {
             if (side == GH_ParameterSide.Output) return false;
             if (Params.Input.Count <= 1) return false;
-            if (index == 0) return false;
-            return true;
+            return index != 0;
         }
 
         public IGH_Param CreateParameter(GH_ParameterSide side, int index)
         {
-            Param_GenericObject param = new Param_GenericObject();
-            param.Name = String.Format("Chart{0}", index);
-            param.NickName = GH_ComponentParamServer.InventUniqueNickname("BCDEFGHIJKLMNOPQRSTUVWXYZ", Params.Input);
-            param.Description = String.Format("Chart {0}", index);
-            param.Access = GH_ParamAccess.item;
+            var param = new Param_GenericObject
+            {
+                Name = $"Chart{index}",
+                NickName = GH_ComponentParamServer.InventUniqueNickname("BCDEFGHIJKLMNOPQRSTUVWXYZ", Params.Input),
+                Description = $"Chart {index}",
+                Access = GH_ParamAccess.item
+            };
             Params.RegisterInputParam(param, index);
 
             return param;

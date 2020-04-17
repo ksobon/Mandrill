@@ -46,10 +46,10 @@ namespace Mandrill_Grasshopper.Components.GroupedBarChart
             string filePath = null;
             Domain domain = null;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
-            DA.GetData<Domain>(1, ref domain);
+            if (!DA.GetData(0, ref filePath)) return;
+            DA.GetData(1, ref domain);
 
-            GroupedBarChartData data = new GroupedBarChartData();
+            var data = new GroupedBarChartData();
             data.Data = ChartsUtilities.DataToJsonString(ChartsUtilities.Data2FromCsv(filePath));
             data.Domain = domain;
 

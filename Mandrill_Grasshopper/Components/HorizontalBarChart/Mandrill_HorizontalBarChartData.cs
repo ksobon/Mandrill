@@ -48,15 +48,15 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<string> names = new List<string>();
-            List<double> values = new List<double>();
-            List<int> colors = new List<int>();
+            var names = new List<string>();
+            var values = new List<double>();
+            var colors = new List<int>();
             Domain domain = null;
 
-            if (!DA.GetDataList<string>(0, names)) return;
-            if (!DA.GetDataList<double>(1, values)) return;
-            DA.GetDataList<int>(2, colors);
-            DA.GetData<Domain>(3, ref domain);
+            if (!DA.GetDataList(0, names)) return;
+            if (!DA.GetDataList(1, values)) return;
+            DA.GetDataList(2, colors);
+            DA.GetData(3, ref domain);
 
             List<DataPoint1> dataPoints;
             if (colors.Count > 0)
@@ -67,7 +67,7 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
             {
                 dataPoints = names.Zip(values, (x, y) => new DataPoint1 { name = x, value = y }).ToList();
             }
-            HorizontalBarChartData data = new HorizontalBarChartData();
+            var data = new HorizontalBarChartData();
             data.Data = new JavaScriptSerializer().Serialize(dataPoints);
             data.Domain = domain;
 

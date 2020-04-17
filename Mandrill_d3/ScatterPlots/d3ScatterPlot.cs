@@ -28,14 +28,14 @@ namespace D3jsLib.d3ScatterPlots
     {
         public d3ScatterPlot(ScatterPlotData data, ScatterPlotStyle style)
         {
-            this.Data = data;
-            this.Style = style;
+            Data = data;
+            Style = style;
         }
 
         public override string EvaluateModelTemplate(int counter)
         {
-            string templateName = "colDivTempScatter" + counter.ToString();
-            string colString = ChartsUtilities.EvaluateTemplate(this, "Mandrill_d3.ScatterPlots.ScatterPlotScript.html", templateName);
+            var templateName = "colDivTempScatter" + counter;
+            var colString = ChartsUtilities.EvaluateTemplate(this, "Mandrill_d3.ScatterPlots.ScatterPlotScript.html", templateName);
             return colString;
         }
     }

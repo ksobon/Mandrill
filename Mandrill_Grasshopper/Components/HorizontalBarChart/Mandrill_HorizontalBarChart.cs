@@ -43,10 +43,10 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
             HorizontalBarChartData data = null;
             HorizontalBarChartStyle style = null;
 
-            if (!DA.GetData<HorizontalBarChartData>(0, ref data)) return;
-            if (!DA.GetData<HorizontalBarChartStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref data)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            D3jsLib.HorizontalBarChart.HorizontalBarChart chart = new D3jsLib.HorizontalBarChart.HorizontalBarChart(data, style);
+            var chart = new D3jsLib.HorizontalBarChart.HorizontalBarChart(data, style);
 
             DA.SetData(0, chart);
         }

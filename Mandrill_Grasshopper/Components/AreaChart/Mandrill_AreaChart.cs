@@ -43,10 +43,10 @@ namespace Mandrill_Grasshopper.Components.AreaChart
             AreaChartData data = null;
             AreaChartStyle style = null;
 
-            if (!DA.GetData<AreaChartData>(0, ref data)) return;
-            if (!DA.GetData<AreaChartStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref data)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            D3jsLib.AreaCharts.AreaChart chart = new D3jsLib.AreaCharts.AreaChart(data, style);
+            var chart = new D3jsLib.AreaCharts.AreaChart(data, style);
 
             DA.SetData(0, chart);
         }

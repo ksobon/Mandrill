@@ -43,14 +43,14 @@ namespace Mandrill_Grasshopper.Components.PieChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<string> names = new List<string>();
-            List<double> values = new List<double>();
+            var names = new List<string>();
+            var values = new List<double>();
 
-            if (!DA.GetDataList<string>(0, names)) return;
-            if (!DA.GetDataList<double>(1, values)) return;
+            if (!DA.GetDataList(0, names)) return;
+            if (!DA.GetDataList(1, values)) return;
 
-            List<D3jsLib.DataPoint1> dataPoints = names.Zip(values, (x, y) => new D3jsLib.DataPoint1 { name = x, value = y }).ToList();
-            PieChartData data = new PieChartData();
+            var dataPoints = names.Zip(values, (x, y) => new D3jsLib.DataPoint1 { name = x, value = y }).ToList();
+            var data = new PieChartData();
             data.Data = new JavaScriptSerializer().Serialize(dataPoints);
 
             DA.SetData(0, data);

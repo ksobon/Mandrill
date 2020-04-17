@@ -57,28 +57,28 @@ namespace Mandrill.Grasshopper.Components.Charts.BarChart
         /// to store data in output parameters.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Color barColor = Color.FromArgb(50, 130, 190);
-            Color hoverColor = Color.FromArgb(255, 0, 0);
-            GridAddress address = new GridAddress(1,1);
-            int width = 1000;
-            int height = 500;
-            string yAxisLabel = "Label";
-            int tickMarks = 2;
-            bool xRotation = false;
-            Margins margins = new Margins();
+            var barColor = Color.FromArgb(50, 130, 190);
+            var hoverColor = Color.FromArgb(255, 0, 0);
+            var address = new GridAddress(1,1);
+            var width = 1000;
+            var height = 500;
+            var yAxisLabel = "Label";
+            var tickMarks = 2;
+            var xRotation = false;
+            var margins = new Margins();
 
-            DA.GetData<Color>(0, ref barColor);
-            DA.GetData<Color>(1, ref hoverColor);
-            DA.GetData<GridAddress>(2, ref address);
-            DA.GetData<Margins>(3, ref margins);
-            DA.GetData<int>(4, ref width);
-            DA.GetData<int>(5, ref height);
-            DA.GetData<string>(6, ref yAxisLabel);
-            DA.GetData<int>(7, ref tickMarks);
-            DA.GetData<bool>(8, ref xRotation);
+            DA.GetData(0, ref barColor);
+            DA.GetData(1, ref hoverColor);
+            DA.GetData(2, ref address);
+            DA.GetData(3, ref margins);
+            DA.GetData(4, ref width);
+            DA.GetData(5, ref height);
+            DA.GetData(6, ref yAxisLabel);
+            DA.GetData(7, ref tickMarks);
+            DA.GetData(8, ref xRotation);
 
             // create style
-            BarStyle style = new BarStyle();
+            var style = new BarStyle();
             style.BarColor = ChartsUtilities.ColorToHexString(barColor);
             style.BarHoverColor = ChartsUtilities.ColorToHexString(hoverColor);
             style.GridRow = address.X;

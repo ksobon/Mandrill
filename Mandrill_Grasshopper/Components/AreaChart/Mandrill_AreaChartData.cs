@@ -45,16 +45,16 @@ namespace Mandrill_Grasshopper.Components.AreaChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<string> names = new List<string>();
-            List<double> values = new List<double>();
+            var names = new List<string>();
+            var values = new List<double>();
             D3jsLib.Domain domain = null;
 
-            if (!DA.GetDataList<string>(0, names)) return;
-            if (!DA.GetDataList<double>(1, values)) return;
-            DA.GetData<D3jsLib.Domain>(2, ref domain);
+            if (!DA.GetDataList(0, names)) return;
+            if (!DA.GetDataList(1, values)) return;
+            DA.GetData(2, ref domain);
 
-            List<D3jsLib.DataPoint1> dataPoints = names.Zip(values, (x, y) => new D3jsLib.DataPoint1 { name = x, value = y }).ToList();
-            AreaChartData data = new AreaChartData();
+            var dataPoints = names.Zip(values, (x, y) => new D3jsLib.DataPoint1 { name = x, value = y }).ToList();
+            var data = new AreaChartData();
             data.Data = new JavaScriptSerializer().Serialize(dataPoints);
             data.Domain = domain;
 

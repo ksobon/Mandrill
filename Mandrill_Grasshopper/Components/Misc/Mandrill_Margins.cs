@@ -41,17 +41,17 @@ namespace Mandrill_Grasshopper.Components.Misc
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            int top = 20;
-            int bottom = 40;
-            int right = 20;
-            int left = 40;
+            var top = 20;
+            var bottom = 40;
+            var right = 20;
+            var left = 40;
 
-            DA.GetData<int>(0, ref top);
-            DA.GetData<int>(1, ref bottom);
-            DA.GetData<int>(2, ref right);
-            DA.GetData<int>(3, ref left);
+            DA.GetData(0, ref top);
+            DA.GetData(1, ref bottom);
+            DA.GetData(2, ref right);
+            DA.GetData(3, ref left);
 
-            D3jsLib.Margins margins = new D3jsLib.Margins(top, bottom, left, right);
+            var margins = new D3jsLib.Margins(top, bottom, left, right);
 
             DA.SetData(0, margins);
         }

@@ -53,17 +53,16 @@
 
         var rScale = d3.scale.linear()
             .domain([1, 10])
-            .range([1, 30])
+            .range([1, 30]);
 
         var xAxis = d3.svg.axis()
-		    .scale(x)
-            .orient("bottom")
+            .scale(x)
+            .orient("bottom");
 
         var yAxis = d3.svg.axis()
-		    .scale(y)
-            .orient("left")
+            .scale(y)
+            .orient("left");
 
-        //var color = d3.scale.category10();
         var color = d3.scale.ordinal().range(@Raw(((ScatterPlotStyle)Model.Style).DotColor));
 
         svg.append("g")

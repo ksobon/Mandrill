@@ -42,9 +42,9 @@ namespace Mandrill_Grasshopper.Components.NormalizedStackedBarChart
         {
             string filePath = null;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
+            if (!DA.GetData(0, ref filePath)) return;
 
-            NormalizedStackedBarChartData data = new NormalizedStackedBarChartData();
+            var data = new NormalizedStackedBarChartData();
             data.Data = ChartsUtilities.DataToJsonString(ChartsUtilities.Data2FromCsv(filePath));
 
             DA.SetData(0, data);

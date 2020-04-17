@@ -43,9 +43,9 @@ namespace Mandrill_Grasshopper.Components.PieChart
         {
             string filePath = null;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
+            if (!DA.GetData(0, ref filePath)) return;
 
-            PieChartData data = new PieChartData();
+            var data = new PieChartData();
             data.Data = new JavaScriptSerializer().Serialize(ChartsUtilities.Data1FromCsv(filePath));
 
             DA.SetData(0, data);

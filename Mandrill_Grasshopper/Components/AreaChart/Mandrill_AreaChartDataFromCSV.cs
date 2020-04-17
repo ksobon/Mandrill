@@ -45,10 +45,10 @@ namespace Mandrill_Grasshopper.Components.AreaChart
             string filePath = null;
             D3jsLib.Domain domain = null;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
-            DA.GetData<D3jsLib.Domain>(1, ref domain);
+            if (!DA.GetData(0, ref filePath)) return;
+            DA.GetData(1, ref domain);
 
-            AreaChartData data = new AreaChartData();
+            var data = new AreaChartData();
             data.Data = new JavaScriptSerializer().Serialize(D3jsLib.Utilities.ChartsUtilities.Data1FromCsv(filePath));
             data.Domain = domain;
 

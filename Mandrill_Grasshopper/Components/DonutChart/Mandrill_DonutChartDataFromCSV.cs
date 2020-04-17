@@ -42,9 +42,9 @@ namespace Mandrill_Grasshopper.Components.DonutChart
         {
             string filePath = null;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
+            if (!DA.GetData(0, ref filePath)) return;
 
-            DonutChartData data = new DonutChartData();
+            var data = new DonutChartData();
             data.Data = new JavaScriptSerializer().Serialize(D3jsLib.Utilities.ChartsUtilities.Data1FromCsv(filePath));
 
             DA.SetData(0, data);

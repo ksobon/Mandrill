@@ -43,10 +43,10 @@ namespace Mandrill_Grasshopper.Components.NormalizedStackedBarChart
             NormalizedStackedBarChartData data = null;
             NormalizedStackedBarChartStyle style = null;
 
-            if (!DA.GetData<NormalizedStackedBarChartData>(0, ref data)) return;
-            if (!DA.GetData<NormalizedStackedBarChartStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref data)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            D3jsLib.NormalizedStackedBarChart.NormalizedStackedBarChart chart = new D3jsLib.NormalizedStackedBarChart.NormalizedStackedBarChart(data, style);
+            var chart = new D3jsLib.NormalizedStackedBarChart.NormalizedStackedBarChart(data, style);
 
             DA.SetData(0, chart);
         }

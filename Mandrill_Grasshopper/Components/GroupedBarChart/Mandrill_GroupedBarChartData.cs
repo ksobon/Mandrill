@@ -47,15 +47,15 @@ namespace Mandrill_Grasshopper.Components.GroupedBarChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<string> headers = new List<string>();
+            var headers = new List<string>();
             GH_Structure<GH_String> values;
             D3jsLib.Domain domain = null;
 
-            if (!DA.GetDataList<string>(0, headers)) return;
+            if (!DA.GetDataList(0, headers)) return;
             if (!DA.GetDataTree(1, out values)) return;
-            DA.GetData<D3jsLib.Domain>(2, ref domain);
+            DA.GetData(2, ref domain);
 
-            GroupedBarChartData data = new GroupedBarChartData();
+            var data = new GroupedBarChartData();
             data.Data = ChartsUtilities.DataToJsonString(Mandrill_Grasshopper.Utilities.Utilities.Data2FromTree(headers, values));
             data.Domain = domain;
 

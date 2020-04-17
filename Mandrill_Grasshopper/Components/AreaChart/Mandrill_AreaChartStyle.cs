@@ -49,24 +49,24 @@ namespace Mandrill_Grasshopper.Components.AreaChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Color areaColor = Color.FromArgb(50, 130, 190);
-            GridAddress address = new GridAddress(1, 1);
-            int width = 1000;
-            int height = 500;
-            string yAxisLabel = "Label";
-            int tickMarks = 2;
-            Margins margins = new Margins();
+            var areaColor = Color.FromArgb(50, 130, 190);
+            var address = new GridAddress(1, 1);
+            var width = 1000;
+            var height = 500;
+            var yAxisLabel = "Label";
+            var tickMarks = 2;
+            var margins = new Margins();
 
-            DA.GetData<Color>(0, ref areaColor);
-            DA.GetData<GridAddress>(1, ref address);
-            DA.GetData<Margins>(2, ref margins);
-            DA.GetData<int>(3, ref width);
-            DA.GetData<int>(4, ref height);
-            DA.GetData<string>(5, ref yAxisLabel);
-            DA.GetData<int>(6, ref tickMarks);
+            DA.GetData(0, ref areaColor);
+            DA.GetData(1, ref address);
+            DA.GetData(2, ref margins);
+            DA.GetData(3, ref width);
+            DA.GetData(4, ref height);
+            DA.GetData(5, ref yAxisLabel);
+            DA.GetData(6, ref tickMarks);
 
             // create style
-            D3jsLib.AreaCharts.AreaChartStyle style = new D3jsLib.AreaCharts.AreaChartStyle();
+            var style = new D3jsLib.AreaCharts.AreaChartStyle();
             style.AreaColor = ChartsUtilities.ColorToHexString(areaColor);
             style.GridRow = address.X;
             style.GridColumn = address.Y;

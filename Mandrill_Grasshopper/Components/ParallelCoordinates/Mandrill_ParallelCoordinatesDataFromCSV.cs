@@ -42,9 +42,9 @@ namespace Mandrill_Grasshopper.Components.ParallelCoordinates
         {
             string filePath = null;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
+            if (!DA.GetData(0, ref filePath)) return;
 
-            ParallelCoordinatesData data = new ParallelCoordinatesData();
+            var data = new ParallelCoordinatesData();
             data.Data = ChartsUtilities.DataToJsonString(ChartsUtilities.Data2FromCsv(filePath));
 
             DA.SetData(0, data);

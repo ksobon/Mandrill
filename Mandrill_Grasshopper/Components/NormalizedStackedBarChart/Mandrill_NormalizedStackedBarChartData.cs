@@ -45,13 +45,13 @@ namespace Mandrill_Grasshopper.Components.NormalizedStackedBarChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<string> headers = new List<string>();
+            var headers = new List<string>();
             GH_Structure<GH_String> values;
 
-            if (!DA.GetDataList<string>(0, headers)) return;
+            if (!DA.GetDataList(0, headers)) return;
             if (!DA.GetDataTree(1, out values)) return;
 
-            NormalizedStackedBarChartData data = new NormalizedStackedBarChartData();
+            var data = new NormalizedStackedBarChartData();
             data.Data = ChartsUtilities.DataToJsonString(Utilities.Utilities.Data2FromTree(headers, values));
 
             DA.SetData(0, data);

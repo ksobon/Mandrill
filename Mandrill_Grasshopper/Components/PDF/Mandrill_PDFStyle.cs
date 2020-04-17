@@ -47,27 +47,27 @@ namespace Mandrill_Grasshopper.Components.PDF
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            string size = "28";
-            string orientation = "1";
-            string horizontalFit = "2";
-            string verticalFit = "2";
-            int compression = 10;
-            int marginTop = 0;
-            int marginRight = 0;
-            int marginBottom = 0;
-            int marginLeft = 0;
+            var size = "28";
+            var orientation = "1";
+            var horizontalFit = "2";
+            var verticalFit = "2";
+            var compression = 10;
+            var marginTop = 0;
+            var marginRight = 0;
+            var marginBottom = 0;
+            var marginLeft = 0;
 
-            DA.GetData<string>(0, ref size);
-            DA.GetData<string>(1, ref orientation);
-            DA.GetData<string>(2, ref horizontalFit);
-            DA.GetData<string>(3, ref verticalFit);
-            DA.GetData<int>(4, ref compression);
-            DA.GetData<int>(5, ref marginTop);
-            DA.GetData<int>(6, ref marginRight);
-            DA.GetData<int>(7, ref marginBottom);
-            DA.GetData<int>(8, ref marginLeft);
+            DA.GetData(0, ref size);
+            DA.GetData(1, ref orientation);
+            DA.GetData(2, ref horizontalFit);
+            DA.GetData(3, ref verticalFit);
+            DA.GetData(4, ref compression);
+            DA.GetData(5, ref marginTop);
+            DA.GetData(6, ref marginRight);
+            DA.GetData(7, ref marginBottom);
+            DA.GetData(8, ref marginLeft);
 
-            PdfStyle style = new PdfStyle();
+            var style = new PdfStyle();
             style.Size = (SelectPdf.PdfPageSize)int.Parse(size);
             style.Orientation = (SelectPdf.PdfPageOrientation)int.Parse(orientation);
             style.VerticalFit = (SelectPdf.HtmlToPdfPageFitMode)int.Parse(verticalFit);

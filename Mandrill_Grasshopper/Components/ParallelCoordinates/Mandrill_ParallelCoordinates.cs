@@ -43,10 +43,10 @@ namespace Mandrill_Grasshopper.Components.ParallelCoordinates
             ParallelCoordinatesData data = null;
             ParallelCoordinatesStyle style = null;
 
-            if (!DA.GetData<ParallelCoordinatesData>(0, ref data)) return;
-            if (!DA.GetData<ParallelCoordinatesStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref data)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            ParallelCoordinatesChart chart = new ParallelCoordinatesChart(data, style);
+            var chart = new ParallelCoordinatesChart(data, style);
 
             DA.SetData(0, chart);
         }

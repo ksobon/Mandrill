@@ -46,10 +46,10 @@ namespace Mandrill_Grasshopper.Components.LineChart
             string filePath = null;
             D3jsLib.Domain domain = null;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
-            DA.GetData<D3jsLib.Domain>(1, ref domain);
+            if (!DA.GetData(0, ref filePath)) return;
+            DA.GetData(1, ref domain);
 
-            LineChartData data = new LineChartData();
+            var data = new LineChartData();
             data.Data = new JavaScriptSerializer().Serialize(ChartsUtilities.Data1FromCsv(filePath));
             data.Domain = domain;
 

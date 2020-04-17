@@ -12,13 +12,13 @@ namespace Mandrill_Grasshopper.Utilities
     {
         public static List<DataPoint2> Data2FromTree(List<string> headers, GH_Structure<GH_String> values)
         {
-            List<DataPoint2> dataPoints = new List<DataPoint2>();
-            for (int i = 0; i < values.Branches.Count; i++)
+            var dataPoints = new List<DataPoint2>();
+            for (var i = 0; i < values.Branches.Count; i++)
             {
-                DataPoint2 dataPoint = new DataPoint2();
+                var dataPoint = new DataPoint2();
                 dataPoint.Name = values.Branches[i][0].Value;
-                Dictionary<string, double> dict = new Dictionary<string, double>();
-                for (int j = 1; j < values.Branches[i].Count; j++)
+                var dict = new Dictionary<string, double>();
+                for (var j = 1; j < values.Branches[i].Count; j++)
                 {
                     try
                     {

@@ -49,25 +49,25 @@ namespace Mandrill_Grasshopper.Components.Text
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Color fontColor = Color.FromArgb(0, 0, 0);
-            GridAddress address = new GridAddress(1,1);
-            int width = 200;
-            int height = 100;
-            double fontSize = 20.0;
-            string fontWeight = "1";
-            string fontStyle = "1";
-            string fontTransform = "1";
+            var fontColor = Color.FromArgb(0, 0, 0);
+            var address = new GridAddress(1,1);
+            var width = 200;
+            var height = 100;
+            var fontSize = 20.0;
+            var fontWeight = "1";
+            var fontStyle = "1";
+            var fontTransform = "1";
 
-            DA.GetData<Color>(0, ref fontColor);
-            DA.GetData<GridAddress>(1, ref address);
-            DA.GetData<int>(2, ref width);
-            DA.GetData<int>(3, ref height);
-            DA.GetData<double>(4, ref fontSize);
-            DA.GetData<string>(5, ref fontWeight);
-            DA.GetData<string>(6, ref fontStyle);
-            DA.GetData<string>(7, ref fontTransform);
+            DA.GetData(0, ref fontColor);
+            DA.GetData(1, ref address);
+            DA.GetData(2, ref width);
+            DA.GetData(3, ref height);
+            DA.GetData(4, ref fontSize);
+            DA.GetData(5, ref fontWeight);
+            DA.GetData(6, ref fontStyle);
+            DA.GetData(7, ref fontTransform);
 
-            TextStyle style = new TextStyle();
+            var style = new TextStyle();
             style.FontSize = fontSize;
             style.FontColor = ChartsUtilities.ColorToHexString(fontColor);
             style.FontWeight = ((D3jsLib.Text.FontWeights)int.Parse(fontWeight)).ToString(); 

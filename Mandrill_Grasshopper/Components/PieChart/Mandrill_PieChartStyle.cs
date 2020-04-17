@@ -53,25 +53,25 @@ namespace Mandrill_Grasshopper.Components.PieChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Color hoverColor = Color.FromArgb(255, 0, 0);
-            List<Color> colors = new List<Color>();
-            GridAddress address = new GridAddress(1, 1);
-            Margins margins = new Margins();
-            int width = 400;
-            bool labels = true;
+            var hoverColor = Color.FromArgb(255, 0, 0);
+            var colors = new List<Color>();
+            var address = new GridAddress(1, 1);
+            var margins = new Margins();
+            var width = 400;
+            var labels = true;
 
-            DA.GetData<Color>(0, ref hoverColor);
-            DA.GetData<GridAddress>(2, ref address);
-            DA.GetData<Margins>(3, ref margins);
-            DA.GetData<int>(4, ref width);
-            DA.GetData<bool>(5, ref labels);
+            DA.GetData(0, ref hoverColor);
+            DA.GetData(2, ref address);
+            DA.GetData(3, ref margins);
+            DA.GetData(4, ref width);
+            DA.GetData(5, ref labels);
 
             // create style
-            PieChartStyle style = new PieChartStyle();
+            var style = new PieChartStyle();
 
-            if (DA.GetDataList<Color>(1, colors))
+            if (DA.GetDataList(1, colors))
             {
-                List<string> hexColors = colors.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
+                var hexColors = colors.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
                 style.Colors = new JavaScriptSerializer().Serialize(hexColors);
             }
             else

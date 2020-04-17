@@ -43,17 +43,17 @@ namespace Mandrill_Grasshopper.Components.Image
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            GridAddress address = new GridAddress(1, 1);
-            int width = 150;
-            int height = 150;
-            string tooltip = "";
+            var address = new GridAddress(1, 1);
+            var width = 150;
+            var height = 150;
+            var tooltip = "";
 
-            DA.GetData<GridAddress>(0, ref address);
-            DA.GetData<int>(1, ref width);
-            DA.GetData<int>(2, ref height);
-            DA.GetData<string>(3, ref tooltip);
+            DA.GetData(0, ref address);
+            DA.GetData(1, ref width);
+            DA.GetData(2, ref height);
+            DA.GetData(3, ref tooltip);
 
-            ImageStyle style = new ImageStyle();
+            var style = new ImageStyle();
             style.Width = width;
             style.Height = height;
             style.Tooltip = tooltip;

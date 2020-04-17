@@ -43,10 +43,10 @@ namespace Mandrill_Grasshopper.Components.ScatterPlotMatrix
             ScatterPlotMatrixData data = null;
             ScatterPlotMatrixStyle style = null;
 
-            if (!DA.GetData<ScatterPlotMatrixData>(0, ref data)) return;
-            if (!DA.GetData<ScatterPlotMatrixStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref data)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            D3jsLib.ScatterPlotMatrix.ScatterPlotMatrix chart = new D3jsLib.ScatterPlotMatrix.ScatterPlotMatrix(data, style);
+            var chart = new D3jsLib.ScatterPlotMatrix.ScatterPlotMatrix(data, style);
 
             DA.SetData(0, chart);
         }

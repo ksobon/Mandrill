@@ -43,10 +43,10 @@ namespace Mandrill_Grasshopper.Components.Image
             string filePath = null;
             ImageStyle style = null;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
-            if (!DA.GetData<ImageStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref filePath)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            D3jsLib.Image image = new D3jsLib.Image(filePath, style);
+            var image = new D3jsLib.Image(filePath, style);
 
             DA.SetData(0, image);
         }

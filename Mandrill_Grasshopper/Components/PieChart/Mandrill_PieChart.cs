@@ -43,10 +43,10 @@ namespace Mandrill_Grasshopper.Components.PieChart
             PieChartData data = null;
             PieChartStyle style = null;
 
-            if (!DA.GetData<PieChartData>(0, ref data)) return;
-            if (!DA.GetData<PieChartStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref data)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            D3jsLib.PieChart.PieChart chart = new D3jsLib.PieChart.PieChart(data, style);
+            var chart = new D3jsLib.PieChart.PieChart(data, style);
 
             DA.SetData(0, chart);
         }

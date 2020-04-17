@@ -1,10 +1,15 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Script.Serialization;
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib;
 using D3jsLib.d3ScatterPlots;
 using D3jsLib.Utilities;
+using Color = System.Drawing.Color;
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
 
 namespace Mandrill_Grasshopper.Components.ScatterPlot
 {
@@ -23,9 +28,9 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddColourParameter("DotColor", "DC", Resources.Style_HoverColorDesc, GH_ParamAccess.item, Color.FromArgb(50, 130, 190));
+            pManager.AddColourParameter("DotColor", "DC", Resources.Style_HoverColorDesc, GH_ParamAccess.list, new List<Color>{ Color.Gray });
             pManager.AddGenericParameter("Address", "A", Resources.Style_AddressDesc, GH_ParamAccess.item);
             pManager[1].Optional = true;
             pManager.AddGenericParameter("Margins", "M", Resources.Style_MarginsDesc, GH_ParamAccess.item);
@@ -39,7 +44,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("Style", "S", Resources.Chart_StyleDesc, GH_ParamAccess.item);
         }
@@ -50,25 +55,34 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Color dotColor = Color.FromArgb(50, 130, 190);
-            GridAddress address = new GridAddress(1, 1);
-            Margins margins = new Margins();
-            int width = 1000;
-            int height = 500;
-            string yAxisLabel = "LabelY";
-            string xAxisLabel = "LabelX";
+            var dotColor = new List<Color>();
+            var address = new GridAddress(1, 1);
+            var margins = new Margins();
+            var width = 1000;
+            var height = 500;
+            var yAxisLabel = "LabelY";
+            var xAxisLabel = "LabelX";
 
-            DA.GetData<Color>(0, ref dotColor);
-            DA.GetData<GridAddress>(1, ref address);
-            DA.GetData<Margins>(2, ref margins);
-            DA.GetData<int>(3, ref width);
-            DA.GetData<int>(4, ref height);
-            DA.GetData<string>(5, ref yAxisLabel);
-            DA.GetData<string>(6, ref xAxisLabel);
+            DA.GetData(1, ref address);
+            DA.GetData(2, ref margins);
+            DA.GetData(3, ref width);
+            DA.GetData(4, ref height);
+            DA.GetData(5, ref yAxisLabel);
+            DA.GetData(6, ref xAxisLabel);
 
             // create style
-            ScatterPlotStyle style = new ScatterPlotStyle();
-            style.DotColor = ChartsUtilities.ColorToHexString(dotColor);
+            var style = new ScatterPlotStyle();
+
+            if (DA.GetDataList(0, dotColor))
+            {
+                var hexColors = dotColor.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
+                style.DotColor = new JavaScriptSerializer().Serialize(hexColors);
+            }
+            else
+            {
+                style.DotColor = null;
+            }
+
             style.GridRow = address.X;
             style.GridColumn = address.Y;
             style.Margins = margins;

@@ -40,13 +40,13 @@ namespace Mandrill_Grasshopper.Components.Text
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            string text = "";
+            var text = "";
             TextStyle style = null;
 
-            if (!DA.GetData<string>(0, ref text)) return;
-            if (!DA.GetData<TextStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref text)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            TextNote tn = new TextNote(text, style);
+            var tn = new TextNote(text, style);
 
             DA.SetData(0, tn);
         }

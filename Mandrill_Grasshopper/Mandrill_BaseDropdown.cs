@@ -74,17 +74,17 @@ namespace Mandrill_Grasshopper.Components.PDF
         {
             get
             {
-                System.Collections.Generic.List<GH_ValueListItem> items = new System.Collections.Generic.List<GH_ValueListItem>();
+                var items = new System.Collections.Generic.List<GH_ValueListItem>();
                 if (this.m_userItems.Count == 0)
                 {
                     return items;
                 }
                 try
                 {
-                    System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator2 = this.m_userItems.GetEnumerator();
+                    var enumerator2 = this.m_userItems.GetEnumerator();
                     while (enumerator2.MoveNext())
                     {
-                        GH_ValueListItem item2 = enumerator2.Current;
+                        var item2 = enumerator2.Current;
                         if (item2.Selected)
                         {
                             items.Add(item2);
@@ -94,7 +94,7 @@ namespace Mandrill_Grasshopper.Components.PDF
                 }
                 finally
                 {
-                    System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator2 = new List<GH_ValueListItem>.Enumerator();
+                    var enumerator2 = new List<GH_ValueListItem>.Enumerator();
                     ((System.IDisposable)enumerator2).Dispose();
                 }
                 this.m_userItems[0].Selected = true;
@@ -113,10 +113,10 @@ namespace Mandrill_Grasshopper.Components.PDF
                 }
                 try
                 {
-                    System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator = this.m_userItems.GetEnumerator();
+                    var enumerator = this.m_userItems.GetEnumerator();
                     while (enumerator.MoveNext())
                     {
-                        GH_ValueListItem item = enumerator.Current;
+                        var item = enumerator.Current;
                         if (item.Selected)
                         {
                             return item;
@@ -125,7 +125,7 @@ namespace Mandrill_Grasshopper.Components.PDF
                 }
                 finally
                 {
-                    System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator = new List<GH_ValueListItem>.Enumerator();
+                    var enumerator = new List<GH_ValueListItem>.Enumerator();
                     ((System.IDisposable)enumerator).Dispose();
                 }
                 return this.m_userItems[0];
@@ -158,10 +158,10 @@ namespace Mandrill_Grasshopper.Components.PDF
             {
                 return;
             }
-            bool modify = false;
-            int arg_25_0 = 0;
-            int num = this.m_userItems.Count - 1;
-            for (int i = arg_25_0; i <= num; i++)
+            var modify = false;
+            var arg_25_0 = 0;
+            var num = this.m_userItems.Count - 1;
+            for (var i = arg_25_0; i <= num; i++)
             {
                 if (i == index)
                 {
@@ -182,9 +182,9 @@ namespace Mandrill_Grasshopper.Components.PDF
                 return;
             }
             this.RecordUndoEvent("Select: " + this.m_userItems[index].Name);
-            int arg_98_0 = 0;
-            int num2 = this.m_userItems.Count - 1;
-            for (int j = arg_98_0; j <= num2; j++)
+            var arg_98_0 = 0;
+            var num2 = this.m_userItems.Count - 1;
+            for (var j = arg_98_0; j <= num2; j++)
             {
                 this.m_userItems[j].Selected = (j == index);
             }
@@ -201,16 +201,16 @@ namespace Mandrill_Grasshopper.Components.PDF
             this.m_data.Clear();
             try
             {
-                System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator = this.SelectedItems.GetEnumerator();
+                var enumerator = this.SelectedItems.GetEnumerator();
                 while (enumerator.MoveNext())
                 {
-                    GH_ValueListItem item = enumerator.Current;
+                    var item = enumerator.Current;
                     this.m_data.Append(item.Value, new GH_Path(0));
                 }
             }
             finally
             {
-                System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator = new List<GH_ValueListItem>.Enumerator();
+                var enumerator = new List<GH_ValueListItem>.Enumerator();
                 ((System.IDisposable)enumerator).Dispose();
             }
         }
@@ -229,16 +229,16 @@ namespace Mandrill_Grasshopper.Components.PDF
         {
             try
             {
-                System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator = this.m_userItems.GetEnumerator();
+                var enumerator = this.m_userItems.GetEnumerator();
                 while (enumerator.MoveNext())
                 {
-                    GH_ValueListItem item = enumerator.Current;
+                    var item = enumerator.Current;
                     item.Selected = false;
                 }
             }
             finally
             {
-                System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator = new List<GH_ValueListItem>.Enumerator();
+                var enumerator = new List<GH_ValueListItem>.Enumerator();
                 ((System.IDisposable)enumerator).Dispose();
             }
             int index;
@@ -251,9 +251,9 @@ namespace Mandrill_Grasshopper.Components.PDF
             }
             else
             {
-                int arg_81_0 = 0;
-                int num = System.Math.Min(state.Length, this.m_userItems.Count) - 1;
-                for (int i = arg_81_0; i <= num; i++)
+                var arg_81_0 = 0;
+                var num = System.Math.Min(state.Length, this.m_userItems.Count) - 1;
+                for (var i = arg_81_0; i <= num; i++)
                 {
                     this.m_userItems[i].Selected = state[i].Equals('Y');
                 }
@@ -262,13 +262,13 @@ namespace Mandrill_Grasshopper.Components.PDF
 
         public string SaveState()
         {
-            System.Text.StringBuilder state = new System.Text.StringBuilder(this.m_userItems.Count);
+            var state = new System.Text.StringBuilder(this.m_userItems.Count);
             try
             {
-                System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator = this.m_userItems.GetEnumerator();
+                var enumerator = this.m_userItems.GetEnumerator();
                 while (enumerator.MoveNext())
                 {
-                    GH_ValueListItem item = enumerator.Current;
+                    var item = enumerator.Current;
                     if (item.Selected)
                     {
                         state.Append('Y');
@@ -281,7 +281,7 @@ namespace Mandrill_Grasshopper.Components.PDF
             }
             finally
             {
-                System.Collections.Generic.List<GH_ValueListItem>.Enumerator enumerator = new List<GH_ValueListItem>.Enumerator();
+                var enumerator = new List<GH_ValueListItem>.Enumerator();
                 ((System.IDisposable)enumerator).Dispose();
             }
             return state.ToString();
@@ -291,11 +291,11 @@ namespace Mandrill_Grasshopper.Components.PDF
         {
             writer.SetInt32("ListMode", (int)this.ListMode);
             writer.SetInt32("ListCount", this.m_userItems.Count);
-            int arg_36_0 = 0;
-            int num = this.m_userItems.Count - 1;
-            for (int i = arg_36_0; i <= num; i++)
+            var arg_36_0 = 0;
+            var num = this.m_userItems.Count - 1;
+            for (var i = arg_36_0; i <= num; i++)
             {
-                GH_IWriter chunk = writer.CreateChunk("ListItem", i);
+                var chunk = writer.CreateChunk("ListItem", i);
                 chunk.SetString("Name", this.m_userItems[i].Name);
                 chunk.SetString("Expression", this.m_userItems[i].Expression);
                 chunk.SetBoolean("Selected", this.m_userItems[i].Selected);
@@ -305,37 +305,37 @@ namespace Mandrill_Grasshopper.Components.PDF
 
         public override bool Read(GH_IReader reader)
         {
-            int mode = 1;
+            var mode = 1;
             reader.TryGetInt32("UIMode", ref mode);
             reader.TryGetInt32("ListMode", ref mode);
             this.ListMode = (GH_ValueListMode)mode;
-            int count = reader.GetInt32("ListCount");
-            int cache = 0;
+            var count = reader.GetInt32("ListCount");
+            var cache = 0;
             reader.TryGetInt32("CacheCount", ref cache);
             this.m_userItems.Clear();
-            int arg_52_0 = 0;
-            int num = count - 1;
-            for (int i = arg_52_0; i <= num; i++)
+            var arg_52_0 = 0;
+            var num = count - 1;
+            for (var i = arg_52_0; i <= num; i++)
             {
-                GH_IReader chunk = reader.FindChunk("ListItem", i);
+                var chunk = reader.FindChunk("ListItem", i);
                 if (chunk == null)
                 {
                     reader.AddMessage("Missing chunk for List Value: " + i.ToString(), GH_Message_Type.error);
                 }
                 else
                 {
-                    string itemName = chunk.GetString("Name");
-                    string itemExpression = chunk.GetString("Expression");
-                    bool itemSelected = false;
+                    var itemName = chunk.GetString("Name");
+                    var itemExpression = chunk.GetString("Expression");
+                    var itemSelected = false;
                     chunk.TryGetBoolean("Selected", ref itemSelected);
-                    GH_ValueListItem item = new GH_ValueListItem(itemName, itemExpression);
+                    var item = new GH_ValueListItem(itemName, itemExpression);
                     item.Selected = itemSelected;
                     this.m_userItems.Add(item);
                 }
             }
             if (reader.ItemExists("ListIndex"))
             {
-                int idx = reader.GetInt32("ListIndex");
+                var idx = reader.GetInt32("ListIndex");
                 if (idx >= 0 && idx < this.m_userItems.Count)
                 {
                     this.m_userItems[idx].Selected = true;

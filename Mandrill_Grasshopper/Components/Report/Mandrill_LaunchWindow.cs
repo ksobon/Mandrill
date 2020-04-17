@@ -89,10 +89,10 @@ namespace Mandrill_Grasshopper.Components.Report
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             D3jsLib.Report report = null;
-            bool show = false;
+            var show = false;
 
-            if (!DA.GetData<D3jsLib.Report>(0, ref report)) return;
-            if (!DA.GetData<bool>(1, ref show)) return;
+            if (!DA.GetData(0, ref report)) return;
+            if (!DA.GetData(1, ref show)) return;
 
             if (show)
             {
@@ -185,13 +185,13 @@ namespace Mandrill_Grasshopper.Components.Report
 
         static void setOwner(System.Windows.Forms.Form ownerForm, System.Windows.Window window)
         {
-            WindowInteropHelper helper = new WindowInteropHelper(window);
+            var helper = new WindowInteropHelper(window);
             helper.Owner = ownerForm.Handle;
         }
 
         static void setOwner(IntPtr ownerPtr, System.Windows.Window window)
         {
-            WindowInteropHelper helper = new WindowInteropHelper(window);
+            var helper = new WindowInteropHelper(window);
             helper.Owner = ownerPtr;
         }
 
@@ -228,11 +228,11 @@ namespace Mandrill_Grasshopper.Components.Report
 
         protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
         {
-            ToolStripMenuItem toolStripMenuItem = GH_DocumentObject.Menu_AppendItem(menu, "Child of Grasshopper", new System.EventHandler(this.menu_makeChildofGH), true, winChildStatus == childStatus.ChildOfGH);
+            var toolStripMenuItem = GH_DocumentObject.Menu_AppendItem(menu, "Child of Grasshopper", new System.EventHandler(this.menu_makeChildofGH), true, winChildStatus == childStatus.ChildOfGH);
             toolStripMenuItem.ToolTipText = "When selected, the window is made a child of the Grasshopper window - when the Grasshopper window is hidden or minimized, it will disappear.";
-            ToolStripMenuItem toolStripMenuItem1 = GH_DocumentObject.Menu_AppendItem(menu, "Child of Rhino", new System.EventHandler(this.menu_makeChildofRhino), true, winChildStatus == childStatus.ChildOfRhino);
+            var toolStripMenuItem1 = GH_DocumentObject.Menu_AppendItem(menu, "Child of Rhino", new System.EventHandler(this.menu_makeChildofRhino), true, winChildStatus == childStatus.ChildOfRhino);
             toolStripMenuItem1.ToolTipText = "When selected, the window is made a child of the Rhino window - when the Rhino window is hidden or minimized, it will disappear.";
-            ToolStripMenuItem toolStripMenuItem2 = GH_DocumentObject.Menu_AppendItem(menu, "Always On Top", new System.EventHandler(this.menu_makeAlwaysOnTop), true, winChildStatus == childStatus.AlwaysOnTop);
+            var toolStripMenuItem2 = GH_DocumentObject.Menu_AppendItem(menu, "Always On Top", new System.EventHandler(this.menu_makeAlwaysOnTop), true, winChildStatus == childStatus.AlwaysOnTop);
             toolStripMenuItem2.ToolTipText = "When selected, the window is always on top, floating above other apps.";
             GH_DocumentObject.Menu_AppendSeparator(menu);
         }

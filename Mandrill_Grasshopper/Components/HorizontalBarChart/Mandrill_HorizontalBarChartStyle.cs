@@ -53,25 +53,25 @@ namespace Mandrill_Grasshopper.Components.HorizontalBarChart
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<Color> barColor = new List<Color>() { };
-            Color hoverColor = Color.FromArgb(255, 0, 0);
-            GridAddress address = new GridAddress(1, 1);
-            int width = 1000;
-            int height = 500;
-            string xAxisLabel = "Label";
-            Margins margins = new Margins();
+            var barColor = new List<Color>() { };
+            var hoverColor = Color.FromArgb(255, 0, 0);
+            var address = new GridAddress(1, 1);
+            var width = 1000;
+            var height = 500;
+            var xAxisLabel = "Label";
+            var margins = new Margins();
 
-            DA.GetDataList<Color>(0, barColor);
-            DA.GetData<Color>(1, ref hoverColor);
-            DA.GetData<GridAddress>(2, ref address);
-            DA.GetData<Margins>(3, ref margins);
-            DA.GetData<int>(4, ref width);
-            DA.GetData<int>(5, ref height);
-            DA.GetData<string>(6, ref xAxisLabel);
+            DA.GetDataList(0, barColor);
+            DA.GetData(1, ref hoverColor);
+            DA.GetData(2, ref address);
+            DA.GetData(3, ref margins);
+            DA.GetData(4, ref width);
+            DA.GetData(5, ref height);
+            DA.GetData(6, ref xAxisLabel);
 
             // create style
-            HorizontalBarChartStyle style = new HorizontalBarChartStyle();
-            List<string> hexColors = barColor.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
+            var style = new HorizontalBarChartStyle();
+            var hexColors = barColor.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
             style.BarColor = new JavaScriptSerializer().Serialize(hexColors);
             style.BarHoverColor = ChartsUtilities.ColorToHexString(hoverColor);
             style.GridRow = address.X;

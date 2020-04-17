@@ -43,10 +43,10 @@ namespace Mandrill_Grasshopper.Components.DonutChart
             DonutChartData data = null;
             DonutChartStyle style = null;
 
-            if (!DA.GetData<DonutChartData>(0, ref data)) return;
-            if (!DA.GetData<DonutChartStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref data)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            D3jsLib.DonutChart.DonutChart chart = new D3jsLib.DonutChart.DonutChart(data, style);
+            var chart = new D3jsLib.DonutChart.DonutChart(data, style);
 
             DA.SetData(0, chart);
         }

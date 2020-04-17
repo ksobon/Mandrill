@@ -39,13 +39,13 @@ namespace Mandrill_Grasshopper.Components.Misc
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            double a = 0.0;
-            double b = 1.0;
+            var a = 0.0;
+            var b = 1.0;
 
-            DA.GetData<double>(0, ref a);
-            DA.GetData<double>(1, ref b);
+            DA.GetData(0, ref a);
+            DA.GetData(1, ref b);
 
-            D3jsLib.Domain domain = new D3jsLib.Domain(a, b);
+            var domain = new D3jsLib.Domain(a, b);
 
             DA.SetData(0, domain);
         }

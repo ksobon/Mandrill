@@ -2,6 +2,8 @@
 using Grasshopper.Kernel;
 using Mandrill_Resources.Properties;
 using D3jsLib.d3ScatterPlots;
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
 
 namespace Mandrill_Grasshopper.Components.ScatterPlot
 {
@@ -20,7 +22,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Data", "D", Resources.Chart_DataDesc, GH_ParamAccess.item);
             pManager.AddGenericParameter("Style", "S", Resources.Chart_StyleDesc, GH_ParamAccess.item);
@@ -29,7 +31,7 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
         /// <summary>
         /// Registers all the output parameters for this component.
         /// </summary>
-        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("Chart", "C", Resources.Chart_ChartDesc, GH_ParamAccess.item);
         }
@@ -43,10 +45,10 @@ namespace Mandrill_Grasshopper.Components.ScatterPlot
             ScatterPlotData data = null;
             ScatterPlotStyle style = null;
 
-            if (!DA.GetData<ScatterPlotData>(0, ref data)) return;
-            if (!DA.GetData<ScatterPlotStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref data)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            d3ScatterPlot chart = new d3ScatterPlot(data, style);
+            var chart = new d3ScatterPlot(data, style);
 
             DA.SetData(0, chart);
         }

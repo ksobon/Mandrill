@@ -49,19 +49,19 @@ namespace Mandrill_Grasshopper.Components.ScatterPlotMatrix
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<Color> colors = new List<Color>();
-            GridAddress address = new GridAddress(1, 1);
-            int width = 1000;
+            var colors = new List<Color>();
+            var address = new GridAddress(1, 1);
+            var width = 1000;
 
-            DA.GetData<GridAddress>(1, ref address);
-            DA.GetData<int>(2, ref width);
+            DA.GetData(1, ref address);
+            DA.GetData(2, ref width);
 
             // create style
-            ScatterPlotMatrixStyle style = new ScatterPlotMatrixStyle();
+            var style = new ScatterPlotMatrixStyle();
 
-            if (DA.GetDataList<Color>(0, colors))
+            if (DA.GetDataList(0, colors))
             {
-                List<string> hexColors = colors.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
+                var hexColors = colors.Select(x => ChartsUtilities.ColorToHexString(Color.FromArgb(x.A, x.R, x.G, x.B))).ToList();
                 style.Colors = new JavaScriptSerializer().Serialize(hexColors);
             }
             else

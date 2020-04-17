@@ -43,10 +43,10 @@ namespace Mandrill_Grasshopper.Components.GroupedBarChart
             GroupedBarChartData data = null;
             GroupedBarChartStyle style = null;
 
-            if (!DA.GetData<GroupedBarChartData>(0, ref data)) return;
-            if (!DA.GetData<GroupedBarChartStyle>(1, ref style)) return;
+            if (!DA.GetData(0, ref data)) return;
+            if (!DA.GetData(1, ref style)) return;
 
-            D3jsLib.GroupedBarChart.GroupedBarChart chart = new D3jsLib.GroupedBarChart.GroupedBarChart(data, style);
+            var chart = new D3jsLib.GroupedBarChart.GroupedBarChart(data, style);
 
             DA.SetData(0, chart);
         }

@@ -45,12 +45,12 @@ namespace Mandrill_Grasshopper.Components.PDF
             D3jsLib.PdfStyle style = null;
             string filePath = null;
             D3jsLib.Report report = null;
-            bool print = false;
+            var print = false;
 
-            if (!DA.GetData<string>(0, ref filePath)) return;
-            if (!DA.GetData<D3jsLib.Report>(1, ref report)) return;
-            if (!DA.GetData<D3jsLib.PdfStyle>(2, ref style)) return;
-            if (!DA.GetData<bool>(3, ref print)) return;
+            if (!DA.GetData(0, ref filePath)) return;
+            if (!DA.GetData(1, ref report)) return;
+            if (!DA.GetData(2, ref style)) return;
+            if (!DA.GetData(3, ref print)) return;
 
             if (print)
             {
@@ -60,20 +60,20 @@ namespace Mandrill_Grasshopper.Components.PDF
 
         private void PrintPDF(D3jsLib.Report report, D3jsLib.PdfStyle style, string filePath)
         {
-            HtmlDocument htmlDoc = new HtmlDocument();
+            var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(report.HtmlString);
 
-            HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='gridster-box']");
-            foreach (HtmlNode n in nodes)
+            var nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='gridster-box']");
+            foreach (var n in nodes)
             {
                 n.InnerHtml = "";
             }
 
             // create converter
-            SelectPdf.HtmlToPdf converter = new SelectPdf.HtmlToPdf();
+            var converter = new SelectPdf.HtmlToPdf();
 
             // set converter options
-            SelectPdf.HtmlToPdfOptions options = converter.Options;
+            var options = converter.Options;
             options.PdfPageOrientation = style.Orientation;
             options.PdfPageSize = style.Size;
             options.JpegCompressionLevel = style.Compression;
@@ -91,7 +91,7 @@ namespace Mandrill_Grasshopper.Components.PDF
             try
             {
                 // convert html to document object and save
-                SelectPdf.PdfDocument pdfDoc = converter.ConvertHtmlString(htmlDoc.DocumentNode.InnerHtml);
+                var pdfDoc = converter.ConvertHtmlString(htmlDoc.DocumentNode.InnerHtml);
                 pdfDoc.Save(filePath);
                 pdfDoc.Close();
             }
