@@ -192,17 +192,20 @@
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.0.0.4714\lib\net45\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="EO.Base, Version=16.2.50.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\packages\EO.WebBrowser.16.2.50.0\lib\EO.Base.dll</HintPath>
+    <Reference Include="EO.Base, Version=21.0.62.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.Wpf.21.0.62\lib\EO.Base.dll</HintPath>
     </Reference>
-    <Reference Include="EO.WebBrowser, Version=16.2.50.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\packages\EO.WebBrowser.16.2.50.0\lib\EO.WebBrowser.dll</HintPath>
+    <Reference Include="EO.WebBrowser, Version=21.0.62.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.21.0.62\lib\EO.WebBrowser.dll</HintPath>
     </Reference>
-    <Reference Include="EO.WebBrowser.Wpf">
-      <HintPath>..\packages\EO.WebBrowser.16.2.50.0\lib\EO.WebBrowser.Wpf.dll</HintPath>
+    <Reference Include="EO.WebBrowser.Wpf, Version=21.0.62.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.Wpf.21.0.62\lib\EO.WebBrowser.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="EO.WebEngine, Version=16.2.50.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <HintPath>..\packages\EO.WebBrowser.16.2.50.0\lib\EO.WebEngine.dll</HintPath>
+    <Reference Include="EO.WebEngine, Version=21.0.62.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.WebBrowser.21.0.62\lib\EO.WebEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.Wpf, Version=21.0.62.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.Wpf.21.0.62\lib\EO.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
@@ -407,21 +410,23 @@
     <Message Text="" Importance="high" />
     <Message Text="$(TargetPath) copied to Dynamo\Packages" Importance="high" />
     <Message Text="$(TargetPath) copied to Grasshopper\\Libraries" Importance="high" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)$(TargetName).xml" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)$(TargetName).customization.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)EO.Base.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)EO.WebBrowser.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)EO.WebBrowser.Wpf.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)EO.WebEngine.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)Newtonsoft.Json.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)Select.HtmlToPdf.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)Mandrill_License.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)HtmlAgilityPack.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).xml" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).customization.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)EO.Base.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)EO.WebBrowser.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)EO.WebBrowser.Wpf.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)EO.WebEngine.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)EO.Wpf.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)Newtonsoft.Json.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)Select.HtmlToPdf.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)Mandrill_License.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)HtmlAgilityPack.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetDir)EO.Base.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetDir)EO.WebBrowser.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetDir)EO.WebBrowser.Wpf.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetDir)EO.WebEngine.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)EO.Wpf.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetDir)Newtonsoft.Json.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetDir)Select.HtmlToPdf.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetDir)Mandrill_License.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />

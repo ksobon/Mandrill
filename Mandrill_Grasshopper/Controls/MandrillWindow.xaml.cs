@@ -1,7 +1,5 @@
 ﻿using HtmlAgilityPack;
 using System;
-using System.IO;
-using System.Reflection;
 
 namespace Mandrill_Grasshopper.Components.Report
 {
@@ -14,17 +12,11 @@ namespace Mandrill_Grasshopper.Components.Report
             // make a license request
             Mandrill.Authentication.License.RequestLicense();
 
-            try
-            {
-                // set child process location (preferred location somewhere where user has access and won't be stopped by anti-virus)
-                EO.Base.Runtime.InitWorkerProcessExecutable(Path.Combine(AssemblyDirectory, "eowp.exe"));
-            }
-            catch
-            {
-                // ignore
-            }
+            // use EOP
+            EO.Base.Runtime.EnableEOWP = true;
 
-            // set WebBrowser options
+            // (Konrad) These options are critical for the app to work. 
+            // We can load d3.js file and other resource only if security is disabled.
             var options = new EO.WebEngine.BrowserOptions
             {
                 EnableWebSecurity = false
@@ -33,19 +25,8 @@ namespace Mandrill_Grasshopper.Components.Report
             browser.WebView.SetOptions(options);
         }
 
-        private static string AssemblyDirectory
-        {
-            get
-            {
-                var codeBase = Assembly.GetExecutingAssembly().CodeBase;
-                var uri = new UriBuilder(codeBase);
-                var path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetDirectoryName(path);
-            }
-        }
-
         /// <summary>
-        ///     Print method.
+        /// Print method.
         /// </summary>
         public void Print(string filePath, D3jsLib.PdfStyle style)
         {

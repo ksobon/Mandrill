@@ -1,5 +1,5 @@
-﻿using EO.WebBrowser.Wpf;
-using System.Windows;
+﻿using System.Windows;
+using EO.Wpf;
 
 namespace Mandrill_Grasshopper.Components.Report
 {

@@ -173,8 +173,8 @@
     <Message Text="" Importance="high" />
     <Message Text="$(TargetPath) copied to Dynamo\Packages" Importance="high" />
     <Message Text="$(TargetPath) copied to Grasshopper\\Libraries" Importance="high" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)$(TargetName).xml" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.0\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).xml" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

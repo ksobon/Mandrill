@@ -245,11 +245,11 @@
     <Message Text="" Importance="high" />
     <Message Text="$(TargetPath) copied to Dynamo\Packages" Importance="high" />
     <Message Text="$(TargetPath) copied to Grasshopper\\Libraries" Importance="high" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.2\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(ProjectDir)Select.Html.dep" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.2\packages\Archi-lab_Mandrill\extra" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)LumenWorks.Framework.IO.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.2\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)RazorEngine.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.2\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
-    <Copy SourceFiles="$(TargetDir)System.Web.Razor.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.2\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(ProjectDir)Select.Html.dep" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\extra" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)LumenWorks.Framework.IO.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)RazorEngine.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
+    <Copy SourceFiles="$(TargetDir)System.Web.Razor.dll" DestinationFolder="$(APPDATA)\Dynamo\Dynamo Revit\2.6\packages\Archi-lab_Mandrill\bin" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
     <Copy SourceFiles="$(ProjectDir)Select.Html.dep" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
     <Copy SourceFiles="$(TargetDir)LumenWorks.Framework.IO.dll" DestinationFolder="$(APPDATA)\Grasshopper\Libraries\Mandrill" ContinueOnError="true" />
